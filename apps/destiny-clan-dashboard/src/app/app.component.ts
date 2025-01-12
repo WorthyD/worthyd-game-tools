@@ -14,19 +14,18 @@ import { LayoutModule } from '@dcd/layout';
 declare let gtag: Function;
 
 @Component({
-  standalone: true,
-  imports: [
-    RouterModule,
-    MatIconModule,
-    CommonModule,
-    MatButtonModule,
-    //CoreModule,
-    LayoutModule,
-    MatProgressSpinnerModule
-  ],
-  selector: 'destiny-clan-dashboard-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    imports: [
+        RouterModule,
+        MatIconModule,
+        CommonModule,
+        MatButtonModule,
+        //CoreModule,
+        LayoutModule,
+        MatProgressSpinnerModule
+    ],
+    selector: 'destiny-clan-dashboard-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'destiny-clan-dashboard';

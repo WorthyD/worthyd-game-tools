@@ -5,10 +5,11 @@ import { PlayerSidebarStore } from '@dcd/player-sidebar/data-access';
 import { MemberProfile } from '@dcd/shared/models';
 
 @Component({
-  selector: 'app-clans-details-dashboard',
-  templateUrl: './clans-details-dashboard.component.html',
-  styleUrls: ['./clans-details-dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-clans-details-dashboard',
+    templateUrl: './clans-details-dashboard.component.html',
+    styleUrls: ['./clans-details-dashboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClansDetailsDashboardComponent {
   private playerSidebarStore = inject(PlayerSidebarStore);

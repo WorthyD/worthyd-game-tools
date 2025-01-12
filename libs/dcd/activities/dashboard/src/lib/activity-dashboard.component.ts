@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-activity-dashboard',
-  templateUrl: './activity-dashboard.component.html',
-  styleUrls: ['./activity-dashboard.component.scss']
+    selector: 'app-activity-dashboard',
+    templateUrl: './activity-dashboard.component.html',
+    styleUrls: ['./activity-dashboard.component.scss'],
+    standalone: false
 })
 export class ActivityDashboardComponent {
   activitiesService = inject(ActivitiesService);

@@ -10,12 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { GroupsV2GroupV2 } from 'bungie-api-angular/lib/model/groupsV2GroupV2';
 @Component({
-  selector: 'dcd-clan-info',
-  standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatProgressBarModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './clan-info.component.html',
-  styleUrls: ['./clan-info.component.scss']
+    selector: 'dcd-clan-info',
+    imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatProgressBarModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './clan-info.component.html',
+    styleUrls: ['./clan-info.component.scss']
 })
 export class ClanInfoComponent implements OnChanges {
   @Input() clanDetail!: GroupsV2GroupV2;

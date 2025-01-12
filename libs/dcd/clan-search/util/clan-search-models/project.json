@@ -3,8 +3,8 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/clan-search/util/clan-search-models/src",
   "prefix": "destiny-clan-dashboard",
-  "tags": ["type:util"],
   "projectType": "library",
+  "tags": ["type:util"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

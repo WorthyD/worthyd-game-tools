@@ -12,12 +12,11 @@ import { Viewer } from '@dcd/shared/data';
 import { GroupLabel, SortLabel, ViewLabel } from '@dcd/shared/data-models';
 
 @Component({
-  selector: 'lib-display-options',
-  templateUrl: './display-options.component.html',
-  imports: [AsyncPipe, NgIf, NgFor, FormsModule, MatButtonModule, MatMenuModule, MatIconModule],
-  standalone: true,
-  styleUrls: ['./display-options.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'lib-display-options',
+    templateUrl: './display-options.component.html',
+    imports: [AsyncPipe, NgIf, NgFor, FormsModule, MatButtonModule, MatMenuModule, MatIconModule],
+    styleUrls: ['./display-options.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplayOptionsComponent implements OnChanges {
   groups!: GroupLabel[];

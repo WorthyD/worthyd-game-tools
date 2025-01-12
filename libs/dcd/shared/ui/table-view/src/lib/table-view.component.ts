@@ -50,22 +50,21 @@ interface TablePage {
 }
 
 @Component({
-  selector: 'lib-table-view',
-  templateUrl: './table-view.component.html',
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    RenderedViewModule,
-    MatPaginatorModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatDividerModule,
-    DisplayOptionsComponent
-  ],
-  standalone: true,
-  styleUrls: ['./table-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'lib-table-view',
+    templateUrl: './table-view.component.html',
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatButtonModule,
+        RenderedViewModule,
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatDividerModule,
+        DisplayOptionsComponent
+    ],
+    styleUrls: ['./table-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableViewComponent implements OnChanges {
   displayedColumns!: Observable<string[]>;

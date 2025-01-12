@@ -22,16 +22,15 @@ export class ClassIconPipe implements PipeTransform {
 }
 
 @Component({
-  selector: 'app-class-cell',
-  template: `
+    selector: 'app-class-cell',
+    template: `
     <div [ngClass]="(profile?.characters.data)[characterHash].classType | classicon">
       {{ (profile?.characters.data)[characterHash].light }}
     </div>
   `,
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CommonModule, ClassIconPipe]
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, ClassIconPipe]
 })
 export class ClassCellComponent {
   @Input() characterHash!: string;

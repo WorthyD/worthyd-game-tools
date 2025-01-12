@@ -5,10 +5,11 @@ import { map } from 'rxjs';
 import { ActivityModeService } from '@dcd/activity-modes/data-access';
 
 @Component({
-  selector: 'app-activity-mode-detail',
-  templateUrl: './activity-mode-detail.component.html',
-  styleUrls: ['./activity-mode-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-activity-mode-detail',
+    templateUrl: './activity-mode-detail.component.html',
+    styleUrls: ['./activity-mode-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ActivityModeDetailComponent {
   constructor(private activitiesService: ActivityModeService, private route: ActivatedRoute) {}

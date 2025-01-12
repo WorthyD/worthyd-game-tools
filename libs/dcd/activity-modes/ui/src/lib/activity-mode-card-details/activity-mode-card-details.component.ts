@@ -5,12 +5,11 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
-  selector: 'dcd-activity-mode-card-details',
-  standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
-  templateUrl: './activity-mode-card-details.component.html',
-  styleUrls: ['./activity-mode-card-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'dcd-activity-mode-card-details',
+    imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+    templateUrl: './activity-mode-card-details.component.html',
+    styleUrls: ['./activity-mode-card-details.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActivityModeCardDetailsComponent {
   @Input() activityDefinition!: any;

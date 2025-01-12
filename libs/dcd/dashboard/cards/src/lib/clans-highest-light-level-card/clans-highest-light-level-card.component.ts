@@ -5,10 +5,11 @@ import { combineLatest, map, startWith, tap } from 'rxjs';
 import { ClansDetailsService } from '@dcd/dashboard/data-access';
 
 @Component({
-  selector: 'app-clans-highest-light-level-card',
-  templateUrl: './clans-highest-light-level-card.component.html',
-  styleUrls: ['./clans-highest-light-level-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-clans-highest-light-level-card',
+    templateUrl: './clans-highest-light-level-card.component.html',
+    styleUrls: ['./clans-highest-light-level-card.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClansHighestLightLevelCardComponent {
   constructor(private clansDetailsService: ClansDetailsService) {}

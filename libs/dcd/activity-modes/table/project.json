@@ -3,8 +3,8 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/activity-modes/table/src",
   "prefix": "lib",
-  "tags": ["type:feature"],
   "projectType": "library",
+  "tags": ["type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

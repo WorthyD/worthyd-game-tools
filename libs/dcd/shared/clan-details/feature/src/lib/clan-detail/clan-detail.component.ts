@@ -7,12 +7,11 @@ import { ClanDetailCellComponent } from '@dcd/shared/clan-details/ui';
 import { ClanConfig } from '@dcd/shared/models';
 
 @Component({
-  selector: 'app-clan-detail',
-  templateUrl: './clan-detail.component.html',
-  styleUrls: ['./clan-detail.component.scss'],
-  standalone: true,
-  imports: [CommonModule, ClanDetailCellComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-clan-detail',
+    templateUrl: './clan-detail.component.html',
+    styleUrls: ['./clan-detail.component.scss'],
+    imports: [CommonModule, ClanDetailCellComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClanDetailComponent implements OnChanges {
   // export class ClanDetailComponent {

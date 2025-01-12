@@ -8,11 +8,10 @@ import { ClanDetailComponent } from '@dcd/shared/clan-details/feature';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-config',
-  templateUrl: './config.component.html',
-  styleUrls: ['./config.component.scss'],
-  standalone: true,
-  imports: [ClanDetailComponent, MatButtonModule, CommonModule]
+    selector: 'app-config',
+    templateUrl: './config.component.html',
+    styleUrls: ['./config.component.scss'],
+    imports: [ClanDetailComponent, MatButtonModule, CommonModule]
 })
 export class ConfigComponent {
   constructor(private store: Store, private db: ClanDatabase) {}

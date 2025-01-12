@@ -6,12 +6,11 @@ import { PlayerSealComponent } from './player-seal.component';
 import { PlayerSeal } from './player-seal';
 
 @Component({
-  selector: 'lib-player-seals',
-  standalone: true,
-  imports: [NgFor, MatCardModule, MatExpansionModule, PlayerSealComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './player-seals.component.html',
-  styleUrls: ['./player-seals.component.scss']
+    selector: 'lib-player-seals',
+    imports: [NgFor, MatCardModule, MatExpansionModule, PlayerSealComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './player-seals.component.html',
+    styleUrls: ['./player-seals.component.scss']
 })
 export class PlayerSealsComponent {
   gildedSeals: PlayerSeal[] = [];

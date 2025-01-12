@@ -19,23 +19,22 @@ import { BungieDisplayNamePipe } from '../../../../../shared/utils/pipes/src/lib
 import { SeasonService } from '@dcd/shared/data-access/definitions';
 
 @Component({
-  selector: 'dcd-player-sidebar',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MemberSharedOverviewComponent,
-    CharacterCardComponent,
-    MatIcon,
-    MatIconButton,
-    MatButtonModule,
-    RouterModule,
-    ProfileUrlPipe,
-    BungieDisplayNamePipe,
-    PlayerSnapshotComponent,
-    SeasonPassComponent
-  ],
-  templateUrl: './player-sidebar.component.html',
-  styleUrl: './player-sidebar.component.scss'
+    selector: 'dcd-player-sidebar',
+    imports: [
+        CommonModule,
+        MemberSharedOverviewComponent,
+        CharacterCardComponent,
+        MatIcon,
+        MatIconButton,
+        MatButtonModule,
+        RouterModule,
+        ProfileUrlPipe,
+        BungieDisplayNamePipe,
+        PlayerSnapshotComponent,
+        SeasonPassComponent
+    ],
+    templateUrl: './player-sidebar.component.html',
+    styleUrl: './player-sidebar.component.scss'
 })
 export class PlayerSidebarComponent {
   @Output() closeSidebar = new EventEmitter();

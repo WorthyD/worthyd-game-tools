@@ -6,12 +6,11 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
-  selector: 'dcd-activity-card-details',
-  standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
-  templateUrl: './activity-card-details.component.html',
-  styleUrls: ['./activity-card-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'dcd-activity-card-details',
+    imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+    templateUrl: './activity-card-details.component.html',
+    styleUrls: ['./activity-card-details.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActivityCardDetailsComponent {
   @Input() activityDefinition?: DestinyDefinitionsDestinyActivityDefinition;

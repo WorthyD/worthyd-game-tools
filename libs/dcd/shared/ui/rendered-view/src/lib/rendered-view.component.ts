@@ -5,9 +5,10 @@ import { RenderedViewDynamicCompDirective } from './rendered-view-component.dire
 import { RenderedView } from '@dcd/shared/data-models';
 
 @Component({
-  selector: 'lib-rendered-view',
-  templateUrl: './rendered-view.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'lib-rendered-view',
+    templateUrl: './rendered-view.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RenderedViewComponent implements OnInit {
   @ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;

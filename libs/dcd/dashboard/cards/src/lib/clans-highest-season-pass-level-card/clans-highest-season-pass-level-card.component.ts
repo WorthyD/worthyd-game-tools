@@ -4,8 +4,8 @@ import { MemberProfile } from '@dcd/shared/models';
 import { combineLatest, map, startWith } from 'rxjs';
 
 @Component({
-  selector: 'app-clans-highest-season-pass-level-card',
-  template: `
+    selector: 'app-clans-highest-season-pass-level-card',
+    template: `
     <ng-container *ngIf="vm$ | async as vm">
       <dcd-clan-member-card
         [cardTitle]="'Highest Season Pass'"
@@ -22,8 +22,9 @@ import { combineLatest, map, startWith } from 'rxjs';
       </dcd-clan-member-card>
     </ng-container>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./clans-highest-season-pass-level-card.component.scss']
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./clans-highest-season-pass-level-card.component.scss'],
+    standalone: false
 })
 export class ClansHighestSeasonPassLevelCardComponent {
 

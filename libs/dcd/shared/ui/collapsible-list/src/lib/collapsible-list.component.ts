@@ -4,12 +4,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
-  selector: 'lib-collapsible-list',
-  standalone: true,
-  imports: [NgFor, NgTemplateOutlet, MatExpansionModule, MatListModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './collapsible-list.component.html',
-  styleUrls: ['./collapsible-list.component.scss']
+    selector: 'lib-collapsible-list',
+    imports: [NgFor, NgTemplateOutlet, MatExpansionModule, MatListModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './collapsible-list.component.html',
+    styleUrls: ['./collapsible-list.component.scss']
 })
 export class CollapsibleListComponent {
   @Input() title!: string;

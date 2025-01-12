@@ -23,10 +23,11 @@ import { SorterMetadata, ViewerMetadata } from '@dcd/shared/data-models';
 import { TrackedDuration } from '@dcd/shared/utils/serializers';
 
 @Component({
-  selector: 'app-activity-mode-table',
-  templateUrl: './activity-mode-table.component.html',
-  styleUrls: ['./activity-mode-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-activity-mode-table',
+    templateUrl: './activity-mode-table.component.html',
+    styleUrls: ['./activity-mode-table.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ActivityModeTableComponent implements OnChanges {
   @Input() title!: string;

@@ -10,20 +10,19 @@ import { BungieDisplayNamePipe } from '@dcd/shared/utils/pipes';
 import { ProfileLinkComponent } from '@dcd/shared/ui/profile-link';
 
 @Component({
-  selector: 'dcd-clan-member-card',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatListModule,
-    MatTooltipModule,
-    BungieDisplayNamePipe,
-    ProfileLinkComponent,
-    MatButtonModule
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './clan-member-card.component.html',
-  styleUrls: ['./clan-member-card.component.scss']
+    selector: 'dcd-clan-member-card',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatListModule,
+        MatTooltipModule,
+        BungieDisplayNamePipe,
+        ProfileLinkComponent,
+        MatButtonModule
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './clan-member-card.component.html',
+    styleUrls: ['./clan-member-card.component.scss']
 })
 export class ClanMemberCardComponent {
   @Input()

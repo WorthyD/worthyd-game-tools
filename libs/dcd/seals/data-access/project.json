@@ -3,8 +3,8 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/seals/data-access/src",
   "prefix": "lib",
-  "tags": ["type:data-acces"],
   "projectType": "library",
+  "tags": ["type:data-acces"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

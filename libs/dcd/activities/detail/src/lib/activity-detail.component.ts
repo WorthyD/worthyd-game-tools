@@ -5,10 +5,11 @@ import { ActivitiesService } from '@dcd/activities/data-access';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-activity-detail',
-  templateUrl: './activity-detail.component.html',
-  styleUrls: ['./activity-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-activity-detail',
+    templateUrl: './activity-detail.component.html',
+    styleUrls: ['./activity-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ActivityDetailComponent {
   constructor(private activitiesService: ActivitiesService, private route: ActivatedRoute) {}

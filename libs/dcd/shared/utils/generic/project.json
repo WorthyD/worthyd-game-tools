@@ -3,8 +3,8 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/shared/utils/generic/src",
   "prefix": "lib",
-  "tags": ["type:util"],
   "projectType": "library",
+  "tags": ["type:util"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

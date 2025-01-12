@@ -8,9 +8,10 @@ import { providePlayerSidebar, PlayerSidebarStore } from '@dcd/player-sidebar/da
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-wrapper',
-  templateUrl: './wrapper.component.html',
-  styleUrls: ['./wrapper.component.scss']
+    selector: 'app-wrapper',
+    templateUrl: './wrapper.component.html',
+    styleUrls: ['./wrapper.component.scss'],
+    standalone: false
 })
 export class WrapperComponent implements OnInit {
   readonly #playerSidebarStore = inject(PlayerSidebarStore);

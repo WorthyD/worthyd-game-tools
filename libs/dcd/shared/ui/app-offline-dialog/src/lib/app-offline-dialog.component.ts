@@ -3,11 +3,10 @@ import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AppConfigService } from '@dcd/shared/utils/app-config';
 @Component({
-  selector: 'app-app-offline-dialog',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-  templateUrl: './app-offline-dialog.component.html',
-  styleUrls: ['./app-offline-dialog.component.scss']
+    selector: 'app-app-offline-dialog',
+    imports: [MatDialogModule, MatButtonModule],
+    templateUrl: './app-offline-dialog.component.html',
+    styleUrls: ['./app-offline-dialog.component.scss']
 })
 export class AppOfflineDialogComponent {
   constructor(public dialogRef: MatDialogRef<AppOfflineDialogComponent>, private appConfig: AppConfigService) {}

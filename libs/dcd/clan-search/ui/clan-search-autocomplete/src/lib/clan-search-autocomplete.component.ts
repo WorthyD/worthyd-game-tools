@@ -9,12 +9,11 @@ import { sampleTime } from 'rxjs';
 import { ClanSearchResultItem } from '@dcd/clan-search/utils/clan-search-models';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
-  selector: 'app-clan-search-autocomplete',
-  standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule, MatProgressSpinnerModule, MatIconModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './clan-search-autocomplete.component.html',
-  styleUrls: ['./clan-search-autocomplete.component.scss']
+    selector: 'app-clan-search-autocomplete',
+    imports: [CommonModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule, MatProgressSpinnerModule, MatIconModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './clan-search-autocomplete.component.html',
+    styleUrls: ['./clan-search-autocomplete.component.scss']
 })
 export class ClanSearchAutocompleteComponent implements OnInit {
   @Input() autoCompleteResults: ClanSearchResultItem[] | undefined = undefined;

@@ -33,8 +33,8 @@ export interface BarChartUnit {
 }
 
 @Component({
-  selector: 'lib-bar-chart',
-  template: `
+    selector: 'lib-bar-chart',
+    template: `
     <apx-chart
       [series]="series"
       [chart]="chart"
@@ -52,9 +52,10 @@ export interface BarChartUnit {
       }"
     ></apx-chart>
   `,
-  styleUrls: ['./bar-chart.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+    styleUrls: ['./bar-chart.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class BarChartComponent implements OnInit {
   formatPipe = new PlaytimePipe();

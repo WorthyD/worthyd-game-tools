@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityModeService } from '@dcd/activity-modes/data-access';
 
 @Component({
-  selector: 'app-activity-mode-dashboard',
-  templateUrl: './activity-mode-dashboard.component.html',
-  styleUrls: ['./activity-mode-dashboard.component.scss']
+    selector: 'app-activity-mode-dashboard',
+    templateUrl: './activity-mode-dashboard.component.html',
+    styleUrls: ['./activity-mode-dashboard.component.scss'],
+    standalone: false
 })
 export class ActivityModeDashboardComponent {
   constructor(

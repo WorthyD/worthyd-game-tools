@@ -13,10 +13,11 @@ interface ViewContext {
   item: ClanMemberProfile;
 }
 @Component({
-  selector: 'app-activity-table',
-  templateUrl: './activity-table.component.html',
-  styleUrls: ['./activity-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-activity-table',
+    templateUrl: './activity-table.component.html',
+    styleUrls: ['./activity-table.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ActivityTableComponent {
   // @Input() title: string;
@@ -24,7 +25,7 @@ export class ActivityTableComponent {
   // @Input() collectionDefinitions: CollectionDefinition[];
   // @Input() recordDefinitions: RecordDefinition[];
 
-  activityHash$ = this.route.parent?.parent?.paramMap.pipe(map((params) => +params!.get('activityHash')! ?? ''));
+  activityHash$ = this.route.parent?.parent?.paramMap.pipe(map((params) => +params?.get('activityHash')!));
 
   vm$ = this.activityHash$?.pipe(
     map((hash) => {

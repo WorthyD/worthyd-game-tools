@@ -7,10 +7,11 @@ import { ClansDetailsService } from '@dcd/dashboard/data-access';
 import { ClanConfig } from '@dcd/shared/models';
 
 @Component({
-  selector: 'app-clans-details',
-  templateUrl: './clans-details.component.html',
-  styleUrls: ['./clans-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-clans-details',
+    templateUrl: './clans-details.component.html',
+    styleUrls: ['./clans-details.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClansDetailsComponent implements OnChanges {
   constructor(private clansDetailsService: ClansDetailsService) {}

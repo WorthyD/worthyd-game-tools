@@ -7,10 +7,11 @@ import { catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { ClanSearchService } from '@dcd/clan-search/data-access';
 
 @Component({
-  selector: 'app-clan-search-view',
-  templateUrl: './clan-search-view.component.html',
-  styleUrls: ['./clan-search-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-clan-search-view',
+    templateUrl: './clan-search-view.component.html',
+    styleUrls: ['./clan-search-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClanSearchViewComponent {
   constructor(private clanSearchService: ClanSearchService, private appConfig: AppConfigService) {}

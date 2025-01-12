@@ -19,11 +19,12 @@ interface RosterResources {
 }
 
 @Component({
-  selector: 'app-clans-roster',
-  templateUrl: './clans-roster.component.html',
-  styleUrls: ['./clans-roster.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-clans-roster',
+    templateUrl: './clans-roster.component.html',
+    styleUrls: ['./clans-roster.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClansRosterComponent {
   constructor(

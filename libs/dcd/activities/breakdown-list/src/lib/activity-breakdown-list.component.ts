@@ -39,11 +39,11 @@ interface RecordActivityBreakDownItem {
 }
 
 @Component({
-  selector: 'app-activity-breakdown-list',
-  templateUrl: './activity-breakdown-list.component.html',
-  styleUrls: ['./activity-breakdown-list.component.scss'],
-
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-activity-breakdown-list',
+    templateUrl: './activity-breakdown-list.component.html',
+    styleUrls: ['./activity-breakdown-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ActivityBreakdownListComponent implements OnChanges {
   @Input() metricDefinitions: MetricDefinition[];

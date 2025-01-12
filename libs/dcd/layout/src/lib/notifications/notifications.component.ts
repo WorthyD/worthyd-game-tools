@@ -17,11 +17,10 @@ interface Notification {
 }
 
 @Component({
-  selector: 'app-notifications',
-  standalone: true,
-  imports: [CommonModule, MatIconModule, MatCardModule, OverlayModule, MatButtonModule, MatProgressBarModule],
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+    selector: 'app-notifications',
+    imports: [CommonModule, MatIconModule, MatCardModule, OverlayModule, MatButtonModule, MatProgressBarModule],
+    templateUrl: './notifications.component.html',
+    styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnChanges {
   isOpen = false;

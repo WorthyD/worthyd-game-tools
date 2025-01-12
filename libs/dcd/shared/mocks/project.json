@@ -3,8 +3,8 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/shared/mocks/src",
   "prefix": "dcd",
-  "tags": ["type:model"],
   "projectType": "library",
+  "tags": ["type:model"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

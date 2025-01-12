@@ -3,8 +3,8 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/shared/ui/app-offline-dialog/src",
   "prefix": "lib",
-  "tags": ["type:ui"],
   "projectType": "library",
+  "tags": ["type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

@@ -22,10 +22,11 @@ interface SealDetailsResources {
 }
 
 @Component({
-  selector: 'app-seal-details',
-  templateUrl: './seal-details.component.html',
-  styleUrls: ['./seal-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-seal-details',
+    templateUrl: './seal-details.component.html',
+    styleUrls: ['./seal-details.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SealDetailsComponent {
   constructor(private route: ActivatedRoute, private sealsService: SealsService) {}

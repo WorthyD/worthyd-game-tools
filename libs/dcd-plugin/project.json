@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd-plugin/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -46,6 +47,5 @@
         "jestConfig": "libs/dcd-plugin/jest.config.ts"
       }
     }
-  },
-  "tags": []
+  }
 }

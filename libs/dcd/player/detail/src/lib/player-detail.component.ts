@@ -9,9 +9,10 @@ interface MemberInfo {
   memberId: string;
 }
 @Component({
-  selector: 'app-player-detail',
-  templateUrl: './player-detail.component.html',
-  styleUrls: ['./player-detail.component.scss']
+    selector: 'app-player-detail',
+    templateUrl: './player-detail.component.html',
+    styleUrls: ['./player-detail.component.scss'],
+    standalone: false
 })
 export class PlayerDetailComponent {
   constructor(

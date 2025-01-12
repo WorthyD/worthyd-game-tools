@@ -3,8 +3,8 @@
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dcd/clan-search/ui/clan-search-autocomplete/src",
   "prefix": "destiny-clan-dashboard",
-  "tags": ["type:ui"],
   "projectType": "library",
+  "tags": ["type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

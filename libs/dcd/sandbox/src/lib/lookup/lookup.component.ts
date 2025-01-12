@@ -9,12 +9,11 @@ import { DefinitionService } from '@dcd/shared/data-access/definitions';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-lookup',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatTabsModule, RouterModule],
-  templateUrl: './lookup.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./lookup.component.scss']
+    selector: 'app-lookup',
+    imports: [CommonModule, ReactiveFormsModule, MatTabsModule, RouterModule],
+    templateUrl: './lookup.component.html',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['./lookup.component.scss']
 })
 export class LookupComponent {
   constructor(

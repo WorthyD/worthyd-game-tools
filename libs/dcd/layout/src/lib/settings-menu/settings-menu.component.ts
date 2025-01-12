@@ -7,12 +7,11 @@ import { AppConfigService } from '@dcd/shared/utils/app-config';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 @Component({
-  selector: 'app-settings-menu',
-  standalone: true,
-  imports: [CommonModule, MatMenuModule, MatIconModule, MatButtonModule, RouterModule],
-  templateUrl: './settings-menu.component.html',
-  styleUrls: ['./settings-menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-settings-menu',
+    imports: [CommonModule, MatMenuModule, MatIconModule, MatButtonModule, RouterModule],
+    templateUrl: './settings-menu.component.html',
+    styleUrls: ['./settings-menu.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsMenuComponent {
   constructor(private appConfig: AppConfigService) {}

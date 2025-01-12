@@ -13,9 +13,10 @@ interface MemberInfo {
   memberId: string;
 }
 @Component({
-  selector: 'app-player-overview',
-  templateUrl: './player-overview.component.html',
-  styleUrls: ['./player-overview.component.scss']
+    selector: 'app-player-overview',
+    templateUrl: './player-overview.component.html',
+    styleUrls: ['./player-overview.component.scss'],
+    standalone: false
 })
 export class PlayerOverviewComponent {
   constructor(
