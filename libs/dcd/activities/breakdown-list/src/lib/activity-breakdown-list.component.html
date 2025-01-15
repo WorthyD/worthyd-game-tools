@@ -2,9 +2,9 @@
   <ng-container *ngIf="activityInfo$ | async as activityInfos; else loading">
     <div class="activity-breakdown-list__item" *ngFor="let activityInfo of activityInfos">
       <dcd-activity-breakdown-item
-        [title]="activityInfo.definition.displayProperties.name"
-        [iconUrl]="activityInfo.definition.displayProperties.icon"
-        [description]="activityInfo.definition.displayProperties.description"
+        [title]="activityInfo.definition.displayProperties?.name || ''"
+        [iconUrl]="activityInfo.definition.displayProperties?.icon"
+        [description]="activityInfo.definition.displayProperties?.description"
         [label]="activityInfo.total.toString()"
       ></dcd-activity-breakdown-item>
     </div>

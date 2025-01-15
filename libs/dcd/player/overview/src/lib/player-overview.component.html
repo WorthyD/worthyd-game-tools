@@ -1,9 +1,9 @@
 <div class="member-overview">
-  <dcd-member-overview [memberOverview]="profile$ | async" [isLoading]="profileLoading$ | async"> </dcd-member-overview>
+  <dcd-member-overview [memberOverview]="(profile$ | async)!" [isLoading]="(profileLoading$ | async)!"> </dcd-member-overview>
 
   <div class="member-bungie">
-    <lib-bungie-info [bungieInfo]="bungieInfo$ | async" [isLoading]="bungieInfoLoading$ | async"> </lib-bungie-info>
+    <lib-bungie-info [bungieInfo]="(bungieInfo$ | async)!" [isLoading]="(bungieInfoLoading$ | async)!"> </lib-bungie-info>
   </div>
 </div>
 
-<lib-player-seals [playerSeals]="memberSealInfo$ | async" class="member-seals"></lib-player-seals>
+<lib-player-seals [playerSeals]="(memberSealInfo$ | async)!" class="member-seals"></lib-player-seals>

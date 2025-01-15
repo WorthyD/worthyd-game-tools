@@ -3,8 +3,8 @@
     <lib-table-view
       class="seal-detail-table"
       [isLoading]="isLoading"
-      [dataSource]="(sealDetailsInfo$ | async)?.dataSource"
-      [header]="sealDetails.displayProperties.name"
+      [dataSource]="(sealDetailsInfo$ | async)?.dataSource!"
+      [header]="sealDetails.displayProperties?.name || ''"
       [viewer]="sealDetailsViewer"
       [filterer]="sealDetailsFilterer"
       [sorter]="sealDetailsSorter"

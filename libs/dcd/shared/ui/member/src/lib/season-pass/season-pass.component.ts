@@ -6,11 +6,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ClanMemberSeasonPassProgression } from '@dcd/shared/models';
 
 @Component({
-    selector: 'lib-season-pass',
-    imports: [NgIf, MatProgressBarModule, MatCardModule, MatChipsModule],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './season-pass.component.html',
-    styleUrls: ['./season-pass.component.scss']
+  selector: 'lib-season-pass',
+  imports: [NgIf, MatProgressBarModule, MatCardModule, MatChipsModule],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './season-pass.component.html',
+  styleUrls: ['./season-pass.component.scss']
 })
 export class SeasonPassComponent {
   @Input()

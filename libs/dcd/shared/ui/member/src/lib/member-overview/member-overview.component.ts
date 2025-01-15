@@ -6,10 +6,11 @@ import { MemberTypeIconComponent } from '../member-type-icon/member-type-icon.co
 import { BungieDateTimePipe } from '@dcd/shared/utils/pipes';
 
 @Component({
-    selector: 'dcd-shared-member-overview',
-    imports: [CommonModule, MatCardModule, MemberTypeIconComponent, BungieDateTimePipe],
-    templateUrl: './member-overview.component.html',
-    styleUrl: './member-overview.component.scss'
+  selector: 'dcd-shared-member-overview',
+  imports: [CommonModule, MatCardModule, MemberTypeIconComponent, BungieDateTimePipe],
+  templateUrl: './member-overview.component.html',
+  standalone: true,
+  styleUrl: './member-overview.component.scss'
 })
 export class MemberSharedOverviewComponent {
   @Input()

@@ -3,6 +3,6 @@
 import { DestinyDestinyProgression } from "bungie-api-angular/lib/model/destinyDestinyProgression";
 
 export interface ClanMemberSeasonPassProgression {
-    progression: DestinyDestinyProgression;
-    prestigeProgression: DestinyDestinyProgression;
+    progression?: DestinyDestinyProgression;
+    prestigeProgression?: DestinyDestinyProgression;
 }

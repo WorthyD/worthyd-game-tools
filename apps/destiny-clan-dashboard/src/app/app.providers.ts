@@ -37,9 +37,7 @@ import { providePlayerSidebar } from '@dcd/player-sidebar/data-access';
 export const appProviders: ApplicationConfig = {
   providers: [
     // Routes
-    provideHttpClient(
-      withInterceptors([ApiKeyInterceptor])
-    ),
+    provideHttpClient(withInterceptors([ApiKeyInterceptor])),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     // Custom providers
     { provide: BungieInfoWorkerServiceFake, useClass: BungieInfoWorkerService },
@@ -51,14 +49,14 @@ export const appProviders: ApplicationConfig = {
     { provide: ProfileRecentActivityWorkerServiceFakeFifth, useClass: ProfileRecentActivityWorkerService },
     {
       provide: ClanProfileService,
-      useFactory: (canDB) => {
+      useFactory: (canDB: any) => {
         return new ClanProfileService(canDB, environment.apiKey);
       },
       deps: [ClanDatabase]
     },
     {
       provide: ClanBungieInfoService,
-      useFactory: (canDB) => {
+      useFactory: (canDB: any) => {
         return new ClanBungieInfoService(canDB, environment.apiKey);
       },
       deps: [ClanDatabase]
@@ -74,7 +72,9 @@ export const appProviders: ApplicationConfig = {
     importProvidersFrom(ClanDbModule, SealsModule, BrowserAnimationsModule),
     // NGRX Providers
     provideStore(coreReducers, { metaReducers }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }).providers,
+
+//    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })?.providers!,
+
     provideEffects(coreEffects),
 
     //Tokens

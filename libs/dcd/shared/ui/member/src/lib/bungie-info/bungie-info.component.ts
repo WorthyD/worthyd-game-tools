@@ -7,11 +7,12 @@ import { BungieInfo } from '@dcd/shared/models';
 import { BungieDatePipe, DateAgoPipe } from '@dcd/shared/utils/pipes';
 
 @Component({
-    selector: 'lib-bungie-info',
-    imports: [NgIf, NgFor, MatCardModule, MatListModule, MatIconModule, BungieDatePipe, DateAgoPipe],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './bungie-info.component.html',
-    styleUrls: ['./bungie-info.component.scss']
+  selector: 'lib-bungie-info',
+  standalone: true,
+  imports: [NgIf, NgFor, MatCardModule, MatListModule, MatIconModule, BungieDatePipe, DateAgoPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './bungie-info.component.html',
+  styleUrls: ['./bungie-info.component.scss']
 })
 export class BungieInfoComponent {
   _bungieInfo: BungieInfo = {};

@@ -11,7 +11,7 @@
 </mat-toolbar> -->
 
 <div class="activity">
-  <dcd-activity-timeline [events]="events$ | async" [loading]="eventsLoading$ | async" class="activity__timeline"> </dcd-activity-timeline>
+  <dcd-activity-timeline [events]="events$ | async" [loading]="(eventsLoading$ | async)!" class="activity__timeline"> </dcd-activity-timeline>
 
   <ng-container *ngIf="vm$ | async as vm">
     <app-activity-breakdown-list

@@ -8,14 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { DisplayOptionsComponent } from '@dcd/shared/ui/display-options';
 
-import {
-  Viewer,
-  Exporter,
-  DataSource,
-  Filterer,
-  Grouper,
-  Sorter
-} from '@dcd/shared/data';
+import { Viewer, Exporter, DataSource, Filterer, Grouper, Sorter } from '@dcd/shared/data';
 
 import { RenderedViewModule } from '@dcd/shared/ui/rendered-view';
 import { MatButtonModule } from '@angular/material/button';
@@ -50,21 +43,22 @@ interface TablePage {
 }
 
 @Component({
-    selector: 'lib-table-view',
-    templateUrl: './table-view.component.html',
-    imports: [
-        CommonModule,
-        MatTableModule,
-        MatButtonModule,
-        RenderedViewModule,
-        MatPaginatorModule,
-        MatTooltipModule,
-        MatIconModule,
-        MatDividerModule,
-        DisplayOptionsComponent
-    ],
-    styleUrls: ['./table-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'lib-table-view',
+  templateUrl: './table-view.component.html',
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatButtonModule,
+    RenderedViewModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatDividerModule,
+    DisplayOptionsComponent
+  ],
+  styleUrls: ['./table-view.component.scss'],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableViewComponent implements OnChanges {
   displayedColumns!: Observable<string[]>;

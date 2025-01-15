@@ -19,21 +19,22 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
 // import { DefinitionService } from '@core/definition-services/definition.service';
 
 @Component({
-    selector: 'dcd-member-overview',
-    imports: [
-        CommonModule,
-        MatCardModule,
-        BungieDateTimePipe,
-        MemberTypeIconComponent,
-        CharacterCardComponent,
-        MemberSharedOverviewComponent,
-        SeasonPassComponent,
-        BungieInfoComponent
-        // PlayerSealsComponent
-    ],
-    templateUrl: './member-overview.component.html',
-    styleUrls: ['./member-overview.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'dcd-member-overview',
+  imports: [
+    CommonModule,
+    MatCardModule,
+    BungieDateTimePipe,
+    MemberTypeIconComponent,
+    CharacterCardComponent,
+    MemberSharedOverviewComponent,
+    SeasonPassComponent,
+    BungieInfoComponent
+    // PlayerSealsComponent
+  ],
+  standalone: true,
+  templateUrl: './member-overview.component.html',
+  styleUrls: ['./member-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberOverviewComponent implements OnChanges {
   @Input()

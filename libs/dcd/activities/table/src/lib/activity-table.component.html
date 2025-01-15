@@ -4,10 +4,10 @@
     <lib-table-view
       class="activity-table"
       [isLoading]="isLoading"
-      [dataSource]="activityInfo$ | async"
+      [dataSource]="(activityInfo$ | async)!"
       [viewer]="activityViewer"
       [filterer]="activityFilterer"
-      [sorter]="activitySorter"
+      [sorter]="activitySorter!"
     >
       <!-- <div pre-header>
         <button mat-icon-button aria-label="Back to Activities" routerLink="/activities">

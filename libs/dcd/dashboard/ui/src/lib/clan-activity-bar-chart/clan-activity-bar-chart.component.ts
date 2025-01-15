@@ -5,11 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { SkeletonChartLoaderComponent } from '@dcd/shared/ui/skeleton-chart-loader';
 
 @Component({
-    selector: 'dcd-clan-activity-bar-chart',
-    imports: [CommonModule, BarChartModule, MatCardModule, SkeletonChartLoaderComponent],
-    templateUrl: './clan-activity-bar-chart.component.html',
-    styleUrls: ['./clan-activity-bar-chart.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'dcd-clan-activity-bar-chart',
+  imports: [CommonModule, BarChartModule, MatCardModule, SkeletonChartLoaderComponent],
+  standalone: true,
+  templateUrl: './clan-activity-bar-chart.component.html',
+  styleUrls: ['./clan-activity-bar-chart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClanActivityBarChartComponent {
   @Input()

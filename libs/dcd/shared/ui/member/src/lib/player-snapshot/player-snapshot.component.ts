@@ -4,10 +4,11 @@ import { MemberProfile } from '@dcd/shared/models';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
-    selector: 'dcd-player-snapshot',
-    imports: [MatCardModule, MatListModule],
-    templateUrl: './player-snapshot.component.html',
-    styleUrl: './player-snapshot.component.scss'
+  selector: 'dcd-player-snapshot',
+  imports: [MatCardModule, MatListModule],
+  standalone: true,
+  templateUrl: './player-snapshot.component.html',
+  styleUrl: './player-snapshot.component.scss'
 })
 export class PlayerSnapshotComponent {
   @Input()

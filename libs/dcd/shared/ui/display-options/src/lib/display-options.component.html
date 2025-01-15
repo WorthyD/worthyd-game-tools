@@ -17,7 +17,7 @@
 <!-- Group Menu -->
 <mat-menu #groupingMenu="matMenu">
   <button mat-menu-item *ngFor="let group of groups"
-          [class.selected]="(grouper.state | async).group === group.id"
+          [class.selected]="(grouper.state | async)?.group === group.id"
           (click)="setGroup(group.id); $event.stopPropagation();">
     <div class="button-content">
       <mat-icon>check</mat-icon>
@@ -29,11 +29,11 @@
 <!-- Sort Menu -->
 <mat-menu #sortingMenu="matMenu">
   <button mat-menu-item *ngFor="let sort of sorts"
-          [class.selected]="(sorter.state | async).sort === sort.id"
+          [class.selected]="(sorter.state | async)?.sort === sort.id"
           (click)="setSort(sort.id); $event.stopPropagation();">
     <div class="button-content">
       <mat-icon>
-        {{(sorter.state | async).reverse ? 'arrow_downward' : 'arrow_upward'}}
+        {{(sorter.state | async)?.reverse ? 'arrow_downward' : 'arrow_upward'}}
       </mat-icon>
       {{sort.label}}
     </div>
@@ -43,7 +43,7 @@
 <!-- View Menu -->
 <mat-menu #viewingMenu="matMenu">
   <button mat-menu-item *ngFor="let view of views"
-          [class.selected]="(viewer.state | async).views.indexOf(view.id) !== -1"
+          [class.selected]="(viewer.state | async)?.views?.indexOf(view.id) !== -1"
           (click)="viewer.toggle(view.id); $event.stopPropagation();">
     <div class="button-content">
       <mat-icon>check</mat-icon>

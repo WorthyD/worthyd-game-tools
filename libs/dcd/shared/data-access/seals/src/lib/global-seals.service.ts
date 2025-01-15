@@ -6,26 +6,31 @@ import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 
 
 @Injectable()
 export class GlobalSealsService {
+  currentSealNodes: DestinyDefinitionsPresentationDestinyPresentationNodeDefinition;
+  legacySealNodes: DestinyDefinitionsPresentationDestinyPresentationNodeDefinition;
+  allNodes: any;
+  allNodesWLegacy: any;
+  sealNodes: DestinyDefinitionsPresentationDestinyPresentationNodeDefinition[];
+  sealNodesWLegacy: DestinyDefinitionsPresentationDestinyPresentationNodeDefinition[];
   constructor(
     private appConfig: AppConfigService,
     private definitionService: DefinitionService
-  ) {}
-  currentSealNodes = this.definitionService.presentationDefinition[this.appConfig.config.constants.CURRENT_SEALS_HASH];
-  legacySealNodes = this.definitionService.presentationDefinition[this.appConfig.config.constants.LEGACY_SEALS_HASH];
+  ) {
+    this.currentSealNodes =
+      this.definitionService.presentationDefinition[this.appConfig.config.constants.CURRENT_SEALS_HASH];
+    this.legacySealNodes =
+      this.definitionService.presentationDefinition[this.appConfig.config.constants.LEGACY_SEALS_HASH];
+    this.allNodes = this.getNodes(this.currentSealNodes);
+
+    this.allNodesWLegacy = this.getNodes(this.currentSealNodes).concat(this.getNodes(this.legacySealNodes));
+    this.sealNodes = this.getDefinitionsByHash(this.allNodes);
+    this.sealNodesWLegacy = this.getDefinitionsByHash(this.allNodesWLegacy);
+  }
 
   //allNodes = this.getNodes(this.currentSealNodes).concat(this.getNodes(this.legacySealNode));
-  allNodes = this.getNodes(this.currentSealNodes);
-  allNodesWLegacy = this.getNodes(this.currentSealNodes).concat(this.getNodes(this.legacySealNodes));
-
-  sealNodes: DestinyDefinitionsPresentationDestinyPresentationNodeDefinition[] = this.getDefinitionsByHash(
-    this.allNodes
-  );
-  sealNodesWLegacy: DestinyDefinitionsPresentationDestinyPresentationNodeDefinition[] = this.getDefinitionsByHash(
-    this.allNodesWLegacy
-  );
 
   private getNodes(node: any) {
-    return node.children.presentationNodes.map((x:any) => x.presentationNodeHash);
+    return node.children.presentationNodes.map((x: any) => x.presentationNodeHash);
   }
 
   private getDefinitionsByHash(allNodes: any[]) {

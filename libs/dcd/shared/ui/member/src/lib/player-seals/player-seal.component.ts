@@ -6,10 +6,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 @Component({
-    selector: 'lib-player-seal',
-    imports: [CommonModule, MatTooltipModule, MatProgressBarModule, MatIconModule, MatBadgeModule],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
+  selector: 'lib-player-seal',
+  imports: [CommonModule, MatTooltipModule, MatProgressBarModule, MatIconModule, MatBadgeModule],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
     <section [matTooltip]="playerSeal.sealDescription">
       <div
         [ngClass]="{ 'seal-completed': playerSeal.complete, 'seal-image': true }"
@@ -29,8 +30,8 @@ import { MatBadgeModule } from '@angular/material/badge';
       </div>
     </section>
   `,
-    styles: [
-        `
+  styles: [
+    `
       h3 {
         text-align: center;
       }
@@ -127,7 +128,7 @@ import { MatBadgeModule } from '@angular/material/badge';
         }
       } */
     `
-    ]
+  ]
 })
 export class PlayerSealComponent {
   @Input()

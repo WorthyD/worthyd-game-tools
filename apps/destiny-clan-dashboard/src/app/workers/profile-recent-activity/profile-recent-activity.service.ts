@@ -11,12 +11,13 @@ import { TrackedDuration } from '@dcd/shared/utils/serializers';
 })
 export class ProfileRecentActivityWorkerService {
   constructor() {}
-  updateAllRecentActivityCache(clanId: string, clanMembers: any[], progress?: (done) => any): Observable<boolean> {
+  updateAllRecentActivityCache(clanId: string, clanMembers: any[], progress?: (done: any) => any): Observable<boolean> {
     const activityCacheComplete: Subject<boolean> = new Subject();
     const worker = new Worker(new URL('./profile-recent-activity-updater.worker', import.meta.url));
+
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') {
-        progress(data.data);
+        progress!(data.data);
       } else if (data.type === 'complete') {
         activityCacheComplete.next(true);
       }

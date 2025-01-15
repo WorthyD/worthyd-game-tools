@@ -7,11 +7,12 @@ import { ClanDetailCellComponent } from '@dcd/shared/clan-details/ui';
 import { ClanConfig } from '@dcd/shared/models';
 
 @Component({
-    selector: 'app-clan-detail',
-    templateUrl: './clan-detail.component.html',
-    styleUrls: ['./clan-detail.component.scss'],
-    imports: [CommonModule, ClanDetailCellComponent],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-clan-detail',
+  templateUrl: './clan-detail.component.html',
+  styleUrls: ['./clan-detail.component.scss'],
+  imports: [CommonModule, ClanDetailCellComponent],
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ClanDetailComponent implements OnChanges {
   // export class ClanDetailComponent {
@@ -29,7 +30,9 @@ export class ClanDetailComponent implements OnChanges {
     if (changes['clanConfig']) {
       this.loading = true;
       if (this.clanConfig?.clanId) {
-        this.clanDetails$ = this.clanDetailService.getClan(this.clanConfig.clanId).pipe(tap(() => (this.loading = false)));
+        this.clanDetails$ = this.clanDetailService
+          .getClan(this.clanConfig.clanId)
+          .pipe(tap(() => (this.loading = false)));
       }
     }
   }

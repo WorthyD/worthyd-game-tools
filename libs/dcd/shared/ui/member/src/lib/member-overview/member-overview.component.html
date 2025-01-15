@@ -6,7 +6,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <section>Last Online: {{ memberOverview?.profile?.data?.dateLastPlayed | bungieDateTime }}</section>
+      <section>Last Online: {{ memberOverview?.profile?.data?.dateLastPlayed || '' | bungieDateTime }}</section>
       <section class="platforms">
         Platforms:&nbsp;
         <ng-container *ngFor="let type of memberOverview?.profile?.data?.userInfo?.applicableMembershipTypes">

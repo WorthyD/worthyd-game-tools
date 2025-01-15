@@ -19,6 +19,7 @@ interface Notification {
 @Component({
     selector: 'app-notifications',
     imports: [CommonModule, MatIconModule, MatCardModule, OverlayModule, MatButtonModule, MatProgressBarModule],
+    standalone:true,
     templateUrl: './notifications.component.html',
     styleUrls: ['./notifications.component.scss']
 })

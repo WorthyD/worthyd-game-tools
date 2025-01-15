@@ -5,10 +5,11 @@ import { ClassTypeTextPipe, RaceTypeTextPipe } from '@dcd/shared/utils/pipes';
 import { Character } from '@dcd/shared/models';
 
 @Component({
-    selector: 'lib-character-card',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, MatCardModule, ClassTypeTextPipe, RaceTypeTextPipe],
-    template: `
+  selector: 'lib-character-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgIf, MatCardModule, ClassTypeTextPipe, RaceTypeTextPipe],
+  standalone: true,
+  template: `
     <ng-container *ngIf="!isLoading; else loading">
       <mat-card *ngIf="character" appearance="outlined">
         <mat-card-header>
@@ -28,7 +29,7 @@ import { Character } from '@dcd/shared/models';
       </mat-card>
     </ng-template>
   `,
-    styleUrls: ['./character-card.component.scss']
+  styleUrls: ['./character-card.component.scss']
 })
 export class CharacterCardComponent {
   //TODO: IDEAS TO SHOW

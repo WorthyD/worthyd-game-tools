@@ -4,7 +4,7 @@
       <mat-card-title-group>
         <!-- TODO: Clan Banner -->
         <mat-card-title>
-          <div class="title-spacer">{{clanDetail.name}} <ng-container *ngIf="clanDetail.clanInfo.clanCallsign">
+          <div class="title-spacer">{{clanDetail.name}} <ng-container *ngIf="clanDetail.clanInfo?.clanCallsign">
               [{{clanDetail?.clanInfo?.clanCallsign}}]</ng-container>
           </div>
           <span class="clan-member-count">

@@ -1,5 +1,5 @@
 <div class="activity-mode-detail">
   <ng-container *ngIf="vm$ | async as vm">
-    <app-activity-mode-table [title]="vm.mode.displayProperties.name" [mode]="vm.mode" class="activity-mode-table"></app-activity-mode-table>
+    <app-activity-mode-table [title]="vm.mode?.displayProperties?.name || ''" [mode]="vm.mode!" class="activity-mode-table"></app-activity-mode-table>
   </ng-container>
 </div>

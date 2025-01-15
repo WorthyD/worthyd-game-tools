@@ -22,7 +22,18 @@ interface RenderedViewWithChildren {
   styles?: { [key in string]: string };
 }
 
-export type RenderedView = RenderedViewWithText | RenderedViewWithChildren | RenderedWithComponent;
+// export type RenderedView = RenderedViewWithText | RenderedViewWithChildren | RenderedWithComponent;
+export interface RenderedView {
+
+  text?: string;
+  component?: any;
+  data?: any;
+  children?: RenderedView[];
+  classList?: string | string[];
+  styles?: { [key in string]: string };
+
+
+}
 
 export interface ViewerMetadata<T = any, C = any> {
   label: string;

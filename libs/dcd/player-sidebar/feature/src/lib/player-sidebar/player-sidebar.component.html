@@ -1,9 +1,9 @@
 <section class="player-sidebar">
   <section class="player-sidebar__header">
     @if (!store.profileLoading()) {
-      <h2>{{ store.profile!() | bungieDisplayName }}</h2>
+      <h2>{{ store.profile!()! | bungieDisplayName }}</h2>
     } @else {
-      <h2 class="skeleton-item skeleton-full-width"></h2>
+      <h2 class="skeleton-item skeleton-full-width">&nbsp;</h2>
     }
     <button mat-icon-button (click)="closeSidebar.emit()">
       <mat-icon>close</mat-icon>
@@ -28,7 +28,7 @@
 
     <div class="season-card">
       <lib-season-pass
-        [clanMemberSeasonPass]="seasonProgress()"
+        [clanMemberSeasonPass]="seasonProgress()!"
         [isLoading]="store.profileLoading()"
         subTitle="Current Season"
       >
@@ -47,7 +47,7 @@
   </section>
   <section class="player-sidebar__footer">
     @if (!store.profileLoading()) {
-      <a mat-stroked-button routerLink="{{ store.profile!() | profileUrl }}">View Profile</a>
+      <a mat-stroked-button routerLink="{{ store.profile!()! | profileUrl }}">View Profile</a>
     }
   </section>
 </section>

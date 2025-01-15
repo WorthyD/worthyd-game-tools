@@ -1,2 +1,2 @@
 <dcd-clan-detail-cell [clanDetail]="clanDetails$ | async" [loading]="loading" (removeClan)="removeClan($event)"
-  [showAdd]="showAdd" [showReset]="showReset" (addClan)="addClan($event)" (resetClan)="resetClan($event)"></dcd-clan-detail-cell>
+  [showAdd]="showAdd" [showReset]="showReset" (addClan)="addClan($event!)" (resetClan)="resetClan($event!)"></dcd-clan-detail-cell>

@@ -1,12 +1,12 @@
 const nx = require('@nx/eslint-plugin');
+const ngrx = require('@ngrx/eslint-plugin');
 
 module.exports = [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
-//  ...ngrx.configs.all,
   {
-    ignores: ['**/dist'],
+    ignores: ['**/dist']
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -19,23 +19,21 @@ module.exports = [
           depConstraints: [
             {
               sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
-      ],
-    },
+              onlyDependOnLibsWithTags: ['*']
+            }
+          ]
+        }
+      ]
+    }
   },
+  // {
+  //   files: ['**/*.ts', '**/*.tsx'],
+  //   ...ngrx.configs['all']
+  // },
+
   {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
     // Override or add rules here
-    rules: {},
-  },
+    rules: {}
+  }
 ];

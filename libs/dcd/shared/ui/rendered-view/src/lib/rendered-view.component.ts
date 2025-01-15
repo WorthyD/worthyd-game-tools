@@ -5,10 +5,10 @@ import { RenderedViewDynamicCompDirective } from './rendered-view-component.dire
 import { RenderedView } from '@dcd/shared/data-models';
 
 @Component({
-    selector: 'lib-rendered-view',
-    templateUrl: './rendered-view.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'lib-rendered-view',
+  templateUrl: './rendered-view.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class RenderedViewComponent implements OnInit {
   @ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;
@@ -16,8 +16,8 @@ export class RenderedViewComponent implements OnInit {
 
   @Input() text!: string;
 
-  @Input() childrenViews: RenderedView[] = [];
-  @Input() component: any;
+  @Input() childrenViews: RenderedView[] | null = [];
+  @Input() component: unknown;
   @Input() data: any;
 
   ngOnInit() {
@@ -26,8 +26,8 @@ export class RenderedViewComponent implements OnInit {
       const viewContainerRef = this.libDynamicComp.viewContainerRef;
       viewContainerRef.clear();
 
-      const componentRef: any = viewContainerRef.createComponent(this.component);
-      for (const property in this.data) {
+      const componentRef: any = viewContainerRef.createComponent(this.component as any) as any;
+      for (const property in this.data as any) {
         componentRef.instance[property] = this.data[property];
       }
     }

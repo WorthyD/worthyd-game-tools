@@ -14,22 +14,23 @@ import { LayoutModule } from '@dcd/layout';
 declare let gtag: Function;
 
 @Component({
-    imports: [
-        RouterModule,
-        MatIconModule,
-        CommonModule,
-        MatButtonModule,
-        //CoreModule,
-        LayoutModule,
-        MatProgressSpinnerModule
-    ],
-    selector: 'destiny-clan-dashboard-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  imports: [
+    RouterModule,
+    MatIconModule,
+    CommonModule,
+    MatButtonModule,
+    //CoreModule,
+    LayoutModule,
+    MatProgressSpinnerModule
+  ],
+  standalone: true,
+  selector: 'destiny-clan-dashboard-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'destiny-clan-dashboard';
-  hideDisclaimer;
+  hideDisclaimer = false;
   manifestState$ = this.store.select(selectManifestState).pipe(
     // eslint-disable-next-line @ngrx/avoid-mapping-selectors
     map((x) => x),
@@ -40,7 +41,12 @@ export class AppComponent {
   );
   manifestError$ = this.store.select(selectManifestError);
 
-  constructor(private store: Store, iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer, private router: Router) {
+  constructor(
+    private store: Store,
+    iconRegistry: MatIconRegistry,
+    domSanitizer: DomSanitizer,
+    private router: Router
+  ) {
     registerIcons(iconRegistry, domSanitizer);
 
     this.store.dispatch(loadManifest());
