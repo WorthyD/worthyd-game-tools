@@ -61,9 +61,13 @@
     "component-test": {
       "cache": true,
       "inputs": ["default", "^production"]
+    },
+    "@angular-devkit/build-angular:application": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
-
   "plugins": [
     {
       "plugin": "@nx/cypress/plugin",
@@ -92,13 +96,14 @@
   ],
   "generators": {
     "@nx/angular:application": {
-      "style": "scss",
+      "e2eTestRunner": "cypress",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "style": "scss",
+      "unitTestRunner": "jest"
     },
     "@nx/angular:library": {
       "linter": "eslint",
+      "style": "scss",
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
