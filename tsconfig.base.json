@@ -16,6 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@crafting-cart/catalog": ["libs/craft-cart/catalog/src/index.ts"],
+      "@crafting-cart/models": ["libs/craft-cart/models/src/index.ts"],
+      "@crafting-cart/shell": ["libs/craft-cart/shell/src/index.ts"],
       "@dcd/activities/breakdown-list": ["libs/dcd/activities/breakdown-list/src/index.ts"],
       "@dcd/activities/curated-dashboard": ["libs/dcd/activities/curated-dashboard/src/index.ts"],
       "@dcd/activities/dashboard": ["libs/dcd/activities/dashboard/src/index.ts"],
@@ -119,7 +122,6 @@
       "@dcd/shared/utils/url-helpers": ["libs/dcd/shared/utils/url-helpers/src/index.ts"],
       "@environment/*": ["apps/destiny-clan-dashboard/src/app/environments/*"],
       "dcd-plugin": ["libs/dcd-plugin/src/index.ts"],
-      "models": ["libs/craft-cart/models/src/index.ts"],
       "storybook-host": ["libs/storybook-host/src/index.ts"]
     }
   },

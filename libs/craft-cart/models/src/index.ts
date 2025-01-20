@@ -1,1 +1,1 @@
-export * from './lib/models/models.component';
+export * from './lib/models/item.interface';
