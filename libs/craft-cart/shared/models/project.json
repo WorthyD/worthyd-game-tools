@@ -4,7 +4,7 @@
   "sourceRoot": "libs/craft-cart/models/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["type:model"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

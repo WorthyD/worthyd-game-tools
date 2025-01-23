@@ -1,1 +1,9 @@
-<p>Catalog works!</p>
+<div>
+  @if (catalogItems$ | ngrxPush; as catalogItems) {
+    @for (catalogItem of catalogItems; track catalogItem.id) {
+      <div>
+        {{ catalogItem.name }}
+      </div>
+    }
+  }
+</div>

@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { CatalogFacade } from '@crafting-cart/shell';
+import { items } from './catalog/items';
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'craft-cart';
+
+  constructor(private readonly cf: CatalogFacade) {
+    this.cf.init(items);
+  }
 }

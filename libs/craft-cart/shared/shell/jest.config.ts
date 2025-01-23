@@ -1,8 +1,8 @@
 export default {
   displayName: 'shell',
-  preset: '../../../jest.preset.js',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/craft-cart/shell',
+  coverageDirectory: '../../../../coverage/libs/craft-cart/shell',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
