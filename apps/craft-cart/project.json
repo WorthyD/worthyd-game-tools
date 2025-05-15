@@ -22,7 +22,11 @@
             "input": "apps/craft-cart/public"
           }
         ],
-        "styles": ["apps/craft-cart/src/styles.scss"],
+        "styles": [
+          "apps/craft-cart/src/styles/tailwind.scss",
+          "apps/craft-cart/src/styles/material.scss",
+          "apps/craft-cart/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CatalogFacade } from '@crafting-cart/shell';
+import { CartFacade, CatalogFacade } from '@crafting-cart/state';
 import { PushPipe } from '@ngrx/component';
 
 @Component({
@@ -11,5 +11,11 @@ import { PushPipe } from '@ngrx/component';
 })
 export class CatalogComponent {
   readonly cf = inject(CatalogFacade);
+  readonly cart = inject(CartFacade);
   catalogItems$ = this.cf.allCatalog$;
+  cartItems$ = this.cart.allCart$;
+
+  addToCart(itemId: string) {
+    this.cart.addItemToCart({itemId, quantity: 1});
+  }
 }

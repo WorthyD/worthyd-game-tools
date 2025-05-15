@@ -29,7 +29,8 @@ const reducer = createReducer(
 
     return cartAdapter.removeOne(itemId, state);
   }),
-  on(CartActions.deleteItemFromCart, (state, { itemId }) => cartAdapter.removeOne(itemId, state))
+  on(CartActions.deleteItemFromCart, (state, { itemId }) => cartAdapter.removeOne(itemId, state)),
+  on(CartActions.emptyCart, () => initialCartState)
 );
 
 export function cartReducer(state: CartState | undefined, action: Action) {

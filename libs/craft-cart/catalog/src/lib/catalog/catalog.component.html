@@ -1,9 +1,7 @@
 <div>
   @if (catalogItems$ | ngrxPush; as catalogItems) {
     @for (catalogItem of catalogItems; track catalogItem.id) {
-      <div>
-        {{ catalogItem.name }}
-      </div>
+      <div>{{ catalogItem.name }} <button (click)="addToCart(catalogItem.id)">Add to cart</button></div>
     }
   }
 </div>

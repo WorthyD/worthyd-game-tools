@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CatalogFacade } from '@crafting-cart/shell';
+import { CatalogFacade } from '@crafting-cart/state';
 import { items } from './catalog/items';
 
 @Component({

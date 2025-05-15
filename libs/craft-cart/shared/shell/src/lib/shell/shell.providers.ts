@@ -1,16 +1,19 @@
 import { provideStore, provideState } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
-import * as fromCatalog from './+state/catalog.reducer';
-import { CatalogEffects } from './+state/catalog.effects';
-import { CatalogFacade } from './+state/catalog.facade';
+
+
+import { CatalogFacade, CATALOG_FEATURE_KEY, catalogReducer, cartReducer, CART_FEATURE_KEY, CartFacade } from '@crafting-cart/state';
+
+
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 
 export const shellProviders = [
   provideStore(),
   //provideEffects(),
+  CartFacade,
   CatalogFacade,
-  provideState(fromCatalog.CATALOG_FEATURE_KEY, fromCatalog.catalogReducer),
+  provideState(CATALOG_FEATURE_KEY, catalogReducer),
+  provideState(CART_FEATURE_KEY, cartReducer),
   //provideEffects(CatalogEffects)
   provideStoreDevtools({
     maxAge: 25, // Retains last 25 states
