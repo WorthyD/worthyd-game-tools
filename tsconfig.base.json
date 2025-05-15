@@ -124,6 +124,7 @@
       "@dcd/shared/utils/storage": ["libs/dcd/shared/utils/storage/src/index.ts"],
       "@dcd/shared/utils/url-helpers": ["libs/dcd/shared/utils/url-helpers/src/index.ts"],
       "@environment/*": ["apps/destiny-clan-dashboard/src/app/environments/*"],
+      "card": ["libs/craft-cart/shared/ui/card/src/index.ts"],
       "dcd-plugin": ["libs/dcd-plugin/src/index.ts"],
       "storybook-host": ["libs/storybook-host/src/index.ts"]
     }
