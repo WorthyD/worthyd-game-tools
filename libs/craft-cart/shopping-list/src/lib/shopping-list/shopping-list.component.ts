@@ -42,15 +42,17 @@ export class ShoppingListComponent {
 
         if (recipeItems && recipeItems.length > 0) {
           recipeItems.forEach((recipeItem) => {
+            const recipeItemCount = item.quantity * recipeItem.quantity;
+
             if (recipeItem.item) {
               const existingItem = rawItems.find((x) => x.item.id === recipeItem.item?.id);
 
               if (existingItem) {
                 const index = rawItems.findIndex((x) => x.item.id === recipeItem.item?.id);
 
-                rawItems[index].quantity = existingItem.quantity + item.quantity * recipeItem.quantity;
+                rawItems[index].quantity = existingItem.quantity + recipeItemCount;
               } else {
-                rawItems.push({ item: recipeItem.item, quantity: item.quantity * recipeItem.quantity });
+                rawItems.push({ item: recipeItem.item, quantity: recipeItemCount });
               }
             }
           });
