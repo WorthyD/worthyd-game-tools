@@ -1,7 +1,16 @@
 <div class="flex gap-4">
   @if (catalogItems$ | ngrxPush; as catalogItems) {
     @for (catalogItem of catalogItems; track catalogItem.id) {
-      <div>{{ catalogItem.name }} <button mat-button (click)="addToCart(catalogItem.id)">Add to cart</button></div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{ catalogItem.name }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <lib-cart-quantity></lib-cart-quantity>
+        </mat-card-actions>
+      </mat-card>
     }
   }
 </div>

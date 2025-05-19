@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CartFacade, CatalogFacade } from '@crafting-cart/state';
 import { PushPipe } from '@ngrx/component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CartQuantityComponent } from '@crafting-cart/shared/ui/cart-quantity';
 
 @Component({
   selector: 'lib-catalog',
-  imports: [CommonModule, PushPipe, MatButtonModule],
+  imports: [CommonModule, PushPipe, MatButtonModule, MatCardModule, CartQuantityComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss'
 })
