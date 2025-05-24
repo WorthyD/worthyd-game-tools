@@ -1,14 +1,20 @@
 import { provideStore, provideState } from '@ngrx/store';
 
-
-import { CatalogFacade, CATALOG_FEATURE_KEY, catalogReducer, cartReducer, CART_FEATURE_KEY, CartFacade } from '@crafting-cart/state';
-
+import {
+  CatalogFacade,
+  CATALOG_FEATURE_KEY,
+  catalogReducer,
+  cartReducer,
+  CART_FEATURE_KEY,
+  CartFacade,
+  initStateFromLocalStorage
+} from '@crafting-cart/state';
 
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 
 export const shellProviders = [
-  provideStore(),
+  provideStore({},{metaReducers:[initStateFromLocalStorage]}),
   //provideEffects(),
   CartFacade,
   CatalogFacade,
