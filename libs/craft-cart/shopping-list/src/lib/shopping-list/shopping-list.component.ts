@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CartFacade, CartEntity, CatalogFacade } from '@crafting-cart/state';
-import { Item } from '@crafting-cart/models';
+import { Item } from '@crafting-cart/shared/models';
 
 import { CommonModule } from '@angular/common';
 import { combineLatest, map } from 'rxjs';
+import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
 
 import { PushPipe } from '@ngrx/component';
 interface ShoppingListItem {
@@ -13,7 +14,7 @@ interface ShoppingListItem {
 
 @Component({
   selector: 'lib-shopping-list',
-  imports: [CommonModule, PushPipe],
+  imports: [CommonModule, PushPipe, ItemCardComponent],
   templateUrl: './shopping-list.component.html',
   styleUrl: './shopping-list.component.scss'
 })

@@ -17,9 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@crafting-cart/catalog": ["libs/craft-cart/catalog/src/index.ts"],
-      "@crafting-cart/models": ["libs/craft-cart/shared/models/src/index.ts"],
+      "@crafting-cart/shared/models": ["libs/craft-cart/shared/models/src/index.ts"],
       "@crafting-cart/shared/cart-widget": ["libs/craft-cart/shared/cart-widget/src/index.ts"],
       "@crafting-cart/shared/ui/card": ["libs/craft-cart/shared/ui/card/src/index.ts"],
+      "@crafting-cart/shared/ui/cart-quantity": ["libs/craft-cart/shared/ui/cart-quantity/src/index.ts"],
+      "@crafting-cart/shared/ui/item-card": ["libs/craft-cart/shared/ui/item-card/src/index.ts"],
       "@crafting-cart/shell": ["libs/craft-cart/shared/shell/src/index.ts"],
       "@crafting-cart/shopping-list": ["libs/craft-cart/shopping-list/src/index.ts"],
       "@crafting-cart/state": ["libs/craft-cart/shared/state/src/index.ts"],
@@ -125,7 +127,6 @@
       "@dcd/shared/utils/storage": ["libs/dcd/shared/utils/storage/src/index.ts"],
       "@dcd/shared/utils/url-helpers": ["libs/dcd/shared/utils/url-helpers/src/index.ts"],
       "@environment/*": ["apps/destiny-clan-dashboard/src/app/environments/*"],
-      "@crafting-cart/shared/ui/cart-quantity": ["libs/craft-cart/shared/ui/cart-quantity/src/index.ts"],
       "dcd-plugin": ["libs/dcd-plugin/src/index.ts"],
       "storybook-host": ["libs/storybook-host/src/index.ts"]
     }

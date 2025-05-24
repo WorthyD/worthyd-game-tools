@@ -1,5 +1,12 @@
-@if (shoppingListItems$ | ngrxPush; as shoppingListItems) {
-  @for (catalogItem of shoppingListItems; track catalogItem.item.id) {
-    <div>{{ catalogItem.item.id }} - {{ catalogItem.quantity }}</div>
+<div class="flex gap-4">
+  @if (shoppingListItems$ | ngrxPush; as shoppingListItems) {
+    @for (catalogItem of shoppingListItems; track catalogItem.item.id) {
+      <!-- <div>{{ catalogItem.item.id }} - {{ catalogItem.quantity }}</div> -->
+      <lib-item-card [catalogItem]="catalogItem.item">
+        <div ngProjectAs="lib-item-card-footer">
+          {{ catalogItem.quantity }}
+        </div>
+      </lib-item-card>
+    }
   }
-}
+</div>

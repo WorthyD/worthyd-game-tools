@@ -1,7 +1,7 @@
 {
   "name": "craft-cart-models",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/craft-cart/models/src",
+  "sourceRoot": "libs/craft-cart/shared/models/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": ["type:model"],
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/craft-cart/models/jest.config.ts"
+        "jestConfig": "libs/craft-cart/shared/models/jest.config.ts"
       }
     },
     "lint": {

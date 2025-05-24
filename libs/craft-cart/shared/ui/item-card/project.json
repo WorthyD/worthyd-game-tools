@@ -1,0 +1,29 @@
+{
+  "name": "item-card",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/craft-cart/shared/ui/item-card/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["type:ui"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/craft-cart/shared/ui/item-card/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "libs/craft-cart/shared/ui/item-card/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "craft-cart:build"
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { select, Store, Action } from '@ngrx/store';
 import * as CatalogActions from './catalog.actions';
 import * as CatalogFeature from './catalog.reducer';
 import * as CatalogSelectors from './catalog.selectors';
-import { Item } from '@crafting-cart/models';
+import { Item } from '@crafting-cart/shared/models';
 
 @Injectable()
 export class CatalogFacade {

@@ -2,7 +2,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as CatalogActions from './catalog.actions';
-import { Item } from '@crafting-cart/models';
+import { Item } from '@crafting-cart/shared/models';
 
 export const CATALOG_FEATURE_KEY = 'catalog';
 

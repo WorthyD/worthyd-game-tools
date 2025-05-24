@@ -20,6 +20,14 @@
           {
             "glob": "**/*",
             "input": "apps/craft-cart/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/craft-cart/src/assets"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/craft-cart/src/_redirects"
           }
         ],
         "styles": [

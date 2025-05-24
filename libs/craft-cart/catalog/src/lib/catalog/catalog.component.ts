@@ -5,10 +5,11 @@ import { PushPipe } from '@ngrx/component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CartQuantityComponent } from '@crafting-cart/shared/ui/cart-quantity';
+import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
 
 @Component({
   selector: 'lib-catalog',
-  imports: [CommonModule, PushPipe, MatButtonModule, MatCardModule, CartQuantityComponent],
+  imports: [CommonModule, PushPipe, MatButtonModule, MatCardModule, CartQuantityComponent, ItemCardComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss'
 })
@@ -18,7 +19,7 @@ export class CatalogComponent {
   catalogItems$ = this.cf.allCatalog$;
   cartItems$ = this.cart.allCart$;
 
-  addToCart(itemId: string) {
-    this.cart.addItemToCart({ itemId, quantity: 1 });
+  addToCart(itemId: string, quantity: number) {
+    this.cart.addItemToCart({ itemId, quantity: quantity });
   }
 }

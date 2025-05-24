@@ -1,16 +1,12 @@
 <div class="flex gap-4">
   @if (catalogItems$ | ngrxPush; as catalogItems) {
     @for (catalogItem of catalogItems; track catalogItem.id) {
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            {{ catalogItem.name }}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-actions>
-          <lib-cart-quantity></lib-cart-quantity>
-        </mat-card-actions>
-      </mat-card>
+      <lib-item-card [catalogItem]="catalogItem">
+        <lib-cart-quantity
+          ngProjectAs="lib-item-card-footer"
+          (add)="addToCart(catalogItem.id, $event)"
+        ></lib-cart-quantity>
+      </lib-item-card>
     }
   }
 </div>
