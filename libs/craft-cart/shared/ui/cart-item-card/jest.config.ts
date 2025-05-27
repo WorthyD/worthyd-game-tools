@@ -1,8 +1,8 @@
 export default {
-  displayName: 'card',
+  displayName: 'cart-item-card',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../../coverage/libs/craft-cart/shared/ui/card',
+  coverageDirectory: '../../../../../coverage/libs/craft-cart/shared/ui/cart-item-card',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

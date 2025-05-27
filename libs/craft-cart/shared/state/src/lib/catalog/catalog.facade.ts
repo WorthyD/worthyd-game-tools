@@ -17,6 +17,7 @@ export class CatalogFacade {
   loaded$ = this.store.pipe(select(CatalogSelectors.selectCatalogLoaded));
   allCatalog$ = this.store.pipe(select(CatalogSelectors.selectAllCatalog));
   selectedCatalog$ = this.store.pipe(select(CatalogSelectors.selectEntity));
+  selectCatalogItemById$ = (itemIds: string[]) => this.store.pipe(select(CatalogSelectors.selectCatalogItems(itemIds)));
 
   /**
    * Use the initialization action to perform one

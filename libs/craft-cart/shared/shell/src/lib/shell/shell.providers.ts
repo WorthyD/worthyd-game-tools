@@ -7,19 +7,21 @@ import {
   cartReducer,
   CART_FEATURE_KEY,
   CartFacade,
-  initStateFromLocalStorage
+  initStateFromLocalStorage,
+  CartEffects
 } from '@crafting-cart/state';
 
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
+import { provideEffects } from '@ngrx/effects';
 
 export const shellProviders = [
-  provideStore({},{metaReducers:[initStateFromLocalStorage]}),
-  //provideEffects(),
+  provideStore({}, { metaReducers: [initStateFromLocalStorage] }),
   CartFacade,
   CatalogFacade,
   provideState(CATALOG_FEATURE_KEY, catalogReducer),
   provideState(CART_FEATURE_KEY, cartReducer),
+  provideEffects(CartEffects),
   //provideEffects(CatalogEffects)
   provideStoreDevtools({
     maxAge: 25, // Retains last 25 states

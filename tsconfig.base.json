@@ -20,6 +20,7 @@
       "@crafting-cart/shared/cart-widget": ["libs/craft-cart/shared/cart-widget/src/index.ts"],
       "@crafting-cart/shared/models": ["libs/craft-cart/shared/models/src/index.ts"],
       "@crafting-cart/shared/ui/card": ["libs/craft-cart/shared/ui/card/src/index.ts"],
+      "@crafting-cart/shared/ui/cart-item-card": ["libs/craft-cart/shared/ui/cart-item-card/src/index.ts"],
       "@crafting-cart/shared/ui/cart-quantity": ["libs/craft-cart/shared/ui/cart-quantity/src/index.ts"],
       "@crafting-cart/shared/ui/item-card": ["libs/craft-cart/shared/ui/item-card/src/index.ts"],
       "@crafting-cart/shell": ["libs/craft-cart/shared/shell/src/index.ts"],

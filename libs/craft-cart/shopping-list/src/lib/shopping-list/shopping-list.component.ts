@@ -36,27 +36,30 @@ export class ShoppingListComponent {
       const catalogItem = catalogItems.find((x) => x.id === item.itemId);
 
       if (catalogItem) {
-        const recipeItems = catalogItem?.ingredients.map((ingredient) => {
-          const recipeItem = catalogItems.find((x) => x.id === ingredient.id);
-          return { item: recipeItem, quantity: ingredient.quantity };
-        });
+        const addOrUpdateItem = (itemToAdd: Item, quantityToAdd: number) => {
+          const existingItem = rawItems.find((x) => x.item.id === itemToAdd.id);
+          if (existingItem) {
+            existingItem.quantity += quantityToAdd;
+          } else {
+            rawItems.push({ item: itemToAdd, quantity: quantityToAdd });
+          }
+        };
+
+        const recipeItems = catalogItem.ingredients
+          ?.map((ingredient) => {
+            const recipeItem = catalogItems.find((x) => x.id === ingredient.id);
+            return recipeItem ? { item: recipeItem, quantity: ingredient.quantity } : null;
+          })
+          // Remove null values
+          .filter(Boolean) as ShoppingListItem[];
 
         if (recipeItems && recipeItems.length > 0) {
           recipeItems.forEach((recipeItem) => {
-            const recipeItemCount = item.quantity * recipeItem.quantity;
-
-            if (recipeItem.item) {
-              const existingItem = rawItems.find((x) => x.item.id === recipeItem.item?.id);
-
-              if (existingItem) {
-                const index = rawItems.findIndex((x) => x.item.id === recipeItem.item?.id);
-
-                rawItems[index].quantity = existingItem.quantity + recipeItemCount;
-              } else {
-                rawItems.push({ item: recipeItem.item, quantity: recipeItemCount });
-              }
-            }
+            addOrUpdateItem(recipeItem.item, item.quantity * recipeItem.quantity);
           });
+        } else {
+          // If no recipe items, add the catalog item directly
+          addOrUpdateItem(catalogItem, item.quantity);
         }
       }
     });

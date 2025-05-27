@@ -1,1 +1,2 @@
-export * from './lib/local-storage/local-storage.component';
+export * from './lib/local-storage/local-storage.service';
+export * from './lib/local-storage/local-storage.token';

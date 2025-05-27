@@ -19,3 +19,8 @@ export const selectSelectedId = createSelector(selectCatalogState, (state: Catal
 export const selectEntity = createSelector(selectCatalogEntities, selectSelectedId, (entities, selectedId) =>
   selectedId ? entities[selectedId] : undefined
 );
+
+export const selectCatalogItems = (itemIds: string[]) =>
+  createSelector(selectCatalogEntities, (entities) => {
+    return itemIds.map((id) => entities[id]).filter((item) => !!item);
+  });

@@ -6,5 +6,6 @@ export * from './lib/cart/cart.reducer';
 export * from './lib/catalog/catalog.reducer';
 export * from './lib/cart/cart.state';
 export * from './lib/cart/cart.models';
+export * from './lib/cart/cart.effects';
 
 export * from './lib/meta-reducers/init-state-from-local-storage.reducer';

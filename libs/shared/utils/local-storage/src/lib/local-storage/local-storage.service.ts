@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 // import { tryJSONParse } from '@dcd/shared/utils';
-import {tryJSONParse} from '@worthyd/shared/utils/generic';
+import { tryJSONParse } from '@worthyd/shared/utils/generic';
 import { LOCAL_STORAGE_TOKEN } from './local-storage.token';
 
 // const APP_PREFIX = 'D2DASH-';
@@ -9,16 +9,13 @@ import { LOCAL_STORAGE_TOKEN } from './local-storage.token';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  private readonly APP_PREFIX: string;
-  constructor(@Inject(LOCAL_STORAGE_TOKEN) private readonly app_prefix: string) {
-    this.APP_PREFIX = this.app_prefix;
-  }
+  constructor(@Inject(LOCAL_STORAGE_TOKEN) private readonly app_prefix: string) {}
 
-  static loadInitialState() {
+  loadInitialState() {
     return Object.keys(localStorage).reduce((state: any, storageKey) => {
-      if (storageKey.includes()) {
+      if (storageKey.includes(this.app_prefix)) {
         const stateKeys = storageKey
-          .replace(APP_PREFIX, '')
+          .replace(this.app_prefix, '')
           .toLowerCase()
           .split('.')
           .map((key) =>
@@ -42,15 +39,15 @@ export class LocalStorageService {
   }
 
   setItem(key: string, value: any) {
-    localStorage.setItem(`${this.APP_PREFIX}${key}`, JSON.stringify(value));
+    localStorage.setItem(`${this.app_prefix}${key}`, JSON.stringify(value));
   }
 
   getItem<T>(key: string): T | undefined {
-    return tryJSONParse<T>(localStorage.getItem(`${this.APP_PREFIX}${key}`) ?? '');
+    return tryJSONParse<T>(localStorage.getItem(`${this.app_prefix}${key}`) ?? '');
   }
 
   removeItem(key: string) {
-    localStorage.removeItem(`${this.APP_PREFIX}${key}`);
+    localStorage.removeItem(`${this.app_prefix}${key}`);
   }
 
   /** Tests that localStorage exists, can be written to, and read from. */
