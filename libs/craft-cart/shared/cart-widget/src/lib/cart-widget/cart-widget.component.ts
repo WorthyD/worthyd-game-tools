@@ -5,19 +5,23 @@ import { RouterLink } from '@angular/router';
 import { PushPipe } from '@ngrx/component';
 import { CartItemCardComponent } from '@crafting-cart/shared/ui/cart-item-card';
 import { map, switchMap } from 'rxjs';
+import { CartQuantityComponent } from '@crafting-cart/shared/ui/cart-quantity';
 
 @Component({
   selector: 'lib-cart-widget',
-  imports: [CommonModule, PushPipe, RouterLink, CartItemCardComponent],
+  imports: [CommonModule, PushPipe, RouterLink, CartItemCardComponent, CartQuantityComponent],
   template: ` <h3>Cart</h3>
     <a routerLink="/list">Shopping List</a>
 
     @if (viewModel$ | ngrxPush; as cartItems) {
       @for (catalogItem of cartItems; track catalogItem.itemId) {
-        <lib-cart-item-card
-          [catalogItem]="catalogItem.item"
-          [catalogItemQuantity]="catalogItem.quantity"
-        ></lib-cart-item-card>
+        <lib-cart-item-card [catalogItem]="catalogItem.item" [catalogItemQuantity]="catalogItem.quantity">
+          <lib-cart-quantity ngProjectAs="lib-item-card-footer" [initialInput]="catalogItem.quantity.toString()" [showAdd]="false" [showDelete]="true"
+          (qtyChanged)="updateCartItemQuantity(catalogItem.itemId, $event)"
+          (deleteItem)="deleteCartItem(catalogItem.itemId)"
+
+          ></lib-cart-quantity>
+        </lib-cart-item-card>
       }
     }`,
   styles: [``]
@@ -40,4 +44,12 @@ export class CartWidgetComponent {
       )
     )
   );
+
+  updateCartItemQuantity(itemId: string, quantity: number) {
+    this.cart.updateItemsInCart({ itemId, quantity });
+  }
+
+  deleteCartItem(itemId: string) {
+    this.cart.deleteItemFromCart({ itemId });
+  }
 }

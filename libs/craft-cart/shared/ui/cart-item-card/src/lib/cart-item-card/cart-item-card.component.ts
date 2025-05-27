@@ -13,6 +13,10 @@ import { MatCardModule } from '@angular/material/card';
         <img mat-card-sm-image [src]="catalogItem()?.imageUrl" alt="" />
         <mat-card-title-group>
           <mat-card-title>{{ catalogItem()?.name }}</mat-card-title>
+          <mat-card-subtitle>
+<ng-content select="lib-item-card-footer"></ng-content>
+
+          </mat-card-subtitle>
         </mat-card-title-group>
       </mat-card-header>
     </mat-card>

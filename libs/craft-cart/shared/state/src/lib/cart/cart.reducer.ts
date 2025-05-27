@@ -21,6 +21,9 @@ const reducer = createReducer(
 
     return cartAdapter.addOne({ itemId, quantity }, state);
   }),
+  on(CartActions.updateItemInCart, (state, { itemId, quantity }) => {
+      return cartAdapter.upsertOne({ itemId, quantity   }, state);
+  }),
   on(CartActions.removeItemsFromCart, (state, { itemId, quantity }) => {
     const currentItem = state.entities[itemId];
     if (currentItem && currentItem.quantity - quantity > 0) {

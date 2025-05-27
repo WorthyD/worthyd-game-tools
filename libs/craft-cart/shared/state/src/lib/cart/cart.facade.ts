@@ -18,6 +18,11 @@ export class CartFacade {
     this.store.dispatch(CartActions.addItemToCart({ itemId, quantity }));
   }
 
+  updateItemsInCart({ itemId, quantity }: { itemId: string; quantity: number }) {
+    this.store.dispatch(CartActions.updateItemInCart({ itemId, quantity }));
+  }
+
+
   removeItemsFromCart({ itemId, quantity }: { itemId: string; quantity: number }) {
     this.store.dispatch(CartActions.removeItemsFromCart({ itemId, quantity }));
   }

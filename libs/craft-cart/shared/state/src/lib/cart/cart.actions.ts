@@ -9,5 +9,11 @@ export const removeItemsFromCart = createAction(
   props<{ itemId: string; quantity: number }>()
 );
 
+export const updateItemInCart = createAction(
+  `${aKey} - Update Item In Cart`,
+  props<{ itemId: string; quantity: number }>()
+);
+
+
 export const deleteItemFromCart = createAction(`${aKey} - Delete Item From Cart`, props<{ itemId: string }>());
 export const emptyCart = createAction(`${aKey} - Empty Cart`);
