@@ -13,6 +13,7 @@ export class CartFacade {
    * and expose them as observables through the facade.
    */
   allCart$ = this.store.pipe(select(CartSelectors.selectAllCart));
+  cartCount$ = this.store.pipe(select(CartSelectors.selectCartTotal));
 
   addItemToCart({ itemId, quantity }: { itemId: string; quantity: number }) {
     this.store.dispatch(CartActions.addItemToCart({ itemId, quantity }));
