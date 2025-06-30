@@ -29,7 +29,7 @@ import { PushPipe } from '@ngrx/component';
         Crafting Cart
         <a mat-button routerLink="/">Catalog</a>
         <a mat-button routerLink="/list">Shopping List</a>
-        <span class="flex-auto">{{ cartCount$ | ngrxPush | json }} </span>
+        <span class="flex-auto"> </span>
         <button mat-icon-button (click)="cartDrawer.toggle()" [matBadge]="(cartCount$ | ngrxPush)">
           <mat-icon> shopping_cart </mat-icon>
         </button>
@@ -47,8 +47,8 @@ import { PushPipe } from '@ngrx/component';
   styles: `
     .main-container {
       display: flex;
-      flex-direction: column;
       position: absolute;
+      flex-direction: column;
       top: 0px;
       bottom: 0;
       left: 0;
