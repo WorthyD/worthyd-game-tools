@@ -11,89 +11,90 @@
   <div class="clan-search">
     <h2>
       Find Your Clan<i
-        class="material-icons"
-        matTooltip="Search by Clan Name, Clan Id, or Clan URL. Clan Name must search for full clan name. Bungie doesn't support a 'fuzzy' search."
+      class="material-icons"
+      matTooltip="Search by Clan Name, Clan Id, or Clan URL. Clan Name must search for full clan name. Bungie doesn't support a 'fuzzy' search."
       >
-        help
-      </i>
-    </h2>
-    <h4>
-      Find your clan and any additional clans you wish to track. <br />Just want to look? Try
-      <button (click)="demoClan()" class="unstyled-button">this one</button> and have a look around.
-    </h4>
-    <app-clan-search-autocomplete
-      class="clan-search-autocomplete"
-      [autoCompleteResults]="autoCompleteResults$ | async"
-      [loading]="loading"
-      (searchClans)="searchClans($event)"
-      (addClan)="addClan($event)"
-      (addMembersClan)="addMembersClan($event)"
-    ></app-clan-search-autocomplete>
-  </div>
-  <ng-container *ngIf="clans$ | async as clans">
-    <div *ngIf="clans.length > 4">
+      help
+    </i>
+  </h2>
+  <h4>
+    Find your clan and any additional clans you wish to track. <br />Just want to look? Try
+    <button (click)="demoClan()" class="unstyled-button">this one</button> and have a look around.
+  </h4>
+  <app-clan-search-autocomplete
+    class="clan-search-autocomplete"
+    [autoCompleteResults]="autoCompleteResults$ | async"
+    [loading]="loading"
+    (searchClans)="searchClans($event)"
+    (addClan)="addClan($event)"
+    (addMembersClan)="addMembersClan($event)"
+  ></app-clan-search-autocomplete>
+</div>
+@if (clans$ | async; as clans) {
+  @if (clans.length > 4) {
+    <div>
       <div class="alert-card">
         <mat-icon>warning</mat-icon>
         <h2>Adding too many clans will impact the performance of the application</h2>
       </div>
     </div>
-
-    <div *ngIf="clans.length > 0" class="lets-go-btn">
+  }
+  @if (clans.length > 0) {
+    <div class="lets-go-btn">
       <button color="accent" mat-raised-button routerLink="/">View Dashboard</button>
     </div>
-
-    <div class="found-clans">
-      <ng-container *ngFor="let clan of clans">
-        <app-clan-detail [clanConfig]="clan" class="clan"></app-clan-detail>
-      </ng-container>
+  }
+  <div class="found-clans">
+    @for (clan of clans; track clan) {
+      <app-clan-detail [clanConfig]="clan" class="clan"></app-clan-detail>
+    }
+  </div>
+  <section class="app-info">
+    <div class="info-card">
+      <div class="icon">
+        <i class="material-icons"> date_range </i>
+      </div>
+      <div class="info-card-content">
+        <h3>Seasonal Progress</h3>
+        <p>View seasonal progress on both a clan and player level.</p>
+      </div>
     </div>
+    <div class="info-card">
+      <div class="icon">
+        <i class="material-icons"> group </i>
+      </div>
+      <div class="info-card-content">
+        <h3>Roster Activity</h3>
+        <p>Find out who has been the most active over the last year by viewing interactive heatmaps.</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="icon">
+        <i class="material-icons"> reduce_capacity </i>
+      </div>
+      <div class="info-card-content">
+        <h3>Activity Stats</h3>
+        <p>Track who has cleared what, who has gotten the rare drops and completed the hardest challenges.</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="icon">
+        <i class="material-icons"> verified_user </i>
+      </div>
+      <div class="info-card-content">
+        <h3>Seal Completion</h3>
+        <p>
+          Celebrate the accomplishment of completing seals with your clan. Easily view who's finished seals and find
+          out who needs help.
+        </p>
+      </div>
+    </div>
+  </section>
+}
 
-    <section class="app-info">
-      <div class="info-card">
-        <div class="icon">
-          <i class="material-icons"> date_range </i>
-        </div>
-        <div class="info-card-content">
-          <h3>Seasonal Progress</h3>
-          <p>View seasonal progress on both a clan and player level.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="icon">
-          <i class="material-icons"> group </i>
-        </div>
-        <div class="info-card-content">
-          <h3>Roster Activity</h3>
-          <p>Find out who has been the most active over the last year by viewing interactive heatmaps.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="icon">
-          <i class="material-icons"> reduce_capacity </i>
-        </div>
-        <div class="info-card-content">
-          <h3>Activity Stats</h3>
-          <p>Track who has cleared what, who has gotten the rare drops and completed the hardest challenges.</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="icon">
-          <i class="material-icons"> verified_user </i>
-        </div>
-        <div class="info-card-content">
-          <h3>Seal Completion</h3>
-          <p>
-            Celebrate the accomplishment of completing seals with your clan. Easily view who's finished seals and find
-            out who needs help.
-          </p>
-        </div>
-      </div>
-    </section>
-  </ng-container>
-
-  <footer>
-    © {{ year }} - <a href="https://twitter.com/worthyd" target="_blank">&#64;WorthyD</a> -
-    <span> v {{ versionNumber }} </span> -
-    <a href="https://github.com/WorthyD/d2-clandashboard" target="_blank">Source Code</a> - Not Affiliated with Bungie
-  </footer>
+<footer>
+  © {{ year }} - <a href="https://twitter.com/worthyd" target="_blank">&#64;WorthyD</a> -
+  <span> v {{ versionNumber }} </span> -
+  <a href="https://github.com/WorthyD/d2-clandashboard" target="_blank">Source Code</a> - Not Affiliated with Bungie
+</footer>
 </div>

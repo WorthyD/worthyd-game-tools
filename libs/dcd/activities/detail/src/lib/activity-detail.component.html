@@ -3,16 +3,16 @@
     <button mat-icon-button aria-label="Back to Activities" routerLink="/activities">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <ng-container *ngIf="vm$ | async as vm">
+    @if (vm$ | async; as vm) {
       <h2 class="">{{ vm?.activity?.displayProperties?.name }}</h2>
-    </ng-container>
+    }
     <button
       mat-button
       class="nav-button"
       routerLink="./"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
-    >
+      >
       Overview
     </button>
     <button mat-button class="nav-button" routerLink="./table" routerLinkActive="active-link">Player Table</button>
@@ -22,29 +22,29 @@
   <!-- <ng-container *ngIf="vm$ | async as vm"> -->
   <!-- TODO: Icon -->
   <!-- <ng-container *ngIf="vm.activity as activity">
-    <h1>{{activity.displayProperties.name}}</h1>
-    <h2>{{activity.displayProperties.description}}</h2>
-  </ng-container> -->
+  <h1>{{activity.displayProperties.name}}</h1>
+  <h2>{{activity.displayProperties.description}}</h2>
+</ng-container> -->
 
-  <!-- Metrics -->
-  <!-- <lib-collapsible-list title="Metrics" [items]="vm.metrics" [itemTemplate]="itemTemplate">
-    <ng-template let-item #itemTemplate>
-      <div class="item-row">
-        <span>
-          {{item.displayProperties.name}}
-        </span>
-        <button  mat-button >View</button>
-      </div>
-    </ng-template>
-  </lib-collapsible-list> -->
-  <!-- <app-activity-table
-      [title]="vm.activity.displayProperties.name"
-      [metricDefinitions]="vm.metrics"
-      [collectionDefinitions]="vm.collections"
-      [recordDefinitions]="vm.records"
-      class="activity-table"
-    >
-    </app-activity-table> -->
-  <!-- </ng-container> -->
-  <router-outlet></router-outlet>
+<!-- Metrics -->
+<!-- <lib-collapsible-list title="Metrics" [items]="vm.metrics" [itemTemplate]="itemTemplate">
+<ng-template let-item #itemTemplate>
+  <div class="item-row">
+    <span>
+      {{item.displayProperties.name}}
+    </span>
+    <button  mat-button >View</button>
+  </div>
+</ng-template>
+</lib-collapsible-list> -->
+<!-- <app-activity-table
+[title]="vm.activity.displayProperties.name"
+[metricDefinitions]="vm.metrics"
+[collectionDefinitions]="vm.collections"
+[recordDefinitions]="vm.records"
+class="activity-table"
+>
+</app-activity-table> -->
+<!-- </ng-container> -->
+<router-outlet></router-outlet>
 </div>

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 // import { MilestoneDefinitionService } from '@core/definition-services/milestone-definition.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-lookup',
-    imports: [CommonModule, ReactiveFormsModule, MatTabsModule, RouterModule],
+    imports: [ReactiveFormsModule, MatTabsModule, RouterModule],
     templateUrl: './lookup.component.html',
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./lookup.component.scss']

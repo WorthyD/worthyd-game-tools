@@ -2,56 +2,62 @@
   <ng-content select="[pre-header]"></ng-content>
   <h3>{{ header }}</h3>
   <!-- <advanced-search [filterer]="filterer" [dataSource]="dataSource">
-   </advanced-search> -->
+</advanced-search> -->
 
-  <div class="header-actions">
-    <lib-display-options [sorter]="sorter" [viewer]="viewer"></lib-display-options>
-    <button mat-button (click)="export()">Export</button>
-  </div>
+<div class="header-actions">
+  <lib-display-options [sorter]="sorter" [viewer]="viewer"></lib-display-options>
+  <button mat-button (click)="export()">Export</button>
+</div>
 </div>
 
 <div class="table-container">
-  <table mat-table [dataSource]="renderedData" *ngIf="isLoading === false || isLoading === undefined; else loading">
-    <ng-container *ngFor="let view of views" [matColumnDef]="view.id" [sticky]="view?.isSticky">
-      <th mat-header-cell *matHeaderCellDef [class]="view.labelClass || ''">
-        <span [innerHTML]="view.label"></span>
-        <mat-icon *ngIf="view.tooltip" class="info-tip" inline="true" [matTooltip]="view.tooltip">info</mat-icon>
-      </th>
-      <td mat-cell *matCellDef="let item">
-        <ng-container *ngIf="(renderedHtml | async)?.get(item)?.get(view.id) | async as view">
-          <lib-rendered-view
-            *ngIf="view"
-            [class]="view.classList || ''"
-            [ngStyle]="view.styles || {}"
-            [text]="view['text'] || ''"
-            [childrenViews]="view['children'] || null"
-            [component]="view['component'] || null"
-            [data]="view['data'] || null"
-          >
-          </lib-rendered-view>
+  @if (isLoading === false || isLoading === undefined) {
+    <table mat-table [dataSource]="renderedData">
+      @for (view of views; track view) {
+        <ng-container [matColumnDef]="view.id" [sticky]="view?.isSticky">
+          <th mat-header-cell *matHeaderCellDef [class]="view.labelClass || ''">
+            <span [innerHTML]="view.label"></span>
+            @if (view.tooltip) {
+              <mat-icon class="info-tip" inline="true" [matTooltip]="view.tooltip">info</mat-icon>
+            }
+          </th>
+          <td mat-cell *matCellDef="let item">
+            @if ((renderedHtml | async)?.get(item)?.get(view.id) | async; as view) {
+              @if (view) {
+                <lib-rendered-view
+                  [class]="view.classList || ''"
+                  [ngStyle]="view.styles || {}"
+                  [text]="view['text'] || ''"
+                  [childrenViews]="view['children'] || null"
+                  [component]="view['component'] || null"
+                  [data]="view['data'] || null"
+                  >
+                </lib-rendered-view>
+              }
+            }
+          </td>
         </ng-container>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns | async; sticky: true"></tr>
-    <tr mat-row *matRowDef="let item; columns: displayedColumns | async"></tr>
-  </table>
+      }
+      <tr mat-header-row *matHeaderRowDef="displayedColumns | async; sticky: true"></tr>
+      <tr mat-row *matRowDef="let item; columns: displayedColumns | async"></tr>
+    </table>
+  } @else {
+    <table mat-table [dataSource]="loadingSize">
+      @for (view of views; track view) {
+        <ng-container [matColumnDef]="view.id" [sticky]="view?.isSticky">
+          <th mat-header-cell *matHeaderCellDef [innerHTML]="view.label" [class]="view.labelClass || ''"></th>
+          <td mat-cell *matCellDef="let item">
+            <span class="skeleton-item"></span>
+          </td>
+        </ng-container>
+      }
+      <tr mat-header-row *matHeaderRowDef="displayedColumns | async; sticky: true"></tr>
+      <tr mat-row *matRowDef="let item; columns: displayedColumns | async"></tr>
+    </table>
+  }
 </div>
 
 <mat-divider></mat-divider>
 
 <mat-paginator (page)="setPage($event)" [pageSize]="(page | async)?.size" [length]="itemCount | async"> </mat-paginator>
 
-<ng-template #loading>
-  <table mat-table [dataSource]="loadingSize">
-    <ng-container *ngFor="let view of views" [matColumnDef]="view.id" [sticky]="view?.isSticky">
-      <th mat-header-cell *matHeaderCellDef [innerHTML]="view.label" [class]="view.labelClass || ''"></th>
-      <td mat-cell *matCellDef="let item">
-        <span class="skeleton-item"></span>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns | async; sticky: true"></tr>
-    <tr mat-row *matRowDef="let item; columns: displayedColumns | async"></tr>
-  </table>
-</ng-template>

@@ -1,5 +1,5 @@
 <!-- TODO: Update to current season progress -->
-<ng-container *ngIf="vm$ | async as vm">
+@if (vm$ | async; as vm) {
   <dcd-clan-member-card [cardTitle]="'Highest Power Bonus'" [itemTemplate]="itemTemplate" [isLoading]="vm.isLoading"
     [members]="vm.highestPowerMembers">
     <ng-template let-member #itemTemplate>
@@ -8,4 +8,4 @@
       </div>
     </ng-template>
   </dcd-clan-member-card>
-</ng-container>
+}

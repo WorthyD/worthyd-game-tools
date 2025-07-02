@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { Item } from '@crafting-cart/shared/models';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'lib-cart-item-card',
-  imports: [CommonModule, MatCardModule],
+  imports: [MatCardModule],
   template: `
     <mat-card class="example-card" appearance="outlined">
       <mat-card-header>

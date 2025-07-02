@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MemberProfile } from '@dcd/shared/models';
 import { MatCardModule } from '@angular/material/card';
 import { BungieDateTimePipe } from '@dcd/shared/utils/pipes';
@@ -21,7 +21,6 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
 @Component({
   selector: 'dcd-member-overview',
   imports: [
-    CommonModule,
     MatCardModule,
     BungieDateTimePipe,
     MemberTypeIconComponent,
@@ -29,8 +28,7 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
     MemberSharedOverviewComponent,
     SeasonPassComponent,
     BungieInfoComponent
-    // PlayerSealsComponent
-  ],
+],
   standalone: true,
   templateUrl: './member-overview.component.html',
   styleUrls: ['./member-overview.component.scss'],

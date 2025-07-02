@@ -1,15 +1,15 @@
-<ng-container *ngIf="vm$ | async as vm">
+@if (vm$ | async; as vm) {
   <dcd-clan-member-card
     [cardTitle]="'Recently Active Members'"
     [itemTemplate]="itemTemplate"
     [isLoading]="vm.isLoading"
     [members]="vm.lastLoginMembers"
     (viewProfile)="viewProfile.emit($event)"
-  >
+    >
     <ng-template let-member #itemTemplate>
       <div>
         {{ member.profile?.profile.data.dateLastPlayed | bungieDateTime }}
       </div>
     </ng-template>
   </dcd-clan-member-card>
-</ng-container>
+}

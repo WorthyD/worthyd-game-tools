@@ -5,15 +5,15 @@
   </div>
 
   <h2>Stored Clans</h2>
-  <ng-container *ngIf="clanConfigs$ | async as clans">
+  @if (clanConfigs$ | async; as clans) {
     <div class="found-clans">
-      <ng-container *ngFor="let clan of clans">
+      @for (clan of clans; track clan) {
         <app-clan-detail
           [clanConfig]="clan"
           [showReset]="true"
           class="clan"
         ></app-clan-detail>
-      </ng-container>
+      }
     </div>
-  </ng-container>
+  }
 </div>

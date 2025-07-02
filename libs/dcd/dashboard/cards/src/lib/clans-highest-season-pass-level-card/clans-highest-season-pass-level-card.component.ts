@@ -6,22 +6,22 @@ import { combineLatest, map, startWith } from 'rxjs';
 @Component({
     selector: 'app-clans-highest-season-pass-level-card',
     template: `
-    <ng-container *ngIf="vm$ | async as vm">
+    @if (vm$ | async; as vm) {
       <dcd-clan-member-card
         [cardTitle]="'Highest Season Pass'"
         [itemTemplate]="itemTemplate"
         [isLoading]="vm.isLoading"
         [members]="vm.highestPowerMembers"
         (viewProfile)="viewProfile.emit($event)"
-      >
+        >
         <ng-template let-member #itemTemplate>
           <div>
             {{ member.seasonPass }}
           </div>
         </ng-template>
       </dcd-clan-member-card>
-    </ng-container>
-  `,
+    }
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./clans-highest-season-pass-level-card.component.scss'],
     standalone: false

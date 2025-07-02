@@ -5,31 +5,33 @@
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content class="clan-member-card__card-content slim-scroll">
-    <ng-container *ngIf="!isLoading; else loadingTemplate">
+    @if (!isLoading) {
       <mat-list>
-        <mat-list-item *ngFor="let member of members; let idx = index">
-          <div class="member-info">
-            <div class="member-name">
-              <!-- <lib-profile-link [profile]="member.profile"></lib-profile-link> -->
-              <button mat-button (click)="viewProfile.emit(member.profile)"> {{ member.profile | bungieDisplayName }}</button>
-              <ng-container *ngIf="member.member.isOnline"
-                ><span class="online" matTooltip="Online / In Orbit"></span
-              ></ng-container>
-            </div>
-            <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ $implicit: member }">
-            </ng-container>
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </ng-container>
-  </mat-card-content>
-</mat-card>
-<ng-template #loadingTemplate>
-  <mat-list>
-    <ng-container *ngFor="let x of ['', '', '', '', '', '', '', '', '', '', '', '', '', '']">
-      <mat-list-item>
-        <span class="skeleton-item skeleton-full-width"></span>
-      </mat-list-item>
-    </ng-container>
-  </mat-list>
-</ng-template>
+        @for (member of members; track member; let idx = $index) {
+          <mat-list-item>
+            <div class="member-info">
+              <div class="member-name">
+                <!-- <lib-profile-link [profile]="member.profile"></lib-profile-link> -->
+                <button mat-button (click)="viewProfile.emit(member.profile)"> {{ member.profile | bungieDisplayName }}</button>
+                @if (member.member.isOnline) {
+                  <span class="online" matTooltip="Online / In Orbit"></span
+                    >
+                  }
+                </div>
+                <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ $implicit: member }">
+                </ng-container>
+              </div>
+            </mat-list-item>
+          }
+        </mat-list>
+      } @else {
+        <mat-list>
+          @for (x of ['', '', '', '', '', '', '', '', '', '', '', '', '', '']; track x) {
+            <mat-list-item>
+              <span class="skeleton-item skeleton-full-width"></span>
+            </mat-list-item>
+          }
+        </mat-list>
+      }
+    </mat-card-content>
+  </mat-card>

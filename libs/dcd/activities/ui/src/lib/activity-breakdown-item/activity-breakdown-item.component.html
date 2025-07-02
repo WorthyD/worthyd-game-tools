@@ -1,11 +1,11 @@
-<ng-container *ngIf="!isLoading; else loading">
+@if (!isLoading) {
   <mat-card class="activity-breakdown-item">
     <mat-card-content class="activity-breakdown-item__content">
-      <ng-container *ngIf="iconUrl">
+      @if (iconUrl) {
         <div class="activity-breakdown-item__icon">
           <img class="table-icon" src="https://www.bungie.net/{{ iconUrl }}" alt="{{ title }}" />
         </div>
-      </ng-container>
+      }
       <div class="activity-breakdown-item__info">
         <div class="activity-breakdown-item__title">{{ title }}</div>
         <div class="activity-breakdown-item__label">
@@ -15,9 +15,7 @@
       </div>
     </mat-card-content>
   </mat-card>
-</ng-container>
-
-<ng-template #loading>
+} @else {
   <mat-card>
     <mat-card-content>
       <span class="skeleton-item skeleton-title"></span>
@@ -28,4 +26,5 @@
       </div>
     </mat-card-content>
   </mat-card>
-</ng-template>
+}
+

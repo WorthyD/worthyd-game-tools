@@ -1,11 +1,11 @@
-  <mat-tab-group class="tab-stuff">
-    <mat-tab label="Definition Lookups">
-      <div class="lookup-wrapper">
-        <div>
-          <div class="section">
-            <h3>Presentation</h3>
-            <input id="name" type="text" [formControl]="displayHash">
-            <br>
+<mat-tab-group class="tab-stuff">
+  <mat-tab label="Definition Lookups">
+    <div class="lookup-wrapper">
+      <div>
+        <div class="section">
+          <h3>Presentation</h3>
+          <input id="name" type="text" [formControl]="displayHash">
+          <br>
             <select [formControl]="displayHash">
               <option value="2592822840">
                 Ghost Writer
@@ -13,70 +13,70 @@
             </select>
             <button (click)="lookupPresentation()">Lookup Presentation</button>
             <hr>
-          </div>
-          <div class="section">
-            <h3>Milestones Hashes</h3>
-            <input id="name" type="text" [formControl]="milestoneHash">
-            <br>
-            <select [formControl]="milestoneHash">
+            </div>
+            <div class="section">
+              <h3>Milestones Hashes</h3>
+              <input id="name" type="text" [formControl]="milestoneHash">
+              <br>
+                <select [formControl]="milestoneHash">
 
-            </select>
-            <button (click)="lookupMilestone()">Lookup Presentation</button>
-            <hr>
-          </div>
-          <div class="section">
-            <h3>Record Hashes</h3>
-            <input id="name" type="text" [formControl]="recordHash">
-            <br>
-            <select [formControl]="recordHash">
-              <option value="1089543274">
-                Ghost Writer
-              </option>
-            </select>
-            <button (click)="lookupRecord()">Lookup Presentation</button>
-            <hr>
-          </div>
-          <div class="section">
-            <h3>User Lookup</h3>
-            <br>
-            <button (click)="userLookup()">User Lookup</button>
-            <hr>
-            <a [routerLink]="'/player/3-4611686018467238913'">Player Profile</a>
-          </div>
-          <div class="section">
-            <h3>User Activity</h3>
-            <br>
-            <button (click)="activityLookup()">User Activity</button>
-            <hr>
-          </div>
-        </div>
-        <div class="info">
-          <div class="info-content">
-            <textarea [formControl]="output"></textarea>
-          </div>
-        </div>
+                </select>
+                <button (click)="lookupMilestone()">Lookup Presentation</button>
+                <hr>
+                </div>
+                <div class="section">
+                  <h3>Record Hashes</h3>
+                  <input id="name" type="text" [formControl]="recordHash">
+                  <br>
+                    <select [formControl]="recordHash">
+                      <option value="1089543274">
+                        Ghost Writer
+                      </option>
+                    </select>
+                    <button (click)="lookupRecord()">Lookup Presentation</button>
+                    <hr>
+                    </div>
+                    <div class="section">
+                      <h3>User Lookup</h3>
+                      <br>
+                        <button (click)="userLookup()">User Lookup</button>
+                        <hr>
+                          <a [routerLink]="'/player/3-4611686018467238913'">Player Profile</a>
+                        </div>
+                        <div class="section">
+                          <h3>User Activity</h3>
+                          <br>
+                            <button (click)="activityLookup()">User Activity</button>
+                            <hr>
+                            </div>
+                          </div>
+                          <div class="info">
+                            <div class="info-content">
+                              <textarea [formControl]="output"></textarea>
+                            </div>
+                          </div>
 
 
-      </div>
-    </mat-tab>
-    <mat-tab label="Image Lookup">
-      <div class="lookup-wrapper">
-        <div>
-          <div class="section">
-            <h3>Presentation</h3>
-            <input id="name" type="text" [formControl]="imageUrl">
-            <br>
-            <button (click)="loadImage()">Load Image</button>
-          </div>
-        </div>
-        <div class="info">
-          <div class="info-content">
-            <ng-container *ngFor="let imgUrl of imgUrls">
-              <img src="{{imgUrl}}" alt="none" />
-            </ng-container>
-          </div>
-        </div>
+                        </div>
+                      </mat-tab>
+                      <mat-tab label="Image Lookup">
+                        <div class="lookup-wrapper">
+                          <div>
+                            <div class="section">
+                              <h3>Presentation</h3>
+                              <input id="name" type="text" [formControl]="imageUrl">
+                              <br>
+                                <button (click)="loadImage()">Load Image</button>
+                              </div>
+                            </div>
+                            <div class="info">
+                              <div class="info-content">
+                                @for (imgUrl of imgUrls; track imgUrl) {
+                                  <img src="{{imgUrl}}" alt="none" />
+                                }
+                              </div>
+                            </div>
 
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+                          </div>
+                        </mat-tab>
+                      </mat-tab-group>

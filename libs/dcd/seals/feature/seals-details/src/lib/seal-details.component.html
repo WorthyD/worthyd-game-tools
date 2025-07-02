@@ -1,4 +1,4 @@
-<ng-container *ngIf="sealHash$ | async as sealDetails">
+@if (sealHash$ | async; as sealDetails) {
   <div class="seal-details">
     <lib-table-view
       class="seal-detail-table"
@@ -8,16 +8,15 @@
       [viewer]="sealDetailsViewer"
       [filterer]="sealDetailsFilterer"
       [sorter]="sealDetailsSorter"
-    >
+      >
       <div pre-header>
         <button mat-icon-button aria-label="Back to Seals" routerLink="/seals">
           <mat-icon>arrow_back</mat-icon>
         </button>
       </div>
     </lib-table-view>
-
     <ng-template #loading>
       <div class="loading">Loading Seal Details</div>
     </ng-template>
   </div>
-</ng-container>
+}

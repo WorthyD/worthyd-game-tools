@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { CartWidgetComponent } from '@crafting-cart/shared/cart-widget';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -13,7 +13,6 @@ import { PushPipe } from '@ngrx/component';
 @Component({
   selector: 'lib-shell.component',
   imports: [
-    CommonModule,
     RouterModule,
     CartWidgetComponent,
     MatSidenavModule,
@@ -22,7 +21,7 @@ import { PushPipe } from '@ngrx/component';
     MatIconModule,
     MatBadgeModule,
     PushPipe
-  ],
+],
   template: `
     <div class="main-container">
       <mat-toolbar color="primary">

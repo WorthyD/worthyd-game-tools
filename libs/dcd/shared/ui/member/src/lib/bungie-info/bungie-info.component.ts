@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,7 +9,7 @@ import { BungieDatePipe, DateAgoPipe } from '@dcd/shared/utils/pipes';
 @Component({
   selector: 'lib-bungie-info',
   standalone: true,
-  imports: [NgIf, NgFor, MatCardModule, MatListModule, MatIconModule, BungieDatePipe, DateAgoPipe],
+  imports: [MatCardModule, MatListModule, MatIconModule, BungieDatePipe, DateAgoPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './bungie-info.component.html',
   styleUrls: ['./bungie-info.component.scss']

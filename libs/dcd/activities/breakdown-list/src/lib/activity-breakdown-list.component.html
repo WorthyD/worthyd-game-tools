@@ -1,18 +1,21 @@
 <div class="activity-breakdown-list">
-  <ng-container *ngIf="activityInfo$ | async as activityInfos; else loading">
-    <div class="activity-breakdown-list__item" *ngFor="let activityInfo of activityInfos">
-      <dcd-activity-breakdown-item
-        [title]="activityInfo.definition.displayProperties?.name || ''"
-        [iconUrl]="activityInfo.definition.displayProperties?.icon"
-        [description]="activityInfo.definition.displayProperties?.description"
-        [label]="activityInfo.total.toString()"
-      ></dcd-activity-breakdown-item>
-    </div>
-  </ng-container>
+  @if (activityInfo$ | async; as activityInfos) {
+    @for (activityInfo of activityInfos; track activityInfo) {
+      <div class="activity-breakdown-list__item">
+        <dcd-activity-breakdown-item
+          [title]="activityInfo.definition.displayProperties?.name || ''"
+          [iconUrl]="activityInfo.definition.displayProperties?.icon"
+          [description]="activityInfo.definition.displayProperties?.description"
+          [label]="activityInfo.total.toString()"
+        ></dcd-activity-breakdown-item>
+      </div>
+    }
+  } @else {
+    @for (character of ['', '', '', '', '', '']; track character) {
+      <div class="activity-breakdown-list__item">
+        <dcd-activity-breakdown-item [isLoading]="true"></dcd-activity-breakdown-item>
+      </div>
+    }
+  }
 </div>
 
-<ng-template #loading>
-  <div *ngFor="let character of ['', '', '', '', '', '']" class="activity-breakdown-list__item">
-    <dcd-activity-breakdown-item [isLoading]="true"></dcd-activity-breakdown-item>
-  </div>
-</ng-template>

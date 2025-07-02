@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { NgFor, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
     selector: 'lib-collapsible-list',
-    imports: [NgFor, NgTemplateOutlet, MatExpansionModule, MatListModule],
+    imports: [NgTemplateOutlet, MatExpansionModule, MatListModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './collapsible-list.component.html',
     styleUrls: ['./collapsible-list.component.scss']

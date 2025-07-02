@@ -1,32 +1,33 @@
-<ng-container *ngIf="manifestState$ | async as manifestState">
-  <ng-container *ngIf="manifestState.loading === false && manifestState.loaded === true; else loading">
+@if (manifestState$ | async; as manifestState) {
+  @if (manifestState.loading === false && manifestState.loaded === true) {
     <div class="content-wrapper">
       <router-outlet #o="outlet"></router-outlet>
     </div>
-    <div class="mobile-disclaimer" *ngIf="!hideDisclaimer">
-      <div>
-        This site is currently not mobile optimized. There is limited mobile functionality. Use a larger screen for
-        optimal experience.
+    @if (!hideDisclaimer) {
+      <div class="mobile-disclaimer">
+        <div>
+          This site is currently not mobile optimized. There is limited mobile functionality. Use a larger screen for
+          optimal experience.
+        </div>
+        <button mat-icon-button (click)="hideDisclaimer = true">
+          <mat-icon>cancel</mat-icon>
+        </button>
       </div>
-      <button mat-icon-button (click)="hideDisclaimer = true">
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </div>
-  </ng-container>
-
-  <ng-template #loading>
+    }
+  } @else {
     <!-- <div class="loading-manifest-container">
-      <h2>Loading Manifest</h2>
-      <mat-spinner mode="indeterminate"></mat-spinner>
-    </div> -->
-    <ng-container *ngIf="manifestState.error">
-      <div class="loading-manifest-container">
-        <h1>Error Loading Manifest</h1>
-        <h2>Bungie Error - {{ manifestState.error.ErrorStatus }}</h2>
-        <p>{{ manifestState.error.Message }}</p>
-      </div>
-    </ng-container>
-    <div class="app-loading" *ngIf="manifestState.loading">
+    <h2>Loading Manifest</h2>
+    <mat-spinner mode="indeterminate"></mat-spinner>
+  </div> -->
+  @if (manifestState.error) {
+    <div class="loading-manifest-container">
+      <h1>Error Loading Manifest</h1>
+      <h2>Bungie Error - {{ manifestState.error.ErrorStatus }}</h2>
+      <p>{{ manifestState.error.Message }}</p>
+    </div>
+  }
+  @if (manifestState.loading) {
+    <div class="app-loading">
       <h2>Destiny Clan Dashboard</h2>
       <h3>Loading Manifest</h3>
       <div class="logo">
@@ -35,5 +36,6 @@
         </svg>
       </div>
     </div>
-  </ng-template>
-</ng-container>
+  }
+}
+}

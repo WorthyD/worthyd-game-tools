@@ -7,21 +7,22 @@
   [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'" [cdkConnectedOverlayHasBackdrop]="false"
   [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
 
-  <mat-card *ngIf="notifications.length > 0">
-    <mat-card-content>
-      <div *ngFor="let notification of  notifications" mat-menu-item disabled class="notification">
-
-
-        <div class="info">
-          {{notification.title}} - {{notification.data.complete}} / {{notification.data.total}}
-        </div>
-        <div class="progress-bar">
-
-          <mat-progress-bar mode="determinate" [value]="notification.data.progress*100">
-          </mat-progress-bar>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  @if (notifications.length > 0) {
+    <mat-card>
+      <mat-card-content>
+        @for (notification of  notifications; track notification) {
+          <div mat-menu-item disabled class="notification">
+            <div class="info">
+              {{notification.title}} - {{notification.data.complete}} / {{notification.data.total}}
+            </div>
+            <div class="progress-bar">
+              <mat-progress-bar mode="determinate" [value]="notification.data.progress*100">
+              </mat-progress-bar>
+            </div>
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  }
 
 </ng-template>

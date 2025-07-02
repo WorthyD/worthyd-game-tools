@@ -5,7 +5,7 @@
     <mat-card-subtitle> </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <ng-container *ngIf="!isLoading; else loading">
+    @if (!isLoading) {
       <mat-list data-cy="bungie-info-about">
         <div mat-subheader>About</div>
         <mat-list-item>
@@ -22,42 +22,43 @@
           <div matListItemLine>{{ bungieInfo.locale }}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
-
         <div mat-subheader>Linked Accounts</div>
-        <mat-list-item *ngFor="let link of linkedAccounts">
-          <mat-icon matListItemIcon [svgIcon]="link.icon" class="ico-{{ link.icon }}"></mat-icon>
-          <div matListItemLine>{{ link.name }}</div>
-          <div matListItemLine>{{ link.description }}</div>
-        </mat-list-item>
+        @for (link of linkedAccounts; track link) {
+          <mat-list-item>
+            <mat-icon matListItemIcon [svgIcon]="link.icon" class="ico-{{ link.icon }}"></mat-icon>
+            <div matListItemLine>{{ link.name }}</div>
+            <div matListItemLine>{{ link.description }}</div>
+          </mat-list-item>
+        }
       </mat-list>
-    </ng-container>
+    } @else {
+      <!-- <lib-loading></lib-loading> -->
+      <mat-list data-cy="bungie-info-loading">
+        <div mat-subheader>About</div>
+        <mat-list-item>
+          <mat-icon matListItemIcon>account_circle</mat-icon>
+          <!-- <h3 matLine>{{ bungieInfo?.displayName }}</h3> -->
+          <span class="skeleton-item skeleton-title"></span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>cake</mat-icon>
+          <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
+          <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListItemIcon>language</mat-icon>
+          <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Linked Accounts</div>
+        @for (link of ['', '', '']; track link) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>sports_esports</mat-icon>
+            <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
+            <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
+          </mat-list-item>
+        }
+      </mat-list>
+    }
   </mat-card-content>
 </mat-card>
-<ng-template #loading>
-  <!-- <lib-loading></lib-loading> -->
-  <mat-list data-cy="bungie-info-loading">
-    <div mat-subheader>About</div>
-    <mat-list-item>
-      <mat-icon matListItemIcon>account_circle</mat-icon>
-      <!-- <h3 matLine>{{ bungieInfo?.displayName }}</h3> -->
-      <span class="skeleton-item skeleton-title"></span>
-    </mat-list-item>
-    <mat-list-item>
-      <mat-icon matListItemIcon>cake</mat-icon>
-      <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
-      <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
-    </mat-list-item>
-    <mat-list-item>
-      <mat-icon matListItemIcon>language</mat-icon>
-      <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-
-    <div mat-subheader>Linked Accounts</div>
-     <mat-list-item *ngFor="let link of ['', '', '']">
-      <mat-icon matListItemIcon>sports_esports</mat-icon>
-      <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
-      <div matListItemLine><span class="skeleton-item skeleton-list"></span></div>
-    </mat-list-item>
-  </mat-list>
-</ng-template>

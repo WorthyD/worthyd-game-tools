@@ -3,39 +3,43 @@
     <div class="card-header">
       <div class="h2">In Game Time</div>
     </div>
-    <div class="chart-container" *ngIf="!loading; else loadingTemplate">
-      <ng-container *ngIf="events?.length > 0; else firstTimeLoading">
-        <lib-bar-chart [events]="events" convertTo="Hours"></lib-bar-chart>
-      </ng-container>
+    @if (!loading) {
+      <div class="chart-container">
+        @if (events?.length > 0) {
+          <lib-bar-chart [events]="events" convertTo="Hours"></lib-bar-chart>
+        } @else {
+          <div class="loading-container">
+            <!-- <lib-loading></lib-loading> -->
+            <!-- <div class="text-center">
+            <div class="h3">Loading Activities...</div>
+          </div> -->
+          <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
+          <h3 class="text-center">Loading First Time Data</h3>
+        </div>
+      }
       <!-- <div class="h3">Feature coming soon </div> -->
     </div>
-    <div *ngIf="updating && events?.length > 0" class="update-info">Updating...</div>
-    <div *ngIf="updating && events?.length === 0" class="chart-container">
+  } @else {
+    <div class="loading-container">
       <!-- <lib-loading></lib-loading> -->
-      <div class="text-center">
-        <div class="h3">Loading Initial Data...</div>
-        <div class="h6">This may take a while....</div>
-      </div>
+      <!-- <div class="text-center">
+      <div class="h3">Loading Activities...</div>
+    </div> -->
+    <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
+  </div>
+}
+@if (updating && events?.length > 0) {
+  <div class="update-info">Updating...</div>
+}
+@if (updating && events?.length === 0) {
+  <div class="chart-container">
+    <!-- <lib-loading></lib-loading> -->
+    <div class="text-center">
+      <div class="h3">Loading Initial Data...</div>
+      <div class="h6">This may take a while....</div>
     </div>
-  </mat-card-content>
+  </div>
+}
+</mat-card-content>
 </mat-card>
 
-<ng-template #loadingTemplate>
-  <div class="loading-container">
-    <!-- <lib-loading></lib-loading> -->
-    <!-- <div class="text-center">
-      <div class="h3">Loading Activities...</div>
-    </div> -->
-    <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
-  </div>
-</ng-template>
-<ng-template #firstTimeLoading>
-  <div class="loading-container">
-    <!-- <lib-loading></lib-loading> -->
-    <!-- <div class="text-center">
-      <div class="h3">Loading Activities...</div>
-    </div> -->
-    <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
-    <h3 class="text-center">Loading First Time Data</h3>
-  </div>
-</ng-template>

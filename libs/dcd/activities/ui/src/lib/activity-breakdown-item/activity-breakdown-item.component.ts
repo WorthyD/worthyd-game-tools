@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './activity-breakdown-item.component.html',
   styleUrls: ['./activity-breakdown-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatCardModule, NgIf],
+  imports: [MatCardModule],
   standalone: true
 })
 export class ActivityBreakdownItemComponent {

@@ -1,5 +1,5 @@
 import { Component, computed, EventEmitter, inject, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   MemberTypeIconComponent,
   CharacterCardComponent,
@@ -22,7 +22,6 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
   selector: 'dcd-player-sidebar',
   standalone: true,
   imports: [
-    CommonModule,
     MemberSharedOverviewComponent,
     CharacterCardComponent,
     MatIcon,
@@ -33,7 +32,7 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
     BungieDisplayNamePipe,
     PlayerSnapshotComponent,
     SeasonPassComponent
-  ],
+],
   templateUrl: './player-sidebar.component.html',
   styleUrl: './player-sidebar.component.scss'
 })

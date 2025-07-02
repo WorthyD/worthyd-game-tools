@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loading; else loadingTemplate">
+@if (!loading) {
   <mat-card class="clan-detail">
     <mat-card-header>
       <mat-card-title-group>
@@ -6,16 +6,16 @@
         <mat-card-title>
           <div class="title-spacer">
             {{ clanDetail?.name }}
-            <ng-container *ngIf="clanDetail?.clanInfo?.clanCallsign">
-              [{{ clanDetail?.clanInfo?.clanCallsign }}]</ng-container
-            >
+            @if (clanDetail?.clanInfo?.clanCallsign) {
+              [{{ clanDetail?.clanInfo?.clanCallsign }}]
+            }
           </div>
           <a
             mat-icon-button
             href="https://www.bungie.net/en/ClanV2?groupid={{ clanDetail?.groupId }}"
             target="_blank"
             matTooltip="Bungie Group Page"
-          >
+            >
             <mat-icon>open_in_new</mat-icon>
           </a>
         </mat-card-title>
@@ -35,13 +35,18 @@
       </mat-list>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button *ngIf="showReset" mat-button (click)="resetClan.emit(clanDetail)">Reset</button>
-      <button *ngIf="showAdd" mat-button (click)="addClan.emit(clanDetail)">Add</button>
-      <button *ngIf="!showAdd" mat-button (click)="removeClan.emit(clanDetail?.groupId?.toString())">Remove</button>
+      @if (showReset) {
+        <button mat-button (click)="resetClan.emit(clanDetail)">Reset</button>
+      }
+      @if (showAdd) {
+        <button mat-button (click)="addClan.emit(clanDetail)">Add</button>
+      }
+      @if (!showAdd) {
+        <button mat-button (click)="removeClan.emit(clanDetail?.groupId?.toString())">Remove</button>
+      }
     </mat-card-actions>
   </mat-card>
-</ng-container>
-<ng-template #loadingTemplate>
+} @else {
   <mat-card class="clan-detail clan-detail__loading">
     <mat-card-header>
       <mat-card-title-group>
@@ -68,4 +73,4 @@
       <span class="skeleton-item skeleton-button"></span>
     </mat-card-actions>
   </mat-card>
-</ng-template>
+}

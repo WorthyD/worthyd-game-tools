@@ -17,13 +17,17 @@
     ></dcd-shared-member-overview>
 
     @if (!store.profileLoading()) {
-      <div *ngFor="let character of characters()" class="character-card">
-        <lib-character-card [character]="character"></lib-character-card>
-      </div>
+      @for (character of characters(); track character) {
+        <div class="character-card">
+          <lib-character-card [character]="character"></lib-character-card>
+        </div>
+      }
     } @else {
-      <div *ngFor="let character of ['', '', '']" class="character-card">
-        <lib-character-card [isLoading]="true"></lib-character-card>
-      </div>
+      @for (character of ['', '', '']; track character) {
+        <div class="character-card">
+          <lib-character-card [isLoading]="true"></lib-character-card>
+        </div>
+      }
     }
 
     <div class="season-card">
@@ -31,7 +35,7 @@
         [clanMemberSeasonPass]="seasonProgress()!"
         [isLoading]="store.profileLoading()"
         subTitle="Current Season"
-      >
+        >
       </lib-season-pass>
     </div>
 

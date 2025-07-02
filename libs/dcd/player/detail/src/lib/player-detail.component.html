@@ -5,32 +5,30 @@
     routerLink="./"
     routerLinkActive="active-link"
     [routerLinkActiveOptions]="{ exact: true }"
-  >
+    >
     Player Overview
   </button>
   <!-- <button mat-button class="nav-button" routerLink="./activity" routerLinkActive="active-link">Activity</button> -->
 
-  <ng-container *ngIf="profile$ | async as profile">
+  @if (profile$ | async; as profile) {
     <a mat-button class="nav-button" href="{{ profile | bungieProfileUrl }}" target="_blank"
       >Bungie Profile &nbsp; <mat-icon>open_in_new </mat-icon></a
-    >
-    <a mat-button class="nav-button" href="{{ profile | raidReportProfileUrl }}" target="_blank"
-      >Raid Report &nbsp; <mat-icon> open_in_new </mat-icon></a
-    >
-
-    <a mat-button class="nav-button" href="{{ profile | dungeonReportProfileUrl }}" target="_blank"
-      >Dungeon Report &nbsp; <mat-icon>open_in_new </mat-icon></a
-    >
-
-    <a mat-button class="nav-button" href="{{ profile | destinyTrackerUrl }}" target="_blank"
-      >Destiny Tracker &nbsp; <mat-icon> open_in_new </mat-icon></a
-    >
-    <a mat-button class="nav-button" href="{{ profile | d2ChecklistUrl }}" target="_blank">
-      D2Checklist &nbsp; <mat-icon>open_in_new </mat-icon></a
-    >
-    <a mat-button class="nav-button" href="{{ profile | triumphReport }}" target="_blank">
-      Triumph.Report &nbsp; <mat-icon>open_in_new </mat-icon></a
-    >
-  </ng-container>
-</mat-toolbar>
-<router-outlet></router-outlet>
+      >
+      <a mat-button class="nav-button" href="{{ profile | raidReportProfileUrl }}" target="_blank"
+        >Raid Report &nbsp; <mat-icon> open_in_new </mat-icon></a
+        >
+        <a mat-button class="nav-button" href="{{ profile | dungeonReportProfileUrl }}" target="_blank"
+          >Dungeon Report &nbsp; <mat-icon>open_in_new </mat-icon></a
+          >
+          <a mat-button class="nav-button" href="{{ profile | destinyTrackerUrl }}" target="_blank"
+            >Destiny Tracker &nbsp; <mat-icon> open_in_new </mat-icon></a
+            >
+            <a mat-button class="nav-button" href="{{ profile | d2ChecklistUrl }}" target="_blank">
+              D2Checklist &nbsp; <mat-icon>open_in_new </mat-icon></a
+              >
+              <a mat-button class="nav-button" href="{{ profile | triumphReport }}" target="_blank">
+                Triumph.Report &nbsp; <mat-icon>open_in_new </mat-icon></a
+                >
+              }
+            </mat-toolbar>
+            <router-outlet></router-outlet>

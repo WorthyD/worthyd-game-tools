@@ -1,15 +1,16 @@
 <div class="activity-dashboard">
-  <div *ngFor="let activityModes of activities$">
-    <h2>{{ activityModes.group.title }}</h2>
-    <div class="activities-container">
-      <ng-container *ngFor="let mode of activityModes.activities">
-        <dcd-activity-mode-card-details
-          [activityDefinition]="mode"
-          class="activity"
-        >
-        </dcd-activity-mode-card-details>
-      </ng-container>
-
+  @for (activityModes of activities$; track activityModes) {
+    <div>
+      <h2>{{ activityModes.group.title }}</h2>
+      <div class="activities-container">
+        @for (mode of activityModes.activities; track mode) {
+          <dcd-activity-mode-card-details
+            [activityDefinition]="mode"
+            class="activity"
+            >
+          </dcd-activity-mode-card-details>
+        }
+      </div>
     </div>
-  </div>
+  }
 </div>

@@ -3,50 +3,57 @@
 <div class="member-basic">
   <dcd-shared-member-overview [isLoading]="isLoading" [memberOverview]="memberOverview"></dcd-shared-member-overview>
   <!-- <mat-card>
-    <ng-container *ngIf="!isLoading; else loadingInfo">
-      <mat-card-header>
-        <mat-card-title>{{ memberOverview?.profile?.data?.userInfo?.displayName }} </mat-card-title>
-        <mat-card-subtitle> </mat-card-subtitle>
-      </mat-card-header>
+  <ng-container *ngIf="!isLoading; else loadingInfo">
+    <mat-card-header>
+      <mat-card-title>{{ memberOverview?.profile?.data?.userInfo?.displayName }} </mat-card-title>
+      <mat-card-subtitle> </mat-card-subtitle>
+    </mat-card-header>
 
-      <mat-card-content>
-        <section>Last Online: {{ memberOverview?.profile?.data?.dateLastPlayed | bungieDateTime }}</section>
-        <section class="platforms">
-          Platforms:
-          <ng-container *ngFor="let type of memberOverview?.profile?.data?.userInfo?.applicableMembershipTypes">
-            <lib-member-type-icon [type]="type" class="platform-icon"></lib-member-type-icon>
-          </ng-container>
-        </section>
-      </mat-card-content>
-    </ng-container>
-  </mat-card> -->
-
-  <!-- Characters -->
-
-  <ng-container *ngIf="!isLoading; else loadingCharacters">
-    <div *ngIf="characters">
-      <div *ngFor="let character of characters" class="character-card">
-        <lib-character-card [character]="character"></lib-character-card>
-      </div>
-    </div>
+    <mat-card-content>
+      <section>Last Online: {{ memberOverview?.profile?.data?.dateLastPlayed | bungieDateTime }}</section>
+      <section class="platforms">
+        Platforms:
+        <ng-container *ngFor="let type of memberOverview?.profile?.data?.userInfo?.applicableMembershipTypes">
+          <lib-member-type-icon [type]="type" class="platform-icon"></lib-member-type-icon>
+        </ng-container>
+      </section>
+    </mat-card-content>
   </ng-container>
-  <div class="season-card">
-    <lib-season-pass [clanMemberSeasonPass]="seasonPass!" [isLoading]="isLoading" subTitle="Current Season">
-    </lib-season-pass>
-  </div>
-  <div class="season-card">
-    <lib-season-pass [clanMemberSeasonPass]="lastSeasonPass!" [isLoading]="isLoading" subTitle="Last Season">
-    </lib-season-pass>
-  </div>
+</mat-card> -->
+
+<!-- Characters -->
+
+@if (!isLoading) {
+  @if (characters) {
+    <div>
+      @for (character of characters; track character) {
+        <div class="character-card">
+          <lib-character-card [character]="character"></lib-character-card>
+        </div>
+      }
+    </div>
+  }
+} @else {
+  @if (characters) {
+    <div>
+      @for (character of ['', '', '']; track character) {
+        <div class="character-card">
+          <lib-character-card [isLoading]="true"></lib-character-card>
+        </div>
+      }
+    </div>
+  }
+}
+<div class="season-card">
+  <lib-season-pass [clanMemberSeasonPass]="seasonPass!" [isLoading]="isLoading" subTitle="Current Season">
+  </lib-season-pass>
+</div>
+<div class="season-card">
+  <lib-season-pass [clanMemberSeasonPass]="lastSeasonPass!" [isLoading]="isLoading" subTitle="Last Season">
+  </lib-season-pass>
+</div>
 </div>
 
-<ng-template #loadingCharacters>
-  <div *ngIf="characters">
-    <div *ngFor="let character of ['', '', '']" class="character-card">
-      <lib-character-card [isLoading]="true"></lib-character-card>
-    </div>
-  </div>
-</ng-template>
 
 <ng-template #loadingInfo>
   <mat-card-header>

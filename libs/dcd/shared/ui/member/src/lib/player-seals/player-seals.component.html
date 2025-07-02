@@ -3,12 +3,12 @@
 
   <mat-card-content>
     <div class="player-seal__list">
-      <ng-container *ngFor="let seal of gildedSeals">
+      @for (seal of gildedSeals; track seal) {
         <lib-player-seal [playerSeal]="seal"></lib-player-seal>
-      </ng-container>
-      <ng-container *ngFor="let seal of completedSeals">
+      }
+      @for (seal of completedSeals; track seal) {
         <lib-player-seal [playerSeal]="seal"></lib-player-seal>
-      </ng-container>
+      }
     </div>
     <mat-expansion-panel class="mat-elevation-z0">
       <mat-expansion-panel-header>
@@ -19,9 +19,9 @@
       </mat-expansion-panel-header>
       <ng-template matExpansionPanelContent>
         <div class="player-seal__list">
-          <ng-container *ngFor="let seal of partialSeals">
+          @for (seal of partialSeals; track seal) {
             <lib-player-seal [playerSeal]="seal"></lib-player-seal>
-          </ng-container>
+          }
         </div>
       </ng-template>
     </mat-expansion-panel>

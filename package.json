@@ -54,7 +54,7 @@
     "@angular-devkit/build-angular": "20.0.4",
     "@angular-devkit/core": "20.0.4",
     "@angular-devkit/schematics": "20.0.4",
-    "@angular/cli": "~19.2.0",
+    "@angular/cli": "~20.0.0",
     "@angular/compiler-cli": "20.0.5",
     "@angular/language-service": "20.0.5",
     "@cypress/webpack-dev-server": "^4.0.2",
@@ -73,8 +73,6 @@
     "@nx/web": "21.2.1",
     "@nx/workspace": "21.2.1",
     "@schematics/angular": "20.0.4",
-    "@storybook/addon-essentials": "8.6.11",
-    "@storybook/addon-interactions": "8.6.11",
     "@storybook/angular": "9.0.5",
     "@storybook/core-server": "8.6.11",
     "@storybook/jest": "^0.2.3",
@@ -86,11 +84,11 @@
     "@swc/helpers": "0.5.11",
     "@types/jest": "29.5.13",
     "@types/node": "^20.14.8",
-    "@typescript-eslint/utils": "8.29.0",
+    "@typescript-eslint/utils": "^8.33.1",
     "angular-eslint": "20.0.0",
     "autoprefixer": "^10.4.0",
     "cypress": "14.2.1",
-    "eslint": "^9.18.0",
+    "eslint": "^9.28.0",
     "eslint-plugin-cypress": "^3.5.0",
     "html-webpack-plugin": "^5.5.0",
     "jasmine-marbles": "~0.9.1",
@@ -106,6 +104,6 @@
     "ts-node": "10.9.2",
     "tslib": "^2.6.3",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.29.0"
+    "typescript-eslint": "^8.33.1"
   }
 }

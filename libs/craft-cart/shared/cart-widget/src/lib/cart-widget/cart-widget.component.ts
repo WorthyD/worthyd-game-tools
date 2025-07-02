@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { CartFacade, CatalogFacade } from '@crafting-cart/state';
 import { RouterLink } from '@angular/router';
 import { PushPipe } from '@ngrx/component';
@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'lib-cart-widget',
-  imports: [CommonModule, PushPipe, RouterLink, CartItemCardComponent, CartQuantityComponent, MatButtonModule],
+  imports: [PushPipe, RouterLink, CartItemCardComponent, CartQuantityComponent, MatButtonModule],
   template: `
     <h3>Cart</h3>
     <a routerLink="/list">Shopping List</a>

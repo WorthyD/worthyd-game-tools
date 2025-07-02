@@ -1,12 +1,14 @@
-  <div class="activity-dashboard">
-    <div *ngFor="let activityGroups of curatedActivityGroups">
+<div class="activity-dashboard">
+  @for (activityGroups of curatedActivityGroups; track activityGroups) {
+    <div>
       <h2>{{activityGroups.title}}</h2>
       <div class="activities-container">
-        <ng-container *ngFor="let activity of activityGroups.activities">
+        @for (activity of activityGroups.activities; track activity) {
           <dcd-activity-card-details [activityDefinition]="activity" class="activity"
             (viewActivity)="viewActivity($event)">
           </dcd-activity-card-details>
-        </ng-container>
+        }
       </div>
     </div>
-  </div>
+  }
+</div>

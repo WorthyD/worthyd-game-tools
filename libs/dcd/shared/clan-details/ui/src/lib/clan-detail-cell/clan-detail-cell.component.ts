@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { GroupsV2GroupV2 } from 'bungie-api-angular';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,14 +11,13 @@ import { BungieDatePipe } from '@dcd/shared/utils/pipes';
 @Component({
   selector: 'dcd-clan-detail-cell',
   imports: [
-    CommonModule,
     MatCardModule,
     MatButtonModule,
     MatListModule,
     BungieDatePipe,
     MatIconModule,
     MatTooltipModule
-  ],
+],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   templateUrl: './clan-detail-cell.component.html',

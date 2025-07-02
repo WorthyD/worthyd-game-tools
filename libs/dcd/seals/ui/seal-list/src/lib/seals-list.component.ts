@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
@@ -9,7 +9,7 @@ import { SealListItem } from '@dcd/seals/models';
   templateUrl: './seals-list.component.html',
   styleUrls: ['./seals-list.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+  imports: [RouterModule, MatCardModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SealsListComponent {

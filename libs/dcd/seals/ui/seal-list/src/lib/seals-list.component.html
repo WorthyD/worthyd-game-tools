@@ -1,56 +1,62 @@
-<div *ngIf="sealsList; else loading">
-  <p *ngIf="!sealsList.length">
-    No Seals Found
-  </p>
-  <div class="seals-container" *ngIf="sealsList">
-    <ng-container *ngFor="let sealDetails of sealsList">
-      <mat-card class="seal">
-        <mat-card-header>
-          <mat-card-title-group>
-            <img class="seal-image" src="//bungie.net/{{sealDetails.seal?.displayProperties?.icon}}"
-              alt="{{sealDetails.seal?.displayProperties?.name}}">
-            <mat-card-title>{{sealDetails.seal.displayProperties?.name}}</mat-card-title>
-            <mat-card-subtitle>{{sealDetails.seal.displayProperties?.description}}</mat-card-subtitle>
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content class="seal-info">
-          <div>
-            Complete: {{sealDetails.completedCount}} / {{sealDetails.totalMembers}}
-          </div>
-          <div *ngIf="sealDetails.isGilded">
-            Gilded: {{sealDetails.gildedCount}} / {{sealDetails.totalMembers}}
-          </div>
-          <div>
-            <button mat-button routerLink="/seals/{{sealDetails.seal.hash}}">View</button>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </ng-container>
-  </div>
-</div>
+@if (sealsList) {
+  <div>
+    @if (!sealsList.length) {
+      <p>
+        No Seals Found
+      </p>
+    }
+    @if (sealsList) {
+      <div class="seals-container">
+        @for (sealDetails of sealsList; track sealDetails) {
+          <mat-card class="seal">
+            <mat-card-header>
+              <mat-card-title-group>
+                <img class="seal-image" src="//bungie.net/{{sealDetails.seal?.displayProperties?.icon}}"
+                  alt="{{sealDetails.seal?.displayProperties?.name}}">
+                  <mat-card-title>{{sealDetails.seal.displayProperties?.name}}</mat-card-title>
+                  <mat-card-subtitle>{{sealDetails.seal.displayProperties?.description}}</mat-card-subtitle>
+                </mat-card-title-group>
+              </mat-card-header>
+              <mat-card-content class="seal-info">
+                <div>
+                  Complete: {{sealDetails.completedCount}} / {{sealDetails.totalMembers}}
+                </div>
+                @if (sealDetails.isGilded) {
+                  <div>
+                    Gilded: {{sealDetails.gildedCount}} / {{sealDetails.totalMembers}}
+                  </div>
+                }
+                <div>
+                  <button mat-button routerLink="/seals/{{sealDetails.seal.hash}}">View</button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="loading seals-container">
+      @for (x of ['','','','','','','','','','','','','','']; track x) {
+        <mat-card class="seal">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title><span class="skeleton-item skeleton-title"></span></mat-card-title>
+              <mat-card-subtitle>
+                <span class="skeleton-item skeleton-sub-title"></span>
+                <span class="skeleton-item skeleton-sub-title"></span>
+                <span class="skeleton-item skeleton-sub-title"></span>
+              </mat-card-subtitle>
+              <span class="skeleton-item seal-image"></span>
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content class="seal-info">
+            <span class="skeleton-item" style="width:100px"></span>
+            <span class="skeleton-item"></span>
+            <span class="skeleton-item"></span>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  }
 
-<ng-template #loading>
-  <div class="loading seals-container">
-    <ng-container *ngFor="let x of ['','','','','','','','','','','','','','']">
-      <mat-card class="seal">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title><span class="skeleton-item skeleton-title"></span></mat-card-title>
-            <mat-card-subtitle>
-              <span class="skeleton-item skeleton-sub-title"></span>
-              <span class="skeleton-item skeleton-sub-title"></span>
-              <span class="skeleton-item skeleton-sub-title"></span>
-            </mat-card-subtitle>
-            <span class="skeleton-item seal-image"></span>
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content class="seal-info">
-          <span class="skeleton-item" style="width:100px"></span>
-          <span class="skeleton-item"></span>
-          <span class="skeleton-item"></span>
-        </mat-card-content>
-      </mat-card>
-
-    </ng-container>
-  </div>
-</ng-template>

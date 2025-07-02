@@ -4,9 +4,9 @@
       <app-clans-activity-card></app-clans-activity-card>
     </div>
     <div class="clans-details__info">
-      <ng-container *ngFor="let clan of clans$ | async">
+      @for (clan of clans$ | async; track clan) {
         <app-clans-details [clanConfig]="clan" class="clan"></app-clans-details>
-      </ng-container>
+      }
     </div>
   </div>
   <div class="clans-details__info-cards">

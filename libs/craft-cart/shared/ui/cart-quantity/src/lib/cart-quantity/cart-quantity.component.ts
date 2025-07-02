@@ -1,5 +1,5 @@
 import { Component, input, effect, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -7,7 +7,7 @@ import { pairwise } from 'rxjs';
 
 @Component({
   selector: 'lib-cart-quantity',
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatButtonModule, MatInputModule],
   template: `
     <div class="flex">
       <button mat-button class="flex-none w-5" (click)="decrement()">-</button>

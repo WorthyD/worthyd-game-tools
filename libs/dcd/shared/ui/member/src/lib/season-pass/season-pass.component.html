@@ -1,6 +1,6 @@
 <!-- TODO: add  Season INfo-->
 <mat-card  appearance="outlined">
-  <ng-container *ngIf="!isLoading; else loading">
+  @if (!isLoading) {
     <mat-card-header>
       <mat-card-title> Season Pass - {{ subTitle }} </mat-card-title>
       <mat-card-subtitle>Current Level: {{ seasonPassProgress }}</mat-card-subtitle>
@@ -8,34 +8,31 @@
     <mat-card-content>
       <mat-progress-bar mode="determinate" [value]="seasonPassProgressBarValue"></mat-progress-bar>
       <div class="mb-3">
-        <div
-          class="float-right"
-          *ngIf="
-            (clanMemberSeasonPass?.progression?.level ?? 0) < (clanMemberSeasonPass?.progression?.levelCap ?? 100);
-            else maxLevel
-          "
-        >
-          {{ clanMemberSeasonPass?.progression?.level }} / {{ clanMemberSeasonPass?.progression?.levelCap }}
+        @if (
+          (clanMemberSeasonPass?.progression?.level ?? 0) < (clanMemberSeasonPass?.progression?.levelCap ?? 100)) {
+          <div
+            class="float-right"
+            >
+            {{ clanMemberSeasonPass?.progression?.level }} / {{ clanMemberSeasonPass?.progression?.levelCap }}
+          </div>
+        } @else {
+          <div class="float-right">Season Pass Complete</div>
+        }
+      </div>
+    </mat-card-content>
+  } @else {
+    <mat-card-header>
+      <mat-card-title> <span class="skeleton-item skeleton-title"></span> </mat-card-title>
+      <mat-card-subtitle> <span class="skeleton-item skeleton-list"></span></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <div class="mb-3">
+        <div class="float-right">
+          <span class="skeleton-item skeleton-list"></span>
         </div>
       </div>
     </mat-card-content>
-  </ng-container>
+  }
 </mat-card>
-<ng-template #maxLevel>
-  <div class="float-right">Season Pass Complete</div>
-</ng-template>
 
-<ng-template #loading>
-  <mat-card-header>
-    <mat-card-title> <span class="skeleton-item skeleton-title"></span> </mat-card-title>
-    <mat-card-subtitle> <span class="skeleton-item skeleton-list"></span></mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    <div class="mb-3">
-      <div class="float-right">
-        <span class="skeleton-item skeleton-list"></span>
-      </div>
-    </div>
-  </mat-card-content>
-</ng-template>

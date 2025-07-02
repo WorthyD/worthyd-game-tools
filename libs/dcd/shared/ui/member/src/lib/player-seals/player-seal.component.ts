@@ -17,19 +17,23 @@ import { MatBadgeModule } from '@angular/material/badge';
         [matBadge]="playerSeal.gildedCount"
         [matBadgeHidden]="playerSeal.gildedCount === 0"
         matBadgeOverlap="false"
-      >
+        >
         <img src="//bungie.net/{{ playerSeal.sealImage }}" alt="{{ playerSeal.sealTitle }}" />
       </div>
       <h3>
         {{ playerSeal.sealTitle }}
-        <mat-icon *ngIf="playerSeal.gilded" matTooltip="Gilded">workspace_premium</mat-icon>
+        @if (playerSeal.gilded) {
+          <mat-icon matTooltip="Gilded">workspace_premium</mat-icon>
+        }
       </h3>
-      <div *ngIf="!playerSeal.complete" class="seal-progress">
-        <mat-progress-bar mode="determinate" [value]="playerSeal.progress"></mat-progress-bar>
-        {{ playerSeal.progress }}%
-      </div>
+      @if (!playerSeal.complete) {
+        <div class="seal-progress">
+          <mat-progress-bar mode="determinate" [value]="playerSeal.progress"></mat-progress-bar>
+          {{ playerSeal.progress }}%
+        </div>
+      }
     </section>
-  `,
+    `,
   styles: [
     `
       h3 {

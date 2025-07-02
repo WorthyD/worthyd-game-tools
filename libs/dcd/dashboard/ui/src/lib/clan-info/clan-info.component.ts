@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 //import { GroupsV2GroupV2 } from 'bungie-api-angular/lib/model/groupsV2GroupV2';
 
 import { MatCardModule } from '@angular/material/card';
@@ -12,7 +12,7 @@ import { GroupsV2GroupV2 } from 'bungie-api-angular/lib/model/groupsV2GroupV2';
 @Component({
   selector: 'dcd-clan-info',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatProgressBarModule],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, MatProgressBarModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './clan-info.component.html',
   styleUrls: ['./clan-info.component.scss']

@@ -1,46 +1,50 @@
-<ng-container *ngIf="!loading && clanDetail; else loadingTemplate">
+@if (!loading && clanDetail) {
   <mat-card class="clan-detail" appearance="outlined">
     <mat-card-header>
       <mat-card-title-group>
         <!-- TODO: Clan Banner -->
         <mat-card-title>
-          <div class="title-spacer">{{clanDetail.name}} <ng-container *ngIf="clanDetail.clanInfo?.clanCallsign">
-              [{{clanDetail?.clanInfo?.clanCallsign}}]</ng-container>
-          </div>
-          <span class="clan-member-count">
-            <mat-icon matListItemIcon>groups</mat-icon>&nbsp;{{clanDetail.memberCount}}
-          </span>
-          <a mat-icon-button href="https://www.bungie.net/en/ClanV2?groupid={{clanDetail.groupId}}" target="_blank"
-            matTooltip="Bungie Group Page">
-            <mat-icon>open_in_new</mat-icon>
-          </a>
-        </mat-card-title>
-        <mat-card-subtitle>
-          {{clanDetail?.motto}}
-        </mat-card-subtitle>
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content>
-
-      <div class="season-progress">
-        <div class="season-level">
-          <span>{{clanProgress?.level}}</span>
+          <div class="title-spacer">{{clanDetail.name}} @if (clanDetail.clanInfo?.clanCallsign) {
+            [{{clanDetail?.clanInfo?.clanCallsign}}]
+          }
         </div>
-        <div class="season-progress-info">
-          <mat-progress-bar mode="determinate" [value]="seasonProgress"></mat-progress-bar>
-          <div class="progress-info">
-            Progress to next level:
-            <div class="float-right" *ngIf="clanProgress?.levelCap !== clanProgress?.level; else maxLevel">
+        <span class="clan-member-count">
+          <mat-icon matListItemIcon>groups</mat-icon>&nbsp;{{clanDetail.memberCount}}
+        </span>
+        <a mat-icon-button href="https://www.bungie.net/en/ClanV2?groupid={{clanDetail.groupId}}" target="_blank"
+          matTooltip="Bungie Group Page">
+          <mat-icon>open_in_new</mat-icon>
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{clanDetail?.motto}}
+      </mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="season-progress">
+      <div class="season-level">
+        <span>{{clanProgress?.level}}</span>
+      </div>
+      <div class="season-progress-info">
+        <mat-progress-bar mode="determinate" [value]="seasonProgress"></mat-progress-bar>
+        <div class="progress-info">
+          Progress to next level:
+          @if (clanProgress?.levelCap !== clanProgress?.level) {
+            <div class="float-right">
               {{clanProgress?.progressToNextLevel}} /
-              {{clanProgress?.nextLevelAt}}</div>
-          </div>
+            {{clanProgress?.nextLevelAt}}</div>
+          } @else {
+            <div class="float-right">
+              Max level
+            </div>
+          }
         </div>
       </div>
-    </mat-card-content>
-
-  </mat-card>
-</ng-container>
-<ng-template #loadingTemplate>
+    </div>
+  </mat-card-content>
+</mat-card>
+} @else {
   <mat-card class="clan-detail clan-detail__loading" appearance="outlined">
     <mat-card-header>
       <mat-card-title-group>
@@ -53,23 +57,16 @@
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        <div class="season-progress">
-            <div class="season-level">
-              <span>&nbsp;</span>
-            </div>
-            <div class="season-progress-info">
-                <span class="skeleton-item skeleton-full-width"></span>
-              <div class="progress-info">
-
-              </div>
-            </div>
+      <div class="season-progress">
+        <div class="season-level">
+          <span>&nbsp;</span>
+        </div>
+        <div class="season-progress-info">
+          <span class="skeleton-item skeleton-full-width"></span>
+          <div class="progress-info">
           </div>
+        </div>
+      </div>
     </mat-card-content>
-
   </mat-card>
-</ng-template>
-<ng-template #maxLevel>
-  <div class="float-right">
-    Max level
-  </div>
-</ng-template>
+}

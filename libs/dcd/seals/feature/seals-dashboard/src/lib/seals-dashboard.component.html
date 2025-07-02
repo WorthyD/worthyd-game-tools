@@ -1,7 +1,7 @@
 <div class="seals-wrapper">
-  <ng-container *ngIf="{ seals: seals$ | async } as vm">
+  @if ({ seals: seals$ | async }; as vm) {
     @if (vm.seals) {
       <app-seals-list [sealsList]="vm.seals"></app-seals-list>
     }
-  </ng-container>
+  }
 </div>

@@ -9,9 +9,9 @@
       <section>Last Online: {{ memberOverview?.profile?.data?.dateLastPlayed || '' | bungieDateTime }}</section>
       <section class="platforms">
         Platforms:&nbsp;
-        <ng-container *ngFor="let type of memberOverview?.profile?.data?.userInfo?.applicableMembershipTypes">
+        @for (type of memberOverview?.profile?.data?.userInfo?.applicableMembershipTypes; track type) {
           <lib-member-type-icon [type]="type" class="platform-icon"></lib-member-type-icon>
-        </ng-container>
+        }
       </section>
     </mat-card-content>
   } @else {
