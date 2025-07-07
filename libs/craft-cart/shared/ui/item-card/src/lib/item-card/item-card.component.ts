@@ -11,7 +11,7 @@ import { Item } from '@crafting-cart/shared/models';
         {{ catalogItem()?.name }}
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="catalogItem()?.imageUrl" alt="" />
+    <img mat-card-image [src]="catalogItem()?.imageUrl" alt="" class="catalog-item-image" />
     <mat-card-actions>
       <ng-content select="lib-item-card-footer"></ng-content>
     </mat-card-actions>

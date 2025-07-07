@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
   template: `
     <mat-card class="example-card" appearance="outlined">
       <mat-card-header>
-        <img mat-card-sm-image [src]="catalogItem()?.imageUrl" alt="" />
+        <img mat-card-sm-image [src]="catalogItem()?.imageUrl" alt=""  />
         <mat-card-title-group>
           <mat-card-title>{{ catalogItem()?.name }}</mat-card-title>
           <mat-card-subtitle>

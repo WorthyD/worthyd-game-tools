@@ -19,7 +19,9 @@
     "____storybook": "ng run clan-dashboard:storybook",
     "config": "ts-node set-env.ts",
     "____lint": "ng lint",
-    "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js"
+    "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js",
+    "stardew": "tsx scrapers/stardew.ts",
+    "craft-cart": "tsx scrapers/craft-cart.ts"
   },
   "private": true,
   "dependencies": {
@@ -87,6 +89,8 @@
     "@typescript-eslint/utils": "^8.33.1",
     "angular-eslint": "20.0.0",
     "autoprefixer": "^10.4.0",
+    "axios": "^1.10.0",
+    "cheerio": "^1.1.0",
     "cypress": "14.2.1",
     "eslint": "^9.28.0",
     "eslint-plugin-cypress": "^3.5.0",
@@ -103,6 +107,7 @@
     "ts-jest": "^29.1.5",
     "ts-node": "10.9.2",
     "tslib": "^2.6.3",
+    "tsx": "^4.20.3",
     "typescript": "5.8.3",
     "typescript-eslint": "^8.33.1"
   }
