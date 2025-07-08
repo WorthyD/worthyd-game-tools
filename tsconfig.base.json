@@ -128,6 +128,7 @@
       "@dcd/shared/utils/storage": ["libs/dcd/shared/utils/storage/src/index.ts"],
       "@dcd/shared/utils/url-helpers": ["libs/dcd/shared/utils/url-helpers/src/index.ts"],
       "@environment/*": ["apps/destiny-clan-dashboard/src/app/environments/*"],
+      "@worthyd/shared/ui/data-viewer": ["libs/shared/ui/data-viewer/src/index.ts"],
       "@worthyd/shared/utils/generic": ["libs/shared/utils/generic/src/index.ts"],
       "@worthyd/shared/utils/local-storage": ["libs/shared/utils/local-storage/src/index.ts"],
       "dcd-plugin": ["libs/dcd-plugin/src/index.ts"],
@@ -135,5 +136,4 @@
     }
   },
   "exclude": ["node_modules", "tmp"]
-
 }
