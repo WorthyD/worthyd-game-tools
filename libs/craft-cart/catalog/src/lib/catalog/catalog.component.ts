@@ -35,7 +35,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
         }
       } -->
     <lib-data-viewer [dataViewerConfig]="(dataViewerConfig$ | async)!">
-      <ng-template #myTemplate let-data="data">
+      <ng-template #cardTemplate let-data="data">
         <lib-item-card [catalogItem]="data">
           <lib-cart-quantity ngProjectAs="lib-item-card-footer" (add)="addToCart(data.id, $event)"></lib-cart-quantity>
         </lib-item-card>

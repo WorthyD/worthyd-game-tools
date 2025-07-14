@@ -63,6 +63,7 @@ Nx comes with local caching already built-in (check your `nx.json`). On CI you m
 - [Follow us on Twitter](https://twitter.com/nxdevtools)
 
 nx g @nx/angular:library libs/craft-cart/shared/ui/item-card --importPath="@crafting-cart/shared/ui/item-card" --tags=type:ui --changeDetection=OnPush
+nx g @nx/angular:library libs/shared/ui/data-viewer --importPath="@worthyd/shared/ui/data-viewer" --tags=type:ui --changeDetection=OnPush
 
 nx g @nx/storybook:configuration item-card
 npx nx g @nx/angular:stories item-card

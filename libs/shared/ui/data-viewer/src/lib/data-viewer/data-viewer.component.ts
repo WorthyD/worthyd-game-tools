@@ -11,7 +11,7 @@ import { DataViewerConfig } from './data-viewer.config';
     <h1>Data Viewer</h1>
     <!-- RenderedViewDynamicCompDirective -->
     <!-- <ng-template libDynamicComp></ng-template> -->
-    <div class="flex gap-4">
+    <div class="flex flex-wrap justify-around gap-4">
       <!-- Temp Card List -->
       <!-- <ng-container *ngFor="let item of dataViewerConfig().data; trackBy: trackByItem"> -->
 
@@ -25,7 +25,7 @@ import { DataViewerConfig } from './data-viewer.config';
 })
 export class DataViewerComponent<T> {
   @ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;
-  @ContentChild('myTemplate') projectedTemplate: TemplateRef<{ data: T }> = null!;
+  @ContentChild('cardTemplate') projectedTemplate: TemplateRef<{ data: T }> = null!;
 
   dataViewerConfig = input.required<DataViewerConfig<T>>();
 

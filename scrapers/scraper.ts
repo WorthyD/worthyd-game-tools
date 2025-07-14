@@ -82,7 +82,7 @@ export const scrapeItem = async (
       name: itemName,
       description: itemDescription,
       imageUrl: `${baseConfig.assetPath}${config.itemId}.png`,
-      links: [ ...(config.extraLinks || []), { text: 'Wiki Link', url: `${baseConfig.baseUrl}${config.itemUrl}` }],
+      links: [...(config.extraLinks || []), { text: 'Wiki Link', url: `${baseConfig.baseUrl}${config.itemUrl}` }],
       categories: config.categories,
       tags: config.tags,
       ingredients: ingredients
@@ -95,4 +95,23 @@ export const scrapeItem = async (
 
 export const saveItems = (items: ItemOutput[], baseConfig: ScraperConfig) => {
   fs.writeFileSync(baseConfig.configOutputPath, `export const items = ${JSON.stringify(items, null, 2)};`);
+};
+
+export const validateConfig = (items: ItemOutput[]) => {
+  const allIngredients = [];
+
+  items.forEach((item) => {
+    const ingredientArray: string[] = item.ingredients.map((ingredient) => ingredient.id);
+    if (ingredientArray.length > 0) {
+      allIngredients.push(...ingredientArray);
+    }
+  });
+  const uniqueIngredients = [...new Set(allIngredients)];
+
+  uniqueIngredients.forEach((item) => {
+    const foundItem = items.find((i) => i.id === item);
+    if (!foundItem) {
+      console.error(`Missing item for ingredient: ${item}`);
+    }
+  });
 };
