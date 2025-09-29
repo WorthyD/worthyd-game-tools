@@ -3,22 +3,26 @@ import { CommonModule } from '@angular/common';
 import { RenderedViewDynamicCompDirective } from './data-viewer.directive';
 import { DataViewerConfig } from './data-viewer.config';
 // import {} from '@cr
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 @Component({
   selector: 'lib-data-viewer',
   imports: [CommonModule],
   template: `
     <h1>Data Viewer</h1>
-    <!-- RenderedViewDynamicCompDirective -->
-    <!-- <ng-template libDynamicComp></ng-template> -->
-    <div class="flex flex-wrap justify-around gap-4">
-      <!-- Temp Card List -->
-      <!-- <ng-container *ngFor="let item of dataViewerConfig().data; trackBy: trackByItem"> -->
 
-      @for (item of dataViewerConfig().data; track item) {
-        <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
+    @switch (dataViewerConfig().view) {
+      @case ('card') {
+        <div class="flex flex-wrap justify-around gap-4">
+          <!-- Temp Card List -->
+          @for (item of dataViewerConfig().data; track item) {
+            <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
+          }
+        </div>
       }
-    </div>
+      @case ('table') {
+        <p>Table View</p>
+      }
+    }
   `,
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush
