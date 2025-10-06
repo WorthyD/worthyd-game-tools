@@ -21,6 +21,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DataPage } from '../models/data-page.interface';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'lib-data-viewer',
   imports: [
@@ -30,7 +32,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule, MatInputModule,
   ],
   template: `
     <h1>Data Viewer</h1>
@@ -38,12 +41,15 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
       <mat-button-toggle value="card">Card</mat-button-toggle>
       <mat-button-toggle value="table">Table</mat-button-toggle>
     </mat-button-toggle-group>
-    {{ currentView.value }}
+    <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
     @switch (currentView.value) {
       @case ('card') {
         <div class="flex flex-wrap justify-around gap-4">
           <!-- Temp Card List -->
-          @for (item of dataSource().filteredData; track trackByItem($index, item)) {
+          @for (item of renderedData(); track trackByItem($index, item)) {
             <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
           }
         </div>
@@ -91,19 +97,39 @@ export class DataViewerComponent<T extends { id?: unknown }> implements AfterVie
 
   dataViewerConfig = input.required<DataViewerConfig<T>>();
 
-  pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 25 });
-  curatedData: Signal<T[]> = computed(() => this.dataViewerConfig().data);
-  dataSource: Signal<MatTableDataSource<T>> = computed(() => new MatTableDataSource<T>(this.curatedData()));
+  pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 2 });
+  dataSource: Signal<MatTableDataSource<T>> = computed(() => new MatTableDataSource<T>(this.dataViewerConfig().data));
+
+  filterValue = signal('');
+  curatedData: Signal<T[]> = computed(() => {
+    const filter = this.filterValue();
+    return this.dataViewerConfig().data.filter(item => {
+      return Object.values(item).some(value =>
+        String(value).toLowerCase().includes(filter.toLowerCase())
+      );
+    });
+  });
 
   //TODO: include filters
   itemCount = computed(() => this.curatedData.length);
 
   renderedData: Signal<T[]> = computed(() => {
-    const data = this.dataViewerConfig().data;
+    const data = this.curatedData();
     const page = this.pagerData();
-    console.log('data', data);
+    const sorting = '';
     return data.slice(page.index * page.size, page.index * page.size + page.size);
   });
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource().filter = filterValue.trim().toLowerCase();
+    this.filterValue.set(filterValue.trim().toLowerCase());
+
+
+    if (this.dataSource().paginator) {
+      this.dataSource().paginator?.firstPage();
+    }
+  }
 
   setPage(event: PageEvent) {
     this.pagerData.set({ index: event.pageIndex, size: event.pageSize });

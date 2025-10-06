@@ -1,4 +1,4 @@
 export interface DataViewerConfig<T> {
   data: T[];
-  view: 'card' | 'table';
+  //view: 'card' | 'table';
 }

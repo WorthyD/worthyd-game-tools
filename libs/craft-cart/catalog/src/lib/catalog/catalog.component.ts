@@ -50,7 +50,7 @@ export class CatalogComponent {
 
   dataViewerConfig$: Observable<DataViewerConfig<Item>> = combineLatest([this.catalogItems$]).pipe(
     map(([catalogItems]) => ({
-      data: catalogItems
+      data: catalogItems,
     }))
   );
 
