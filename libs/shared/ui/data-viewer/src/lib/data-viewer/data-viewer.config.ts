@@ -1,4 +1,4 @@
 export interface DataViewerConfig<T> {
   data: T[];
-  //view: 'card' | 'table';
+  columns?: string[];  // Optional array of column IDs to display
 }
