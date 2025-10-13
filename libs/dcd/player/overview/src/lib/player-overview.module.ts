@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerOverviewComponent } from './player-overview.component';
 import { ClansDetailsRoutingModule } from './player-overview-routes.module';
-//import { MemberOverviewComponent } from '../../../../../../../libs/dcd/player/ui/src/lib/member-overview/member-overview.component';
 import { MemberOverviewComponent } from '@dcd/player/ui';
 import { PlayerSealsComponent, BungieInfoComponent } from '@dcd/shared/ui/member';
 

@@ -11,7 +11,6 @@
           <mat-list-item>
             <div class="member-info">
               <div class="member-name">
-                <!-- <lib-profile-link [profile]="member.profile"></lib-profile-link> -->
                 <button mat-button (click)="viewProfile.emit(member.profile)"> {{ member.profile | bungieDisplayName }}</button>
                 @if (member.member.isOnline) {
                   <span class="online" matTooltip="Online / In Orbit"></span

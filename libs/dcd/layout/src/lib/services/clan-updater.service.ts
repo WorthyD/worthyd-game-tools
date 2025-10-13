@@ -12,7 +12,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppOfflineDialogComponent } from '@dcd/shared/ui/app-offline-dialog';
 import { ClanDetailsService } from '@dcd/shared/data-access/clan-collections';
 
-// import { environment } from 'apps/destiny-clan-dashboard/src/environments/environment';
 import deepEqual from 'deep-equal';
 import { isMobile } from '@dcd/shared/utils';
 import { BungieInfoUpdaterService } from '@dcd/shared/data-access/bungie-info';

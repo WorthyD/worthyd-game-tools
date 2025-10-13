@@ -10,10 +10,8 @@ import {
 import { PlaytimePipe } from '@dcd/shared/utils/pipes';
 import { DestinyDefinitionsDestinyActivityModeDefinition } from 'bungie-api-angular';
 import { map, Observable, of, switchMap, tap } from 'rxjs';
-//import { ActivityModeService } from '../data-access/activity-mode.service';
 import { ActivityModeService } from '@dcd/activity-modes/data-access';
 import {} from '@dcd/activity-modes/data-access';
-//import { ProfileRecentActivity } from '../models/ProfileActivityMode';
 import { ProfileRecentActivity } from '@dcd/activity-modes/models';
 import { ACTIVITY_MODE_FILTERER_METADATA } from './activity-mode-metadata/ActivityModeFilterer';
 import { ACTIVITY_MODE_SORTER_METADATA } from './activity-mode-metadata/ActivityModeSorter';
@@ -125,9 +123,7 @@ export class ActivityModeTableComponent implements OnChanges {
         `${context.playTimePipe.transform(item.stats.trackedDates[definition.id])}`,
       render: (item: ProfileRecentActivity, context: ActivityModeViewContext) => {
         return {
-          // classList: 'text-center',
           text: context.playTimePipe.transform(item.stats.trackedDates[definition.id])
-          //text: item.stats.trackedDates[definition.id].toString()
         };
       }
     };

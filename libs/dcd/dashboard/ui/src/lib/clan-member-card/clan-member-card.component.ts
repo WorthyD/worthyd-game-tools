@@ -5,7 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-// import { BungieDisplayNameModule } from 'libs/components/src/lib/pipes/bungie-display-name';
 import { BungieDisplayNamePipe } from '@dcd/shared/utils/pipes';
 import { ProfileLinkComponent } from '@dcd/shared/ui/profile-link';
 

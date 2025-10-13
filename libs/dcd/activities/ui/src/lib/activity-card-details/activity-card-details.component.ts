@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 import { DestinyDefinitionsDestinyActivityDefinition } from 'bungie-api-angular';
-//import { DestinyDefinitionsDestinyActivityDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsDestinyActivityDefinition';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';

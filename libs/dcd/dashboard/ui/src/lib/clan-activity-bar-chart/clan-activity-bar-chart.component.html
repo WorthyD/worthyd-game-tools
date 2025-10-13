@@ -9,22 +9,15 @@
           <lib-bar-chart [events]="events" convertTo="Hours"></lib-bar-chart>
         } @else {
           <div class="loading-container">
-            <!-- <lib-loading></lib-loading> -->
-            <!-- <div class="text-center">
-            <div class="h3">Loading Activities...</div>
-          </div> -->
+
           <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
           <h3 class="text-center">Loading First Time Data</h3>
         </div>
       }
-      <!-- <div class="h3">Feature coming soon </div> -->
     </div>
   } @else {
     <div class="loading-container">
-      <!-- <lib-loading></lib-loading> -->
-      <!-- <div class="text-center">
-      <div class="h3">Loading Activities...</div>
-    </div> -->
+
     <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
   </div>
 }
@@ -33,7 +26,6 @@
 }
 @if (updating && events?.length === 0) {
   <div class="chart-container">
-    <!-- <lib-loading></lib-loading> -->
     <div class="text-center">
       <div class="h3">Loading Initial Data...</div>
       <div class="h6">This may take a while....</div>

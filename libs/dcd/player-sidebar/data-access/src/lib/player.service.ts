@@ -7,7 +7,6 @@ import { MemberProfile } from '@dcd/shared/models';
   providedIn: 'root',
 
 })
-//@Injectable()
 export class PlayerService {
   constructor(private cachedProfileService: CachedProfileService) {}
 

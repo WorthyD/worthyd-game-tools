@@ -2,7 +2,6 @@ import { DESTINY_ACTIVITY_MODES } from '@dcd/shared/models';
 import { DefinitionService } from '@dcd/shared/data-access/definitions';
 import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
-//import { ProfileRecentActivityWorkerService } from '../../../workers/profile-recent-activity/profile-recent-activity.service';
 import { ProfileRecentActivityWorkerService } from './profile-recent-activity.fake.service';
 import { DestinyDefinitionsDestinyActivityModeDefinition } from 'bungie-api-angular';
 import { Store } from '@ngrx/store';
@@ -16,7 +15,6 @@ export class ActivityModeService {
     private definitionService: DefinitionService,
 
     private store: Store,
-    //private clansDetailsService: ClansMembersService,
     private profileRecentActivityWorkerService: ProfileRecentActivityWorkerService
   ) {}
 

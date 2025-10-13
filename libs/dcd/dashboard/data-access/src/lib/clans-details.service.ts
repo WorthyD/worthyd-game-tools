@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { from, Observable } from 'rxjs';
 import { map, mergeMap, toArray, switchMap } from 'rxjs/operators';
 import { ClanDetailsService as DataService } from '@dcd/shared/data-access/clan-collections';
-// import { ClansDetailsModule } from '../clans-details-shell/clans-details.module';
 import { ClanMemberProfile, ClanMemberProfileWSeason } from '@dcd/shared/models';
 import { SeasonService } from '@dcd/shared/data-access/definitions';
 import {

@@ -1,25 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { ActivityDefinitionService } from '@core/definition-services/activity-definition.service';
 import { SeasonService, DefinitionService } from '@dcd/shared/data-access/definitions';
-
-// import {
-//   selectAllClansMembersProfiles,
-//   selectClanMemberProfileStateLoading
-// } from '@core/store/clans-members-profiles/clan-members-profiles.selectors';
 
 import { getClanMemberId, getMemberProfileId } from '@dcd/shared/utils';
 import { Store } from '@ngrx/store';
 import { ClanMemberProfile } from '@dcd/shared/models';
-// import { ClanProfileService } from 'libs/data/src/lib/clan/profiles/profile.service';
 import { ClanProfileService } from '@dcd/shared/data-access/clan-collections';
 import { from, map, mergeMap, Observable, switchMap, take, toArray } from 'rxjs';
-// import {
-//   CuratedActivityGroupDefinitions,
-//   CURATED_ACTIVITIES_ALL,
-//   CURATED_ACTIVITY_GROUPS
-// } from '../models/CuratedActivities';
-
-// import { ProfileRecentActivityWorkerService } from '../../../workers/profile-recent-activity/profile-recent-activity.service';
 import {
   selectAllClansMembersProfiles,
   selectAllClansWithMembers,
@@ -32,15 +18,12 @@ import {
   CURATED_ACTIVITIES_ALL,
   CURATED_ACTIVITY_GROUPS
 } from '@dcd/activities/models';
-import { ClanConfigMembers } from '@dcd/shared/models';
 
 @Injectable()
 export class ActivitiesService {
   constructor(
-    //private activityDefinitionService: ActivityDefinitionService,
     private definitionService: DefinitionService,
     private store: Store,
-    //private memberService: ClansMembersService,
     private profileService: ClanProfileService,
     private seasonService: SeasonService,
     private profileRecentActivityWorkerService: ProfileRecentActivityWorkerService

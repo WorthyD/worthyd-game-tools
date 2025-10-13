@@ -9,8 +9,3 @@ export interface ClanSearchResultItem {
   id?: string;
 }
 
-// iconName: this.getIcon(membership.membershipType),
-// name: displayName,
-// membershipType: membership.membershipType,
-// membershipId: membership.membershipId,
-// type: 'player'

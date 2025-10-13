@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import {  Observable } from 'rxjs';
 
 @Injectable()
 export class ProfileRecentActivityWorkerService {
@@ -12,17 +12,10 @@ export class ProfileRecentActivityWorkerService {
     throw new Error('not implemented');
   }
 
-  //getAllRecentActivitiesFromCache(clanId: string, memberProfiles: MemberProfile[]): Observable<any> {
   getAllRecentActivitiesFromCache(clanId: string, memberProfiles: any[]): Observable<any> {
     throw new Error('not implemented');
   }
 
-  // getAllActivities(
-  //   clansAndMembers: ClanConfigMembers[],
-  //   statAggregatorType: AggregateType,
-  //   activityModeId: number,
-  //   activityTypeId: number
-  // ): Observable<any> {
   getAllActivities(
     clansAndMembers: unknown[],
     statAggregatorType: unknown,

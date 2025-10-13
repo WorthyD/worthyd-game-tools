@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { ConfigComponent } from '../config.component';
 import { ConfigComponent } from '@dcd/config/config';
 
 const routes: Routes = [

@@ -8,15 +8,10 @@
         @if (events?.length > 0;) {
           <lib-bar-chart [events]="events" convertTo="Hours"></lib-bar-chart>
         }
-        <!-- <div class="h3">Feature coming soon </div> -->
       </div>
     } @else {
       <div class="loading-container">
-        <!-- <lib-loading></lib-loading> -->
-        <!-- <div class="text-center">
-        <div class="h3">Loading Activities...</div>
-      </div> -->
-      <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
+              <lib-skeleton-chart-loader></lib-skeleton-chart-loader>
     </div>
   }
 </mat-card-content>

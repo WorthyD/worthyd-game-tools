@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//import { ActivitiesDashboardComponent } from './activities-dashboard.component';
 import { ActivityDetailComponent } from './activity-detail.component';
 
 const routes: Routes = [
@@ -12,7 +11,6 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          //import('../activity-dashboard/activity-dashboard.module').then((module) => module.ActivityDashboardModule)
           import('@dcd/activities/dashboard').then((module) => module.ActivityDashboardModule)
       },
       {

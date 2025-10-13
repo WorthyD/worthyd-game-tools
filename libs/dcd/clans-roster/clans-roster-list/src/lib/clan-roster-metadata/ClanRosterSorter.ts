@@ -1,20 +1,11 @@
 //@ts-nocheck
-// import { SorterMetadata } from '../data/sorter';
 
 import { SorterMetadata } from '@dcd/shared/data-models';
 import { ClanRosterItem } from '@dcd/clans-roster/models';
 import { ClanMemberProfile } from '@dcd/shared/models';
 
-// import { MockListItem } from './ListItems';
 export const CLAN_ROSTER_SORTER_METADATA = new Map<string, SorterMetadata<ClanRosterItem>>([
-  //   [
-  //     'id',
-  //     {
-  //       label: 'ID',
-  //       comparator: (a, b) => (a.id < b.id ? -1 : 1)
-  //     }
-  //   ],
-  [
+    [
     'destinyDisplayName',
     {
       label: 'Destiny Display Name',

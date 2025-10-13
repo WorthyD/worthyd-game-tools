@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-//import { GroupsV2GroupV2 } from 'bungie-api-angular/lib/model/groupsV2GroupV2';
 
 import { MatCardModule } from '@angular/material/card';
 

@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from, map, mergeMap, Observable, switchMap, toArray } from 'rxjs';
 import { Store } from '@ngrx/store';
-// import {
-//   selectAllClansMembersProfiles,
-//   selectClanMemberProfileStateLoading
-// } from '@core/store/clans-members-profiles/clan-members-profiles.selectors';
 import { selectAllClansMembersProfiles, selectClanMemberProfileStateLoading } from '@dcd/shared/data-access/store';
 
 import { ClanMemberProfile } from '@dcd/shared/models';
@@ -19,7 +15,6 @@ export class ClansRosterService {
 
   clanRosterItems$: Observable<ClanRosterItem[]> = this.clanProfiles$.pipe(
     switchMap((clanProfiles) => {
-      //const members = clanProfiles.map((x) => x.member);
       const clanIds = [...new Set(clanProfiles.map((cp) => cp.clan.clanId))];
       const clanGroups = clanIds.map((clanId) => {
         return { clanId: clanId, members: clanProfiles.filter((x) => x.clan.clanId === clanId) };

@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-//import { DirectivesModule } from '@destiny-clan-dashboard/components/shared/directives';
 import { ResponsiveSidebarDirective } from '@dcd/shared/utils/directives';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';

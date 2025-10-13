@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
 import { selectTotalClans } from '@dcd/shared/data-access/store';
 import { Store } from '@ngrx/store';
 import { map, Observable, of } from 'rxjs';
-// import { selectTotalClans } from '@core/store/clans/clans.selectors';
 
 @Injectable({
   providedIn: 'root'

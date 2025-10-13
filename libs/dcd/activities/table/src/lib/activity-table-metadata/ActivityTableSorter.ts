@@ -4,19 +4,7 @@ import { compare, getBungieDisplayName } from '@dcd/shared/utils';
 import { ClanMemberProfile } from '@dcd/shared/models';
 
 export const ACTIVITY_SORTER_METADATA = new Map<string, SorterMetadata<ClanMemberProfile>>([
-
-  // [
-  //   'destinyDisplayName',
-  //   {
-  //     label: 'Destiny Display Name',
-  //     comparator: (a, b) =>
-  //       a.profile?.profile?.data.userInfo.displayName?.toLowerCase() <
-  //       b.profile?.profile?.data.userInfo.displayName?.toLowerCase()
-  //         ? -1
-  //         : 1
-  //   }
-  // ],
-  [
+ [
     'destinyDisplayName',
     {
       label: 'Bungie Display Name',

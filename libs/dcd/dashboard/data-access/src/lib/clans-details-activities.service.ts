@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, filter, Observable, of, switchMap, take, tap } from 'rxjs';
-//import { ProfileRecentActivityWorkerService } from '../../../workers/profile-recent-activity/profile-recent-activity.service';
-//import { ClansDetailsModule } from '../clans-details/clans-details.module';
-//import { ClansDetailsService } from './clans-details.service';
-//import { DailyClanAggregateTimeService } from 'libs/data/src/lib/stat-aggregators/clan-aggregate-time/daily-clan-aggregate-time.service';
 import { Store } from '@ngrx/store';
 import { selectAllClansWithMembersProfiles, selectAllRecentActivityUpdates } from '@dcd/shared/data-access/store';
 import { ProfileRecentActivityWorkerService } from './profile-recent-activity.fake.service';
-//import { selectAllRecentActivityUpdates } from '@core/store/clans';
 
 @Injectable()
 export class ClansDetailsActivitiesService {
   constructor(
     private store: Store,
-//    private clansDetailsService: ClansMembersService,
     private profileRecentActivityWorkerService: ProfileRecentActivityWorkerService
   ) {}
 

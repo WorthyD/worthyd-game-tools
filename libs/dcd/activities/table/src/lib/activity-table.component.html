@@ -1,6 +1,5 @@
 <div class="activity">
   @if (vm$ | async; as vm) {
-    <!-- [header]="vm?.activity?.displayProperties?.name" -->
     <lib-table-view
       class="activity-table"
       [isLoading]="isLoading"
@@ -9,13 +8,8 @@
       [filterer]="activityFilterer"
       [sorter]="activitySorter!"
       >
-      <!-- <div pre-header>
-      <button mat-icon-button aria-label="Back to Activities" routerLink="/activities">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-    </div> -->
+
   </lib-table-view>
 }
 
-<!--  -->
 </div>

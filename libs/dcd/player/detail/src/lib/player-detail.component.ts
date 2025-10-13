@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
-// import { PlayerService } from '../data-access/player.service';
 import { PlayerService } from '@dcd/player/data-access';
 
 interface MemberInfo {

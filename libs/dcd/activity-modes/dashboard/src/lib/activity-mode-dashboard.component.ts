@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-//import { ActivityModeService } from '../data-access/activity-mode.service';
 import { ActivityModeService } from '@dcd/activity-modes/data-access';
 
 @Component({

@@ -1,24 +1,15 @@
 //@ts-nocheck
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CollectionDefinition, MetricDefinition, RecordDefinition } from '@dcd/shared/models';
-//import { ActivitiesService } from '../data-access/activities.service';
 import { ActivitiesService } from '@dcd/activities/data-access';
 import { Observable, map, of, startWith, tap } from 'rxjs';
 import { ClanMemberProfile } from '@dcd/shared/models';
 import { InCollectionsTotalPipe, MetricTotalPipe, RecordTotalPipe } from '@dcd/shared/utils/pipes';
-//import { MetricTotalPipe } from '@destiny-clan-dashboard/components/pipes/metric-total';
-//import { InCollectionsTotalPipe } from '@destiny-clan-dashboard/components/pipes/in-collections';
-//import { RecordTotalPipe } from '@destiny-clan-dashboard/components/pipes/record-total';
 
 type ActivityBreakDownItem =
   | MetricActivityBreakDownItem
   | CollectionActivityBreakDownItem
   | RecordActivityBreakDownItem;
-
-// interface ActivityBreakDownItem<T> {
-//   itemType: ItemType;
-//   definition: T;
-// }
 
 interface MetricActivityBreakDownItem {
   type: 'metric';

@@ -1,7 +1,4 @@
 // @ts-nocheck
-// import { ViewerMetadata } from '@dcd/shared/data';
-
-// import { MemberTypeComponent } from '@destiny-clan-dashboard/components/icons';
 import { MemberTypeComponent } from '@dcd/shared/ui/icons';
 import { ClassCellComponent } from '../../../../ui/src/lib/class-cell/class-cell.component';
 import { MembershipTypes } from '@dcd/shared/models';
@@ -21,14 +18,11 @@ export const CLAN_ROSTER_VIEWER_METADATA = new Map<string, ViewerMetadata<ClanRo
     'platform',
     {
       label: 'Platform',
-      //  labelClass: 'text-header-center',
       plainText: (item: ClanRosterItem) => `${getMembershipType(item.member.destinyUserInfo.membershipType)}`,
       render: (item: ClanRosterItem) => ({
-        //        styles: {},
         classList: ['text-center'],
         component: MemberTypeComponent,
         data: { type: item.member?.destinyUserInfo?.membershipType || 0 }
-        //text: `${item.member.destinyUserInfo.membershipType}`
       })
     }
   ],
@@ -38,8 +32,6 @@ export const CLAN_ROSTER_VIEWER_METADATA = new Map<string, ViewerMetadata<ClanRo
       label: 'Bungie Unique Name',
       labelClass: '',
       plainText: (item: ClanRosterItem) => `${item?.bungieInfo?.uniqueName || ''}`,
-      // plainText: (item: ClanRosterItem) => ``,
-      //render: (item: ClanRosterItem) => ({ text: `${item.bungieInfo?.uniqueName || ''}`, classList: [] }),
       render: (item: ClanRosterItem) => ({
         component: ProfileLinkComponent,
         data: { profile: item?.profile }
@@ -65,11 +57,7 @@ export const CLAN_ROSTER_VIEWER_METADATA = new Map<string, ViewerMetadata<ClanRo
       label: 'Bungie Display Name',
       labelClass: '',
       plainText: (item: ClanRosterItem) => `${item.member?.bungieNetUserInfo?.displayName || ''}`,
-      // render: (item: ClanRosterItem) => ({
-      //   component: ProfileLinkComponent,
-      //   data: { profile: item?.profile }
-      // })
-      render: (item: ClanRosterItem) => ({
+            render: (item: ClanRosterItem) => ({
         text: `${item.member?.bungieNetUserInfo?.displayName || ''}`,
         classList: []
       })

@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ClanMemberProfile } from '@dcd/shared/models';
 import { combineLatest, map, startWith, tap } from 'rxjs';
-//import { ClansDetailsService } from '../data-access/clans-details.service';
 import { ClansDetailsService } from '@dcd/dashboard/data-access';
 
 @Component({

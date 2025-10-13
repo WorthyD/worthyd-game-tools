@@ -1,16 +1,2 @@
-<!-- <div class="clans-wrapper">
-  <ng-container *ngIf="clansInfo$ | async as clansInfo">
-    <ng-container *ngFor="let clanInfo of clansInfo">
-      <h1>{{clanInfo.name}} - {{clanInfo.clanInfo.clanCallsign}}</h1>
-      <h2>Member Count - {{clanInfo.memberCount}}</h2>
-      <h2>Level - {{clanInfo.clanInfo.d2ClanProgressions['584850370'].level}} /
-        {{clanInfo.clanInfo.d2ClanProgressions['584850370'].levelCap}}</h2>
-      <hr>
 
-    </ng-container>
-  </ng-container>
-
-
-
-</div> -->
 <dcd-clan-info [clanDetail]="(clanDetails$ | async)!" [loading]="loading"></dcd-clan-info>

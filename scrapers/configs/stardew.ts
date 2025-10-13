@@ -23,6 +23,70 @@ export const config : ScraperConfig= {
       categories: ['Crafting'],
       tags: ['Bombs']
     },
+
+    // ----------------------Fences----------------------
+    {
+      itemId: 'gate',
+      itemUrl: 'Gate',
+      categories: ['Crafting'],
+      tags: ['Fences']
+    },
+    {
+      itemId: 'wood_fence',
+      itemUrl: 'Wood_Fence',
+      categories: ['Crafting'],
+      tags: ['Fences']
+    },
+    {
+      itemId: 'stone_fence',
+      itemUrl: 'Stone_Fence',
+      categories: ['Crafting'],
+      tags: ['Fences']
+    },
+    {
+      itemId: 'iron_fence',
+      itemUrl: 'Iron_Fence',
+      categories: ['Crafting'],
+      tags: ['Fences']
+    },
+    {
+      itemId: 'hardwood_fence',
+      itemUrl: 'Hardwood_Fence',
+      categories: ['Crafting'],
+      tags: ['Fences']
+    },
+    // ----------------------Sprinklers----------------------
+   {
+      itemId: 'sprinkler',
+      itemUrl: 'Sprinkler',
+      categories: ['Crafting'],
+      tags: ['Sprinklers']
+    },
+    {
+      itemId: 'quality_sprinkler',
+      itemUrl: 'Quality_Sprinkler',
+      categories: ['Crafting'],
+      tags: ['Sprinklers']
+    },
+    {
+      itemId: 'iridium_sprinkler',
+      itemUrl: 'Iridium_Sprinkler',
+      categories: ['Crafting'],
+      tags: ['Sprinklers']
+    },
+    // ----------------------Artisan Equipment----------------------
+{
+      itemId: 'mayonnaise_machine',
+      itemUrl: 'Mayonnaise_Machine',
+      categories: ['Crafting'],
+      tags: ['Artisan_Equipment']
+    },
+    {
+      itemId: 'bee_house',
+      itemUrl: 'Bee_House',
+      categories: ['Crafting'],
+      tags: ['Artisan_Equipment']
+    },
     {
       itemId: 'copper_ore',
       itemUrl: 'Copper_Ore',

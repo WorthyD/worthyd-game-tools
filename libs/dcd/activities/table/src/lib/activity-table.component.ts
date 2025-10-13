@@ -20,10 +20,6 @@ interface ViewContext {
     standalone: false
 })
 export class ActivityTableComponent {
-  // @Input() title: string;
-  // @Input() metricDefinitions: MetricDefinition[];
-  // @Input() collectionDefinitions: CollectionDefinition[];
-  // @Input() recordDefinitions: RecordDefinition[];
 
   activityHash$ = this.route.parent?.parent?.paramMap.pipe(map((params) => +params?.get('activityHash')!));
 

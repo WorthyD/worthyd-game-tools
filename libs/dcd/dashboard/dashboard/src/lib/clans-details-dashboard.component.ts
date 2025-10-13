@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-//import { ClansDetailsService } from '../data-access/clans-details.service';
 import { ClansDetailsService } from '@dcd/dashboard/data-access';
 import { PlayerSidebarStore } from '@dcd/player-sidebar/data-access';
 import { MemberProfile } from '@dcd/shared/models';

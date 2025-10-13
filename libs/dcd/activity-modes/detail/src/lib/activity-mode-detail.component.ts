@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
-//import { ActivityModeService } from '../data-access/activity-mode.service';
 import { ActivityModeService } from '@dcd/activity-modes/data-access';
 
 @Component({

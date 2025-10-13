@@ -14,9 +14,6 @@ import {
 import { Character } from '@dcd/shared/models';
 import { ClanMemberSeasonPassProgression } from '@dcd/shared/models';
 import { SeasonService } from '@dcd/shared/data-access/definitions';
-// import { Observable } from 'rxjs';
-// import { GlobalSealsService } from '@core/services/global-seals.service';
-// import { DefinitionService } from '@core/definition-services/definition.service';
 
 @Component({
   selector: 'dcd-member-overview',
