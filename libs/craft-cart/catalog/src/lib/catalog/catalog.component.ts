@@ -41,18 +41,20 @@ import { AsyncPipe, CommonModule } from '@angular/common';
         </lib-item-card>
       </ng-template>
 
-
-
-
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.id }}</td>
       </ng-container>
       <!-- Column definitions -->
-      <ng-container matColumnDef="name">
+      <!-- <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
       </ng-container>
+
+      <ng-container matColumnDef="tacos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>taco</th>
+        <td mat-cell *matCellDef="let element">taco</td>
+      </ng-container> -->
 
       <!-- <ng-container matColumnDef="quantity" [matColumnDef]="'quantity'">
         <th mat-header-cell *matHeaderCellDef>Quantity</th>
@@ -73,7 +75,8 @@ export class CatalogComponent {
   dataViewerConfig$: Observable<DataViewerConfig<Item>> = combineLatest([this.catalogItems$]).pipe(
     map(([catalogItems]) => ({
       data: catalogItems,
-      columns: ['id', 'name']  // Add all the columns you want to display
+      // columns: ['id', 'name'] // Add all the columns you want to display
+      columns: [] // Add all the columns you want to display
     }))
   );
 

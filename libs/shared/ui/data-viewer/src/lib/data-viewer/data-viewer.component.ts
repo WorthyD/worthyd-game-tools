@@ -1,11 +1,13 @@
 import {
   AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
   ContentChild,
   ContentChildren,
+  effect,
   input,
   QueryList,
   Signal,
@@ -51,7 +53,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
     </mat-form-field>
-    <!-- @switch (currentView.value) {
+    @switch (currentView.value) {
       @case ('card') {
         <div class="flex flex-wrap justify-around gap-4">
           @for (item of renderedData(); track trackByItem($index, item)) {
@@ -59,13 +61,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
           }
         </div>
       }
-      @case ('table') { -->
+      @case ('table') {
         <table mat-table #table [dataSource]="dataSource()" matSort>
           <!-- Default ID column -->
-          <!-- <ng-container matColumnDef="id">
+          <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-            <td mat-cell *matCellDef="let row">{{ row.id }}</td>
-          </ng-container> -->
+            <td mat-cell *matCellDef="let row">id</td>
+          </ng-container>
 
           <!-- Projected columns -->
           <!-- <ng-container *ngFor="let columnDef of columnDefs">
@@ -79,7 +81,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
 
           <!-- Project default columns -->
-          <ng-content select="[matColumnDef]"></ng-content>
+
+          <!-- <ng-content select="[matColumnDef]"></ng-content> -->
 
           <!-- Dynamic columns -->
           <!-- @for (col of dynamicColumns; track col) {
@@ -103,8 +106,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         <ng-template #defaultCell let-value>
           {{ value }}
         </ng-template>
-      <!-- }
-    } -->
+      }
+    }
     <mat-paginator
       (page)="setPage($event)"
       [pageSizeOptions]="[1, 10, 25, 50, 100]"
@@ -116,37 +119,98 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DataViewerComponent<T extends { id?: unknown }> implements AfterViewInit, AfterContentInit {
+export class DataViewerComponent<T extends { id?: unknown }>
+  implements AfterViewInit, AfterContentInit, AfterViewChecked
+{
   @ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;
   @ContentChild('cardTemplate') projectedTemplate: TemplateRef<{ data: T }> = null!;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChildren(MatColumnDef, { descendants: true }) columnDefs!: QueryList<MatColumnDef>;
-  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @ViewChild(MatTable) table!: MatTable<any>;
+
+  tableInitialized = signal(false);
+  columnsRegistered = signal(false);
 
   constructor() {
     //this.dataSource = new MatTableDataSource<T>([]);
     //this.dataSource = new MatTableDataSource<T>(this.dataViewerConfig().data ?? []);
+    // this.currentView.valueChanges.subscribe((view) => {
+    //   console.log('View changed to:', view);
+    //   if (view === 'table') {
+    //     console.log('Setting up table columns', this.table);
+    //     this.columnDefs.forEach((columnDef) => {
+    //       this.table.addColumnDef(columnDef);
+    //     });
+    //     // Then, set up the displayed columns
+    //     this.setupDisplayedColumns();
+    //     // Listen for changes in projected columns
+    //     this.columnDefs.changes.subscribe(() => {
+    //       this.setupDisplayedColumns();
+    //     });
+    //     // setTimeout(() => {
+    //     //   this.table.renderRows();
+    //     // }, 0);
+    //   }
+    // });
+    // effect(() => {
+    //   const isTableView = this.currentView.value === 'table';
+    //   console.log('Table view status:', isTableView);
+    //   if (isTableView) {
+    //     this.tableInitialized.set(true);
+    //   } else {
+    //     this.tableInitialized.set(false);
+    //     this.columnsRegistered.set(false);
+    //   }
+    // });
+
+    // Effect for table initialization and column registration
+    // effect(() => {
+    //   console.log('Table initialized:', this.tableInitialized());
+    //   console.log('Columns registered:', this.columnsRegistered());
+    //   console.log('Table instance:', this.table);
+
+    //   if (!this.table || !this.tableInitialized() || this.columnsRegistered()) {
+    //     return;
+    //   }
+
+    //   // Register columns and trigger change detection
+    //   try {
+    //     console.log('Setting up table columns', this.table);
+    //     this.columnDefs.forEach((columnDef) => {
+    //       console.log('Registering column:', columnDef.name);
+    //       if (!columnDef['_table']) {
+    //         this.table.addColumnDef(columnDef);
+    //       }
+    //     });
+    //     this.columnsRegistered.set(true);
+    //   } catch (error) {
+    //     console.warn('Failed to register columns:', error);
+    //   }
+    // });
+  }
+
+  ngOnInit() {
+    // Initialization logic if needed
+    this.dataSource().paginator = this.paginator;
+    this.dataSource().sort = this.sort;
+
+    // Listen to view changes
   }
 
   ngAfterContentInit() {
-    // First, register the columns with the table
-    this.columnDefs.forEach((columnDef) => {
-      this.table.addColumnDef(columnDef);
-    });
-
-    // Then, set up the displayed columns
+    // Store the column names and listen for changes
     this.setupDisplayedColumns();
-
-    // Listen for changes in projected columns
-    this.columnDefs.changes.subscribe(() => {
-      this.setupDisplayedColumns();
-    });
+    // this.columnDefs.changes.subscribe(() => {
+    //   this.setupDisplayedColumns();
+    //   this.columnsRegistered.set(false); // Reset when columns change
+    // });
   }
 
-  ngAfterViewInit() {
-    this.dataSource().paginator = this.paginator;
-    this.dataSource().sort = this.sort;
+  ngAfterViewInit() {}
+
+  ngAfterViewChecked() {
+    // View checks are now handled by effects
   }
 
   private setupDisplayedColumns() {
@@ -154,13 +218,19 @@ export class DataViewerComponent<T extends { id?: unknown }> implements AfterVie
     const configColumns = this.dataViewerConfig().columns || [];
 
     // Get all projected column names
-    const projectedColumns = this.columnDefs.map(def => def.name);
+    const projectedColumns = this.columnDefs.map((def) => {
+      console.log('Column Def:', def);
+      return def.name;
+    });
+    console.log('Projected columns:', projectedColumns);
+    console.log('Projected columns:', this.columnDefs);
 
     // Use configured columns if provided, otherwise use projected columns
     this.displayedColumns = configColumns.length > 0 ? configColumns : projectedColumns;
+    //this.displayedColumns = this.columnDefs;
   }
 
-  currentView = new FormControl('table');
+  currentView = new FormControl('card');
   displayedColumns: string[] = [];
 
   //currentView: 'card' | 'table' = 'card';
