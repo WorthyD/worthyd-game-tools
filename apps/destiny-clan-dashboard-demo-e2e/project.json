@@ -1,0 +1,10 @@
+{
+  "name": "destiny-clan-dashboard-demo-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/destiny-clan-dashboard-demo-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["destiny-clan-dashboard-demo"],
+  "// targets": "to see all targets run: nx show project destiny-clan-dashboard-demo-e2e --web",
+  "targets": {}
+}

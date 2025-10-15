@@ -1,0 +1,41 @@
+@if (manifestState$ | async; as manifestState) {
+  @if (manifestState.loading === false && manifestState.loaded === true) {
+    <div class="content-wrapper">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
+    @if (!hideDisclaimer) {
+      <div class="mobile-disclaimer">
+        <div>
+          This site is currently not mobile optimized. There is limited mobile functionality. Use a larger screen for
+          optimal experience.
+        </div>
+        <button mat-icon-button (click)="hideDisclaimer = true">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    }
+  } @else {
+    <!-- <div class="loading-manifest-container">
+    <h2>Loading Manifest</h2>
+    <mat-spinner mode="indeterminate"></mat-spinner>
+  </div> -->
+  @if (manifestState.error) {
+    <div class="loading-manifest-container">
+      <h1>Error Loading Manifest</h1>
+      <h2>Bungie Error - {{ manifestState.error.ErrorStatus }}</h2>
+      <p>{{ manifestState.error.Message }}</p>
+    </div>
+  }
+  @if (manifestState.loading) {
+    <div class="app-loading">
+      <h2>Destiny Clan Dashboard</h2>
+      <h3>Loading Manifest</h3>
+      <div class="logo">
+        <svg class="spinner" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+      </div>
+    </div>
+  }
+}
+}

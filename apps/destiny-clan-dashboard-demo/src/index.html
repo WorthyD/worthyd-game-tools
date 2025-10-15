@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Destiny Clan Dashboard</title>
+    <base href="/" />
+    <meta property="og:url" content="https://destinyclandashboard.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Destiny Clan Dashboard" />
+    <meta
+      property="og:description"
+      content="Monitor your Destiny clan activity"
+    />
+    <!-- <meta property="og:image" content=""/> -->
+    <meta name="og:site_name" content="Destiny Clan Dashboard" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+    </style>
+    <!-- <link rel="manifest" href="manifest.webmanifest"> -->
+    <meta name="theme-color" content="#1976d2" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      if (window.location.host === 'stage-destiny-clan-dashboard.netlify.app') {
+        window.location = 'https://beta.destinyclandashboard.com';
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FCTYCE6GLS"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      //gtag('config', 'G-FCTYCE6GLS');
+    </script>
+  </head>
+  <body class="mat-typography content-wrapper">
+    <destiny-clan-dashboard-root>
+      <div class="app-loading">
+        <h2>Destiny Clan Dashboard Demo</h2>
+        <h3>Initializing Application</h3>
+        <div class="logo">
+          <svg class="spinner" viewBox="25 25 50 50">
+            <circle
+              class="path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              stroke-width="2"
+              stroke-miterlimit="10"
+            ></circle>
+          </svg>
+        </div>
+      </div>
+    </destiny-clan-dashboard-root>
+  </body>
+</html>

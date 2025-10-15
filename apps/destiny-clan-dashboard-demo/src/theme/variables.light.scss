@@ -1,0 +1,24 @@
+@mixin set-light-variables($theme) {
+  $bg2: map-get($theme, background);
+  $fg2: map-get($theme, foreground);
+
+  $primary: map-get($theme, primary);
+  $warning: map-get($theme, warn);
+
+  :root {
+    --app-text-color: #{mat.m2-get-color-from-palette($fg2, text)};
+
+    // Background colors
+    --app-background-color: #{mat.m2-get-color-from-palette($bg2, background)};
+    --app-card-color: #{mat.m2-get-color-from-palette($bg2, card)};
+    --app-dialog-color: #{mat.m2-get-color-from-palette($bg2, dialog)};
+
+    --app-skeleton-bg: rgba(0, 0, 0, 0.11);
+
+    --app-primary-color-text: #{mat.m2-get-color-from-palette($primary, default-contrast)};
+    --app-primary-color: #{mat.m2-get-color-from-palette($primary)};
+    --app-primary-color-darker: #{mat.m2-get-color-from-palette($primary, darker)};
+    --app-warning-background: #{mat.m2-get-color-from-palette($warning, default)};
+    --app-warning-text: #{mat.m2-get-color-from-palette($warning, default-contrast)};
+  }
+}

@@ -1,0 +1,32 @@
+.float-right {
+  float: right;
+}
+.text-center {
+  text-align: center;
+}
+.table-container {
+  .text-center {
+    display: block;
+  }
+}
+
+// .ico-steam svg {
+//   color: #1b2838;
+// }
+// .ico-playstation svg {
+//   color: #006fcd;
+// }
+// .ico-xbox svg {
+//   color: #107c11;
+// }
+// .ico-stadia svg {
+//   color: #ac0d57;
+// }
+.mat-icon svg {
+  vertical-align: baseline;
+}
+.table-icon {
+  height: 40px;
+  width: 40px;
+}
+
