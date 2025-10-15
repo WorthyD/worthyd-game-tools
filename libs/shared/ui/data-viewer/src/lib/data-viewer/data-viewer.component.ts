@@ -14,7 +14,8 @@ import {
   signal,
   TemplateRef,
   ViewChild,
-  WritableSignal
+  WritableSignal,
+  ChangeDetectorRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RenderedViewDynamicCompDirective } from './data-viewer.directive';
@@ -53,7 +54,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
     </mat-form-field>
-    @switch (currentView.value) {
+    <!-- @switch (currentView.value) {
       @case ('card') {
         <div class="flex flex-wrap justify-around gap-4">
           @for (item of renderedData(); track trackByItem($index, item)) {
@@ -61,21 +62,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
           }
         </div>
       }
-      @case ('table') {
+      @case ('table') { -->
         <table mat-table #table [dataSource]="dataSource()" matSort>
           <!-- Default ID column -->
-          <ng-container matColumnDef="id">
+          <!-- <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
             <td mat-cell *matCellDef="let row">id</td>
-          </ng-container>
+          </ng-container> -->
 
           <!-- Projected columns -->
           <!-- <ng-container *ngFor="let columnDef of columnDefs">
             <ng-container [matColumnDef]="columnDef.name">
-              <ng-container *ngTemplateOutlet="columnDef.headerCell?.template"></ng-container>
+               <ng-container *ngTemplateOutlet="columnDef.headerCell?.template"></ng-container>
               <ng-container *ngTemplateOutlet="columnDef.cell?.template"></ng-container>
             </ng-container>
           </ng-container> -->
+
+            <ng-content select="ng-container[matColumnDef]"></ng-content>
 
           <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
@@ -106,8 +109,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         <ng-template #defaultCell let-value>
           {{ value }}
         </ng-template>
-      }
-    }
+      <!-- }
+    } -->
     <mat-paginator
       (page)="setPage($event)"
       [pageSizeOptions]="[1, 10, 25, 50, 100]"
@@ -132,7 +135,7 @@ export class DataViewerComponent<T extends { id?: unknown }>
   tableInitialized = signal(false);
   columnsRegistered = signal(false);
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     //this.dataSource = new MatTableDataSource<T>([]);
     //this.dataSource = new MatTableDataSource<T>(this.dataViewerConfig().data ?? []);
     // this.currentView.valueChanges.subscribe((view) => {
@@ -163,17 +166,14 @@ export class DataViewerComponent<T extends { id?: unknown }>
     //     this.columnsRegistered.set(false);
     //   }
     // });
-
     // Effect for table initialization and column registration
     // effect(() => {
     //   console.log('Table initialized:', this.tableInitialized());
     //   console.log('Columns registered:', this.columnsRegistered());
     //   console.log('Table instance:', this.table);
-
     //   if (!this.table || !this.tableInitialized() || this.columnsRegistered()) {
     //     return;
     //   }
-
     //   // Register columns and trigger change detection
     //   try {
     //     console.log('Setting up table columns', this.table);
@@ -227,10 +227,13 @@ export class DataViewerComponent<T extends { id?: unknown }>
 
     // Use configured columns if provided, otherwise use projected columns
     this.displayedColumns = configColumns.length > 0 ? configColumns : projectedColumns;
+    this.table.renderRows();
+    // when using OnPush or in tricky timing cases, detect changes
+    this.cdr.detectChanges();
     //this.displayedColumns = this.columnDefs;
   }
 
-  currentView = new FormControl('card');
+  currentView = new FormControl('table');
   displayedColumns: string[] = [];
 
   //currentView: 'card' | 'table' = 'card';

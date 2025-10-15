@@ -43,15 +43,15 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element?.id }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.id }} 123123</td>
       </ng-container>
       <!-- Column definitions -->
-      <!-- <ng-container matColumnDef="name">
+      <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="tacos">
+      <!--<ng-container matColumnDef="tacos">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>taco</th>
         <td mat-cell *matCellDef="let element">taco</td>
       </ng-container> -->
