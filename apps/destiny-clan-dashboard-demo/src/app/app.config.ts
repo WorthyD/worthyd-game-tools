@@ -4,7 +4,7 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { LocationToken, WindowToken, locationProvider, windowProvider } from '@dcd/shared/tokens';
 import { IdbKeyValService } from '@dcd/shared/utils/storage';
@@ -23,8 +23,14 @@ import { getAppConfigProvider, AppConfigService } from '@dcd/shared/utils/app-co
 import { SealsModule } from '@dcd/shared/data-access/seals';
 import { coreEffects, coreReducers, metaReducers } from '@dcd/shared/data-access/store';
 import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { provideHttpClient } from '@angular/common/http';
+import { getMockProviders } from './mock-providers';
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
+    provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
@@ -34,6 +40,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(ClanDbModule, SealsModule),
     // NGRX Providers
     provideStore(coreReducers, { metaReducers }),
+    provideEffects(coreEffects),
     {
       provide: ClanProfileService,
       useFactory: (canDB: any) => {
@@ -52,10 +59,26 @@ export const appConfig: ApplicationConfig = {
     { provide: LocationToken, useFactory: locationProvider },
     { provide: WindowToken, useFactory: windowProvider },
 
+    getAppConfigProvider({
+      apiKey: '',
+      appVersion: '',
+      production: true,
+      useMocks: true,
+      constants: {
+        D2DASHBOARD_ACKNOWLEDGE_OFFLINE: 'D2DASHBOARD_ACKNOWLEDGE_OFFLINE',
+        PROFILE_UPDATING_EXP_MINUTES: 180,
+        MEMBER_RECENT_ACTIVITY_EXP_MINUTES: 360,
+        CURRENT_SEALS_HASH: 616318467,
+        LEGACY_SEALS_HASH: 1881970629
+      }
+    }),
     // Standard providers
     AppConfigService,
     IdbKeyValService,
     ClanMembersService,
-    ClanDetailsService
+    ClanDetailsService,
+
+    // Mock Replacements
+    getMockProviders()
   ]
 };
