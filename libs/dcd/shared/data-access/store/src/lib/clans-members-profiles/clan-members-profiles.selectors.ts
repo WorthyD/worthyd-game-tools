@@ -30,7 +30,7 @@ export const selectAllClansMembersProfiles = createSelector(
     clansAndMembers.forEach((clanAndMember) => {
       const CMP = clansAndMembersProfiles.find((x) => x.clanId === clanAndMember.clanId);
 
-      clanAndMember.members.forEach((member) => {
+      clanAndMember?.members?.forEach((member) => {
         result.push({
           clan: {
             clanId: clanAndMember.clan.clanId,

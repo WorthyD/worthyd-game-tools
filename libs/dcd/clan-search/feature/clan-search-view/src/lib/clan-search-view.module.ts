@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
-import { ClanSearchService } from '@dcd/clan-search/data-access';
 
 @NgModule({
   declarations: [ClanSearchViewComponent],
@@ -27,6 +26,5 @@ import { ClanSearchService } from '@dcd/clan-search/data-access';
     MatIconModule,
     MatButtonModule
   ],
-  providers: [ClanSearchService]
 })
 export class ClanSearchViewModule {}

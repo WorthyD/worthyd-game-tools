@@ -3,18 +3,14 @@
 import { Injectable, Injector, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { mergeMap, map, catchError, toArray, switchMap, tap, take, filter } from 'rxjs/operators';
-// import { ClanConfig, selectEnabledClans, updateClanProfileSync } from '../../../../../../../libs/dcd/shared/data-access/store/src/lib/clans';
 import { updateClanProfileSync } from '@dcd/shared/data-access/store';
 
-// import { ClanMembersService } from '@destiny-clan-dashboard/data/clan/clan-members';
 import { from, Observable, of } from 'rxjs';
-// import { GroupsV2GroupMember } from 'bungie-api-angular';
 import { ProfileWorkerService } from './profile-worker.fake.service';
 import { nowPlusMinutes } from '@dcd/shared/utils';
 import { AppConfigService } from '@dcd/shared/utils/app-config';
 import { ClanProfileService } from '@dcd/shared/data-access/clan-collections';
 import { ClanDatabase } from '@dcd/shared/clan-db';
-/// import { addNotification, removeNotification, updateNotification } from '../../store/notifications';
 import { SeasonService } from '@dcd/shared/data-access/definitions';
 import { addNotification, removeNotification, updateNotification } from '@dcd/shared/data-access/store';
 import { ClanConfigMembers } from '@dcd/shared/models';
@@ -24,10 +20,8 @@ import { ClanConfigMembers } from '@dcd/shared/models';
 })
 export class ProfileUpdaterService {
   profileService: ClanProfileService;
-  //clanDB = inject(ClanDatabase);
   constructor(
     private store: Store,
-    //private clanMemberService: ClansMembersService,
     private profileWorkerService: ProfileWorkerService,
     private seasonService: SeasonService,
     private appConfig: AppConfigService

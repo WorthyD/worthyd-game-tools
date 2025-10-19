@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { GroupsV2GroupV2 } from 'bungie-api-angular/lib/model/groupsV2GroupV2';
+import { GroupsV2GroupV2 } from 'bungie-api-angular';
 @Component({
   selector: 'dcd-clan-info',
   standalone: true,

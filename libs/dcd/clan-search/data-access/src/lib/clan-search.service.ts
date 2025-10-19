@@ -7,9 +7,14 @@ import { GroupsV2GroupV2Card, GroupV2Service } from 'bungie-api-angular';
 import { forkJoin, map, Observable, of, take } from 'rxjs';
 import { ClanSearchResultItem } from '@dcd/clan-search/utils/clan-search-models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ClanSearchService {
-  constructor(private groupService: GroupV2Service, private httpClient: HttpClient, private store: Store, public dialog: MatDialog) {}
+  constructor(
+    private groupService: GroupV2Service,
+    private httpClient: HttpClient,
+    private store: Store,
+    public dialog: MatDialog
+  ) {}
 
   clans$ = this.store.select(selectAllClans);
 
@@ -29,7 +34,7 @@ export class ClanSearchService {
       })
     );
   }
-  textClanSearch(currentQuery: string): Observable<ClanSearchResultItem[] | undefined > {
+  textClanSearch(currentQuery: string): Observable<ClanSearchResultItem[] | undefined> {
     return this.groupService
       .groupV2GroupSearch({
         name: currentQuery,
@@ -42,15 +47,17 @@ export class ClanSearchService {
         map((clanListResults) => {
           const clanList = clanListResults?.Response?.results;
 
-          return clanList?.slice(0, 10).map((c) => {
-            return {
-              iconName: this.getIcon(-1) || '',
-              type: 'clan',
-              name: c.name || '',
-              id: c.groupId?.toString(),
-              clanInfo: c
-            };
-          }) || [];
+          return (
+            clanList?.slice(0, 10).map((c) => {
+              return {
+                iconName: this.getIcon(-1) || '',
+                type: 'clan',
+                name: c.name || '',
+                id: c.groupId?.toString(),
+                clanInfo: c
+              };
+            }) || []
+          );
         })
       );
   }
@@ -60,7 +67,7 @@ export class ClanSearchService {
 
     return forkJoin([clanSearch, playerSearch]).pipe(
       map(([clanSearchResults, playerSearchResults]) => {
-        return [...clanSearchResults || [], ...playerSearchResults];
+        return [...(clanSearchResults || []), ...playerSearchResults];
       })
     );
   }
@@ -104,8 +111,15 @@ export class ClanSearchService {
   }
 
   addClan(clan: GroupsV2GroupV2Card | undefined) {
+    console.log('Adding clan', clan);
     if (clan) {
-      this.store.dispatch(addClan({ clanId: clan.groupId?.toString() || '', clanName: clan.name || '', clanTag: clan.clanInfo?.clanCallsign || '' }));
+      this.store.dispatch(
+        addClan({
+          clanId: clan.groupId?.toString() || '',
+          clanName: clan.name || '',
+          clanTag: clan.clanInfo?.clanCallsign || ''
+        })
+      );
     }
   }
 

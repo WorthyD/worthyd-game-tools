@@ -1,5 +1,5 @@
 import { MemberProfile } from '@dcd/shared/models';
-import { GroupsV2GroupMember } from 'bungie-api-angular/lib/model/groupsV2GroupMember';
+import { GroupsV2GroupMember } from 'bungie-api-angular';
 import { MemberActivityRecentStats } from '@dcd/shared/models';
 
 export interface ProfileRecentActivity {

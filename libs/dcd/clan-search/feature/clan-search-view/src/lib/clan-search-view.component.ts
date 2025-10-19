@@ -1,18 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AppConfigService } from '@dcd/shared/utils/app-config';
-import { GroupsV2GroupV2Card } from 'bungie-api-angular/lib/model/groupsV2GroupV2Card';
+import { GroupsV2GroupV2Card } from 'bungie-api-angular';
 import { catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { ClanSearchService } from '@dcd/clan-search/data-access';
 
 @Component({
-    selector: 'app-clan-search-view',
-    templateUrl: './clan-search-view.component.html',
-    styleUrls: ['./clan-search-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-clan-search-view',
+  templateUrl: './clan-search-view.component.html',
+  styleUrls: ['./clan-search-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ClanSearchViewComponent {
-  constructor(private clanSearchService: ClanSearchService, private appConfig: AppConfigService) {}
+  constructor(
+    private clanSearchService: ClanSearchService,
+    private appConfig: AppConfigService
+  ) {}
   year = new Date().getFullYear();
   clans$ = this.clanSearchService.clans$;
 

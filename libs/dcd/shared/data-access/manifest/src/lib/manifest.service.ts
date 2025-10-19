@@ -39,6 +39,15 @@ export class ManifestService {
     ];
     return this.loader.loadManifestData('en', tables).pipe(
       map((x) => {
+
+
+
+
+
+
+
+
+
         if (x && x.data) {
           this.definitionService.initializeCache(x.data);
         }

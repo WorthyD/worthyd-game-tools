@@ -57,8 +57,8 @@ export class ClansDetailsService {
             return {
               ...m,
               seasonPass:
-                (progressions[currentSeason.rewardProgressionHash]?.level || 0) +
-                (progressions[currentSeason.prestigeProgressionHash]?.level || 0)
+                (progressions[currentSeason?.rewardProgressionHash]?.level || 0) +
+                (progressions[currentSeason?.prestigeProgressionHash]?.level || 0)
             };
           }
           return { ...m, seasonPass: 0 };

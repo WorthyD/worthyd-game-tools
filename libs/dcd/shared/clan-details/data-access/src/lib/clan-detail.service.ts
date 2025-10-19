@@ -22,6 +22,7 @@ export class ClanDetailService {
   getClan(clanId: string | number) {
     return this.groupService.groupV2GetGroup(+clanId).pipe(
       map((clanResult) => {
+        console.log('Fetched clan detail for id', clanResult?.Response?.detail);
         return clanResult?.Response?.detail;
       }),
       catchError((error) => {
