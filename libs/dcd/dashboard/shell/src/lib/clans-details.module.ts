@@ -4,6 +4,5 @@ import { ClansDetailsActivitiesService } from '@dcd/dashboard/data-access';
 
 @NgModule({
   imports: [ClansDetailsRoutingModule],
-  providers: [ClansDetailsActivitiesService]
 })
 export class ClansDetailsModule {}

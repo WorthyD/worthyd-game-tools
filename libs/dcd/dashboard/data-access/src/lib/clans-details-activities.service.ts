@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 import { selectAllClansWithMembersProfiles, selectAllRecentActivityUpdates } from '@dcd/shared/data-access/store';
 import { ProfileRecentActivityWorkerService } from './profile-recent-activity.fake.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ClansDetailsActivitiesService {
   constructor(
     private store: Store,
@@ -31,6 +33,7 @@ export class ClansDetailsActivitiesService {
         })
       );
     }),
+    tap((e) => console.log('Activities loaded for clan members', e)),
     tap(() => this.playerActivitiesLoadingSource.next(false))
   );
 }
