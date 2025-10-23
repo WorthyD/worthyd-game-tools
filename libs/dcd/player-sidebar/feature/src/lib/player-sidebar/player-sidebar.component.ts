@@ -32,7 +32,7 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
     BungieDisplayNamePipe,
     PlayerSnapshotComponent,
     SeasonPassComponent
-],
+  ],
   templateUrl: './player-sidebar.component.html',
   styleUrl: './player-sidebar.component.scss'
 })
@@ -45,7 +45,7 @@ export class PlayerSidebarComponent {
   profile = this.store.profile!();
   characters = computed(() => {
     const p = this.store.profile!();
-    console.log(p);
+    //console.log(p);
     if (p) {
       return p.profile?.data?.characterIds?.map((id) => {
         return p.characters.data[id];
@@ -57,12 +57,12 @@ export class PlayerSidebarComponent {
   seasonProgress = computed(() => {
     const p = this.store.profile!();
     const currentSeason = this.seasonService.currentSeasonProgress;
-    console.log(p);
-    console.log(currentSeason);
+    //  console.log(p);
+    // console.log(currentSeason);
     const characterId = p?.profile?.data?.characterIds?.[0] || 0;
 
     if (characterId > 0 && p?.characterProgressions?.data[characterId]?.progressions) {
-      console.log('here');
+      //      console.log('here');
       const characterProgressions = p?.characterProgressions?.data[characterId].progressions;
       return {
         progression: characterProgressions[currentSeason!.rewardProgressionHash!],

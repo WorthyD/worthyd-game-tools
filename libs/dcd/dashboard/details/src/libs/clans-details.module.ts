@@ -7,7 +7,7 @@ import { ClanInfoComponent } from '@dcd/dashboard/ui';
 
 @NgModule({
   declarations: [ClansDetailsComponent],
-  providers: [ClansDetailsService],
+  //providers: [ClansDetailsService],
   exports: [ClansDetailsComponent],
   imports: [CommonModule, MemberTypeComponent, ClanInfoComponent]
 })

@@ -7,7 +7,8 @@ import { ClanDetailService } from '@dcd/shared/clan-details/data-access';
 import { ClanUpdaterMockService } from './mock-services/clan-updater.mock.service';
 import { ClanUpdaterService } from 'libs/dcd/layout/src/lib/services/clan-updater.service';
 import { ClansDetailsActivitiesMockService } from './mock-services/clans-details-activities.mock.service';
-import { ClansDetailsActivitiesService } from '@dcd/dashboard/data-access';
+import { ClansDetailsActivitiesService, ClansDetailsService } from '@dcd/dashboard/data-access';
+import { ClansDetailsMockService } from './mock-services/clans-details.mock.service';
 
 export const getMockProviders = () => {
   return [
@@ -17,6 +18,8 @@ export const getMockProviders = () => {
     { provide: ClanDetailService, useClass: ClanDetailMockService },
     { provide: ClanUpdaterService, useClass: ClanUpdaterMockService },
     { provide: ClansDetailsActivitiesService, useClass: ClansDetailsActivitiesMockService },
+
+    { provide: ClansDetailsService, useClass: ClansDetailsMockService },
 
     // Workers
     // { provide: ProfileWorkerService, useClass: ProfileWorkerMockService },

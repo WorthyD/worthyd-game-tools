@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { from, Observable } from 'rxjs';
-import { map, mergeMap, toArray, switchMap } from 'rxjs/operators';
+import { map, mergeMap, toArray, switchMap, tap } from 'rxjs/operators';
 import { ClanDetailsService as DataService } from '@dcd/shared/data-access/clan-collections';
 import { ClanMemberProfile, ClanMemberProfileWSeason } from '@dcd/shared/models';
 import { SeasonService } from '@dcd/shared/data-access/definitions';
@@ -13,7 +13,9 @@ import {
   selectEnabledClans
 } from '@dcd/shared/data-access/store';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ClansDetailsService {
   activeClans$ = this.store.select(selectEnabledClans);
 
@@ -29,7 +31,7 @@ export class ClansDetailsService {
         toArray()
       );
     })
-  );
+  ).pipe(tap((x) => console.log('active info', x)));
 
   highestPowerBonusMembers$: Observable<ClanMemberProfile[]> = this.clanProfiles$.pipe(
     map((members) => {
@@ -40,6 +42,7 @@ export class ClansDetailsService {
             ? -1
             : 1;
         });
+        console.log('highest power bonus members', sortedMembers.slice(0, 20));
         return sortedMembers.slice(0, 20);
       }
       return [];
@@ -66,6 +69,7 @@ export class ClansDetailsService {
         const sortedMembersWithProgression = membersWithSeasonProgression.sort((a, b) => {
           return a.seasonPass > b.seasonPass ? -1 : 1;
         });
+        console.log('highest season pass members', sortedMembersWithProgression.slice(0, 20));
         return sortedMembersWithProgression.slice(0, 20);
       }
 
@@ -98,8 +102,12 @@ export class ClansDetailsService {
   );
 
   getClan(clanId: string) {
-    return this.dataService.getClanDetailsSerialized(clanId, true);
+    return this.dataService.getClanDetailsSerialized(clanId, true).pipe(tap((x) => console.log('clan details', x)));
   }
 
-  constructor(private store: Store, private dataService: DataService, private seasonService: SeasonService) {}
+  constructor(
+    private store: Store,
+    private dataService: DataService,
+    private seasonService: SeasonService
+  ) {}
 }
