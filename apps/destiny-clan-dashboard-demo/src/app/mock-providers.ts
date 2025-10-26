@@ -9,6 +9,8 @@ import { ClanUpdaterService } from 'libs/dcd/layout/src/lib/services/clan-update
 import { ClansDetailsActivitiesMockService } from './mock-services/clans-details-activities.mock.service';
 import { ClansDetailsActivitiesService, ClansDetailsService } from '@dcd/dashboard/data-access';
 import { ClansDetailsMockService } from './mock-services/clans-details.mock.service';
+import { PlayerSidebarStoreMock } from './mock-services/player-sidebar-store.mock';
+import { PlayerSidebarStore } from '@dcd/player-sidebar/data-access';
 
 export const getMockProviders = () => {
   return [
@@ -20,7 +22,7 @@ export const getMockProviders = () => {
     { provide: ClansDetailsActivitiesService, useClass: ClansDetailsActivitiesMockService },
 
     { provide: ClansDetailsService, useClass: ClansDetailsMockService },
-
+    { provide: PlayerSidebarStore, useClass: PlayerSidebarStoreMock }
     // Workers
     // { provide: ProfileWorkerService, useClass: ProfileWorkerMockService },
     // { provide: BungieInfoWorkerService, useClass: BungieInfoWorkerMockService },
