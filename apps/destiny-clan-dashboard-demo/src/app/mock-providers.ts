@@ -11,6 +11,10 @@ import { ClansDetailsActivitiesService, ClansDetailsService } from '@dcd/dashboa
 import { ClansDetailsMockService } from './mock-services/clans-details.mock.service';
 import { PlayerSidebarStoreMock } from './mock-services/player-sidebar-store.mock';
 import { PlayerSidebarStore } from '@dcd/player-sidebar/data-access';
+import { PlayerService } from '@dcd/player/data-access';
+import { PlayerMockService } from './mock-services/player-details.mock.service';
+import { BungieInfoMockService } from './mock-services/bungie-info.mock.service';
+import { BungieInfoService } from '@dcd/shared/data-access/bungie-info';
 
 export const getMockProviders = () => {
   return [
@@ -22,7 +26,9 @@ export const getMockProviders = () => {
     { provide: ClansDetailsActivitiesService, useClass: ClansDetailsActivitiesMockService },
 
     { provide: ClansDetailsService, useClass: ClansDetailsMockService },
-    { provide: PlayerSidebarStore, useClass: PlayerSidebarStoreMock }
+    { provide: PlayerSidebarStore, useClass: PlayerSidebarStoreMock },
+    { provide: PlayerService, useClass: PlayerMockService },
+    { provide: BungieInfoService, useClass: BungieInfoMockService }
     // Workers
     // { provide: ProfileWorkerService, useClass: ProfileWorkerMockService },
     // { provide: BungieInfoWorkerService, useClass: BungieInfoWorkerMockService },

@@ -10,7 +10,6 @@ import { AppConfigService } from '@dcd/shared/utils/app-config';
 @NgModule({
   declarations: [],
   providers: [
-    PlayerService,
     {
       provide: CachedProfileService,
       useFactory: (store: IdbKeyValService, config: AppConfigService) => {

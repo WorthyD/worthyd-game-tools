@@ -63,10 +63,13 @@ export class PlayerSidebarComponent {
 
     if (characterId > 0 && p?.characterProgressions?.data[characterId]?.progressions) {
       //      console.log('here');
-      const characterProgressions = p?.characterProgressions?.data[characterId].progressions;
+      const characterProgressions = p.characterProgressions.data[characterId].progressions;
+      const rewardHash = currentSeason?.rewardProgressionHash;
+      const prestigeHash = currentSeason?.prestigeProgressionHash;
+
       return {
-        progression: characterProgressions[currentSeason!.rewardProgressionHash!],
-        prestigeProgression: characterProgressions[currentSeason!.prestigeProgressionHash!]
+        progression: typeof rewardHash !== 'undefined' ? (characterProgressions[rewardHash] ?? null) : null,
+        prestigeProgression: typeof prestigeHash !== 'undefined' ? (characterProgressions[prestigeHash] ?? null) : null
       };
     }
     return undefined;
