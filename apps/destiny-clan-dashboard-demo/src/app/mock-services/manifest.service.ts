@@ -48,6 +48,7 @@ export class MockManifestService {
         const versionKey = `demo-v1`;
 
         if (cachedValue && cachedValue.length > 0 && cachedValue.find((x: any) => x.id === versionKey)) {
+          this.definitionService.initializeCache(cachedValue.find((x: any) => x.id === versionKey).data);
           return cachedValue.find((x: any) => x.id === versionKey);
         }
 
@@ -56,6 +57,7 @@ export class MockManifestService {
             const prunedTables = this.pruneTables(y, tableNames);
 
             const dbObject = { id: versionKey, data: prunedTables };
+            this.definitionService.initializeCache(dbObject.data);
             this.db.set('manifest', [dbObject]);
 
             return dbObject;

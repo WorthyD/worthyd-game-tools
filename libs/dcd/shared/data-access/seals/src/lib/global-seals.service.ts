@@ -16,6 +16,10 @@ export class GlobalSealsService {
     private appConfig: AppConfigService,
     private definitionService: DefinitionService
   ) {
+    console.log(definitionService);
+
+
+
     this.currentSealNodes =
       this.definitionService.presentationDefinition[this.appConfig.config.constants.CURRENT_SEALS_HASH];
     this.legacySealNodes =
