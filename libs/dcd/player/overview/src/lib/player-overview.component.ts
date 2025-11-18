@@ -45,6 +45,7 @@ export class PlayerOverviewComponent {
 
   memberSealInfo$ = this.profile$.pipe(
     map((x) => {
+      console.log('profile for seals', x);
       return convertSealAndProfile(this.globalSealsService.sealNodesWLegacy, x, this.definitionService);
     })
   );

@@ -1,3 +1,4 @@
+import { profileRecordsMock } from './profile-records';
 export const getMockProfile = () => {
   const mockName = 'Demo Profile';
   const membershipId = '1234567890';
@@ -9,7 +10,6 @@ export const getMockProfile = () => {
     const d = new Date(now - randomPast);
     return d.toISOString().replace(/\.\d{3}Z$/, 'Z');
   };
-
 
   return {
     profile: {
@@ -72,7 +72,7 @@ export const getMockProfile = () => {
           dateLastPlayed: '2023-12-06T10:15:16Z',
           minutesPlayedThisSession: '5',
           minutesPlayedTotal: '91344',
-          light: Math.floor(Math.random() * 500) ,
+          light: Math.floor(Math.random() * 500),
           stats: {
             '144602215': 73,
             '392767087': 103,
@@ -246,7 +246,7 @@ export const getMockProfile = () => {
         score: 15185,
         activeScore: 15185,
         lifetimeScore: 128252,
-        records: {}
+        records: profileRecordsMock
       }
     },
     metrics: {
