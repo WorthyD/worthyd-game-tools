@@ -19,12 +19,12 @@ interface RosterResources {
 }
 
 @Component({
-    selector: 'app-clans-roster',
-    templateUrl: './clans-roster.component.html',
-    styleUrls: ['./clans-roster.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-clans-roster',
+  templateUrl: './clans-roster.component.html',
+  styleUrls: ['./clans-roster.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ClansRosterComponent {
   constructor(
@@ -46,6 +46,7 @@ export class ClansRosterComponent {
 
   rosterInfo$: Observable<RosterResources> = this.clansRosterService.clanRosterItems$.pipe(
     map((clanProfiles) => {
+      console.log('clanProfiles for roster component', clanProfiles);
       return {
         dataSource: new DataSource<ClanMemberProfile>({ data: clanProfiles }),
         viewer: this.rosterViewer,
@@ -54,7 +55,12 @@ export class ClansRosterComponent {
         sorter: this.rosterSorter
       };
     }),
-    tap((x) => (this.isLoading = false))
+    tap((x) => (this.isLoading = false)),
+    tap((x) => {
+      console.log('rosterInfo$', x)
+      console.log('loading', this.isLoading)
+
+})
   );
 
   createViewContextProvider() {

@@ -4,10 +4,10 @@
   <!-- <advanced-search [filterer]="filterer" [dataSource]="dataSource">
 </advanced-search> -->
 
-<div class="header-actions">
-  <lib-display-options [sorter]="sorter" [viewer]="viewer"></lib-display-options>
-  <button mat-button (click)="export()">Export</button>
-</div>
+  <div class="header-actions">
+    <lib-display-options [sorter]="sorter" [viewer]="viewer"></lib-display-options>
+    <button mat-button (click)="export()">Export</button>
+  </div>
 </div>
 
 <div class="table-container">
@@ -31,7 +31,7 @@
                   [childrenViews]="view['children'] || null"
                   [component]="view['component'] || null"
                   [data]="view['data'] || null"
-                  >
+                >
                 </lib-rendered-view>
               }
             }
@@ -60,4 +60,3 @@
 <mat-divider></mat-divider>
 
 <mat-paginator (page)="setPage($event)" [pageSize]="(page | async)?.size" [length]="itemCount | async"> </mat-paginator>
-

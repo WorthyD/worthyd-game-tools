@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { from, map, mergeMap, Observable, switchMap, toArray } from 'rxjs';
+import { from, map, mergeMap, Observable, switchMap, tap, toArray } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAllClansMembersProfiles, selectClanMemberProfileStateLoading } from '@dcd/shared/data-access/store';
 
@@ -8,7 +8,7 @@ import { ClanBungieInfoService } from '@dcd/shared/data-access/clan-collections'
 import { ClanRosterItem } from '@dcd/clans-roster/models';
 import { BungieInfo } from '@dcd/shared/models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ClansRosterService {
   clanProfiles$: Observable<ClanMemberProfile[]> = this.store.select(selectAllClansMembersProfiles);
   clanProfilesLoading$: Observable<boolean> = this.store.select(selectClanMemberProfileStateLoading); //.pipe(
@@ -45,8 +45,12 @@ export class ClansRosterService {
           });
         })
       );
-    })
+    }),
+    tap((x) => console.log('clanRosterItems$', x))
   );
 
-  constructor(private store: Store, private bungieInfoService: ClanBungieInfoService) {}
+  constructor(
+    private store: Store,
+    private bungieInfoService: ClanBungieInfoService
+  ) {}
 }

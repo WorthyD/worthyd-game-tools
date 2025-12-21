@@ -1,11 +1,13 @@
 <div class="clan-roster">
-  <lib-table-view class="clan-roster-table"
+  <h1>Roster{{ isLoading }}</h1>
+  <lib-table-view
+    class="clan-roster-table"
     [isLoading]="isLoading"
     [dataSource]="(rosterInfo$ | async)?.dataSource!"
     [header]="'Clan Roster'"
     [viewer]="rosterViewer"
-    [filterer]="rosterFilter" [sorter]="rosterSorter"
-    >
-
+    [filterer]="rosterFilter"
+    [sorter]="rosterSorter"
+  >
   </lib-table-view>
 </div>
