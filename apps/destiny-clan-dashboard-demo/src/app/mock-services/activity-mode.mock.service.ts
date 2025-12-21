@@ -2,25 +2,22 @@ import { DESTINY_ACTIVITY_MODES } from '@dcd/shared/models';
 import { DefinitionService } from '@dcd/shared/data-access/definitions';
 import { Injectable } from '@angular/core';
 import { of, switchMap } from 'rxjs';
-import { ProfileRecentActivityWorkerService } from './profile-recent-activity.fake.service';
 import { DestinyDefinitionsDestinyActivityModeDefinition } from 'bungie-api-angular';
 import { Store } from '@ngrx/store';
 import { selectAllClansWithMembersProfiles } from '@dcd/shared/data-access/store';
 import { ClanConfigMembers } from '@dcd/shared/models';
 import { TrackedDuration } from '@dcd/shared/utils/serializers';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ActivityModeService {
+@Injectable()
+export class ActivityModeMockService {
   constructor(
-    private definitionService: DefinitionService,
+    private definitionService: DefinitionService
 
-    private store: Store,
-    private profileRecentActivityWorkerService: ProfileRecentActivityWorkerService
+    //private store: Store,
+    //private profileRecentActivityWorkerService: ProfileRecentActivityWorkerService
   ) {}
 
-  clanMembersProfiles$ = this.store.select(selectAllClansWithMembersProfiles);
+  clanMembersProfiles$ = of(null); // this.store.select(selectAllClansWithMembersProfiles);
   readonly ignoredModes = [
     16, // NFStrikes - no stats
     66, // Forges
@@ -87,16 +84,17 @@ export class ActivityModeService {
   }
 
   getAllActivitiesByMode(mode: number, trackedDates: TrackedDuration[]) {
-    return this.clanMembersProfiles$.pipe(
-      switchMap((clanMembersProfiles) => {
-        return this.profileRecentActivityWorkerService.getAllRecentClanActivitiesByActivityModeId(
-          clanMembersProfiles as unknown as ClanConfigMembers[],
-          trackedDates,
-          mode,
-          0
-        );
-        return of(clanMembersProfiles);
-      })
-    );
+    return of(null);
+    // return this.clanMembersProfiles$.pipe(
+    //   switchMap((clanMembersProfiles) => {
+    //     return this.profileRecentActivityWorkerService.getAllRecentClanActivitiesByActivityModeId(
+    //       clanMembersProfiles as unknown as ClanConfigMembers[],
+    //       trackedDates,
+    //       mode,
+    //       0
+    //     );
+    //     return of(clanMembersProfiles);
+    //   })
+    // );
   }
 }

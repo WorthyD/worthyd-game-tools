@@ -15,6 +15,10 @@ import { PlayerService } from '@dcd/player/data-access';
 import { PlayerMockService } from './mock-services/player-details.mock.service';
 import { BungieInfoMockService } from './mock-services/bungie-info.mock.service';
 import { BungieInfoService } from '@dcd/shared/data-access/bungie-info';
+import { ClansRosterService } from '@dcd/clans-roster/data-access';
+import { ClansRosterMockService } from './mock-services/clans-roster.mock.service';
+import { ActivityModeMockService } from './mock-services/activity-mode.mock.service';
+import { ActivityModeService } from '@dcd/activity-modes/data-access';
 
 export const getMockProviders = () => {
   return [
@@ -28,7 +32,9 @@ export const getMockProviders = () => {
     { provide: ClansDetailsService, useClass: ClansDetailsMockService },
     { provide: PlayerSidebarStore, useClass: PlayerSidebarStoreMock },
     { provide: PlayerService, useClass: PlayerMockService },
-    { provide: BungieInfoService, useClass: BungieInfoMockService }
+    { provide: BungieInfoService, useClass: BungieInfoMockService },
+    { provide: ClansRosterService, useClass: ClansRosterMockService },
+    { provide: ActivityModeService, useClass: ActivityModeMockService }
     // Workers
     // { provide: ProfileWorkerService, useClass: ProfileWorkerMockService },
     // { provide: BungieInfoWorkerService, useClass: BungieInfoWorkerMockService },

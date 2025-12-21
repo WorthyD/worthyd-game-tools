@@ -28,7 +28,8 @@ interface RosterActivityResources {
   selector: 'app-recent-activity-viewer',
   templateUrl: './recent-activity.component.html',
   styleUrls: ['./recent-activity.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class RecentActivityComponent {
   constructor(
