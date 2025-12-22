@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, signal } from '@angular/core';
 import { DataSource, Exporter, Filterer, Sorter, Viewer } from '@dcd/shared/data';
 import { map, Observable, of, tap } from 'rxjs';
 
@@ -42,7 +42,7 @@ export class ClansRosterComponent {
   rosterFilter = new Filterer({ metadata: CLAN_ROSTER_FILTERER_METADATA });
   rosterSorter = new Sorter({ metadata: CLAN_ROSTER_SORTER_METADATA });
   // rosterExporter = new Exporter({ metadata: CLAN_ROSTER_EXPORTER_METADATA });
-  isLoading = true;
+  isLoading = signal(true);
 
   rosterInfo$: Observable<RosterResources> = this.clansRosterService.clanRosterItems$.pipe(
     map((clanProfiles) => {
@@ -55,12 +55,11 @@ export class ClansRosterComponent {
         sorter: this.rosterSorter
       };
     }),
-    tap((x) => (this.isLoading = false)),
+    tap((x) => this.isLoading.set(false)),
     tap((x) => {
-      console.log('rosterInfo$', x)
-      console.log('loading', this.isLoading)
-
-})
+      console.log('rosterInfo$', x);
+      console.log('loading', this.isLoading());
+    })
   );
 
   createViewContextProvider() {

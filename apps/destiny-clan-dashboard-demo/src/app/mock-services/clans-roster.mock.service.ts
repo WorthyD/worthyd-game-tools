@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { from, map, mergeMap, Observable, of, switchMap, tap, toArray } from 'rxjs';
+import { delay, from, map, mergeMap, Observable, of, switchMap, tap, toArray } from 'rxjs';
 
 import { ClanMemberProfile } from '@dcd/shared/models';
 import { ClanRosterItem } from '@dcd/clans-roster/models';
@@ -28,6 +28,7 @@ export class ClansRosterMockService {
   clanProfilesLoading$: Observable<boolean> = of(false);
 
   clanRosterItems$: Observable<ClanRosterItem[]> = this.clanProfiles$.pipe(
+    delay(500),
     map((clanProfiles) => {
       return clanProfiles.map(
         (cp) =>
