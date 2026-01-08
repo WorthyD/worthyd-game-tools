@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 
 import { CartFacade, CatalogFacade } from '@crafting-cart/state';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { CartQuantityComponent } from '@crafting-cart/shared/ui/cart-quantity';
 import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
-import { DataViewerComponent, DataViewerConfig } from '@worthyd/shared/ui/data-viewer';
+import { ColumnConfig, DataViewerComponent, DataViewerConfig } from '@worthyd/shared/ui/data-viewer';
 import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { Item } from '@crafting-cart/shared/models';
 import { AsyncPipe, CommonModule } from '@angular/common';
@@ -33,8 +33,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
           </lib-item-card>
         }
       } -->
-    <lib-data-viewer [dataViewerConfig]="(dataViewerConfig$ | async)!">
-      <!-- Default to card view if no template is provided -->
+    <!-- <lib-data-viewer [dataViewerConfig]="(dataViewerConfig$ | async)!">
       <ng-template #cardTemplate let-data="data">
         <lib-item-card [catalogItem]="data">
           <lib-cart-quantity ngProjectAs="lib-item-card-footer" (add)="addToCart(data.id, $event)"></lib-cart-quantity>
@@ -45,24 +44,27 @@ import { AsyncPipe, CommonModule } from '@angular/common';
         <th mat-header-cell *matHeaderCellDef>ID</th>
         <td mat-cell *matCellDef="let element">{{ element?.id }} 123123</td>
       </ng-container>
-      <!-- Column definitions -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
       </ng-container>
+    </lib-data-viewer> -->
 
-      <!--<ng-container matColumnDef="tacos">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>taco</th>
-        <td mat-cell *matCellDef="let element">taco</td>
-      </ng-container> -->
-
-      <!-- <ng-container matColumnDef="quantity" [matColumnDef]="'quantity'">
-        <th mat-header-cell *matHeaderCellDef>Quantity</th>
-        <td mat-cell *matCellDef="let row">
-          <lib-cart-quantity (add)="addToCart(row.id, $event)"></lib-cart-quantity>
-        </td>
-      </ng-container> -->
+    <lib-data-viewer
+      [dataSource]="catalogItems$"
+      [displayedColumns]="['name', 'description', 'commands']"
+      [columns]="columnConfig"
+    >
+      <ng-template #cardTemplate let-data="data">
+        <lib-item-card [catalogItem]="data">
+          <lib-cart-quantity ngProjectAs="lib-item-card-footer" (add)="addToCart(data.id, $event)"></lib-cart-quantity>
+        </lib-item-card>
+      </ng-template>
     </lib-data-viewer>
+    <ng-template #symbolTemplate let-element>
+      element
+      <lib-cart-quantity (add)="addToCart(element.id, $event)"></lib-cart-quantity>
+    </ng-template>
   `,
   styleUrl: './catalog.component.scss'
 })
@@ -71,14 +73,35 @@ export class CatalogComponent {
   readonly cart = inject(CartFacade);
   catalogItems$ = this.cf.allCatalog$.pipe(startWith([]));
   cartItems$ = this.cart.allCart$;
+  @ViewChild('symbolTemplate', { static: true }) symbolTemplate!: TemplateRef<{ $implicit: unknown }>;
+  get columnConfig(): ColumnConfig<Item>[] {
+    console.log('arge');
+    return [
+      {
+        key: 'name',
+        header: 'Name',
+        cell: (element: Item) => element.name
+      },
+      {
+        key: 'description',
+        header: 'Description',
+        cell: (element: Item) => element.description
+      },
+      {
+        key: 'commands',
+        header: 'Commands',
+        cellTemplate: this.symbolTemplate
+      }
+    ];
+  }
 
-  dataViewerConfig$: Observable<DataViewerConfig<Item>> = combineLatest([this.catalogItems$]).pipe(
-    map(([catalogItems]) => ({
-      data: catalogItems,
-      // columns: ['id', 'name'] // Add all the columns you want to display
-      columns: [] // Add all the columns you want to display
-    }))
-  );
+  // dataViewerConfig$: Observable<DataViewerConfig<Item>> = combineLatest([this.catalogItems$]).pipe(
+  //   map(([catalogItems]) => ({
+  //     data: catalogItems,
+  //     // columns: ['id', 'name'] // Add all the columns you want to display
+  //     columns: [] // Add all the columns you want to display
+  //   }))
+  // );
 
   addToCart(itemId: string, quantity: number) {
     this.cart.addItemToCart({ itemId, quantity: quantity });
