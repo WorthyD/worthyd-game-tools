@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RenderedViewDynamicCompDirective } from './data-viewer.directive';
-import { DataViewerConfig } from './data-viewer.config';
+import { ColumnConfig, DataViewerConfig } from './data-viewer.config';
 // import {} from '@cr
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -29,6 +29,8 @@ import { DataPage } from '../models/data-page.interface';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CdkTableDataSourceInput } from '@angular/cdk/table';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'lib-data-viewer',
   imports: [
@@ -52,72 +54,57 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     </mat-button-toggle-group>
     <mat-form-field>
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+      <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input /> -->
     </mat-form-field>
-    <!-- @switch (currentView.value) {
-      @case ('card') {
-        <div class="flex flex-wrap justify-around gap-4">
-          @for (item of renderedData(); track trackByItem($index, item)) {
-            <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
-          }
-        </div>
-      }
-      @case ('table') { -->
-        <table mat-table #table [dataSource]="dataSource()" matSort>
-          <!-- Default ID column -->
-          <!-- <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-            <td mat-cell *matCellDef="let row">id</td>
-          </ng-container> -->
 
-          <!-- Projected columns -->
-          <!-- <ng-container *ngFor="let columnDef of columnDefs">
-            <ng-container [matColumnDef]="columnDef.name">
-               <ng-container *ngTemplateOutlet="columnDef.headerCell?.template"></ng-container>
-              <ng-container *ngTemplateOutlet="columnDef.cell?.template"></ng-container>
-            </ng-container>
-          </ng-container> -->
+    <!-- <table mat-table #table [dataSource]="dataSource()" matSort>
+      <ng-content select="ng-container[matColumnDef]"></ng-content>
 
-            <ng-content select="ng-container[matColumnDef]"></ng-content>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
 
-          <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
+    <ng-template #defaultCell let-value>
+      {{ value }}
+    </ng-template> -->
+    @if (currentView?.value === 'card') {
+      cards
+      <div class="flex flex-wrap justify-around gap-4">
+        @for (item of dataSource() | async; track trackByItem($index, item)) {
+          data
+          <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
+        }
+      </div>
+    } @else {
+      <h3>Table View</h3>
+      <table mat-table [dataSource]="(dataSource() | async)!" class="mat-elevation-z8">
+        <!-- Generate column definitions dynamically from config -->
+        @for (column of columns(); track column.key) {
+          <ng-container [matColumnDef]="column.key">
+            <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
+            <td mat-cell *matCellDef="let element">
+              @if (column.cellTemplate) {
+                template
+                <ng-container *ngTemplateOutlet="column.cellTemplate; context: { $implicit: element }"></ng-container>
+              } @else {
+                {{ column.cell?.(element) }}
+              }
+            </td>
+          </ng-container>
+        }
 
-          <!-- Project default columns -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns()"></tr>
+      </table>
+    }
 
-          <!-- <ng-content select="[matColumnDef]"></ng-content> -->
-
-          <!-- Dynamic columns -->
-          <!-- @for (col of dynamicColumns; track col) {
-            <ng-container [matColumnDef]="col.field">
-              <mat-header-cell *matHeaderCellDef>
-                {{ col.header }}
-              </mat-header-cell>
-              <mat-cell *matCellDef="let row">
-                <ng-container
-                  *ngTemplateOutlet="col.template || defaultCell; context: { $implicit: row[col.field], row: row }"
-                >
-                </ng-container>
-              </mat-cell>
-            </ng-container>
-          } -->
-
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-        </table>
-        <!-- Default cell template -->
-        <ng-template #defaultCell let-value>
-          {{ value }}
-        </ng-template>
-      <!-- }
-    } -->
-    <mat-paginator
+    <!-- <mat-paginator
       (page)="setPage($event)"
       [pageSizeOptions]="[1, 10, 25, 50, 100]"
       [pageSize]="pagerData().size"
       [length]="curatedData().length"
     >
-    </mat-paginator>
+    </mat-paginator> -->
   `,
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -125,82 +112,32 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class DataViewerComponent<T extends { id?: unknown }>
   implements AfterViewInit, AfterContentInit, AfterViewChecked
 {
-  @ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;
+  //@ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;
   @ContentChild('cardTemplate') projectedTemplate: TemplateRef<{ data: T }> = null!;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ContentChildren(MatColumnDef, { descendants: true }) columnDefs!: QueryList<MatColumnDef>;
-  @ViewChild(MatTable) table!: MatTable<any>;
+  //@ViewChild(MatPaginator) paginator!: MatPaginator;
+  //@ViewChild(MatSort) sort!: MatSort;
+  //@ContentChildren(MatColumnDef, { descendants: true }) columnDefs!: QueryList<MatColumnDef>;
+
+  //@ViewChild(MatTable) table!: MatTable<any>;
 
   tableInitialized = signal(false);
   columnsRegistered = signal(false);
 
-  constructor(private cdr: ChangeDetectorRef) {
-    //this.dataSource = new MatTableDataSource<T>([]);
-    //this.dataSource = new MatTableDataSource<T>(this.dataViewerConfig().data ?? []);
-    // this.currentView.valueChanges.subscribe((view) => {
-    //   console.log('View changed to:', view);
-    //   if (view === 'table') {
-    //     console.log('Setting up table columns', this.table);
-    //     this.columnDefs.forEach((columnDef) => {
-    //       this.table.addColumnDef(columnDef);
-    //     });
-    //     // Then, set up the displayed columns
-    //     this.setupDisplayedColumns();
-    //     // Listen for changes in projected columns
-    //     this.columnDefs.changes.subscribe(() => {
-    //       this.setupDisplayedColumns();
-    //     });
-    //     // setTimeout(() => {
-    //     //   this.table.renderRows();
-    //     // }, 0);
-    //   }
-    // });
-    // effect(() => {
-    //   const isTableView = this.currentView.value === 'table';
-    //   console.log('Table view status:', isTableView);
-    //   if (isTableView) {
-    //     this.tableInitialized.set(true);
-    //   } else {
-    //     this.tableInitialized.set(false);
-    //     this.columnsRegistered.set(false);
-    //   }
-    // });
-    // Effect for table initialization and column registration
-    // effect(() => {
-    //   console.log('Table initialized:', this.tableInitialized());
-    //   console.log('Columns registered:', this.columnsRegistered());
-    //   console.log('Table instance:', this.table);
-    //   if (!this.table || !this.tableInitialized() || this.columnsRegistered()) {
-    //     return;
-    //   }
-    //   // Register columns and trigger change detection
-    //   try {
-    //     console.log('Setting up table columns', this.table);
-    //     this.columnDefs.forEach((columnDef) => {
-    //       console.log('Registering column:', columnDef.name);
-    //       if (!columnDef['_table']) {
-    //         this.table.addColumnDef(columnDef);
-    //       }
-    //     });
-    //     this.columnsRegistered.set(true);
-    //   } catch (error) {
-    //     console.warn('Failed to register columns:', error);
-    //   }
-    // });
-  }
+  dataSource = input<Observable<T[]>>();
+  displayedColumns = input<string[]>();
+  columns = input.required<ColumnConfig<T>[]>();
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    // Initialization logic if needed
-    this.dataSource().paginator = this.paginator;
-    this.dataSource().sort = this.sort;
-
-    // Listen to view changes
+    console.log(this.columns());
+    //this.dataSource().paginator = this.paginator;
+    //this.dataSource().sort = this.sort;
   }
 
   ngAfterContentInit() {
     // Store the column names and listen for changes
-    this.setupDisplayedColumns();
+    //this.setupDisplayedColumns();
     // this.columnDefs.changes.subscribe(() => {
     //   this.setupDisplayedColumns();
     //   this.columnsRegistered.set(false); // Reset when columns change
@@ -213,67 +150,67 @@ export class DataViewerComponent<T extends { id?: unknown }>
     // View checks are now handled by effects
   }
 
-  private setupDisplayedColumns() {
-    // Start with configured columns
-    const configColumns = this.dataViewerConfig().columns || [];
+  // private setupDisplayedColumns() {
+  //   // Start with configured columns
+  //   const configColumns = this.dataViewerConfig().columns || [];
 
-    // Get all projected column names
-    const projectedColumns = this.columnDefs.map((def) => {
-      console.log('Column Def:', def);
-      return def.name;
-    });
-    console.log('Projected columns:', projectedColumns);
-    console.log('Projected columns:', this.columnDefs);
+  //   // Get all projected column names
+  //   const projectedColumns = this.columnDefs.map((def) => {
+  //     console.log('Column Def:', def);
+  //     return def.name;
+  //   });
+  //   console.log('Projected columns:', projectedColumns);
+  //   console.log('Projected columns:', this.columnDefs);
 
-    // Use configured columns if provided, otherwise use projected columns
-    this.displayedColumns = configColumns.length > 0 ? configColumns : projectedColumns;
-    this.table.renderRows();
-    // when using OnPush or in tricky timing cases, detect changes
-    this.cdr.detectChanges();
-    //this.displayedColumns = this.columnDefs;
-  }
+  //   // Use configured columns if provided, otherwise use projected columns
+  //   this.displayedColumns = configColumns.length > 0 ? configColumns : projectedColumns;
+  //   this.table.renderRows();
+  //   // when using OnPush or in tricky timing cases, detect changes
+  //   this.cdr.detectChanges();
+  //   //this.displayedColumns = this.columnDefs;
+  // }
 
   currentView = new FormControl('table');
-  displayedColumns: string[] = [];
+  // displayedColumns: string[] = [];
 
-  //currentView: 'card' | 'table' = 'card';
+  // //currentView: 'card' | 'table' = 'card';
 
-  dataViewerConfig = input.required<DataViewerConfig<T>>();
+  // dataViewerConfig = input.required<DataViewerConfig<T>>();
 
-  pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 2 });
-  dataSource: Signal<MatTableDataSource<T>> = computed(() => new MatTableDataSource<T>(this.dataViewerConfig().data));
+  // pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 2 });
+  // dataSource: Signal<MatTableDataSource<T>> = computed(() => new MatTableDataSource<T>(this.dataViewerConfig().data));
 
-  filterValue = signal('');
-  curatedData: Signal<T[]> = computed(() => {
-    const filter = this.filterValue();
-    return this.dataViewerConfig().data.filter((item) => {
-      return Object.values(item).some((value) => String(value).toLowerCase().includes(filter.toLowerCase()));
-    });
-  });
+  // filterValue = signal('');
+  // curatedData: Signal<T[]> = computed(() => {
+  //   const filter = this.filterValue();
+  //   return this.dataViewerConfig().data.filter((item) => {
+  //     return Object.values(item).some((value) => String(value).toLowerCase().includes(filter.toLowerCase()));
+  //   });
+  // });
 
-  //TODO: include filters
-  itemCount = computed(() => this.curatedData.length);
+  // //TODO: include filters
+  // itemCount = computed(() => this.curatedData.length);
 
-  renderedData: Signal<T[]> = computed(() => {
-    const data = this.curatedData();
-    const page = this.pagerData();
-    const sorting = '';
-    return data.slice(page.index * page.size, page.index * page.size + page.size);
-  });
+  // renderedData: Signal<T[]> = computed(() => {
+  //   const data = this.curatedData();
+  //   const page = this.pagerData();
+  //   const sorting = '';
+  //   return data.slice(page.index * page.size, page.index * page.size + page.size);
+  // });
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource().filter = filterValue.trim().toLowerCase();
-    this.filterValue.set(filterValue.trim().toLowerCase());
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource().filter = filterValue.trim().toLowerCase();
+  //   this.filterValue.set(filterValue.trim().toLowerCase());
 
-    if (this.dataSource().paginator) {
-      this.dataSource().paginator?.firstPage();
-    }
-  }
+  //   if (this.dataSource().paginator) {
+  //     this.dataSource().paginator?.firstPage();
+  //   }
+  // }
 
-  setPage(event: PageEvent) {
-    this.pagerData.set({ index: event.pageIndex, size: event.pageSize });
-  }
+  // setPage(event: PageEvent) {
+  //   this.pagerData.set({ index: event.pageIndex, size: event.pageSize });
+  // }
 
   trackByItem(index: number, item: T): any {
     return item.id ?? index;
