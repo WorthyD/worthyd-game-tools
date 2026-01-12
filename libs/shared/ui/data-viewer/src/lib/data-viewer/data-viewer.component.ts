@@ -31,6 +31,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CdkTableDataSourceInput } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'lib-data-viewer',
   imports: [
@@ -42,7 +44,9 @@ import { Observable } from 'rxjs';
     ReactiveFormsModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule
   ],
   // This is important - it tells Angular to preserve the projected content
   preserveWhitespaces: true,
@@ -54,30 +58,29 @@ import { Observable } from 'rxjs';
     </mat-button-toggle-group>
     <mat-form-field>
       <mat-label>Filter</mat-label>
-      <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input /> -->
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Sort</mat-label>
+      <mat-select [formControl]="sortDirectionInput" (selectionChange)="onSortChange($event)">
+        @for (column of displayedColumns(); track column) {
+          <mat-option value="{{ column }}-DESC">{{ column }} - DESC </mat-option>
+          <mat-option value="{{ column }}-ASC">{{ column }} - ASC</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
 
-    <!-- <table mat-table #table [dataSource]="dataSource()" matSort>
-      <ng-content select="ng-container[matColumnDef]"></ng-content>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </table>
-
-    <ng-template #defaultCell let-value>
-      {{ value }}
-    </ng-template> -->
-    @if (currentView?.value === 'card') {
+    @if (currentView.value === 'card') {
       cards
       <div class="flex flex-wrap justify-around gap-4">
-        @for (item of dataSource() | async; track trackByItem($index, item)) {
+        @for (item of pagedData(); track trackByItem($index, item)) {
           data
           <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
         }
       </div>
     } @else {
       <h3>Table View</h3>
-      <table mat-table [dataSource]="(dataSource() | async)!" class="mat-elevation-z8">
+      <table mat-table [dataSource]="pagedData()!" class="mat-elevation-z8">
         <!-- Generate column definitions dynamically from config -->
         @for (column of columns(); track column.key) {
           <ng-container [matColumnDef]="column.key">
@@ -98,13 +101,13 @@ import { Observable } from 'rxjs';
       </table>
     }
 
-    <!-- <mat-paginator
+    <mat-paginator
       (page)="setPage($event)"
       [pageSizeOptions]="[1, 10, 25, 50, 100]"
       [pageSize]="pagerData().size"
-      [length]="curatedData().length"
+      [length]="filteredData()?.length || 0"
     >
-    </mat-paginator> -->
+    </mat-paginator>
   `,
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -114,7 +117,7 @@ export class DataViewerComponent<T extends { id?: unknown }>
 {
   //@ViewChild(RenderedViewDynamicCompDirective, { static: true }) libDynamicComp!: RenderedViewDynamicCompDirective;
   @ContentChild('cardTemplate') projectedTemplate: TemplateRef<{ data: T }> = null!;
-  //@ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   //@ViewChild(MatSort) sort!: MatSort;
   //@ContentChildren(MatColumnDef, { descendants: true }) columnDefs!: QueryList<MatColumnDef>;
 
@@ -123,14 +126,62 @@ export class DataViewerComponent<T extends { id?: unknown }>
   tableInitialized = signal(false);
   columnsRegistered = signal(false);
 
-  dataSource = input<Observable<T[]>>();
   displayedColumns = input<string[]>();
   columns = input.required<ColumnConfig<T>[]>();
+  dataSource = input<T[]>();
+
+  filterValue = signal('');
+  sortDirection = signal<string>('');
+  sortField = signal<string>('');
+
+  pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 5 });
+
+  filteredData: Signal<T[] | undefined> = computed(() => {
+    const filter = this.filterValue();
+
+    return this.dataSource()?.filter((item) => {
+      return Object.values(item).some((value) => String(value).toLowerCase().includes(filter.toLowerCase()));
+    });
+  });
+
+  sortedData: Signal<T[] | undefined> = computed(() => {
+    console.log('Sorting data');
+    const data = this.filteredData();
+
+    const sortField = this.sortField();
+    const sortDirection = this.sortDirection();
+    console.log('Sort field:', sortField, 'Direction:', sortDirection);
+
+    if (!sortField || !sortDirection) {
+      return data;
+    }
+    const newData = data?.sort((a, b) => {
+      const aValue = (a as any)[sortField];
+      const bValue = (b as any)[sortField];
+
+      if (aValue < bValue) {
+        return sortDirection === 'ASC' ? -1 : 1;
+      }
+      if (aValue > bValue) {
+        return sortDirection === 'ASC' ? 1 : -1;
+      }
+      return 0;
+    });
+    console.log('Sorted data:', newData);
+
+    return newData;
+  });
+
+  pagedData: Signal<T[] | undefined> = computed(() => {
+    const data = this.sortedData();
+    console.log('Paging data', data);
+    const page = this.pagerData();
+    return data?.slice(page.index * page.size, page.index * page.size + page.size);
+  });
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    console.log(this.columns());
     //this.dataSource().paginator = this.paginator;
     //this.dataSource().sort = this.sort;
   }
@@ -170,7 +221,8 @@ export class DataViewerComponent<T extends { id?: unknown }>
   //   //this.displayedColumns = this.columnDefs;
   // }
 
-  currentView = new FormControl('table');
+  currentView = new FormControl<string>('table');
+  sortDirectionInput = new FormControl<string>('');
   // displayedColumns: string[] = [];
 
   // //currentView: 'card' | 'table' = 'card';
@@ -211,6 +263,32 @@ export class DataViewerComponent<T extends { id?: unknown }>
   // setPage(event: PageEvent) {
   //   this.pagerData.set({ index: event.pageIndex, size: event.pageSize });
   // }
+  onSortChange(event: any) {
+    const sort = this.sortDirectionInput.value;
+    const sortField = sort ? sort.split('-')[0] : '';
+    const sortDirection = sort ? sort.split('-')[1] : '';
+
+    this.sortDirection.set(sortDirection);
+    this.sortField.set(sortField);
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filterValue.set(filterValue.trim().toLowerCase());
+
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+    // if (this.dataSource().paginator) {
+    //   this.dataSource().paginator?.firstPage();
+    // }
+  }
+  setPage(event: PageEvent) {
+    this.pagerData.set({ index: event.pageIndex, size: event.pageSize });
+  }
 
   trackByItem(index: number, item: T): any {
     return item.id ?? index;

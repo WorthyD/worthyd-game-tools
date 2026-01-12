@@ -1,4 +1,5 @@
-import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild, OnInit } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { CartFacade, CatalogFacade } from '@crafting-cart/state';
 import { MatButtonModule } from '@angular/material/button';
@@ -51,7 +52,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
     </lib-data-viewer> -->
 
     <lib-data-viewer
-      [dataSource]="catalogItems$"
+      [dataSource]="catalogItems$()"
       [displayedColumns]="['name', 'description', 'commands']"
       [columns]="columnConfig"
     >
@@ -68,15 +69,20 @@ import { AsyncPipe, CommonModule } from '@angular/common';
   `,
   styleUrl: './catalog.component.scss'
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
   readonly cf = inject(CatalogFacade);
   readonly cart = inject(CartFacade);
-  catalogItems$ = this.cf.allCatalog$.pipe(startWith([]));
+  catalogItems$ = toSignal(this.cf.allCatalog$.pipe(startWith([])));
+
   cartItems$ = this.cart.allCart$;
   @ViewChild('symbolTemplate', { static: true }) symbolTemplate!: TemplateRef<{ $implicit: unknown }>;
-  get columnConfig(): ColumnConfig<Item>[] {
-    console.log('arge');
-    return [
+
+  // TODO: Move away from function
+  columnConfig: ColumnConfig<Item>[] = [];
+
+  ngOnInit(): void {
+    // Needs to be in ngOnInit to ensure symbolTemplate is available
+    this.columnConfig = [
       {
         key: 'name',
         header: 'Name',
