@@ -14,6 +14,11 @@ export const shellRoutes: Routes = [
       {
         path: 'list',
         loadComponent: () => import('@crafting-cart/shopping-list').then((component) => component.ShoppingListComponent)
+      },
+      {
+        path: 'config',
+        loadComponent: () =>
+          import('@crafting-cart/cart-item-config').then((component) => component.CartItemConfigComponent)
       }
     ]
   }

@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+.cart-item-config-container {
+  padding: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+  form {
+    //  overflow-y: scroll;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .scroll {
+    overflow-y: scroll;
+  }
+
+  .items-table {
+    width: 100%;
+    margin-bottom: 20px;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    th {
+      font-weight: 600;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .add-row-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+}
