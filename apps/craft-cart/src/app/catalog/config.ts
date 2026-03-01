@@ -1,234 +1,287 @@
-import { ScraperConfig } from './config.model';
+import { ScraperConfig } from '@crafting-cart/shared/models';
 export const config: ScraperConfig = {
   baseUrl: 'https://stardewvalleywiki.com/',
   assetPath: './images/',
   imagePath: './scrapers/images/',
   configOutputPath: './scrapers/stardew-output.ts',
+  tags: ['Bombs', 'Fences', 'Sprinklers', 'Artisan_Equipment', 'Fertilizer', 'Ores', 'Combat_Resources', 'Seeds'],
+  categories: ['Crafting', 'Raw_Materials'],
   items: [
     {
-      itemId: 'cherry_bomb',
       itemUrl: 'Cherry_Bomb',
+      itemId: 'cherry_bomb',
       categories: ['Crafting'],
       tags: ['Bombs']
     },
     {
-      itemId: 'bomb',
       itemUrl: 'Bomb',
+      itemId: 'bomb',
       categories: ['Crafting'],
       tags: ['Bombs']
     },
     {
-      itemId: 'mega_bomb',
       itemUrl: 'Mega_Bomb',
+      itemId: 'mega_bomb',
       categories: ['Crafting'],
       tags: ['Bombs']
     },
-
-    // ----------------------Fences----------------------
     {
-      itemId: 'gate',
       itemUrl: 'Gate',
+      itemId: 'gate',
       categories: ['Crafting'],
       tags: ['Fences']
     },
     {
-      itemId: 'wood_fence',
       itemUrl: 'Wood_Fence',
+      itemId: 'wood_fence',
       categories: ['Crafting'],
       tags: ['Fences']
     },
     {
-      itemId: 'stone_fence',
       itemUrl: 'Stone_Fence',
+      itemId: 'stone_fence',
       categories: ['Crafting'],
       tags: ['Fences']
     },
     {
-      itemId: 'iron_fence',
       itemUrl: 'Iron_Fence',
+      itemId: 'iron_fence',
       categories: ['Crafting'],
       tags: ['Fences']
     },
     {
-      itemId: 'hardwood_fence',
       itemUrl: 'Hardwood_Fence',
+      itemId: 'hardwood_fence',
       categories: ['Crafting'],
       tags: ['Fences']
     },
-    // ----------------------Sprinklers----------------------
     {
-      itemId: 'sprinkler',
       itemUrl: 'Sprinkler',
+      itemId: 'sprinkler',
       categories: ['Crafting'],
       tags: ['Sprinklers']
     },
     {
-      itemId: 'quality_sprinkler',
       itemUrl: 'Quality_Sprinkler',
+      itemId: 'quality_sprinkler',
       categories: ['Crafting'],
       tags: ['Sprinklers']
     },
     {
-      itemId: 'iridium_sprinkler',
       itemUrl: 'Iridium_Sprinkler',
+      itemId: 'iridium_sprinkler',
       categories: ['Crafting'],
       tags: ['Sprinklers']
     },
-    // ----------------------Artisan Equipment----------------------
     {
-      itemId: 'mayonnaise_machine',
       itemUrl: 'Mayonnaise_Machine',
+      itemId: 'mayonnaise_machine',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'bee_house',
       itemUrl: 'Bee_House',
+      itemId: 'bee_house',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'preserves_jar',
       itemUrl: 'Preserves_Jar',
+      itemId: 'preserves_jar',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'cheese_press',
       itemUrl: 'Cheese_Press',
+      itemId: 'cheese_press',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'loom',
       itemUrl: 'Loom',
+      itemId: 'loom',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'keg',
       itemUrl: 'Keg',
+      itemId: 'keg',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'oil_maker',
       itemUrl: 'Oil_Maker',
+      itemId: 'oil_maker',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'cask',
       itemUrl: 'Cask',
+      itemId: 'cask',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'fish_smoker',
       itemUrl: 'Fish_Smoker',
+      itemId: 'fish_smoker',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
     {
-      itemId: 'dehydrator',
       itemUrl: 'Dehydrator',
+      itemId: 'dehydrator',
       categories: ['Crafting'],
       tags: ['Artisan_Equipment']
     },
-
-    // ----------------------Fertizers----------------------
     {
-      itemId: 'basic_fertilizer',
       itemUrl: 'Basic_Fertilizer',
+      itemId: 'basic_fertilizer',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'quality_fertilizer',
       itemUrl: 'Quality_Fertilizer',
+      itemId: 'quality_fertilizer',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'deluxe_fertilizer',
       itemUrl: 'Deluxe_Fertilizer',
+      itemId: 'deluxe_fertilizer',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
-
     {
-      itemId: 'speed-gro',
       itemUrl: 'Speed-Gro',
+      itemId: 'speed-gro',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'deluxe_speed-gro',
       itemUrl: 'Deluxe_Speed-Gro',
+      itemId: 'deluxe_speed-gro',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'hyper_speed-gro',
       itemUrl: 'Hyper_Speed-Gro',
+      itemId: 'hyper_speed-gro',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
-
     {
-      itemId: 'basic_retaining_soil',
       itemUrl: 'Basic_Retaining_Soil',
+      itemId: 'basic_retaining_soil',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'quality_retaining_soil',
       itemUrl: 'Quality_Retaining_Soil',
+      itemId: 'quality_retaining_soil',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'deluxe_retaining_soil',
       itemUrl: 'Deluxe_Retaining_Soil',
+      itemId: 'deluxe_retaining_soil',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
     {
-      itemId: 'tree_fertilizer',
       itemUrl: 'Tree_Fertilizer',
+      itemId: 'tree_fertilizer',
       categories: ['Crafting'],
       tags: ['Fertilizer']
     },
-    // ----------------------Ores and Gems----------------------
     {
-      itemId: 'copper_ore',
       itemUrl: 'Copper_Ore',
+      itemId: 'copper_ore',
       categories: ['Raw_Materials'],
       tags: ['Ores']
     },
     {
-      itemId: 'iron_ore',
       itemUrl: 'Iron_Ore',
+      itemId: 'iron_ore',
       categories: ['Raw_Materials'],
       tags: ['Ores']
     },
     {
-      itemId: 'gold_ore',
       itemUrl: 'Gold_Ore',
+      itemId: 'gold_ore',
       categories: ['Raw_Materials'],
       tags: ['Ores']
     },
     {
-      itemId: 'solar_essence',
       itemUrl: 'Solar_Essence',
+      itemId: 'solar_essence',
       categories: ['Raw_Materials'],
       tags: ['Combat_Resources']
     },
     {
-      itemId: 'void_essence',
       itemUrl: 'Void_Essence',
+      itemId: 'void_essence',
       categories: ['Raw_Materials'],
       tags: ['Combat_Resources']
+    },
+    {
+      itemUrl: 'Spring_Seeds',
+      itemId: 'spring_seeds',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Summer_Seeds',
+      itemId: 'summer_seeds',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Fall_Seeds',
+      itemId: 'fall_seeds',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Winter_Seeds',
+      itemId: 'winter_seeds',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Ancient_Seeds',
+      itemId: 'ancient_seeds',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Grass_Starter',
+      itemId: 'grass_starter',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Blue_Grass_Starter',
+      itemId: 'blue_grass_starter',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Tea_Sapling',
+      itemId: 'tea_sapling',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Fiber_Seeds',
+      itemId: 'fiber_seeds',
+      categories: ['Crafting'],
+      tags: ['Seeds']
+    },
+    {
+      itemUrl: 'Mystic_Tree_Seed',
+      itemId: 'mystic_tree_seed',
+      categories: ['Crafting'],
+      tags: ['Seeds']
     }
   ]
 };

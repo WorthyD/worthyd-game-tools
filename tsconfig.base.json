@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@crafting-cart/cart-item-config": ["libs/craft-cart/cart-item-config/src/index.ts"],
       "@crafting-cart/catalog": ["libs/craft-cart/catalog/src/index.ts"],
       "@crafting-cart/shared/cart-widget": ["libs/craft-cart/shared/cart-widget/src/index.ts"],
       "@crafting-cart/shared/models": ["libs/craft-cart/shared/models/src/index.ts"],
