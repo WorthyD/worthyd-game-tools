@@ -53,7 +53,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 
     <lib-data-viewer
       [dataSource]="catalogItems$()"
-      [displayedColumns]="['name', 'description', 'commands']"
+      [displayedColumns]="['image','name', 'description', 'commands']"
       [columns]="columnConfig"
     >
       <ng-template #cardTemplate let-data="data">
@@ -63,8 +63,10 @@ import { AsyncPipe, CommonModule } from '@angular/common';
       </ng-template>
     </lib-data-viewer>
     <ng-template #symbolTemplate let-element>
-      element
       <lib-cart-quantity (add)="addToCart(element.id, $event)"></lib-cart-quantity>
+    </ng-template>
+    <ng-template #imageTemplate let-element>
+      <img [src]="element.imageUrl" alt="" class="catalog-item-image" />
     </ng-template>
   `,
   styleUrl: './catalog.component.scss'
@@ -76,6 +78,7 @@ export class CatalogComponent implements OnInit {
 
   cartItems$ = this.cart.allCart$;
   @ViewChild('symbolTemplate', { static: true }) symbolTemplate!: TemplateRef<{ $implicit: unknown }>;
+  @ViewChild('imageTemplate', { static: true }) imageTemplate!: TemplateRef<{ $implicit: unknown }>;
 
   // TODO: Move away from function
   columnConfig: ColumnConfig<Item>[] = [];
@@ -92,6 +95,11 @@ export class CatalogComponent implements OnInit {
         key: 'description',
         header: 'Description',
         cell: (element: Item) => element.description
+      },
+      {
+        key: 'image',
+        header: 'Image',
+        cellTemplate: this.imageTemplate
       },
       {
         key: 'commands',

@@ -12,12 +12,12 @@
   h2 {
     margin-bottom: 20px;
   }
-  form {
-    //  overflow-y: scroll;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  .cart-item-config_form {
+    overflow-y: scroll;
+    // overflow: hidden;
+    // display: flex;
+    // flex-direction: column;
+    // flex: 1;
   }
   .scroll {
     overflow-y: scroll;

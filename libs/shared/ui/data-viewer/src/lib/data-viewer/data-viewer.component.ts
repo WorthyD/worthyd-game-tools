@@ -61,10 +61,8 @@ import { MatIconModule } from '@angular/material/icon';
     </mat-form-field>
 
     @if (currentView.value === 'card') {
-      cards
       <div class="flex flex-wrap justify-around gap-4">
         @for (item of pagedData(); track trackByItem($index, item)) {
-          data
           <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
         }
       </div>
@@ -77,7 +75,6 @@ import { MatIconModule } from '@angular/material/icon';
             <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
             <td mat-cell *matCellDef="let element">
               @if (column.cellTemplate) {
-                template
                 <ng-container *ngTemplateOutlet="column.cellTemplate; context: { $implicit: element }"></ng-container>
               } @else {
                 {{ column.cell?.(element) }}
@@ -93,7 +90,7 @@ import { MatIconModule } from '@angular/material/icon';
 
     <mat-paginator
       (page)="setPage($event)"
-      [pageSizeOptions]="[1, 10, 25, 50, 100]"
+      [pageSizeOptions]="[10, 25, 50, 100]"
       [pageSize]="pagerData().size"
       [length]="filteredData()?.length || 0"
     >
@@ -117,7 +114,7 @@ export class DataViewerComponent<T extends { id?: unknown }> {
   sortDirection = signal<string>('');
   sortField = signal<string>('');
 
-  pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 5 });
+  pagerData: WritableSignal<DataPage> = signal({ index: 0, size: 25 });
 
   filteredData: Signal<T[] | undefined> = computed(() => {
     const filter = this.filterValue();
