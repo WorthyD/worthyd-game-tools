@@ -1,9 +1,5 @@
 <div class="cart-item-config-container">
-  <form [formGroup]="itemsForm">
-    <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Config Editor</mat-panel-title>
-      </mat-expansion-panel-header> -->
+  <form [formGroup]="itemsForm" class="cart-item-config_form">
     <div class="grid grid-cols-3 gap-4">
       <mat-form-field>
         <mat-label>Base Url</mat-label>
@@ -127,6 +123,25 @@
   </form>
   <div class="add-row-container">
     <button mat-raised-button color="primary" (click)="addRow()" type="button">Add Row</button>
+
+    <form [formGroup]="addForm">
+      <mat-form-field>
+        <mat-label>Categories</mat-label>
+        <mat-select formControlName="categories" multiple>
+          @for (category of categories(); track category) {
+            <mat-option [value]="category">{{ category }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tags</mat-label>
+        <mat-select formControlName="tags" multiple>
+          @for (tag of tags(); track tag) {
+            <mat-option [value]="tag">{{ tag }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
     <button mat-raised-button color="accent" (click)="openConfigDialog()" type="button">Export Config</button>
   </div>
 </div>

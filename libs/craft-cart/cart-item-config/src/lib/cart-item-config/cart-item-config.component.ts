@@ -32,6 +32,7 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 export class CartItemConfigComponent implements OnInit {
   clonedConfig: ScraperConfig;
   itemsForm!: FormGroup;
+  addForm!: FormGroup;
   displayedColumns: string[] = ['itemId', 'itemUrl', 'tags', 'categories', 'action'];
   dataSource!: MatTableDataSource<FormGroup>;
   dialog = inject(MatDialog);
@@ -60,6 +61,10 @@ export class CartItemConfigComponent implements OnInit {
       categories: [this.clonedConfig.categories],
       items: this.fb.array(this.clonedConfig.items.map((item) => this.createItemFormGroup(item)))
     });
+    this.addForm = this.fb.group({
+      categories: [[]],
+      tags: [[]]
+    });
     this.categories.set(this.clonedConfig.categories);
     this.tags.set(this.clonedConfig.tags);
 
@@ -85,12 +90,14 @@ export class CartItemConfigComponent implements OnInit {
   }
 
   addRow(): void {
+    const categories = this.addForm.get('categories')?.value || [];
+    const tags = this.addForm.get('tags')?.value || [];
     (this.itemsForm.get('items') as FormArray).push(
       this.createItemFormGroup({
         itemUrl: '',
         itemId: '',
-        categories: [],
-        tags: []
+        categories: categories,
+        tags: tags
       })
     );
     this.updateDataSource();
@@ -113,11 +120,8 @@ export class CartItemConfigComponent implements OnInit {
         import { ScraperConfig } from '@crafting-cart/shared/models';
 export const config: ScraperConfig =
       ${JSON.stringify(this.itemsForm.value, null, 2)}`);
-    // this.dialog.open(ConfigDialogComponent, {
-    //   data: this.itemsForm.value,
-    //   width:'600px'
-    // });
   }
+
   removeKeyword(keyword: string, items: WritableSignal<string[]>) {
     items.update((keywords) => {
       const index = keywords.indexOf(keyword);

@@ -21,6 +21,7 @@
     "____lint": "ng lint",
     "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js",
     "stardew": "tsx scrapers/stardew.ts",
+    "stardew-validate": "tsx scrapers/stardew-validate.ts",
     "craft-cart": "tsx scrapers/craft-cart.ts"
   },
   "private": true,
