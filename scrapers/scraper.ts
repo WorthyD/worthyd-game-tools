@@ -21,7 +21,8 @@ export const downloadImage = async (url, filepath) => {
 
 export const scrapeItems = async (configs: ScraperConfig, saveImages = true): Promise<ItemOutput[]> => {
   const items: ItemOutput[] = [];
-  for (const itemConfig of configs.items) {
+
+  for (const itemConfig of configs.items.filter((item) => item.itemId === 'quality_fertilizer')) {
     const item = await scrapeItem(itemConfig, configs, saveImages);
 
     if (item !== null) {
@@ -52,6 +53,7 @@ export const scrapeItem = async (
     const itemDescription = itemBox.find('tr:eq(2) td').text().trim();
     const itemImageUrl = itemBox.find('tr:eq(1) td').find('.image img').attr('src');
     const ingredientElements = itemBox.find('td:contains("Ingredients")').parents('tr').find('td:eq(1) span');
+    console.log(`Found ${ingredientElements.length} ingredients for item ${config.itemId}`);
 
     const ingredients: { id: string; quantity: number }[] = [];
     ingredientElements.map((_, element) => {

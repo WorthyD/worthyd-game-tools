@@ -5,9 +5,10 @@ const configs = require('./configs/stardew').config;
 const scraper = require('./scraper');
 
 (async () => {
-  console.log('Starting Stardew Scraper with', configs);
-    const items = await scraper.scrapeItems(configs, true);
+  //console.log('Starting Stardew Scraper with', configs);
+
+  const items = await scraper.scrapeItems(configs, false);
   scraper.saveItems(items, configs);
-  console.log('Scraped Items:', items);
+  //console.log('Scraped Items:', items);
   scraper.validateConfig(items);
 })();
