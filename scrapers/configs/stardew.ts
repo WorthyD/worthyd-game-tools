@@ -1058,6 +1058,390 @@ export const config: ScraperConfig = {
       itemId: 'sap',
       categories: ['Raw_Materials'],
       tags: []
+    },
+    {
+      itemUrl: 'Clay',
+      itemId: 'clay',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Bone_Fragment',
+      itemId: 'bone_fragment',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Radioactive_Ore',
+      itemId: 'radioactive_ore',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Wild_Horseradish',
+      itemId: 'wild_horseradish',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Daffodil',
+      itemId: 'daffodil',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Leek',
+      itemId: 'leek',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Dandelion',
+      itemId: 'dandelion',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Spice_Berry',
+      itemId: 'spice_berry',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Grape',
+      itemId: 'grape',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Sweet_Pea',
+      itemId: 'sweet_pea',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Common_Mushroom',
+      itemId: 'common_mushroom',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Wild_Plum',
+      itemId: 'wild_plum',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Hazelnut',
+      itemId: 'hazelnut',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Blackberry',
+      itemId: 'blackberry',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Winter_Root',
+      itemId: 'winter_root',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Refined_Quartz',
+      itemId: 'refined_quartz',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Moss',
+      itemId: 'moss',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Crystal_Fruit',
+      itemId: 'crystal_fruit',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Snow_Yam',
+      itemId: 'snow_yam',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Crocus',
+      itemId: 'crocus',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Ancient_Seed',
+      itemId: 'ancient_seed',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Mystic_Syrup',
+      itemId: 'mystic_syrup',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Acorn',
+      itemId: 'acorn',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Maple_Seed',
+      itemId: 'maple_seed',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Pine_Cone',
+      itemId: 'pine_cone',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Mahogany_Seed',
+      itemId: 'mahogany_seed',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Bug_Meat',
+      itemId: 'bug_meat',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Prismatic_Shard',
+      itemId: 'prismatic_shard',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Frozen_Tear',
+      itemId: 'frozen_tear',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Diamond',
+      itemId: 'diamond',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Morel',
+      itemId: 'morel',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Chanterelle',
+      itemId: 'chanterelle',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Garlic',
+      itemId: 'garlic',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Oil',
+      itemId: 'oil',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Bat_Wing',
+      itemId: 'bat_wing',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Coral',
+      itemId: 'coral',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Honey',
+      itemId: 'honey',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Iridium_Ore',
+      itemId: 'iridium_ore',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Truffle_Oil',
+      itemId: 'truffle_oil',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Marble',
+      itemId: 'marble',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Aquamarine',
+      itemId: 'aquamarine',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Pumpkin',
+      itemId: 'pumpkin',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Mixed_Seeds',
+      itemId: 'mixed_seeds',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Cloth',
+      itemId: 'cloth',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Red_Mushroom',
+      itemId: 'red_mushroom',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Purple_Mushroom',
+      itemId: 'purple_mushroom',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Fairy_Rose',
+      itemId: 'fairy_rose',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Coconut',
+      itemId: 'coconut',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Dragon_Tooth',
+      itemId: 'dragon_tooth',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Ginger',
+      itemId: 'ginger',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Cinder_Shard',
+      itemId: 'cinder_shard',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Radioactive_Bar',
+      itemId: 'radioactive_bar',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Sea_Urchin',
+      itemId: 'sea_urchin',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Tulip_Bulb',
+      itemId: 'tulip_bulb',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Jazz_Seeds',
+      itemId: 'jazz_seeds',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Poppy_Seeds',
+      itemId: 'poppy_seeds',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Spangle_Seeds',
+      itemId: 'spangle_seeds',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Dwarf_Gadget',
+      itemId: 'dwarf_gadget',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Quartz',
+      itemId: 'quartz',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Corn',
+      itemId: 'corn',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Sunflower',
+      itemId: 'sunflower',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Sunflower_Seeds',
+      itemId: 'sunflower_seeds',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Truffle',
+      itemId: 'truffle',
+      categories: ['Raw_Materials'],
+      tags: []
+    },
+    {
+      itemUrl: 'Wool',
+      itemId: 'wool',
+      categories: ['Raw_Materials'],
+      tags: []
     }
   ]
 };
