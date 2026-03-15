@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { CartFacade, CartEntity, CatalogFacade } from '@crafting-cart/state';
 import { Item } from '@crafting-cart/shared/models';
 
-
 import { combineLatest, map } from 'rxjs';
 import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
 
 import { PushPipe } from '@ngrx/component';
+import { MatCardModule } from '@angular/material/card';
 interface ShoppingListItem {
   item: Item;
   quantity: number;
@@ -14,7 +14,7 @@ interface ShoppingListItem {
 
 @Component({
   selector: 'lib-shopping-list',
-  imports: [PushPipe, ItemCardComponent],
+  imports: [PushPipe, ItemCardComponent, MatCardModule],
   templateUrl: './shopping-list.component.html',
   styleUrl: './shopping-list.component.scss'
 })
@@ -27,7 +27,6 @@ export class ShoppingListComponent {
   shoppingListItems$ = combineLatest([this.cartItems$, this.allItems$]).pipe(
     map(([items, catalogItems]) => this.getRawItems(items, catalogItems))
   );
-  // rawItems$ =
 
   getRawItems(items: CartEntity[], catalogItems: Item[]): ShoppingListItem[] {
     const rawItems: ShoppingListItem[] = [];

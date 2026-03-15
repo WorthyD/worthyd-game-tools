@@ -41,10 +41,9 @@ import { MatIconModule } from '@angular/material/icon';
   // This is important - it tells Angular to preserve the projected content
   preserveWhitespaces: true,
   template: `
-    <h1>Data Viewer</h1>
     <mat-button-toggle-group [formControl]="currentView" aria-label="Font Style">
-      <mat-button-toggle value="card">Card</mat-button-toggle>
-      <mat-button-toggle value="table">Table</mat-button-toggle>
+      <mat-button-toggle value="card"><mat-icon>apps</mat-icon></mat-button-toggle>
+      <mat-button-toggle value="table"><mat-icon>view_list</mat-icon></mat-button-toggle>
     </mat-button-toggle-group>
     <mat-form-field>
       <mat-label>Filter</mat-label>
@@ -53,9 +52,9 @@ import { MatIconModule } from '@angular/material/icon';
     <mat-form-field>
       <mat-label>Sort</mat-label>
       <mat-select [formControl]="sortDirectionInput" (selectionChange)="onSortChange($event)">
-        @for (column of displayedColumns(); track column) {
-          <mat-option value="{{ column }}-DESC">{{ column }} - DESC </mat-option>
+        @for (column of filterColumns(); track column) {
           <mat-option value="{{ column }}-ASC">{{ column }} - ASC</mat-option>
+          <mat-option value="{{ column }}-DESC">{{ column }} - DESC </mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -67,7 +66,6 @@ import { MatIconModule } from '@angular/material/icon';
         }
       </div>
     } @else {
-      <h3>Table View</h3>
       <table mat-table [dataSource]="pagedData()!" class="mat-elevation-z8">
         <!-- Generate column definitions dynamically from config -->
         @for (column of columns(); track column.key) {
@@ -107,6 +105,7 @@ export class DataViewerComponent<T extends { id?: unknown }> {
   columnsRegistered = signal(false);
 
   displayedColumns = input<string[]>();
+  filterColumns = input<string[]>();
   columns = input.required<ColumnConfig<T>[]>();
   dataSource = input<T[]>();
 

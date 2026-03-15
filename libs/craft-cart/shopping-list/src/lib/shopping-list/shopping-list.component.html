@@ -1,12 +1,11 @@
-<div class="flex gap-4">
+<div class="flex flex-wrap">
   @if (shoppingListItems$ | ngrxPush; as shoppingListItems) {
     @for (catalogItem of shoppingListItems; track catalogItem.item.id) {
-      <!-- <div>{{ catalogItem.item.id }} - {{ catalogItem.quantity }}</div> -->
-      <lib-item-card [catalogItem]="catalogItem.item">
-        <div ngProjectAs="lib-item-card-footer">
-          {{ catalogItem.quantity }}
-        </div>
-      </lib-item-card>
+      <mat-card class="basis-1/3 flex flex-col items-center gap-2">
+        <div class="font-bold">{{ catalogItem.quantity }}</div>
+        <div><img [src]="catalogItem.item.imageUrl" [alt]="catalogItem.item.name" class="w-full h-full object-cover"></div>
+        <div class="font-bold">{{ catalogItem.item.name }}</div>
+      </mat-card>
     }
   }
 </div>
