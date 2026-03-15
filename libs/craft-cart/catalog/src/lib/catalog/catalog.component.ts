@@ -24,36 +24,10 @@ import { AsyncPipe, CommonModule } from '@angular/common';
     AsyncPipe
   ],
   template: `
-    <!-- @if (catalogItems$ | ngrxPush; as catalogItems) {
-        @for (catalogItem of catalogItems; track catalogItem.id) {
-          <lib-item-card [catalogItem]="catalogItem">
-            <lib-cart-quantity
-              ngProjectAs="lib-item-card-footer"
-              (add)="addToCart(catalogItem.id, $event)"
-            ></lib-cart-quantity>
-          </lib-item-card>
-        }
-      } -->
-    <!-- <lib-data-viewer [dataViewerConfig]="(dataViewerConfig$ | async)!">
-      <ng-template #cardTemplate let-data="data">
-        <lib-item-card [catalogItem]="data">
-          <lib-cart-quantity ngProjectAs="lib-item-card-footer" (add)="addToCart(data.id, $event)"></lib-cart-quantity>
-        </lib-item-card>
-      </ng-template>
-
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element?.id }} 123123</td>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
-      </ng-container>
-    </lib-data-viewer> -->
-
     <lib-data-viewer
       [dataSource]="catalogItems$()"
-      [displayedColumns]="['image','name', 'description', 'commands']"
+      [filterColumns]="['name', 'description']"
+      [displayedColumns]="['image', 'name', 'description', 'commands']"
       [columns]="columnConfig"
     >
       <ng-template #cardTemplate let-data="data">
@@ -108,14 +82,6 @@ export class CatalogComponent implements OnInit {
       }
     ];
   }
-
-  // dataViewerConfig$: Observable<DataViewerConfig<Item>> = combineLatest([this.catalogItems$]).pipe(
-  //   map(([catalogItems]) => ({
-  //     data: catalogItems,
-  //     // columns: ['id', 'name'] // Add all the columns you want to display
-  //     columns: [] // Add all the columns you want to display
-  //   }))
-  // );
 
   addToCart(itemId: string, quantity: number) {
     this.cart.addItemToCart({ itemId, quantity: quantity });
