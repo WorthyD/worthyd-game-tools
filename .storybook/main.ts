@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import type { StorybookConfig } from '@storybook/angular';
 
 const config: StorybookConfig = {
@@ -7,16 +9,12 @@ const config: StorybookConfig = {
   ],
 
   //addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@chromatic-com/storybook'
-  ],
+  addons: [getAbsolutePath("@chromatic-com/storybook"), getAbsolutePath("@storybook/addon-docs")],
 
   staticDirs: [{ from: `${__dirname}/../apps/destiny-clan-dashboard/src/assets`, to: '/assets/' }],
 
   framework: {
-    name: '@storybook/angular',
+    name: getAbsolutePath("@storybook/angular"),
     options: {}
   },
 
@@ -46,3 +44,7 @@ const config: StorybookConfig = {
   docs: {}
 };
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}

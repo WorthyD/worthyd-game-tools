@@ -10,11 +10,10 @@ import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
 import { ColumnConfig, DataViewerComponent, DataViewerConfig } from '@worthyd/shared/ui/data-viewer';
 import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { Item } from '@crafting-cart/shared/models';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   imports: [
-    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatTableModule,
@@ -22,7 +21,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
     ItemCardComponent,
     DataViewerComponent,
     AsyncPipe
-  ],
+],
   template: `
     <lib-data-viewer
       [dataSource]="catalogItems$()"

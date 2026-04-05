@@ -79,7 +79,8 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/destiny-clan-dashboard/jest.config.ts",
-        "webWorkerTsConfig": "apps/destiny-clan-dashboard/tsconfig.worker.json"
+        "webWorkerTsConfig": "apps/destiny-clan-dashboard/tsconfig.worker.json",
+        "tsConfig": "apps/destiny-clan-dashboard/tsconfig.spec.json"
       }
     },
     "serve-static": {

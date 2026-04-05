@@ -2,12 +2,12 @@ import {
   textMatchesEquality,
   numberMatchesEquality,
   dateMatchesEquality,
-  stateMatchesEquality,
+  stateMatchesEquality
 } from './filter-matcher';
 describe('Filter Matcher', () => {
   describe('textMatchesEquality', () => {
     it('should return false on empty values', () => {
-      expect(textMatchesEquality(undefined, 'testing', 'contains')).toBe(false)
+      expect(textMatchesEquality(undefined, 'testing', 'contains')).toBe(false);
       expect(textMatchesEquality('testing', undefined, 'contains')).toBe(true);
       expect(textMatchesEquality('testing', '""', 'contains')).toBe(true);
     });
@@ -41,7 +41,7 @@ describe('Filter Matcher', () => {
     it('should throw error', () => {
       expect(() => {
         textMatchesEquality('test', 'test', undefined);
-      }).toThrowError();
+      }).toThrow();
     });
   });
 
@@ -64,7 +64,7 @@ describe('Filter Matcher', () => {
     it('should throw error  ', () => {
       expect(() => {
         numberMatchesEquality(3, 3, undefined);
-      }).toThrowError();
+      }).toThrow();
     });
   });
 
@@ -88,7 +88,7 @@ describe('Filter Matcher', () => {
     it('should throw error  ', () => {
       expect(() => {
         dateMatchesEquality('1/1/1900', '1/1/1900', undefined);
-      }).toThrowError();
+      }).toThrow();
     });
   });
   describe('stateMatchesEquality', () => {
@@ -108,7 +108,7 @@ describe('Filter Matcher', () => {
       expect(() => {
         //@ts-ignore
         stateMatchesEquality(false, 'test', undefined);
-      }).toThrowError();
+      }).toThrow();
     });
   });
   // describe('textArrayMatchesEquality', () => {

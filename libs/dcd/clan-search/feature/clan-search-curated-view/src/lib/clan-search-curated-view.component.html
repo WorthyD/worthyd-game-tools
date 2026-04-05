@@ -1,4 +1,4 @@
-<ng-container *ngIf="vm$|async as vm">
+@if (vm$|async; as vm) {
   <header>
     <h1>{{vm.clans.title}}</h1>
     <p>
@@ -7,23 +7,21 @@
     <button color="accent" mat-raised-button routerLink="/">Let's Go</button>
   </header>
   <div class="found-clans">
-    <ng-container *ngFor="let clan of vm.clans.clans">
+    @for (clan of vm.clans.clans; track clan) {
       <app-clan-detail [clanConfig]="clan" [showAdd]="clanIsActive(clan, vm.activeClans)" class="clan">
       </app-clan-detail>
-    </ng-container>
-
+    }
   </div>
-  <ng-container *ngFor="let clanGroup of vm.clans.subGroups">
+  @for (clanGroup of vm.clans.subGroups; track clanGroup) {
     <div class="clan-groups">
       <h2>{{clanGroup.title}}</h2>
       <div class="found-clans">
-        <ng-container *ngFor="let clan of clanGroup.clans">
+        @for (clan of clanGroup.clans; track clan) {
           <app-clan-detail [clanConfig]="clan" [showAdd]="clanIsActive(clan, vm.activeClans)" class="clan">
           </app-clan-detail>
-        </ng-container>
+        }
       </div>
       <hr>
-    </div>
-  </ng-container>
-
-</ng-container>
+      </div>
+    }
+  }

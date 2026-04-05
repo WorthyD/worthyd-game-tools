@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -15,7 +15,6 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 @Component({
   selector: 'lib-cart-item-config',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatTableModule,
     MatInputModule,
@@ -25,7 +24,7 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
     MatSelectModule,
     MatIconModule,
     MatExpansionModule
-  ],
+],
   templateUrl: './cart-item-config.component.html',
   styleUrl: './cart-item-config.component.scss'
 })
