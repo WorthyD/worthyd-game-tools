@@ -41,49 +41,54 @@ import { MatIconModule } from '@angular/material/icon';
   // This is important - it tells Angular to preserve the projected content
   preserveWhitespaces: true,
   template: `
-    <mat-button-toggle-group [formControl]="currentView" aria-label="Font Style">
-      <mat-button-toggle value="card"><mat-icon>apps</mat-icon></mat-button-toggle>
-      <mat-button-toggle value="table"><mat-icon>view_list</mat-icon></mat-button-toggle>
-    </mat-button-toggle-group>
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Sort</mat-label>
-      <mat-select [formControl]="sortDirectionInput" (selectionChange)="onSortChange($event)">
-        @for (column of filterColumns(); track column) {
-          <mat-option value="{{ column }}-ASC">{{ column }} - ASC</mat-option>
-          <mat-option value="{{ column }}-DESC">{{ column }} - DESC </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
+    <div>
+      <mat-button-toggle-group [formControl]="currentView" aria-label="Font Style">
+        <mat-button-toggle value="card"><mat-icon>apps</mat-icon></mat-button-toggle>
+        <mat-button-toggle value="table"><mat-icon>view_list</mat-icon></mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sort</mat-label>
+        <mat-select [formControl]="sortDirectionInput" (selectionChange)="onSortChange($event)">
+          @for (column of filterColumns(); track column) {
+            <mat-option value="{{ column }}-ASC">{{ column }} - ASC</mat-option>
+            <mat-option value="{{ column }}-DESC">{{ column }} - DESC </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
     @if (currentView.value === 'card') {
-      <div class="flex flex-wrap justify-around gap-4">
-        @for (item of pagedData(); track trackByItem($index, item)) {
-          <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
-        }
+      <div class="card-scroll">
+        <div class="flex flex-wrap justify-around gap-4">
+          @for (item of pagedData(); track trackByItem($index, item)) {
+            <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
+          }
+        </div>
       </div>
     } @else {
-      <table mat-table [dataSource]="pagedData()!" class="mat-elevation-z8">
-        <!-- Generate column definitions dynamically from config -->
-        @for (column of columns(); track column.key) {
-          <ng-container [matColumnDef]="column.key">
-            <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
-            <td mat-cell *matCellDef="let element">
-              @if (column.cellTemplate) {
-                <ng-container *ngTemplateOutlet="column.cellTemplate; context: { $implicit: element }"></ng-container>
-              } @else {
-                {{ column.cell?.(element) }}
-              }
-            </td>
-          </ng-container>
-        }
+      <div class="table-scroll">
+        <table mat-table [dataSource]="pagedData()!" class="mat-elevation-z8">
+          <!-- Generate column definitions dynamically from config -->
+          @for (column of columns(); track column.key) {
+            <ng-container [matColumnDef]="column.key">
+              <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
+              <td mat-cell *matCellDef="let element">
+                @if (column.cellTemplate) {
+                  <ng-container *ngTemplateOutlet="column.cellTemplate; context: { $implicit: element }"></ng-container>
+                } @else {
+                  {{ column.cell?.(element) }}
+                }
+              </td>
+            </ng-container>
+          }
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns()"></tr>
-      </table>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns()"></tr>
+        </table>
+      </div>
     }
 
     <mat-paginator
@@ -94,7 +99,24 @@ import { MatIconModule } from '@angular/material/icon';
     >
     </mat-paginator>
   `,
-  styles: [``],
+  styles: [
+    `
+      :host {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+      }
+      .card-scroll,
+      .table-scroll {
+        flex: 1;
+        overflow-y: auto;
+      }
+      mat-paginator {
+        display: block;
+      }
+    `
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataViewerComponent<T extends { id?: unknown }> {

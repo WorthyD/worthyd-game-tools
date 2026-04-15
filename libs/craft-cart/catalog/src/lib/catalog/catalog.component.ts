@@ -21,7 +21,7 @@ import { AsyncPipe } from '@angular/common';
     ItemCardComponent,
     DataViewerComponent,
     AsyncPipe
-],
+  ],
   template: `
     <lib-data-viewer
       [dataSource]="catalogItems$()"
@@ -42,7 +42,16 @@ import { AsyncPipe } from '@angular/common';
       <img [src]="element.imageUrl" alt="" class="catalog-item-image" />
     </ng-template>
   `,
-  styleUrl: './catalog.component.scss'
+  styles: [
+    `
+      :host {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+      }
+    `
+  ]
 })
 export class CatalogComponent implements OnInit {
   readonly cf = inject(CatalogFacade);
