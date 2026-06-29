@@ -147,7 +147,7 @@ jobs:
     needs:
       - test_and_build
       #- increment_version
-      - deployment_stage
+      #- deployment_stage
       # Steps in job
     steps:
       # Get code from repo
