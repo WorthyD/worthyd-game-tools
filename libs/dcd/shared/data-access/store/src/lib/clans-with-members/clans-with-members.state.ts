@@ -1,7 +1,7 @@
 import { ClanConfig } from '@dcd/shared/models';
 import { AppState } from '../core.state';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { GroupsV2GroupMember } from 'bungie-api-angular/lib/model/groupsV2GroupMember';
+import { GroupsV2GroupMember } from 'bungie-api-angular';
 
 export interface ClanWithMembers {
   clanId: string;

@@ -8,6 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
+      "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/craft-cart",
@@ -63,6 +64,7 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "configurations": {
         "production": {
           "buildTarget": "craft-cart:build:production"

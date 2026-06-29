@@ -1,5 +1,5 @@
 
-import { DestinyComponentsCollectiblesDestinyCollectibleComponent } from 'bungie-api-angular/lib/model/destinyComponentsCollectiblesDestinyCollectibleComponent';
+import { DestinyComponentsCollectiblesDestinyCollectibleComponent } from 'bungie-api-angular';
 
 export function hasItem(value: DestinyComponentsCollectiblesDestinyCollectibleComponent) {
   if (value === undefined || value.state === undefined) {

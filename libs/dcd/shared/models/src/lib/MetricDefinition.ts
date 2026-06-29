@@ -1,3 +1,3 @@
-import { DestinyDefinitionsMetricsDestinyMetricDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsMetricsDestinyMetricDefinition';
+import { DestinyDefinitionsMetricsDestinyMetricDefinition } from 'bungie-api-angular';
 
 export interface MetricDefinition extends DestinyDefinitionsMetricsDestinyMetricDefinition {}

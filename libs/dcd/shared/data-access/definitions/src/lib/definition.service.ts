@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { SeasonService } from './season.service';
-import { DestinyDefinitionsMetricsDestinyMetricDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsMetricsDestinyMetricDefinition';
-import { DestinyDefinitionsCollectiblesDestinyCollectibleDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsCollectiblesDestinyCollectibleDefinition';
-import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsPresentationDestinyPresentationNodeDefinition';
-import { DestinyDefinitionsRecordsDestinyRecordDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsRecordsDestinyRecordDefinition';
-import { DestinyDefinitionsMilestonesDestinyMilestoneDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsMilestonesDestinyMilestoneDefinition';
-import { DestinyDefinitionsDestinyActivityDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsDestinyActivityDefinition';
-import { DestinyDefinitionsDestinyActivityModeDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsDestinyActivityModeDefinition';
+import { DestinyDefinitionsMetricsDestinyMetricDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsCollectiblesDestinyCollectibleDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsRecordsDestinyRecordDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsMilestonesDestinyMilestoneDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsDestinyActivityDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsDestinyActivityModeDefinition } from 'bungie-api-angular';
 
 @Injectable({
   providedIn: 'root'

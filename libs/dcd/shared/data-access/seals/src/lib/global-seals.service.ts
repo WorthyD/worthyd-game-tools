@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 //import { AppConfig } from '@core/config/app-config';
 import { AppConfigService } from '@dcd/shared/utils/app-config';
 import { DefinitionService } from '@dcd/shared/data-access/definitions';
-import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsPresentationDestinyPresentationNodeDefinition';
+import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 'bungie-api-angular';
 
 @Injectable()
 export class GlobalSealsService {

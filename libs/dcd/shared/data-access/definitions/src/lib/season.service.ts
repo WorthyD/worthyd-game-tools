@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 //   DestinyDefinitionsSeasonsDestinySeasonDefinition,
 //   DestinyDefinitionsSeasonsDestinySeasonPassDefinition
 // } from 'bungie-api-angular';
-import { DestinyDefinitionsSeasonsDestinySeasonDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsSeasonsDestinySeasonDefinition';
-import { DestinyDefinitionsSeasonsDestinySeasonPassDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsSeasonsDestinySeasonPassDefinition';
+import { DestinyDefinitionsSeasonsDestinySeasonDefinition } from 'bungie-api-angular';
+import { DestinyDefinitionsSeasonsDestinySeasonPassDefinition } from 'bungie-api-angular';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { GroupsV2GroupV2 } from 'bungie-api-angular/lib/model/groupsV2GroupV2';
+import { GroupsV2GroupV2 } from 'bungie-api-angular';
 
 // Extends GroupsV2GroupV2 from bungie api
 export interface ClanDetails extends Omit<GroupsV2GroupV2, 'groupId' | 'conversationId'> {

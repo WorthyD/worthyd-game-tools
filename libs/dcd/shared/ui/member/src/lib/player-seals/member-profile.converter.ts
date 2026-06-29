@@ -1,6 +1,6 @@
 import { MemberProfile } from '@dcd/shared/models';
 import { PlayerSeal } from './player-seal';
-import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 'bungie-api-angular/lib/model/destinyDefinitionsPresentationDestinyPresentationNodeDefinition';
+import { DestinyDefinitionsPresentationDestinyPresentationNodeDefinition } from 'bungie-api-angular';
 import {  DefinitionService } from '@dcd/shared/data-access/definitions';
 
 export function convertSealAndProfile(
