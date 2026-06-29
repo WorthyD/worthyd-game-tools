@@ -17,7 +17,7 @@
     "____test:components": "ng test --project=components",
     "____test:components:coverage": "ng test --project=components --browsers=ChromeHeadless --code-coverage=true --watch=false",
     "____storybook": "ng run clan-dashboard:storybook",
-    "config": "ts-node set-env.ts",
+    "config": "tsx set-env.ts",
     "____lint": "ng lint",
     "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js",
     "stardew": "tsx scrapers/stardew.ts",
