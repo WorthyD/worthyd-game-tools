@@ -64,10 +64,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
       # Install NodeJS
-      - name: Use Node.js 18.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       # Run npm install and build on our code
       - run: npm install
       - run: npm run config
@@ -81,25 +81,25 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.DEV_NETLIFY_SITE_ID }}
 
-  increment_version:
-      runs-on: ubuntu-latest
-      needs:
-        - test_and_build
-      steps:
-      - uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.TOKEN_ACTION }}
-          ref: ${{ github.ref_name }}
-      - name: Bump version and push tag
-        uses: TriPSs/conventional-changelog-action@v3.18.0
-        with:
-          github-token: ${{ secrets.TOKEN_ACTION }}
-          git-message: 'chore(release): {version}'
-          git-branch: 'main'
-          preset: 'angular'
-          skip-on-empty: 'false'
-          tag-prefix: ''
-          output-file: 'CHANGELOG.md'
+  # increment_version:
+  #     runs-on: ubuntu-latest
+  #     needs:
+  #       - test_and_build
+  #     steps:
+  #     - uses: actions/checkout@v1
+  #       with:
+  #         token: ${{ secrets.TOKEN_ACTION }}
+  #         ref: ${{ github.ref_name }}
+  #     - name: Bump version and push tag
+  #       uses: TriPSs/conventional-changelog-action@v3.18.0
+  #       with:
+  #         github-token: ${{ secrets.TOKEN_ACTION }}
+  #         git-message: 'chore(release): {version}'
+  #         git-branch: 'main'
+  #         preset: 'angular'
+  #         skip-on-empty: 'false'
+  #         tag-prefix: ''
+  #         output-file: 'CHANGELOG.md'
 
   deployment_stage:
     name: Deployment (Stage)
@@ -111,17 +111,17 @@ jobs:
       API_KEY: ${{ secrets.API_KEY }}
     needs:
       - test_and_build
-      - increment_version
+      #- increment_version
       # Steps in job
     steps:
       # Get code from repo
       - name: Checkout code
         uses: actions/checkout@v1
       # Install NodeJS
-      - name: Use Node.js 18.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       # Run npm install and build on our code
       - run: npm install
       - run: npm run config
@@ -146,7 +146,7 @@ jobs:
       API_KEY: ${{ secrets.API_KEY }}
     needs:
       - test_and_build
-      - increment_version
+      #- increment_version
       - deployment_stage
       # Steps in job
     steps:
@@ -154,10 +154,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
       # Install NodeJS
-      - name: Use Node.js 18.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       # Run npm install and build on our code
       - run: npm install
       - run: npm run config
