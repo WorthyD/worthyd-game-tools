@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "nx-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "nx-mcp@latest"]
+    },
+    "angular-cli": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@angular/cli", "mcp"]
+    }
+  }
+}

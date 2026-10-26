@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npx nx:*)",
+      "Bash(nx:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(npm ls:*)",
+      "Bash(node tools/ai/sync-ai-rules.mjs:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./apps/destiny-clan-dashboard/src/environments/secrets.ts)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "nx-mcp",
+    "angular-cli"
+  ]
+}
