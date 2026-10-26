@@ -18,6 +18,8 @@
     "____test:components:coverage": "ng test --project=components --browsers=ChromeHeadless --code-coverage=true --watch=false",
     "____storybook": "ng run clan-dashboard:storybook",
     "config": "tsx set-env.ts",
+    "ai:sync": "node tools/ai/sync-ai-rules.mjs",
+    "ai:check": "node tools/ai/sync-ai-rules.mjs --check",
     "____lint": "ng lint",
     "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js",
     "stardew": "tsx scrapers/stardew.ts",
