@@ -5,17 +5,6 @@
   "prefix": "dcd",
   "projectType": "library",
   "tags": ["type:ui"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/dcd/player/ui/jest.config.ts",
-        "tsConfig": "libs/dcd/player/ui/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project player-ui --web",
+  "targets": {}
 }

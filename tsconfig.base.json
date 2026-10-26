@@ -134,7 +134,12 @@
       "@worthyd/shared/utils/local-storage": ["libs/shared/utils/local-storage/src/index.ts"],
       "dcd-plugin": ["libs/dcd-plugin/src/index.ts"],
       "storybook-host": ["libs/storybook-host/src/index.ts"]
-    }
+    },
+    "strict": false,
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["node_modules", "tmp"]
 }

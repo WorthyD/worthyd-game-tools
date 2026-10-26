@@ -11,6 +11,6 @@
     </p>
   </mat-card-content>
   <mat-card-actions align="end">
-    <a mat-button [routerLink]="activityDefinition?.modeType">View</a>
+    <a mat-button [routerLink]="$safeNavigationMigration(activityDefinition?.modeType)">View</a>
   </mat-card-actions>
 </mat-card>

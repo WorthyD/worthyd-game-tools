@@ -1,5 +1,5 @@
 // TODO: Rename this component to sync
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -21,6 +21,7 @@ interface Notification {
     imports: [CommonModule, MatIconModule, MatCardModule, OverlayModule, MatButtonModule, MatProgressBarModule],
     standalone:true,
     templateUrl: './notifications.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnChanges {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MemberProfile } from '@dcd/shared/models';
 import { MatListModule } from '@angular/material/list';
@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [MatCardModule, MatListModule],
   standalone: true,
   templateUrl: './player-snapshot.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './player-snapshot.component.scss'
 })
 export class PlayerSnapshotComponent {

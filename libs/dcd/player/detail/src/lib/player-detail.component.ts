@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 import { PlayerService } from '@dcd/player/data-access';
@@ -11,6 +11,7 @@ interface MemberInfo {
     selector: 'app-player-detail',
     templateUrl: './player-detail.component.html',
     styleUrls: ['./player-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PlayerDetailComponent {

@@ -29,23 +29,6 @@
       "cache": true,
       "inputs": ["default", "^production"]
     },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": ["default", "{workspaceRoot}/eslint.config.cjs"]
-    },
     "@nx/js:tsc": {
       "cache": true,
       "dependsOn": ["^build"],
@@ -71,7 +54,23 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
-    }
+    },
+    "test": [
+      {
+        "filter": {
+          "plugin": "@nx/jest/plugin"
+        },
+        "configurations": {
+          "ci": {
+            "ci": true,
+            "coverage": true
+          }
+        },
+        "options": {
+          "passWithNoTests": true
+        }
+      }
+    ]
   },
   "plugins": [
     {
@@ -97,6 +96,120 @@
         "testStorybookTargetName": "test-storybook",
         "staticStorybookTargetName": "static-storybook"
       }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "include": [
+        "apps/craft-cart/**/*",
+        "apps/destiny-clan-dashboard/**/*",
+        "apps/destiny-clan-dashboard-demo/**/*",
+        "apps/stardew-craft-cart/**/*",
+        "libs/craft-cart/cart-item-config/**/*",
+        "libs/craft-cart/catalog/**/*",
+        "libs/craft-cart/shared/cart-widget/**/*",
+        "libs/craft-cart/shared/models/**/*",
+        "libs/craft-cart/shared/shell/**/*",
+        "libs/craft-cart/shared/state/**/*",
+        "libs/craft-cart/shared/ui/cart-item-card/**/*",
+        "libs/craft-cart/shared/ui/cart-quantity/**/*",
+        "libs/craft-cart/shared/ui/item-card/**/*",
+        "libs/craft-cart/shopping-list/**/*",
+        "libs/dcd/activities/breakdown-list/**/*",
+        "libs/dcd/activities/curated-dashboard/**/*",
+        "libs/dcd/activities/dashboard/**/*",
+        "libs/dcd/activities/data-access/**/*",
+        "libs/dcd/activities/detail/**/*",
+        "libs/dcd/activities/shell/**/*",
+        "libs/dcd/activities/table/**/*",
+        "libs/dcd/activities/ui/**/*",
+        "libs/dcd/activity-modes/dashboard/**/*",
+        "libs/dcd/activity-modes/data-access/**/*",
+        "libs/dcd/activity-modes/detail/**/*",
+        "libs/dcd/activity-modes/shell/**/*",
+        "libs/dcd/activity-modes/table/**/*",
+        "libs/dcd/activity-modes/ui/**/*",
+        "libs/dcd/clan-search/data-access/**/*",
+        "libs/dcd/clan-search/feature/clan-search-curated-view/**/*",
+        "libs/dcd/clan-search/feature/clan-search-view/**/*",
+        "libs/dcd/clan-search/feature/shell/**/*",
+        "libs/dcd/clan-search/ui/clan-search-autocomplete/**/*",
+        "libs/dcd/clan-search/ui/search-error-dialog/**/*",
+        "libs/dcd/clan-search/util/clan-search-models/**/*",
+        "libs/dcd/clans-roster/clans-roster-list/**/*",
+        "libs/dcd/clans-roster/data-access/**/*",
+        "libs/dcd/clans-roster/shell/**/*",
+        "libs/dcd/clans-roster/ui/**/*",
+        "libs/dcd/config/config/**/*",
+        "libs/dcd/config/shell/**/*",
+        "libs/dcd/dashboard/cards/**/*",
+        "libs/dcd/dashboard/dashboard/**/*",
+        "libs/dcd/dashboard/data-access/**/*",
+        "libs/dcd/dashboard/details/**/*",
+        "libs/dcd/dashboard/shell/**/*",
+        "libs/dcd/dashboard/ui/**/*",
+        "libs/dcd/layout/**/*",
+        "libs/dcd/player/data-access/**/*",
+        "libs/dcd/player/detail/**/*",
+        "libs/dcd/player/overview/**/*",
+        "libs/dcd/player/shell/**/*",
+        "libs/dcd/player/ui/**/*",
+        "libs/dcd/player-sidebar/data-access/**/*",
+        "libs/dcd/player-sidebar/feature/**/*",
+        "libs/dcd/player-sidebar/ui/**/*",
+        "libs/dcd/roster-recent-activity/dashboard/**/*",
+        "libs/dcd/roster-recent-activity/data-access/**/*",
+        "libs/dcd/roster-recent-activity/shell/**/*",
+        "libs/dcd/sandbox/**/*",
+        "libs/dcd/seals/data-access/**/*",
+        "libs/dcd/seals/feature/seals-dashboard/**/*",
+        "libs/dcd/seals/feature/seals-details/**/*",
+        "libs/dcd/seals/feature/seals-shell/**/*",
+        "libs/dcd/seals/ui/seal-list/**/*",
+        "libs/dcd/seals/ui/seal-member-progress-table/**/*",
+        "libs/dcd/shared/clan-db/**/*",
+        "libs/dcd/shared/clan-details/data-access/**/*",
+        "libs/dcd/shared/clan-details/feature/**/*",
+        "libs/dcd/shared/clan-details/ui/**/*",
+        "libs/dcd/shared/data/**/*",
+        "libs/dcd/shared/data-access/base-services/**/*",
+        "libs/dcd/shared/data-access/bungie-info/**/*",
+        "libs/dcd/shared/data-access/clan-collections/**/*",
+        "libs/dcd/shared/data-access/definitions/**/*",
+        "libs/dcd/shared/data-access/manifest/**/*",
+        "libs/dcd/shared/data-access/member-activity/**/*",
+        "libs/dcd/shared/data-access/profile/**/*",
+        "libs/dcd/shared/data-access/seals/**/*",
+        "libs/dcd/shared/data-access/store/**/*",
+        "libs/dcd/shared/tokens/**/*",
+        "libs/dcd/shared/ui/app-offline-dialog/**/*",
+        "libs/dcd/shared/ui/bar-chart/**/*",
+        "libs/dcd/shared/ui/collapsible-list/**/*",
+        "libs/dcd/shared/ui/display-options/**/*",
+        "libs/dcd/shared/ui/icons/**/*",
+        "libs/dcd/shared/ui/member/**/*",
+        "libs/dcd/shared/ui/profile-link/**/*",
+        "libs/dcd/shared/ui/rendered-view/**/*",
+        "libs/dcd/shared/ui/skeleton-chart-loader/**/*",
+        "libs/dcd/shared/ui/table-view/**/*",
+        "libs/dcd/shared/utils/api-key-interceptor/**/*",
+        "libs/dcd/shared/utils/app-config/**/*",
+        "libs/dcd/shared/utils/directives/**/*",
+        "libs/dcd/shared/utils/generic/**/*",
+        "libs/dcd/shared/utils/legacy-db/**/*",
+        "libs/dcd/shared/utils/local-storage/**/*",
+        "libs/dcd/shared/utils/pipes/**/*",
+        "libs/dcd/shared/utils/serializers/**/*",
+        "libs/dcd/shared/utils/stat-aggregators/**/*",
+        "libs/dcd/shared/utils/storage/**/*",
+        "libs/dcd/shared/utils/url-helpers/**/*",
+        "libs/dcd-plugin/**/*",
+        "libs/shared/ui/data-viewer/**/*",
+        "libs/shared/utils/generic/**/*",
+        "libs/shared/utils/local-storage/**/*"
+      ]
     }
   ],
   "generators": {
@@ -129,12 +242,6 @@
     },
     "@schematics/angular:service": {
       "type": "service"
-    },
-    "@nx/angular:scam": {
-      "type": "component"
-    },
-    "@nx/angular:scam-directive": {
-      "type": "directive"
     },
     "@nx/angular:guard": {
       "typeSeparator": "."
@@ -175,5 +282,8 @@
       }
     }
   },
-  "analytics": false
+  "analytics": false,
+  "affected": {
+    "legacy": true
+  }
 }

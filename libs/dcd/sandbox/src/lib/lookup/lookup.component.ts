@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 // import { MilestoneDefinitionService } from '@core/definition-services/milestone-definition.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
     imports: [ReactiveFormsModule, MatTabsModule, RouterModule],
     templateUrl: './lookup.component.html',
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./lookup.component.scss']
 })
 export class LookupComponent {
