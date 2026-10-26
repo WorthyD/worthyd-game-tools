@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadManifest, selectManifestError, selectManifestState } from '@dcd/shared/data-access/store';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,6 +22,7 @@ import { LayoutModule } from '@dcd/layout';
   ],
   selector: 'destiny-clan-dashboard-root',
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

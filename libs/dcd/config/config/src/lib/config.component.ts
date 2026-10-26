@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { selectAllClans, removeClan } from '@dcd/shared/data-access/store';
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
     selector: 'app-config',
     templateUrl: './config.component.html',
     styleUrls: ['./config.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ClanDetailComponent, MatButtonModule, CommonModule]
 })
 export class ConfigComponent {

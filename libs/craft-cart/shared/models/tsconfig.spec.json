@@ -5,7 +5,8 @@
     "module": "commonjs",
     "target": "es2016",
     "types": ["jest", "node"],
-    "isolatedModules": true
+    "isolatedModules": true,
+    "rootDir": "."
   },
   "files": ["src/test-setup.ts"],
   "include": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.d.ts"]

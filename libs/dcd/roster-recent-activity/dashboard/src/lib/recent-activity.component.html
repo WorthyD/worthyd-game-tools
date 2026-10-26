@@ -1,6 +1,6 @@
 <div class="clan-roster">
   <lib-table-view class="clan-roster-table" [isLoading]="isLoading"
-    [dataSource]="(rosterRecentActivityInfo$ | async)?.dataSource" [header]="'Recent Activity'"
+    [dataSource]="$safeNavigationMigration((rosterRecentActivityInfo$ | async)?.dataSource)" [header]="'Recent Activity'"
     [viewer]="activityViewer" [filterer]="activityFilterer"
     [sorter]="activitySorter" [exporter]="activityExporter">
   </lib-table-view>

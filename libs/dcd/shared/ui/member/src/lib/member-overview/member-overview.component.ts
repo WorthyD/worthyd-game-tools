@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { MemberProfile } from '@dcd/shared/models';
 import { MatCardModule } from '@angular/material/card';
@@ -10,6 +10,7 @@ import { BungieDateTimePipe } from '@dcd/shared/utils/pipes';
   imports: [MatCardModule, MemberTypeIconComponent, BungieDateTimePipe],
   templateUrl: './member-overview.component.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './member-overview.component.scss'
 })
 export class MemberSharedOverviewComponent {

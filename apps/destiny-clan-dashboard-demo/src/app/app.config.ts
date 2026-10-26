@@ -24,11 +24,11 @@ import { SealsModule } from '@dcd/shared/data-access/seals';
 import { coreEffects, coreReducers, metaReducers } from '@dcd/shared/data-access/store';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { getMockProviders } from './mock-providers';
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
 
     provideBrowserGlobalErrorListeners(),

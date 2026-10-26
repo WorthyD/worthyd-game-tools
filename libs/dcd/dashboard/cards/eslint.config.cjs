@@ -12,22 +12,30 @@ module.exports = [
         {
           type: 'attribute',
           prefix: 'dcd',
-          style: 'camelCase',
-        },
+          style: 'camelCase'
+        }
       ],
       '@angular-eslint/component-selector': [
         'error',
         {
           type: 'element',
           prefix: 'dcd',
-          style: 'kebab-case',
-        },
-      ],
-    },
+          style: 'kebab-case'
+        }
+      ]
+    }
   },
   {
     files: ['**/*.html'],
     // Override or add rules here
-    rules: {},
+    rules: {}
   },
+  {
+    files: ['**/*.ts'],
+    rules: {
+      // Angular 22 migration set ChangeDetectionStrategy.Eager on components here to keep their
+      // pre-v22 behaviour; angular-eslint 22 recommended now rejects that opt-out.
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off'
+    }
+  }
 ];

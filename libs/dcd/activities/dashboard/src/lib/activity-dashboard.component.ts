@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
     selector: 'app-activity-dashboard',
     templateUrl: './activity-dashboard.component.html',
     styleUrls: ['./activity-dashboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ActivityDashboardComponent {

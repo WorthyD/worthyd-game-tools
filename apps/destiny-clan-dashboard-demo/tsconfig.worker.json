@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../..//out-tsc/worker",
     "lib": ["es2020", "webworker"],
-    "types": []
+    "types": [],
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src/**/*.worker.ts"]
 }

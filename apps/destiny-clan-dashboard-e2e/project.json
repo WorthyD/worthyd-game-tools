@@ -7,24 +7,9 @@
   "implicitDependencies": ["destiny-clan-dashboard"],
   "targets": {
     "e2e": {
-      "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/destiny-clan-dashboard-e2e/cypress.config.ts",
-        "testingType": "e2e",
-        "devServerTarget": "destiny-clan-dashboard:serve:development"
-      },
-      "configurations": {
-        "production": {
-          "devServerTarget": "destiny-clan-dashboard:serve:production"
-        },
-        "ci": {
-          "devServerTarget": "destiny-clan-dashboard:serve-static"
-        }
+        "config-file": "./cypress.config.ts"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
     }
   }
 }

@@ -4,8 +4,8 @@
       <div class="activity-breakdown-list__item">
         <dcd-activity-breakdown-item
           [title]="activityInfo.definition.displayProperties?.name || ''"
-          [iconUrl]="activityInfo.definition.displayProperties?.icon"
-          [description]="activityInfo.definition.displayProperties?.description"
+          [iconUrl]="$safeNavigationMigration(activityInfo.definition.displayProperties?.icon)"
+          [description]="$safeNavigationMigration(activityInfo.definition.displayProperties?.description)"
           [label]="activityInfo.total.toString()"
         ></dcd-activity-breakdown-item>
       </div>

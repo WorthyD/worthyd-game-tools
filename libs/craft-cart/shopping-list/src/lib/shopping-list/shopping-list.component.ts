@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CartFacade, CartEntity, CatalogFacade } from '@crafting-cart/state';
 import { Item } from '@crafting-cart/shared/models';
 
@@ -16,6 +16,7 @@ interface ShoppingListItem {
   selector: 'lib-shopping-list',
   imports: [PushPipe, ItemCardComponent, MatCardModule],
   templateUrl: './shopping-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shopping-list.component.scss'
 })
 export class ShoppingListComponent {

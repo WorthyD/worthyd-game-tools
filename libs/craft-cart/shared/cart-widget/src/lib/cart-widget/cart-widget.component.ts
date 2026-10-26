@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { CartFacade, CatalogFacade } from '@crafting-cart/state';
 import { RouterLink } from '@angular/router';
@@ -35,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
       }
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [``]
 })
 export class CartWidgetComponent {

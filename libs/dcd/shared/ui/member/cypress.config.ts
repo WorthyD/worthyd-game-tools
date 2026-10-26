@@ -16,12 +16,15 @@ export default defineConfig({
     //       }
     //     }
     //   },
-    ...nxComponentTestingPreset(__filename),
+    ...nxComponentTestingPreset(__filename, { buildTarget: 'destiny-clan-dashboard:build' }),
     // Please ensure you use `cy.origin()` when navigating between domains and remove this option.
     // See https://docs.cypress.io/app/references/migration-guide#Changes-to-cyorigin
     injectDocumentDomain: true,
     // Please ensure you use `cy.origin()` when navigating between domains and remove this option.
     // See https://docs.cypress.io/app/references/migration-guide#Changes-to-cyorigin
-    injectDocumentDomain: true
+    injectDocumentDomain: true,
+    // Cypress 14+ defaults justInTimeCompile to true (webpack only), which can
+    // intermittently run 0 tests in CI. Remove this line to opt back in.
+    justInTimeCompile: false
   }
 });

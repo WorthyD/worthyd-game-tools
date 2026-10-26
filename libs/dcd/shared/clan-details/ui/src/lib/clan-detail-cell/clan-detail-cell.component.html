@@ -42,7 +42,7 @@
         <button mat-button (click)="addClan.emit(clanDetail)">Add</button>
       }
       @if (!showAdd) {
-        <button mat-button (click)="removeClan.emit(clanDetail?.groupId?.toString())">Remove</button>
+        <button mat-button (click)="removeClan.emit($safeNavigationMigration(clanDetail?.groupId?.toString()))">Remove</button>
       }
     </mat-card-actions>
   </mat-card>

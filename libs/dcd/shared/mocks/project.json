@@ -5,9 +5,6 @@
   "prefix": "dcd",
   "projectType": "library",
   "tags": ["type:model"],
-  "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project shared-mocks --web",
+  "targets": {}
 }

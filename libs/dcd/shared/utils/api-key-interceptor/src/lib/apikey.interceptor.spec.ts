@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 
 import { ApiKeyInterceptor } from './apikey.interceptor';
 
@@ -12,7 +12,7 @@ describe('ApiKeyInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(withInterceptors([ApiKeyInterceptor])),
+        provideHttpClient(withXhr(), withInterceptors([ApiKeyInterceptor])),
         provideHttpClientTesting(),
         {
           provide: AppConfigService,

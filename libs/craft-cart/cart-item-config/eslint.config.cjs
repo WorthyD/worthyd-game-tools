@@ -30,5 +30,13 @@ module.exports = [
     files: ['**/*.html'],
     // Override or add rules here
     rules: {}
+  },
+  {
+    files: ['**/*.ts'],
+    rules: {
+      // Angular 22 migration set ChangeDetectionStrategy.Eager on components here to keep their
+      // pre-v22 behaviour; angular-eslint 22 recommended now rejects that opt-out.
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off'
+    }
   }
 ];

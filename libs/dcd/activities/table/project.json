@@ -5,17 +5,6 @@
   "prefix": "dcd",
   "projectType": "library",
   "tags": ["type:feature"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/dcd/activities/table/jest.config.ts",
-        "tsConfig": "libs/dcd/activities/table/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project activities-table --web",
+  "targets": {}
 }

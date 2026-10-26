@@ -1,4 +1,4 @@
-import { Component, inject, TemplateRef, ViewChild, OnInit } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { CartFacade, CatalogFacade } from '@crafting-cart/state';
@@ -42,6 +42,7 @@ import { AsyncPipe } from '@angular/common';
       <img [src]="element.imageUrl" alt="" class="catalog-item-image" />
     </ng-template>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
       :host {

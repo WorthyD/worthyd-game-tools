@@ -5,17 +5,6 @@
   "prefix": "dcd",
   "projectType": "library",
   "tags": ["type:util"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/dcd/shared/utils/directives/jest.config.ts",
-        "tsConfig": "libs/dcd/shared/utils/directives/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project shared-utils-directives --web",
+  "targets": {}
 }

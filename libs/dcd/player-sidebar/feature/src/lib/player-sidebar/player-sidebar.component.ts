@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   MemberTypeIconComponent,
@@ -34,6 +34,7 @@ import { SeasonService } from '@dcd/shared/data-access/definitions';
     SeasonPassComponent
   ],
   templateUrl: './player-sidebar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './player-sidebar.component.scss'
 })
 export class PlayerSidebarComponent {

@@ -1,4 +1,4 @@
-import { Component, input, effect, output } from '@angular/core';
+import { Component, input, effect, output, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +24,7 @@ import { pairwise } from 'rxjs';
     }
   `,
   host: { class: 'flex' },
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './cart-quantity.component.scss'
 })
 export class CartQuantityComponent {
