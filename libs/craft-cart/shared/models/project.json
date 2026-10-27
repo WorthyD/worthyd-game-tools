@@ -7,14 +7,15 @@
   "tags": ["type:model"],
   "targets": {
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/craft-cart/shared/models/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js",
+        {
+          "externalDependencies": ["jest", "jest-preset-angular"]
+        }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}", "{workspaceRoot}/libs/coverage/libs/craft-cart/models"]
     }
   }
 }

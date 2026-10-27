@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
 import { ClanUpdaterService } from '../services/clan-updater.service';
@@ -11,6 +11,7 @@ import { MatSidenav } from '@angular/material/sidenav';
     selector: 'app-wrapper',
     templateUrl: './wrapper.component.html',
     styleUrls: ['./wrapper.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WrapperComponent implements OnInit {

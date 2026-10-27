@@ -5,18 +5,6 @@
   "prefix": "destiny-clan-dashboard",
   "projectType": "library",
   "tags": ["type:feature"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/dcd/clan-search/feature/shell/jest.config.ts",
-        "tsConfig": "libs/dcd/clan-search/feature/shell/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    }
-  }
+  "// targets": "to see all targets run: nx show project dcd-clan-search-feature-shell --web",
+  "targets": {}
 }

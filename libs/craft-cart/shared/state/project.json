@@ -5,17 +5,6 @@
   "prefix": "lib",
   "projectType": "library",
   "tags": ["type:data-access"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/craft-cart/shared/state/jest.config.ts",
-        "tsConfig": "libs/craft-cart/shared/state/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project state --web",
+  "targets": {}
 }

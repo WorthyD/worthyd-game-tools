@@ -3,7 +3,7 @@ import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/ro
 import { appRoutes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import { coreEffects, coreReducers, metaReducers } from '@dcd/shared/data-access/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -37,7 +37,7 @@ import { providePlayerSidebar } from '@dcd/player-sidebar/data-access';
 export const appProviders: ApplicationConfig = {
   providers: [
     // Routes
-    provideHttpClient(withInterceptors([ApiKeyInterceptor])),
+    provideHttpClient(withXhr(), withInterceptors([ApiKeyInterceptor])),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     // Custom providers
     { provide: BungieInfoWorkerServiceFake, useClass: BungieInfoWorkerService },

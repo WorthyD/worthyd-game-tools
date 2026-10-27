@@ -10,6 +10,7 @@
       "executor": "@angular-devkit/build-angular:application",
       "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/craft-cart",
         "index": "apps/craft-cart/src/index.html",
@@ -59,12 +60,16 @@
           "extractLicenses": false,
           "sourceMap": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
+      "defaultConfiguration": "development",
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
       "configurations": {
         "production": {
           "buildTarget": "craft-cart:build:production"
@@ -73,25 +78,12 @@
           "buildTarget": "craft-cart:build:development",
           "port": 4322
         }
-      },
-      "defaultConfiguration": "development",
-      "continuous": true
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
         "buildTarget": "craft-cart:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/craft-cart/jest.config.ts",
-        "tsConfig": "apps/craft-cart/tsconfig.spec.json"
       }
     },
     "serve-static": {
@@ -101,7 +93,11 @@
         "port": 4200,
         "staticFilePath": "dist/apps/craft-cart/browser",
         "spa": true
-      }
+      },
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"]
     }
   }
 }

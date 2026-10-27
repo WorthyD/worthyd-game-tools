@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { Component, Inject, OnInit, Signal, WritableSignal, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -26,6 +26,7 @@ import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
     MatExpansionModule
 ],
   templateUrl: './cart-item-config.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './cart-item-config.component.scss'
 })
 export class CartItemConfigComponent implements OnInit {

@@ -5,17 +5,6 @@
   "prefix": "lib",
   "projectType": "library",
   "tags": ["type:data-acces"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/dcd/seals/data-access/jest.config.ts",
-        "tsConfig": "libs/dcd/seals/data-access/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project seals-data-access --web",
+  "targets": {}
 }

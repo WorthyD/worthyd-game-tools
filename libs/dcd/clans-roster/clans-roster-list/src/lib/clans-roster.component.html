@@ -2,7 +2,7 @@
   <lib-table-view
     class="clan-roster-table"
     [isLoading]="isLoading()"
-    [dataSource]="(rosterInfo$ | async)?.dataSource!"
+    [dataSource]="$safeNavigationMigration((rosterInfo$ | async)?.dataSource)!"
     [header]="'Clan Roster'"
     [viewer]="rosterViewer"
     [filterer]="rosterFilter"

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AppConfigService } from '@dcd/shared/utils/app-config';
@@ -6,6 +6,7 @@ import { AppConfigService } from '@dcd/shared/utils/app-config';
     selector: 'app-app-offline-dialog',
     imports: [MatDialogModule, MatButtonModule],
     templateUrl: './app-offline-dialog.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./app-offline-dialog.component.scss']
 })
 export class AppOfflineDialogComponent {

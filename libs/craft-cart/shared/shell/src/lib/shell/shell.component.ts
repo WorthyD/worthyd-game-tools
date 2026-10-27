@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { CartWidgetComponent } from '@crafting-cart/shared/cart-widget';
@@ -43,6 +43,7 @@ import { PushPipe } from '@ngrx/component';
       </mat-drawer-container>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: `
     .main-container {
       display: flex;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityModeService } from '@dcd/activity-modes/data-access';
 
@@ -6,6 +6,7 @@ import { ActivityModeService } from '@dcd/activity-modes/data-access';
     selector: 'app-activity-mode-dashboard',
     templateUrl: './activity-mode-dashboard.component.html',
     styleUrls: ['./activity-mode-dashboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ActivityModeDashboardComponent {
