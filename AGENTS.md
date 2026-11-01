@@ -75,7 +75,7 @@ When you edit files an ADR covers, its full decision is loaded automatically. Ac
 | Angular components, DI, signals, routing | [docs/ai/angular.md](docs/ai/angular.md) | `*.ts`, `*.html` |
 | Angular Material / CDK, theming | [docs/ai/angular-material.md](docs/ai/angular-material.md) | `*.html`, `*.scss` |
 | Tailwind CSS | [docs/ai/tailwind.md](docs/ai/tailwind.md) | `*.html`, `*.css`, `*.scss`, tailwind/postcss config |
-| NgRx Store, facades, SignalStore | [docs/ai/ngrx.md](docs/ai/ngrx.md) | state files (`*.actions.ts`, `*.facade.ts`, `*-store.ts`, …) |
+| NgRx Store, SignalStore | [docs/ai/ngrx.md](docs/ai/ngrx.md) | state files (`*.actions.ts`, `*.facade.ts`, `*-store.ts`, …) |
 | Jest unit tests | [docs/ai/jest.md](docs/ai/jest.md) | `*.spec.ts`, jest config |
 | Cypress E2E / component tests | [docs/ai/cypress.md](docs/ai/cypress.md) | `*.cy.ts`, `cypress/`, `*-e2e/` |
 

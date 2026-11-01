@@ -1,13 +1,11 @@
 <div class="flex flex-wrap justify-around gap-4">
-  @if (shoppingListItems$ | ngrxPush; as shoppingListItems) {
-    @for (catalogItem of shoppingListItems; track catalogItem.item.id) {
-      <div>
-        <lib-item-card [catalogItem]="catalogItem.item">
-          <ng-container ngProjectAs="lib-item-card-footer">
-            <div class="font-bold">{{ catalogItem.quantity }}</div>
-          </ng-container>
-        </lib-item-card>
-      </div>
-    }
+  @for (catalogItem of shoppingListItems(); track catalogItem.item.id) {
+    <div>
+      <lib-item-card [catalogItem]="catalogItem.item">
+        <ng-container ngProjectAs="lib-item-card-footer">
+          <div class="font-bold">{{ catalogItem.quantity }}</div>
+        </ng-container>
+      </lib-item-card>
+    </div>
   }
 </div>

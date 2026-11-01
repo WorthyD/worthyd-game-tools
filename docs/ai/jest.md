@@ -50,7 +50,7 @@ describe('ItemCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ItemCardComponent],                       // standalone: import, don't declare
-      providers: [{ provide: CartFacade, useValue: { addItemToCart: jest.fn() } }]
+      providers: [{ provide: CartStore, useValue: { addItemToCart: jest.fn() } }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ItemCardComponent);
@@ -93,7 +93,7 @@ afterEach(() => http.verify());
 ## Mocks
 
 - `jest.fn()`, `jest.spyOn(obj, 'm').mockReturnValue(...)`, `mockResolvedValue` for promises.
-- Type doubles: `const facade: jest.Mocked<Pick<CartFacade, 'addItemToCart'>> = { addItemToCart: jest.fn() };`
+- Type doubles: `const cart: jest.Mocked<Pick<CartStore, 'addItemToCart'>> = { addItemToCart: jest.fn() };`
   — no `as any`.
 - Mock at the DI level; avoid `jest.mock()` on Angular or NgRx modules.
 - `jest.useFakeTimers()` for timers/dates; no real network.

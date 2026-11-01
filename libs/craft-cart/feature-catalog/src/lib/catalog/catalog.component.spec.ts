@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 import { CatalogComponent } from './catalog.component';
 
 describe('CatalogComponent', () => {
@@ -7,7 +8,8 @@ describe('CatalogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CatalogComponent]
+      imports: [CatalogComponent],
+      providers: [getLocalStorageToken('TEST-')]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogComponent);

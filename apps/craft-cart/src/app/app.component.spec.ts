@@ -1,25 +1,27 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { CatalogStore } from '@crafting-cart/state';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterModule } from '@angular/router';
+import { items } from './catalog/items';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterModule.forRoot([])]
+      imports: [AppComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Welcome craft-cart');
   });
 
   it(`should have as title 'craft-cart'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('craft-cart');
+  });
+
+  it('should load the catalog into the CatalogStore', () => {
+    TestBed.createComponent(AppComponent);
+    const catalog = TestBed.inject(CatalogStore);
+    expect(catalog.loaded()).toBe(true);
+    expect(catalog.ids()).toEqual([...new Set(items.map((item) => item.id))]);
   });
 });

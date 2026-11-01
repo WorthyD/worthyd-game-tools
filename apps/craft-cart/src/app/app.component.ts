@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CatalogFacade } from '@crafting-cart/state';
+import { CatalogStore } from '@crafting-cart/state';
 import { items } from './catalog/items';
 
 @Component({
@@ -13,7 +13,9 @@ import { items } from './catalog/items';
 export class AppComponent {
   title = 'craft-cart';
 
-  constructor(private readonly cf: CatalogFacade) {
-    this.cf.init(items);
+  private readonly catalog = inject(CatalogStore);
+
+  constructor() {
+    this.catalog.init(items);
   }
 }

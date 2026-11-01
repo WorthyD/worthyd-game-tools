@@ -1,11 +1,9 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { CartFacade, CartEntity, CatalogFacade } from '@crafting-cart/state';
+import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+import { CartStore, CartEntity, CatalogStore } from '@crafting-cart/state';
 import { Item } from '@crafting-cart/shared/models';
 
-import { combineLatest, map } from 'rxjs';
 import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
 
-import { PushPipe } from '@ngrx/component';
 import { MatCardModule } from '@angular/material/card';
 interface ShoppingListItem {
   item: Item;
@@ -14,20 +12,16 @@ interface ShoppingListItem {
 
 @Component({
   selector: 'lib-shopping-list',
-  imports: [PushPipe, ItemCardComponent, MatCardModule],
+  imports: [ItemCardComponent, MatCardModule],
   templateUrl: './shopping-list.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shopping-list.component.scss'
 })
 export class ShoppingListComponent {
-  readonly cf = inject(CatalogFacade);
-  readonly cart = inject(CartFacade);
-  cartItems$ = this.cart.allCart$;
-  allItems$ = this.cf.allCatalog$;
+  readonly catalog = inject(CatalogStore);
+  readonly cart = inject(CartStore);
 
-  shoppingListItems$ = combineLatest([this.cartItems$, this.allItems$]).pipe(
-    map(([items, catalogItems]) => this.getRawItems(items, catalogItems))
-  );
+  shoppingListItems = computed(() => this.getRawItems(this.cart.entities(), this.catalog.entities()));
 
   getRawItems(items: CartEntity[], catalogItems: Item[]): ShoppingListItem[] {
     const rawItems: ShoppingListItem[] = [];

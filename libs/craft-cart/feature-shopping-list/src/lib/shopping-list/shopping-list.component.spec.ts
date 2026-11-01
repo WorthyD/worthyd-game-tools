@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingListComponent } from './shopping-list.component';
-import { CartEntity, CartFacade, CatalogFacade } from '@crafting-cart/state';
+import { CartEntity } from '@crafting-cart/state';
 import { Item } from '@crafting-cart/shared/models';
-import { provideMockStore } from '@ngrx/store/testing';
+import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 
 describe('ShoppingListComponent', () => {
   let component: ShoppingListComponent;
@@ -11,7 +11,7 @@ describe('ShoppingListComponent', () => {
   beforeAll(async () => {
     await TestBed.configureTestingModule({
       imports: [ShoppingListComponent],
-      providers: [CatalogFacade, CartFacade, provideMockStore({})]
+      providers: [getLocalStorageToken('TEST-')]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ShoppingListComponent);
