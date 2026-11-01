@@ -1,7 +1,15 @@
+// Ensure this matches ItemLabel in libs/craft-cart/shared/models-shared/src/lib/models/item-label.interface.ts
+export interface ItemLabel {
+  name: string;
+  icon: string;
+}
+
 export interface ItemConfig {
   itemUrl: string;
   itemId: string;
+  /** Names of entries in `ScraperConfig.categories`. */
   categories: string[];
+  /** Names of entries in `ScraperConfig.tags`. */
   tags: string[];
   extraLinks?: { text: string; url: string }[];
 }
@@ -10,6 +18,8 @@ export interface ScraperConfig {
   imagePath: string;
   assetPath: string;
   configOutputPath: string;
+  tags: ItemLabel[];
+  categories: ItemLabel[];
   items: ItemConfig[];
 }
 
@@ -21,6 +31,6 @@ export interface ItemOutput {
   imageUrl: string;
   links: { text: string; url: string }[];
   ingredients: { id: string; quantity: number }[];
-  categories: string[];
-  tags: string[];
+  categories: ItemLabel[];
+  tags: ItemLabel[];
 }

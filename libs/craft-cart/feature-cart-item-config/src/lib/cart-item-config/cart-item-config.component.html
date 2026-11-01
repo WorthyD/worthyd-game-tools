@@ -21,9 +21,10 @@
       <mat-form-field>
         <mat-label>Categories</mat-label>
         <mat-chip-grid #categoriesGrid formControlName="categories">
-          @for (keyword of categories(); track keyword) {
-            <mat-chip-row (removed)="removeKeyword(keyword, categories)">
-              {{ keyword }}
+          @for (keyword of categories(); track keyword.name) {
+            <mat-chip-row (removed)="removeKeyword(keyword, categories, 'categories')">
+              <mat-icon matChipAvatar>{{ keyword.icon }}</mat-icon>
+              {{ keyword.name }}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>
@@ -33,23 +34,28 @@
         <input
           placeholder="Add Category..."
           [matChipInputFor]="categoriesGrid"
-          (matChipInputTokenEnd)="addKeyword($event, categories)"
+          (matChipInputTokenEnd)="addKeyword($event, categories, 'categories', defaultCategoryIcon)"
         />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Tags</mat-label>
         <mat-chip-grid #tagGrid formControlName="tags">
-          @for (keyword of tags(); track keyword) {
-            <mat-chip-row (removed)="removeKeyword(keyword, tags)">
-              {{ keyword }}
+          @for (keyword of tags(); track keyword.name) {
+            <mat-chip-row (removed)="removeKeyword(keyword, tags, 'tags')">
+              <mat-icon matChipAvatar>{{ keyword.icon }}</mat-icon>
+              {{ keyword.name }}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip-row>
           }
         </mat-chip-grid>
-        <input placeholder="Add Tag..." [matChipInputFor]="tagGrid" (matChipInputTokenEnd)="addKeyword($event, tags)" />
+        <input
+          placeholder="Add Tag..."
+          [matChipInputFor]="tagGrid"
+          (matChipInputTokenEnd)="addKeyword($event, tags, 'tags', defaultTagIcon)"
+        />
       </mat-form-field>
     </div>
     <!-- </mat-expansion-panel> -->
@@ -87,8 +93,11 @@
             <mat-form-field>
               <mat-label>Tags</mat-label>
               <mat-select formControlName="tags" multiple>
-                @for (tag of tags(); track tag) {
-                  <mat-option [value]="tag">{{ tag }}</mat-option>
+                @for (tag of tags(); track tag.name) {
+                  <mat-option [value]="tag.name">
+                    <mat-icon>{{ tag.icon }}</mat-icon>
+                    {{ tag.name }}
+                  </mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -101,8 +110,11 @@
             <mat-form-field>
               <mat-label>Categories</mat-label>
               <mat-select formControlName="categories" multiple>
-                @for (category of categories(); track category) {
-                  <mat-option [value]="category">{{ category }}</mat-option>
+                @for (category of categories(); track category.name) {
+                  <mat-option [value]="category.name">
+                    <mat-icon>{{ category.icon }}</mat-icon>
+                    {{ category.name }}
+                  </mat-option>
                 }
               </mat-select>
             </mat-form-field>
@@ -128,16 +140,22 @@
       <mat-form-field>
         <mat-label>Categories</mat-label>
         <mat-select formControlName="categories" multiple>
-          @for (category of categories(); track category) {
-            <mat-option [value]="category">{{ category }}</mat-option>
+          @for (category of categories(); track category.name) {
+            <mat-option [value]="category.name">
+              <mat-icon>{{ category.icon }}</mat-icon>
+              {{ category.name }}
+            </mat-option>
           }
         </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Tags</mat-label>
         <mat-select formControlName="tags" multiple>
-          @for (tag of tags(); track tag) {
-            <mat-option [value]="tag">{{ tag }}</mat-option>
+          @for (tag of tags(); track tag.name) {
+            <mat-option [value]="tag.name">
+              <mat-icon>{{ tag.icon }}</mat-icon>
+              {{ tag.name }}
+            </mat-option>
           }
         </mat-select>
       </mat-form-field>

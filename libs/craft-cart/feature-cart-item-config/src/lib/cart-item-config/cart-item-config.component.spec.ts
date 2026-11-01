@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartItemConfigComponent } from './cart-item-config.component';
 import { ScraperConfigToken } from '@crafting-cart/shell';
 import { ScraperConfig } from '@crafting-cart/shared/models';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 describe('CartItemConfigComponent', () => {
   let component: CartItemConfigComponent;
@@ -18,12 +19,14 @@ describe('CartItemConfigComponent', () => {
     imagePath: '/images',
     assetPath: '/assets',
     configOutputPath: '/output',
+    tags: [{ name: 'Bombs', icon: 'local_fire_department' }],
+    categories: [{ name: 'Crafting', icon: 'construction' }],
     items: [
       {
         itemUrl: 'http://example.com/item1',
         itemId: 'item1',
-        categories: [],
-        tags: []
+        categories: ['Crafting'],
+        tags: ['Bombs']
       },
       {
         itemUrl: 'http://example.com/item2',
@@ -75,5 +78,48 @@ describe('CartItemConfigComponent', () => {
     const initialLength = component.items.length;
     component.removeRow(0);
     expect(component.items.length).toBe(initialLength - 1);
+  });
+
+  it('should load categories and tags with their icons', () => {
+    expect(component.categories()).toEqual([{ name: 'Crafting', icon: 'construction' }]);
+    expect(component.tags()).toEqual([{ name: 'Bombs', icon: 'local_fire_department' }]);
+    expect(component.items.at(0).get('tags')?.value).toEqual(['Bombs']);
+  });
+
+  it('should add a tag with the default icon and keep the form in sync', () => {
+    const chipInput = { clear: jest.fn() };
+    component.addKeyword(
+      { value: ' Fences ', chipInput } as unknown as MatChipInputEvent,
+      component.tags,
+      'tags',
+      component.defaultTagIcon
+    );
+
+    const expected = [
+      { name: 'Bombs', icon: 'local_fire_department' },
+      { name: 'Fences', icon: 'label' }
+    ];
+    expect(component.tags()).toEqual(expected);
+    expect(component.itemsForm.get('tags')?.value).toEqual(expected);
+    expect(chipInput.clear).toHaveBeenCalled();
+  });
+
+  it('should not add a duplicate category', () => {
+    const chipInput = { clear: jest.fn() };
+    component.addKeyword(
+      { value: 'Crafting', chipInput } as unknown as MatChipInputEvent,
+      component.categories,
+      'categories',
+      component.defaultCategoryIcon
+    );
+
+    expect(component.categories()).toEqual([{ name: 'Crafting', icon: 'construction' }]);
+  });
+
+  it('should remove a category by name', () => {
+    component.removeKeyword({ name: 'Crafting', icon: 'construction' }, component.categories, 'categories');
+
+    expect(component.categories()).toEqual([]);
+    expect(component.itemsForm.get('categories')?.value).toEqual([]);
   });
 });
