@@ -1,11 +1,11 @@
 ---
-description: Jest 30 + jest-preset-angular 16 in Nx — zone test env, strict template errors, signal inputs, HTTP, harnesses, mocks, running via nx
+description: Jest 30 + jest-preset-angular 17 in Nx — zone test env, strict template errors, signal inputs, HTTP, harnesses, mocks, running via nx
 globs: ["**/*.spec.ts", "**/jest.config.*", "**/jest.preset.*", "**/test-setup.ts"]
 ---
 
 # Jest
 
-Installed: **Jest 30**, **jest-preset-angular 16**, `@nx/jest`, `jest-environment-jsdom`,
+Installed: **Jest 30**, **jest-preset-angular 17**, `@nx/jest`, `jest-environment-jsdom`,
 `jasmine-marbles`. Every Angular project has its own `jest.config.ts` extending the root
 `jest.preset.js` (coverage on by default) and a `src/test-setup.ts`.
 

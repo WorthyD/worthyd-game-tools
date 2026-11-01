@@ -20,6 +20,7 @@
     "config": "tsx set-env.ts",
     "ai:sync": "node tools/ai/sync-ai-rules.mjs",
     "ai:check": "node tools/ai/sync-ai-rules.mjs --check",
+    "adr:new": "node tools/ai/new-adr.mjs",
     "____lint": "ng lint",
     "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js",
     "stardew": "tsx scrapers/stardew.ts",

@@ -5,7 +5,7 @@ globs: ["**/*.html", "**/*.scss"]
 
 # Angular Material / CDK
 
-Installed: **@angular/material and @angular/cdk 21.2**, M3 theming.
+Installed: **@angular/material and @angular/cdk 22.1**, M3 theming.
 
 ## Where themes live
 
