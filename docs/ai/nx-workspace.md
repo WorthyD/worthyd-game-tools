@@ -5,7 +5,7 @@ globs: []
 
 # Nx workspace
 
-Nx 22.6, Nx Cloud disabled (`neverConnectToCloud`), npm.
+Nx 24.0, Nx Cloud disabled (`neverConnectToCloud`), npm.
 
 ## Mental model
 

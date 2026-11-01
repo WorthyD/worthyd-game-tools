@@ -1,11 +1,11 @@
 ---
-description: Angular 21 in this repo — standalone + signals for new code, coexisting with DCD NgModules; zone.js; routing, DI, HTTP, forms
+description: Angular 22 in this repo — standalone + signals for new code, coexisting with DCD NgModules; zone.js; routing, DI, HTTP, forms
 globs: ["**/*.ts", "**/*.html"]
 ---
 
 # Angular
 
-Installed: **Angular 21.2**, with **zone.js** in every app.
+Installed: **Angular 22.1**, with **zone.js** in every app.
 
 ## Two eras in one repo
 
