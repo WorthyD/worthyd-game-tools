@@ -26,8 +26,8 @@ apps/<app>/                      # bootstrapping, app config, top-level routes
 apps/<app>-e2e/                  # Cypress E2E for <app> (cypressDir: src)
 libs/dcd/<domain>/<lib>          # e.g. dcd/activities/{shell,dashboard,data-access,models,ui,table}
 libs/dcd/shared/...              # DCD-wide data-access, models, ui, utils
-libs/craft-cart/<lib>            # e.g. catalog, shopping-list, cart-item-config
-libs/craft-cart/shared/...       # state, models, shell, ui/*
+libs/craft-cart/<lib>            # e.g. feature-catalog, feature-shopping-list, feature-cart-item-config
+libs/craft-cart/shared/...       # data-access-state, models-shared, feature-shell, ui/ui-*
 libs/shared/{ui,utils}/...       # cross-product (@worthyd/shared/...)
 libs/dcd-plugin                  # local Nx plugin (generators)
 ```
@@ -70,7 +70,7 @@ Always `--dry-run` first.
 npx nx g dcd-plugin:dcd-lib-generator activities/new-thing --libType=type:ui --dry-run
 
 # Other libs: give path, import alias, tag explicitly
-npx nx g @nx/angular:library libs/craft-cart/shared/ui/thing \
+npx nx g @nx/angular:library libs/craft-cart/shared/ui/ui-thing \
   --importPath=@crafting-cart/shared/ui/thing --tags=type:ui --changeDetection=OnPush --dry-run
 npx nx g @nx/angular:library libs/shared/utils/thing \
   --importPath=@worthyd/shared/utils/thing --tags=type:util --dry-run

@@ -32,12 +32,12 @@ npx nx e2e-ci craft-cart-e2e                  # against serve-static, split per 
 
 ## Component tests (ui libs)
 
-Some `ui` libs (e.g. `item-card`, `cart-item-card`, `cart-quantity`, `@dcd/shared/ui/member`)
+Some `ui` libs (e.g. `ui-item-card`, `ui-cart-item-card`, `ui-cart-quantity`, `@dcd/shared/ui/member`)
 have Cypress component testing: `cypress.config.ts` at the lib root, `cypress/support/component.ts`
 registering `cy.mount`, and `*.component.cy.ts` beside the component.
 
 ```bash
-npx nx component-test item-card
+npx nx component-test ui-item-card
 ```
 
 ```ts

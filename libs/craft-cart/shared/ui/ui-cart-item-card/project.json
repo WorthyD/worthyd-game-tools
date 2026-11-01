@@ -1,0 +1,15 @@
+{
+  "name": "ui-cart-item-card",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/craft-cart/shared/ui/ui-cart-item-card/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["type:ui"],
+  "targets": {
+    "component-test": {
+      "options": {
+        "config-file": "./cypress.config.ts"
+      }
+    }
+  }
+}

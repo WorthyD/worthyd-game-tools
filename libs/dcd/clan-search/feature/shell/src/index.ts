@@ -1,1 +1,1 @@
-export * from './lib/clan-search-shell.module';
+export * from './lib/clan-search-feature-shell.module';

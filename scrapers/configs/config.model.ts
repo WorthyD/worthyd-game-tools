@@ -13,7 +13,7 @@ export interface ScraperConfig {
   items: ItemConfig[];
 }
 
-// Ensure this matches the Item interface in libs/craft-cart/shared/models/src/lib/models/item.interface.ts
+// Ensure this matches the Item interface in libs/craft-cart/shared/models-shared/src/lib/models/item.interface.ts
 export interface ItemOutput {
   id: string;
   name: string;

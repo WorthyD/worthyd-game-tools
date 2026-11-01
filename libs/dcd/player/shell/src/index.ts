@@ -1,1 +1,1 @@
-export * from './lib/player-shell.module';
+export * from './lib/player-feature-shell.module';

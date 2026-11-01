@@ -1,1 +1,1 @@
-export * from './lib/activities-shell.module';
+export * from './lib/activities-feature-shell.module';

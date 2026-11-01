@@ -1,6 +1,6 @@
 ---
 description: NgRx 21 here — classic Store + facades + entity adapters (Craft Cart, DCD), SignalStore (player-sidebar), effects, testing
-globs: ["**/*.actions.ts", "**/*.reducer.ts", "**/*.effects.ts", "**/*.selectors.ts", "**/*.facade.ts", "**/*.state.ts", "**/*.feature.ts", "**/*store.ts", "**/*.store.ts", "**/data-access/**", "**/state/**", "**/meta-reducers/**"]
+globs: ["**/*.actions.ts", "**/*.reducer.ts", "**/*.effects.ts", "**/*.selectors.ts", "**/*.facade.ts", "**/*.state.ts", "**/*.feature.ts", "**/*store.ts", "**/*.store.ts", "**/data-access/**", "**/data-access-*/**", "**/state/**", "**/meta-reducers/**"]
 ---
 
 # NgRx
