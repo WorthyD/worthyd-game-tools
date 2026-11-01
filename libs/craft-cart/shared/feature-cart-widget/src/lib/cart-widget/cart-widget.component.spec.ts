@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 import { CartWidgetComponent } from './cart-widget.component';
 
 describe('CartWidgetComponent', () => {
@@ -7,7 +9,8 @@ describe('CartWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CartWidgetComponent]
+      imports: [CartWidgetComponent],
+      providers: [provideRouter([]), getLocalStorageToken('TEST-')]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartWidgetComponent);

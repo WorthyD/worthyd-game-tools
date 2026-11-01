@@ -1,10 +1,3 @@
-export * from './lib/cart/cart.facade';
-export * from './lib/catalog/catalog.facade';
-
-export * from './lib/cart/cart.reducer';
-export * from './lib/catalog/catalog.reducer';
-export * from './lib/cart/cart.state';
+export { CartStore } from './lib/cart/cart.store';
+export { CatalogStore } from './lib/catalog/catalog.store';
 export * from './lib/cart/cart.models';
-export * from './lib/cart/cart.effects';
-
-export * from './lib/meta-reducers/init-state-from-local-storage.reducer';

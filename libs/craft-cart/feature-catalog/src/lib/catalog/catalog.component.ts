@@ -1,16 +1,12 @@
 import { Component, inject, TemplateRef, ViewChild, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-
-import { CartFacade, CatalogFacade } from '@crafting-cart/state';
+import { CartStore, CatalogStore } from '@crafting-cart/state';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { CartQuantityComponent } from '@crafting-cart/shared/ui/cart-quantity';
 import { ItemCardComponent } from '@crafting-cart/shared/ui/item-card';
 import { ColumnConfig, DataViewerComponent, DataViewerConfig } from '@worthyd/shared/ui/data-viewer';
-import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { Item } from '@crafting-cart/shared/models';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   imports: [
@@ -19,12 +15,11 @@ import { AsyncPipe } from '@angular/common';
     MatTableModule,
     CartQuantityComponent,
     ItemCardComponent,
-    DataViewerComponent,
-    AsyncPipe
+    DataViewerComponent
   ],
   template: `
     <lib-data-viewer
-      [dataSource]="catalogItems$()"
+      [dataSource]="catalogItems()"
       [filterColumns]="['name', 'description']"
       [displayedColumns]="['image', 'name', 'description', 'commands']"
       [columns]="columnConfig"
@@ -55,11 +50,10 @@ import { AsyncPipe } from '@angular/common';
   ]
 })
 export class CatalogComponent implements OnInit {
-  readonly cf = inject(CatalogFacade);
-  readonly cart = inject(CartFacade);
-  catalogItems$ = toSignal(this.cf.allCatalog$.pipe(startWith([])));
+  readonly catalog = inject(CatalogStore);
+  readonly cart = inject(CartStore);
+  catalogItems = this.catalog.entities;
 
-  cartItems$ = this.cart.allCart$;
   @ViewChild('symbolTemplate', { static: true }) symbolTemplate!: TemplateRef<{ $implicit: unknown }>;
   @ViewChild('imageTemplate', { static: true }) imageTemplate!: TemplateRef<{ $implicit: unknown }>;
 

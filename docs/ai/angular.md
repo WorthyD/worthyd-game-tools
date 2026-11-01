@@ -41,7 +41,7 @@ generators to produce this — don't switch to the suffix-less v20+ style.
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemCardComponent {
-  private readonly cart = inject(CartFacade);
+  private readonly cart = inject(CartStore);
 
   readonly item = input.required<CatalogItem>();
   readonly compact = input(false);

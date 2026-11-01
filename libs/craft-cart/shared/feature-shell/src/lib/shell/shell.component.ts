@@ -7,9 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
-import { CartFacade } from '@crafting-cart/state';
+import { CartStore } from '@crafting-cart/state';
 
-import { PushPipe } from '@ngrx/component';
 @Component({
   selector: 'lib-shell.component',
   imports: [
@@ -19,8 +18,7 @@ import { PushPipe } from '@ngrx/component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatBadgeModule,
-    PushPipe
+    MatBadgeModule
   ],
   template: `
     <div class="main-container">
@@ -29,7 +27,7 @@ import { PushPipe } from '@ngrx/component';
         <a mat-button routerLink="/">Catalog</a>
         <a mat-button routerLink="/list">Shopping List</a>
         <span class="flex-auto"> </span>
-        <button mat-icon-button (click)="cartDrawer.toggle()" [matBadge]="cartCount$ | ngrxPush">
+        <button mat-icon-button (click)="cartDrawer.toggle()" [matBadge]="cartCount()">
           <mat-icon> shopping_cart </mat-icon>
         </button>
       </mat-toolbar>
@@ -66,7 +64,7 @@ import { PushPipe } from '@ngrx/component';
   `
 })
 export class ShellComponentComponent {
-  cartState = inject(CartFacade); // Inject the CartFacade to access cart-related methods and properties
+  cartState = inject(CartStore);
 
-  cartCount$ = this.cartState.cartCount$;
+  cartCount = this.cartState.cartCount;
 }
