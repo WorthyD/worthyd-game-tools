@@ -19,6 +19,7 @@ fields that feed the AI agent instructions.
 | 0005 | [One source for AI agent instructions, generated per tool](0005-single-source-for-ai-agent-instructions.md) | accepted | 2026-11-01 |
 | 0006 | [Jest for unit tests, Cypress for E2E and component tests](0006-jest-for-unit-tests-cypress-for-e2e.md) | accepted | 2026-11-01 |
 | 0007 | [Enforce module boundaries with type tags and import aliases](0007-enforce-module-boundaries-with-type-tags.md) | accepted | 2026-11-01 |
+| 0008 | [Prefix library names with their library type](0008-prefix-library-names-with-their-library-type.md) | accepted | 2026-11-01 |
 <!-- adr-index:end -->
 
 ## How agents use these

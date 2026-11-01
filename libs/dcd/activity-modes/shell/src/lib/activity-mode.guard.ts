@@ -1,6 +1,6 @@
 // import { Injectable } from '@angular/core';
 // import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-// import { ActivityModeShellModule } from '../activity-mode-shell/activity-mode-shell.module';
+// import { ActivityModeShellModule } from '../activity-mode-shell/activity-mode-feature-shell.module';
 // import { ActivityModeService } from '../data-access/activity-mode.service';
 
 // @Injectable({

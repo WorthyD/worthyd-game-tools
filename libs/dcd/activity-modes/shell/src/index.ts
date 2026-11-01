@@ -1,1 +1,1 @@
-export * from './lib/activity-mode-shell.module';
+export * from './lib/activity-mode-feature-shell.module';

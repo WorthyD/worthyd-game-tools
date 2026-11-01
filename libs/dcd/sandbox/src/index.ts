@@ -1,1 +1,1 @@
-export * from './lib/sandbox-shell/sandbox-shell.module';
+export * from './lib/sandbox-shell/sandbox-feature-shell.module';

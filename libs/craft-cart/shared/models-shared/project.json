@@ -1,0 +1,21 @@
+{
+  "name": "models-shared",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/craft-cart/shared/models-shared/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["type:model"],
+  "targets": {
+    "test": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js",
+        {
+          "externalDependencies": ["jest", "jest-preset-angular"]
+        }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"]
+    }
+  }
+}
