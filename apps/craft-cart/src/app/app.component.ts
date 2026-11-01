@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CatalogStore } from '@crafting-cart/state';
+import { config } from './catalog/config';
 import { items } from './catalog/items';
 
 @Component({
@@ -16,6 +17,6 @@ export class AppComponent {
   private readonly catalog = inject(CatalogStore);
 
   constructor() {
-    this.catalog.init(items);
+    this.catalog.init(items, { categories: config.categories, tags: config.tags });
   }
 }

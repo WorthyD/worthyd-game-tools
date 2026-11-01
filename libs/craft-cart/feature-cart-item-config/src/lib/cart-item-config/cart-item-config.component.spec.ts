@@ -19,14 +19,14 @@ describe('CartItemConfigComponent', () => {
     imagePath: '/images',
     assetPath: '/assets',
     configOutputPath: '/output',
-    tags: [{ name: 'Bombs', icon: 'local_fire_department' }],
-    categories: [{ name: 'Crafting', icon: 'construction' }],
+    tags: [{ id: 'bombs', name: 'Bombs', icon: 'bomb' }],
+    categories: [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }],
     items: [
       {
         itemUrl: 'http://example.com/item1',
         itemId: 'item1',
-        categories: ['Crafting'],
-        tags: ['Bombs']
+        categories: ['crafting'],
+        tags: ['bombs']
       },
       {
         itemUrl: 'http://example.com/item2',
@@ -81,23 +81,23 @@ describe('CartItemConfigComponent', () => {
   });
 
   it('should load categories and tags with their icons', () => {
-    expect(component.categories()).toEqual([{ name: 'Crafting', icon: 'construction' }]);
-    expect(component.tags()).toEqual([{ name: 'Bombs', icon: 'local_fire_department' }]);
-    expect(component.items.at(0).get('tags')?.value).toEqual(['Bombs']);
+    expect(component.categories()).toEqual([{ id: 'crafting', name: 'Crafting', icon: 'handyman' }]);
+    expect(component.tags()).toEqual([{ id: 'bombs', name: 'Bombs', icon: 'bomb' }]);
+    expect(component.items.at(0).get('tags')?.value).toEqual(['bombs']);
   });
 
-  it('should add a tag with the default icon and keep the form in sync', () => {
+  it('should add a tag with an id from its name and the default icon, and keep the form in sync', () => {
     const chipInput = { clear: jest.fn() };
     component.addKeyword(
-      { value: ' Fences ', chipInput } as unknown as MatChipInputEvent,
+      { value: ' Storage Chests ', chipInput } as unknown as MatChipInputEvent,
       component.tags,
       'tags',
       component.defaultTagIcon
     );
 
     const expected = [
-      { name: 'Bombs', icon: 'local_fire_department' },
-      { name: 'Fences', icon: 'label' }
+      { id: 'bombs', name: 'Bombs', icon: 'bomb' },
+      { id: 'storage_chests', name: 'Storage Chests', icon: 'label' }
     ];
     expect(component.tags()).toEqual(expected);
     expect(component.itemsForm.get('tags')?.value).toEqual(expected);
@@ -113,11 +113,11 @@ describe('CartItemConfigComponent', () => {
       component.defaultCategoryIcon
     );
 
-    expect(component.categories()).toEqual([{ name: 'Crafting', icon: 'construction' }]);
+    expect(component.categories()).toEqual([{ id: 'crafting', name: 'Crafting', icon: 'handyman' }]);
   });
 
-  it('should remove a category by name', () => {
-    component.removeKeyword({ name: 'Crafting', icon: 'construction' }, component.categories, 'categories');
+  it('should remove a category by id', () => {
+    component.removeKeyword({ id: 'crafting', name: 'Crafting', icon: 'handyman' }, component.categories, 'categories');
 
     expect(component.categories()).toEqual([]);
     expect(component.itemsForm.get('categories')?.value).toEqual([]);

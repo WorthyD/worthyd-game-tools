@@ -5,1446 +5,1446 @@ export const config: ScraperConfig = {
   imagePath: './scrapers/images/',
   configOutputPath: './scrapers/stardew-output.ts',
   tags: [
-    { name: 'Bombs', icon: 'bomb' },
-    { name: 'Fences', icon: 'fence' },
-    { name: 'Sprinklers', icon: 'sprinkler' },
-    { name: 'Artisan_Equipment', icon: 'wine_bar' },
-    { name: 'Fertilizer', icon: 'compost' },
-    { name: 'Ores', icon: 'landslide' },
-    { name: 'Combat_Resources', icon: 'swords' },
-    { name: 'Seeds', icon: 'psychiatry' },
-    { name: 'Decor', icon: 'potted_plant' },
-    { name: 'Fishing', icon: 'phishing' },
-    { name: 'Rings', icon: 'diamond' },
-    { name: 'Edible_Items', icon: 'nutrition' },
-    { name: 'Consumables', icon: 'auto_awesome' },
-    { name: 'Lighting', icon: 'lightbulb' },
-    { name: 'Refining_Equipment', icon: 'factory' },
-    { name: 'Furniture', icon: 'chair' },
-    { name: 'Storage_Equipment', icon: 'inventory_2' },
-    { name: 'Signs', icon: 'signpost' },
-    { name: 'Misc', icon: 'more_horiz' }
+    { id: 'bombs', name: 'Bombs', icon: 'bomb' },
+    { id: 'fences', name: 'Fences', icon: 'fence' },
+    { id: 'sprinklers', name: 'Sprinklers', icon: 'sprinkler' },
+    { id: 'artisan_equipment', name: 'Artisan Equipment', icon: 'wine_bar' },
+    { id: 'fertilizer', name: 'Fertilizer', icon: 'compost' },
+    { id: 'ores', name: 'Ores', icon: 'landslide' },
+    { id: 'combat_resources', name: 'Combat Resources', icon: 'swords' },
+    { id: 'seeds', name: 'Seeds', icon: 'psychiatry' },
+    { id: 'decor', name: 'Decor', icon: 'potted_plant' },
+    { id: 'fishing', name: 'Fishing', icon: 'phishing' },
+    { id: 'rings', name: 'Rings', icon: 'diamond' },
+    { id: 'edible_items', name: 'Edible Items', icon: 'nutrition' },
+    { id: 'consumables', name: 'Consumables', icon: 'auto_awesome' },
+    { id: 'lighting', name: 'Lighting', icon: 'lightbulb' },
+    { id: 'refining_equipment', name: 'Refining Equipment', icon: 'factory' },
+    { id: 'furniture', name: 'Furniture', icon: 'chair' },
+    { id: 'storage_equipment', name: 'Storage Equipment', icon: 'inventory_2' },
+    { id: 'signs', name: 'Signs', icon: 'signpost' },
+    { id: 'misc', name: 'Misc', icon: 'more_horiz' }
   ],
   categories: [
-    { name: 'Crafting', icon: 'handyman' },
-    { name: 'Raw_Materials', icon: 'forest' },
-    { name: 'Cooking', icon: 'skillet' }
+    { id: 'crafting', name: 'Crafting', icon: 'handyman' },
+    { id: 'raw_materials', name: 'Raw Materials', icon: 'forest' },
+    { id: 'cooking', name: 'Cooking', icon: 'skillet' }
   ],
   items: [
     {
       itemUrl: 'Cherry_Bomb',
       itemId: 'cherry_bomb',
-      categories: ['Crafting'],
-      tags: ['Bombs']
+      categories: ['crafting'],
+      tags: ['bombs']
     },
     {
       itemUrl: 'Bomb',
       itemId: 'bomb',
-      categories: ['Crafting'],
-      tags: ['Bombs']
+      categories: ['crafting'],
+      tags: ['bombs']
     },
     {
       itemUrl: 'Mega_Bomb',
       itemId: 'mega_bomb',
-      categories: ['Crafting'],
-      tags: ['Bombs']
+      categories: ['crafting'],
+      tags: ['bombs']
     },
     {
       itemUrl: 'Gate',
       itemId: 'gate',
-      categories: ['Crafting'],
-      tags: ['Fences']
+      categories: ['crafting'],
+      tags: ['fences']
     },
     {
       itemUrl: 'Wood_Fence',
       itemId: 'wood_fence',
-      categories: ['Crafting'],
-      tags: ['Fences']
+      categories: ['crafting'],
+      tags: ['fences']
     },
     {
       itemUrl: 'Stone_Fence',
       itemId: 'stone_fence',
-      categories: ['Crafting'],
-      tags: ['Fences']
+      categories: ['crafting'],
+      tags: ['fences']
     },
     {
       itemUrl: 'Iron_Fence',
       itemId: 'iron_fence',
-      categories: ['Crafting'],
-      tags: ['Fences']
+      categories: ['crafting'],
+      tags: ['fences']
     },
     {
       itemUrl: 'Hardwood_Fence',
       itemId: 'hardwood_fence',
-      categories: ['Crafting'],
-      tags: ['Fences']
+      categories: ['crafting'],
+      tags: ['fences']
     },
     {
       itemUrl: 'Sprinkler',
       itemId: 'sprinkler',
-      categories: ['Crafting'],
-      tags: ['Sprinklers']
+      categories: ['crafting'],
+      tags: ['sprinklers']
     },
     {
       itemUrl: 'Quality_Sprinkler',
       itemId: 'quality_sprinkler',
-      categories: ['Crafting'],
-      tags: ['Sprinklers']
+      categories: ['crafting'],
+      tags: ['sprinklers']
     },
     {
       itemUrl: 'Iridium_Sprinkler',
       itemId: 'iridium_sprinkler',
-      categories: ['Crafting'],
-      tags: ['Sprinklers']
+      categories: ['crafting'],
+      tags: ['sprinklers']
     },
     {
       itemUrl: 'Mayonnaise_Machine',
       itemId: 'mayonnaise_machine',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Bee_House',
       itemId: 'bee_house',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Preserves_Jar',
       itemId: 'preserves_jar',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Cheese_Press',
       itemId: 'cheese_press',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Loom',
       itemId: 'loom',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Keg',
       itemId: 'keg',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Oil_Maker',
       itemId: 'oil_maker',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Cask',
       itemId: 'cask',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Fish_Smoker',
       itemId: 'fish_smoker',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Dehydrator',
       itemId: 'dehydrator',
-      categories: ['Crafting'],
-      tags: ['Artisan_Equipment']
+      categories: ['crafting'],
+      tags: ['artisan_equipment']
     },
     {
       itemUrl: 'Basic_Fertilizer',
       itemId: 'basic_fertilizer',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Quality_Fertilizer',
       itemId: 'quality_fertilizer',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Deluxe_Fertilizer',
       itemId: 'deluxe_fertilizer',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Speed-Gro',
       itemId: 'speed-gro',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Deluxe_Speed-Gro',
       itemId: 'deluxe_speed-gro',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Hyper_Speed-Gro',
       itemId: 'hyper_speed-gro',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Basic_Retaining_Soil',
       itemId: 'basic_retaining_soil',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Quality_Retaining_Soil',
       itemId: 'quality_retaining_soil',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Deluxe_Retaining_Soil',
       itemId: 'deluxe_retaining_soil',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Tree_Fertilizer',
       itemId: 'tree_fertilizer',
-      categories: ['Crafting'],
-      tags: ['Fertilizer']
+      categories: ['crafting'],
+      tags: ['fertilizer']
     },
     {
       itemUrl: 'Copper_Ore',
       itemId: 'copper_ore',
-      categories: ['Raw_Materials'],
-      tags: ['Ores']
+      categories: ['raw_materials'],
+      tags: ['ores']
     },
     {
       itemUrl: 'Iron_Ore',
       itemId: 'iron_ore',
-      categories: ['Raw_Materials'],
-      tags: ['Ores']
+      categories: ['raw_materials'],
+      tags: ['ores']
     },
     {
       itemUrl: 'Gold_Ore',
       itemId: 'gold_ore',
-      categories: ['Raw_Materials'],
-      tags: ['Ores']
+      categories: ['raw_materials'],
+      tags: ['ores']
     },
     {
       itemUrl: 'Solar_Essence',
       itemId: 'solar_essence',
-      categories: ['Raw_Materials'],
-      tags: ['Combat_Resources']
+      categories: ['raw_materials'],
+      tags: ['combat_resources']
     },
     {
       itemUrl: 'Void_Essence',
       itemId: 'void_essence',
-      categories: ['Raw_Materials'],
-      tags: ['Combat_Resources']
+      categories: ['raw_materials'],
+      tags: ['combat_resources']
     },
     {
       itemUrl: 'Spring_Seeds',
       itemId: 'spring_seeds',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Summer_Seeds',
       itemId: 'summer_seeds',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Fall_Seeds',
       itemId: 'fall_seeds',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Winter_Seeds',
       itemId: 'winter_seeds',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Ancient_Seeds',
       itemId: 'ancient_seeds',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Grass_Starter',
       itemId: 'grass_starter',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Blue_Grass_Starter',
       itemId: 'blue_grass_starter',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Tea_Sapling',
       itemId: 'tea_sapling',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Fiber_Seeds',
       itemId: 'fiber_seeds',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Mystic_Tree_Seed',
       itemId: 'mystic_tree_seed',
-      categories: ['Crafting'],
-      tags: ['Seeds']
+      categories: ['crafting'],
+      tags: ['seeds']
     },
     {
       itemUrl: 'Wood_Floor',
       itemId: 'wood_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Rustic_Plank_Floor',
       itemId: 'rustic_plank_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Straw_Floor',
       itemId: 'straw_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Weathered_Floor',
       itemId: 'weathered_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Crystal_Floor',
       itemId: 'crystal_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Stone_Floor',
       itemId: 'stone_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Stone_Walkway_Floor',
       itemId: 'stone_walkway_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Brick_Floor',
       itemId: 'brick_floor',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Wood_Path',
       itemId: 'wood_path',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Gravel_Path',
       itemId: 'gravel_path',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Cobblestone_Path',
       itemId: 'cobblestone_path',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Stepping_Stone_Path',
       itemId: 'stepping_stone_path',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Crystal_Path',
       itemId: 'crystal_path',
-      categories: ['Crafting'],
-      tags: ['Decor']
+      categories: ['crafting'],
+      tags: ['decor']
     },
     {
       itemUrl: 'Spinner',
       itemId: 'spinner',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Trap_Bobber',
       itemId: 'trap_bobber',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Cork_Bobber',
       itemId: 'cork_bobber',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Quality_Bobber',
       itemId: 'quality_bobber',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Treasure_Hunter',
       itemId: 'treasure_hunter',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Dressed_Spinner',
       itemId: 'dressed_spinner',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Barbed_Hook',
       itemId: 'barbed_hook',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Magnet',
       itemId: 'magnet',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Bait_(item)',
       itemId: 'bait_(item)',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Deluxe_Bait',
       itemId: 'deluxe_bait',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Wild_Bait',
       itemId: 'wild_bait',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Magic_Bait',
       itemId: 'magic_bait',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Challenge_Bait',
       itemId: 'challenge_bait',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Crab_Pot',
       itemId: 'crab_pot',
-      categories: ['Crafting'],
-      tags: ['Fishing']
+      categories: ['crafting'],
+      tags: ['fishing']
     },
     {
       itemUrl: 'Sturdy_Ring',
       itemId: 'sturdy_ring',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Warrior_Ring',
       itemId: 'warrior_ring',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Ring_of_Yoba',
       itemId: 'ring_of_yoba',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Thorns_Ring',
       itemId: 'thorns_ring',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Glowstone_Ring',
       itemId: 'glowstone_ring',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Iridium_Band',
       itemId: 'iridium_band',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Wedding_Ring',
       itemId: 'wedding_ring',
-      categories: ['Crafting'],
-      tags: ['Rings']
+      categories: ['crafting'],
+      tags: ['rings']
     },
     {
       itemUrl: 'Field_Snack',
       itemId: 'field_snack',
-      categories: ['Crafting'],
-      tags: ['Edible_Items']
+      categories: ['crafting'],
+      tags: ['edible_items']
     },
     {
       itemUrl: 'Bug_Steak',
       itemId: 'bug_steak',
-      categories: ['Crafting'],
-      tags: ['Edible_Items']
+      categories: ['crafting'],
+      tags: ['edible_items']
     },
     {
       itemUrl: 'Life_Elixir',
       itemId: 'life_elixir',
-      categories: ['Crafting'],
-      tags: ['Edible_Items']
+      categories: ['crafting'],
+      tags: ['edible_items']
     },
     {
       itemUrl: 'Oil_of_Garlic',
       itemId: 'oil_of_garlic',
-      categories: ['Crafting'],
-      tags: ['Edible_Items']
+      categories: ['crafting'],
+      tags: ['edible_items']
     },
     {
       itemUrl: 'Monster_Musk',
       itemId: 'monster_musk',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Fairy_Dust',
       itemId: 'fairy_dust',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Warp_Totem:_Beach',
       itemId: 'warp_totem:_beach',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Warp_Totem:_Mountains',
       itemId: 'warp_totem:_mountains',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Warp_Totem:_Farm',
       itemId: 'warp_totem:_farm',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Warp_Totem:_Desert',
       itemId: 'warp_totem:_desert',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Warp_Totem:_Island',
       itemId: 'warp_totem:_island',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Rain_Totem',
       itemId: 'rain_totem',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Treasure_Totem',
       itemId: 'treasure_totem',
-      categories: ['Crafting'],
-      tags: ['Consumables']
+      categories: ['crafting'],
+      tags: ['consumables']
     },
     {
       itemUrl: 'Torch',
       itemId: 'torch',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Campfire',
       itemId: 'campfire',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Wooden_Brazier',
       itemId: 'wooden_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Stone_Brazier',
       itemId: 'stone_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Gold_Brazier',
       itemId: 'gold_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Carved_Brazier',
       itemId: 'carved_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Carved_Brazier',
       itemId: 'carved_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Barrel_Brazier',
       itemId: 'barrel_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Skull_Brazier',
       itemId: 'skull_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Marble_Brazier',
       itemId: 'marble_brazier',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Wood_Lamp-post',
       itemId: 'wood_lamp-post',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Iron_Lamp-post',
       itemId: 'iron_lamp-post',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Jack-O-Lantern',
       itemId: 'jack-o-lantern',
-      categories: ['Crafting'],
-      tags: ['Lighting']
+      categories: ['crafting'],
+      tags: ['lighting']
     },
     {
       itemUrl: 'Charcoal_Kiln',
       itemId: 'charcoal_kiln',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Crystalarium',
       itemId: 'crystalarium',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Furnace',
       itemId: 'furnace',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Heavy_Furnace',
       itemId: 'heavy_furnace',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Lightning_Rod',
       itemId: 'lightning_rod',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Solar_Panel',
       itemId: 'solar_panel',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Recycling_Machine',
       itemId: 'recycling_machine',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Seed_Maker',
       itemId: 'seed_maker',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Slime_Incubator',
       itemId: 'slime_incubator',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Ostrich_Incubator',
       itemId: 'ostrich_incubator',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Slime_Egg-Press',
       itemId: 'slime_egg-press',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Tapper',
       itemId: 'tapper',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Heavy_Tapper',
       itemId: 'heavy_tapper',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Worm_Bin',
       itemId: 'worm_bin',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Deluxe_Worm_Bin',
       itemId: 'deluxe_worm_bin',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Bone_Mill',
       itemId: 'bone_mill',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Geode_Crusher',
       itemId: 'geode_crusher',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Mushroom_Log',
       itemId: 'mushroom_log',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Bait_Maker',
       itemId: 'bait_maker',
-      categories: ['Crafting'],
-      tags: ['Refining_Equipment']
+      categories: ['crafting'],
+      tags: ['refining_equipment']
     },
     {
       itemUrl: 'Tub_o%27_Flowers',
       itemId: 'tub_o%27_flowers',
-      categories: ['Crafting'],
-      tags: ['Furniture']
+      categories: ['crafting'],
+      tags: ['furniture']
     },
     {
       itemUrl: 'Wicked_Statue',
       itemId: 'wicked_statue',
-      categories: ['Crafting'],
-      tags: ['Furniture']
+      categories: ['crafting'],
+      tags: ['furniture']
     },
     {
       itemUrl: 'Flute_Block',
       itemId: 'flute_block',
-      categories: ['Crafting'],
-      tags: ['Furniture']
+      categories: ['crafting'],
+      tags: ['furniture']
     },
     {
       itemUrl: 'Drum_Block',
       itemId: 'drum_block',
-      categories: ['Crafting'],
-      tags: ['Furniture']
+      categories: ['crafting'],
+      tags: ['furniture']
     },
     {
       itemUrl: 'Chest',
       itemId: 'chest',
-      categories: ['Crafting'],
-      tags: ['Storage_Equipment']
+      categories: ['crafting'],
+      tags: ['storage_equipment']
     },
     {
       itemUrl: 'Stone_Chest',
       itemId: 'stone_chest',
-      categories: ['Crafting'],
-      tags: ['Storage_Equipment']
+      categories: ['crafting'],
+      tags: ['storage_equipment']
     },
     {
       itemUrl: 'Big_Chest',
       itemId: 'big_chest',
-      categories: ['Crafting'],
-      tags: ['Storage_Equipment']
+      categories: ['crafting'],
+      tags: ['storage_equipment']
     },
     {
       itemUrl: 'Big_Stone_Chest',
       itemId: 'big_stone_chest',
-      categories: ['Crafting'],
-      tags: ['Storage_Equipment']
+      categories: ['crafting'],
+      tags: ['storage_equipment']
     },
     {
       itemUrl: 'Wood_Sign',
       itemId: 'wood_sign',
-      categories: ['Crafting'],
-      tags: ['Signs']
+      categories: ['crafting'],
+      tags: ['signs']
     },
     {
       itemUrl: 'Stone_Sign',
       itemId: 'stone_sign',
-      categories: ['Crafting'],
-      tags: ['Signs']
+      categories: ['crafting'],
+      tags: ['signs']
     },
     {
       itemUrl: 'Dark_Sign',
       itemId: 'dark_sign',
-      categories: ['Crafting'],
-      tags: ['Signs']
+      categories: ['crafting'],
+      tags: ['signs']
     },
     {
       itemUrl: 'Text_Sign',
       itemId: 'text_sign',
-      categories: ['Crafting'],
-      tags: ['Signs']
+      categories: ['crafting'],
+      tags: ['signs']
     },
     {
       itemUrl: 'Garden_Pot',
       itemId: 'garden_pot',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Scarecrow',
       itemId: 'scarecrow',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Deluxe_Scarecrow',
       itemId: 'deluxe_scarecrow',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Staircase',
       itemId: 'staircase',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Explosive_Ammo',
       itemId: 'explosive_ammo',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Mini-Jukebox',
       itemId: 'mini-jukebox',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Mini-Obelisk',
       itemId: 'mini-obelisk',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Farm_Computer',
       itemId: 'farm_computer',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Hopper',
       itemId: 'hopper',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Cookout_Kit',
       itemId: 'cookout_kit',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Tent_Kit',
       itemId: 'tent_kit',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Statue_Of_The_Dwarf_King',
       itemId: 'statue_of_the_dwarf_king',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Statue_Of_Blessings',
       itemId: 'statue_of_blessings',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Anvil',
       itemId: 'anvil',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Mini-Forge',
       itemId: 'mini-forge',
-      categories: ['Crafting'],
-      tags: ['Misc']
+      categories: ['crafting'],
+      tags: ['misc']
     },
     {
       itemUrl: 'Coal',
       itemId: 'coal',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Wood',
       itemId: 'wood',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Stone',
       itemId: 'stone',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Iron_Bar',
       itemId: 'iron_bar',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Hardwood',
       itemId: 'hardwood',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Copper_Bar',
       itemId: 'copper_bar',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Gold_Bar',
       itemId: 'gold_bar',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Iridium_Bar',
       itemId: 'iridium_bar',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Battery_Pack',
       itemId: 'battery_pack',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Earth_Crystal',
       itemId: 'earth_crystal',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Maple_Syrup',
       itemId: 'maple_syrup',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Fiber',
       itemId: 'fiber',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Pine_Tar',
       itemId: 'pine_tar',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Oak_Resin',
       itemId: 'oak_resin',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Slime',
       itemId: 'slime',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Sea_Jelly',
       itemId: 'sea_jelly',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'River_Jelly',
       itemId: 'river_jelly',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Cave_Jelly',
       itemId: 'cave_jelly',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Fire_Quartz',
       itemId: 'fire_quartz',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Sap',
       itemId: 'sap',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Clay',
       itemId: 'clay',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Bone_Fragment',
       itemId: 'bone_fragment',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Radioactive_Ore',
       itemId: 'radioactive_ore',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Wild_Horseradish',
       itemId: 'wild_horseradish',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Daffodil',
       itemId: 'daffodil',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Leek',
       itemId: 'leek',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Dandelion',
       itemId: 'dandelion',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Spice_Berry',
       itemId: 'spice_berry',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Grape',
       itemId: 'grape',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Sweet_Pea',
       itemId: 'sweet_pea',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Common_Mushroom',
       itemId: 'common_mushroom',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Wild_Plum',
       itemId: 'wild_plum',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Hazelnut',
       itemId: 'hazelnut',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Blackberry',
       itemId: 'blackberry',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Winter_Root',
       itemId: 'winter_root',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Refined_Quartz',
       itemId: 'refined_quartz',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Moss',
       itemId: 'moss',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Crystal_Fruit',
       itemId: 'crystal_fruit',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Snow_Yam',
       itemId: 'snow_yam',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Crocus',
       itemId: 'crocus',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Ancient_Seed',
       itemId: 'ancient_seed',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Mystic_Syrup',
       itemId: 'mystic_syrup',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Acorn',
       itemId: 'acorn',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Maple_Seed',
       itemId: 'maple_seed',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Pine_Cone',
       itemId: 'pine_cone',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Mahogany_Seed',
       itemId: 'mahogany_seed',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Bug_Meat',
       itemId: 'bug_meat',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Prismatic_Shard',
       itemId: 'prismatic_shard',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Frozen_Tear',
       itemId: 'frozen_tear',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Diamond',
       itemId: 'diamond',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Morel',
       itemId: 'morel',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Chanterelle',
       itemId: 'chanterelle',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Garlic',
       itemId: 'garlic',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Oil',
       itemId: 'oil',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Bat_Wing',
       itemId: 'bat_wing',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Coral',
       itemId: 'coral',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Honey',
       itemId: 'honey',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Iridium_Ore',
       itemId: 'iridium_ore',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Truffle_Oil',
       itemId: 'truffle_oil',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Marble',
       itemId: 'marble',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Aquamarine',
       itemId: 'aquamarine',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Pumpkin',
       itemId: 'pumpkin',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Mixed_Seeds',
       itemId: 'mixed_seeds',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Cloth',
       itemId: 'cloth',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Red_Mushroom',
       itemId: 'red_mushroom',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Purple_Mushroom',
       itemId: 'purple_mushroom',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Fairy_Rose',
       itemId: 'fairy_rose',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Coconut',
       itemId: 'coconut',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Dragon_Tooth',
       itemId: 'dragon_tooth',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Ginger',
       itemId: 'ginger',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Cinder_Shard',
       itemId: 'cinder_shard',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Radioactive_Bar',
       itemId: 'radioactive_bar',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Sea_Urchin',
       itemId: 'sea_urchin',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Tulip_Bulb',
       itemId: 'tulip_bulb',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Jazz_Seeds',
       itemId: 'jazz_seeds',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Poppy_Seeds',
       itemId: 'poppy_seeds',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Spangle_Seeds',
       itemId: 'spangle_seeds',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Dwarf_Gadget',
       itemId: 'dwarf_gadget',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Quartz',
       itemId: 'quartz',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Corn',
       itemId: 'corn',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Sunflower',
       itemId: 'sunflower',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Sunflower_Seeds',
       itemId: 'sunflower_seeds',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Truffle',
       itemId: 'truffle',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     },
     {
       itemUrl: 'Wool',
       itemId: 'wool',
-      categories: ['Raw_Materials'],
+      categories: ['raw_materials'],
       tags: []
     }
   ]

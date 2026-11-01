@@ -35,14 +35,13 @@ export const scrapeItems = async (configs: ScraperConfig, saveImages = true): Pr
   return items;
 };
 
-export const resolveLabels = (names: string[], labels: ItemLabel[], itemId: string): ItemLabel[] =>
-  names.map((name) => {
-    const label = labels.find((l) => l.name === name);
-    if (!label) {
-      throw new Error(`Item ${itemId} uses "${name}", which is not defined in the config`);
-    }
-    return label;
-  });
+export const checkLabelIds = (ids: string[], labels: ItemLabel[], itemId: string): string[] => {
+  const unknown = ids.filter((id) => !labels.some((label) => label.id === id));
+  if (unknown.length > 0) {
+    throw new Error(`Item ${itemId} uses ${unknown.join(', ')}, which the config doesn't define`);
+  }
+  return ids;
+};
 
 export const scrapeItem = async (
   config: ItemConfig,
@@ -94,8 +93,8 @@ export const scrapeItem = async (
       description: itemDescription,
       imageUrl: `${baseConfig.assetPath}${config.itemId}.png`,
       links: [...(config.extraLinks || []), { text: 'Wiki Link', url: `${baseConfig.baseUrl}${config.itemUrl}` }],
-      categories: resolveLabels(config.categories, baseConfig.categories, config.itemId),
-      tags: resolveLabels(config.tags, baseConfig.tags, config.itemId),
+      categories: checkLabelIds(config.categories, baseConfig.categories, config.itemId),
+      tags: checkLabelIds(config.tags, baseConfig.tags, config.itemId),
       ingredients: ingredients
     };
   } catch (error) {

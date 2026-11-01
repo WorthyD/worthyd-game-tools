@@ -10,8 +10,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cherry_Bomb'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Bombs', icon: 'bomb' }],
+    categories: ['crafting'],
+    tags: ['bombs'],
     ingredients: [
       {
         id: 'copper_ore',
@@ -34,8 +34,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bomb'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Bombs', icon: 'bomb' }],
+    categories: ['crafting'],
+    tags: ['bombs'],
     ingredients: [
       {
         id: 'iron_ore',
@@ -58,8 +58,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mega_Bomb'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Bombs', icon: 'bomb' }],
+    categories: ['crafting'],
+    tags: ['bombs'],
     ingredients: [
       {
         id: 'gold_ore',
@@ -86,8 +86,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Gate'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fences', icon: 'fence' }],
+    categories: ['crafting'],
+    tags: ['fences'],
     ingredients: [
       {
         id: 'wood',
@@ -106,8 +106,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wood_Fence'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fences', icon: 'fence' }],
+    categories: ['crafting'],
+    tags: ['fences'],
     ingredients: [
       {
         id: 'wood',
@@ -126,8 +126,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone_Fence'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fences', icon: 'fence' }],
+    categories: ['crafting'],
+    tags: ['fences'],
     ingredients: [
       {
         id: 'stone',
@@ -146,8 +146,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iron_Fence'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fences', icon: 'fence' }],
+    categories: ['crafting'],
+    tags: ['fences'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -166,8 +166,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Hardwood_Fence'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fences', icon: 'fence' }],
+    categories: ['crafting'],
+    tags: ['fences'],
     ingredients: [
       {
         id: 'hardwood',
@@ -186,8 +186,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sprinkler'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Sprinklers', icon: 'sprinkler' }],
+    categories: ['crafting'],
+    tags: ['sprinklers'],
     ingredients: [
       {
         id: 'copper_bar',
@@ -210,8 +210,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Quality_Sprinkler'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Sprinklers', icon: 'sprinkler' }],
+    categories: ['crafting'],
+    tags: ['sprinklers'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -238,8 +238,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iridium_Sprinkler'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Sprinklers', icon: 'sprinkler' }],
+    categories: ['crafting'],
+    tags: ['sprinklers'],
     ingredients: [
       {
         id: 'gold_bar',
@@ -266,8 +266,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mayonnaise_Machine'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -298,8 +298,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bee_House'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -330,8 +330,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Preserves_Jar'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -358,8 +358,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cheese_Press'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -390,8 +390,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Loom'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -418,8 +418,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Keg'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -450,8 +450,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Oil_Maker'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'slime',
@@ -478,8 +478,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cask'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -503,8 +503,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fish_Smoker'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'hardwood',
@@ -535,8 +535,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Dehydrator'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Artisan_Equipment', icon: 'wine_bar' }],
+    categories: ['crafting'],
+    tags: ['artisan_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -563,8 +563,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Basic_Fertilizer'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'sap',
@@ -583,8 +583,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Quality_Fertilizer'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'sap',
@@ -603,8 +603,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Deluxe_Fertilizer'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'iridium_bar',
@@ -628,8 +628,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Speed-Gro'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'pine_tar',
@@ -653,8 +653,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Deluxe_Speed-Gro'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'oak_resin',
@@ -678,8 +678,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Hyper_Speed-Gro'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'radioactive_ore',
@@ -706,8 +706,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Basic_Retaining_Soil'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'stone',
@@ -726,8 +726,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Quality_Retaining_Soil'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'stone',
@@ -750,8 +750,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Deluxe_Retaining_Soil'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'stone',
@@ -778,8 +778,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Tree_Fertilizer'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fertilizer', icon: 'compost' }],
+    categories: ['crafting'],
+    tags: ['fertilizer'],
     ingredients: [
       {
         id: 'fiber',
@@ -802,8 +802,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Copper_Ore'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
-    tags: [{ name: 'Ores', icon: 'landslide' }],
+    categories: ['raw_materials'],
+    tags: ['ores'],
     ingredients: []
   },
   {
@@ -817,8 +817,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iron_Ore'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
-    tags: [{ name: 'Ores', icon: 'landslide' }],
+    categories: ['raw_materials'],
+    tags: ['ores'],
     ingredients: []
   },
   {
@@ -832,8 +832,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Gold_Ore'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
-    tags: [{ name: 'Ores', icon: 'landslide' }],
+    categories: ['raw_materials'],
+    tags: ['ores'],
     ingredients: []
   },
   {
@@ -847,8 +847,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Solar_Essence'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
-    tags: [{ name: 'Combat_Resources', icon: 'swords' }],
+    categories: ['raw_materials'],
+    tags: ['combat_resources'],
     ingredients: []
   },
   {
@@ -862,8 +862,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Void_Essence'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
-    tags: [{ name: 'Combat_Resources', icon: 'swords' }],
+    categories: ['raw_materials'],
+    tags: ['combat_resources'],
     ingredients: []
   },
   {
@@ -877,8 +877,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Spring_Seeds'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'wild_horseradish',
@@ -909,8 +909,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Summer_Seeds'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'spice_berry',
@@ -937,8 +937,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fall_Seeds'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'blackberry',
@@ -969,8 +969,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Winter_Seeds'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'crocus',
@@ -1001,8 +1001,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Ancient_Seeds'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'ancient_seed',
@@ -1021,8 +1021,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Grass_Starter'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'fiber',
@@ -1041,8 +1041,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Blue_Grass_Starter'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'fiber',
@@ -1070,8 +1070,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Tea_Sapling'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'fiber',
@@ -1094,8 +1094,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fiber_Seeds'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'mixed_seeds',
@@ -1122,8 +1122,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mystic_Tree_Seed'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Seeds', icon: 'psychiatry' }],
+    categories: ['crafting'],
+    tags: ['seeds'],
     ingredients: [
       {
         id: 'acorn',
@@ -1154,8 +1154,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wood_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'wood',
@@ -1174,8 +1174,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Rustic_Plank_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'wood',
@@ -1194,8 +1194,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Straw_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'wood',
@@ -1218,8 +1218,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Weathered_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'wood',
@@ -1238,8 +1238,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Crystal_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'refined_quartz',
@@ -1258,8 +1258,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'stone',
@@ -1278,8 +1278,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone_Walkway_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'stone',
@@ -1298,8 +1298,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Brick_Floor'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'clay',
@@ -1322,8 +1322,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wood_Path'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'wood',
@@ -1342,8 +1342,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Gravel_Path'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'stone',
@@ -1362,8 +1362,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cobblestone_Path'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'stone',
@@ -1382,8 +1382,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stepping_Stone_Path'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'stone',
@@ -1402,8 +1402,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Crystal_Path'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Decor', icon: 'potted_plant' }],
+    categories: ['crafting'],
+    tags: ['decor'],
     ingredients: [
       {
         id: 'refined_quartz',
@@ -1422,8 +1422,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Spinner'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -1442,8 +1442,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Trap_Bobber'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'copper_bar',
@@ -1466,8 +1466,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cork_Bobber'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'wood',
@@ -1494,8 +1494,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Quality_Bobber'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'copper_bar',
@@ -1522,8 +1522,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Treasure_Hunter'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'gold_bar',
@@ -1543,8 +1543,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Dressed_Spinner'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -1568,8 +1568,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Barbed_Hook'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'copper_bar',
@@ -1596,8 +1596,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Magnet'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -1616,8 +1616,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bait_(item)'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'bug_meat',
@@ -1636,8 +1636,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Deluxe_Bait'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'bait_(item)',
@@ -1660,8 +1660,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wild_Bait'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'fiber',
@@ -1689,8 +1689,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Magic_Bait'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'radioactive_ore',
@@ -1714,8 +1714,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Challenge_Bait'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'bone_fragment',
@@ -1739,8 +1739,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Crab_Pot'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Fishing', icon: 'phishing' }],
+    categories: ['crafting'],
+    tags: ['fishing'],
     ingredients: [
       {
         id: 'wood',
@@ -1763,8 +1763,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sturdy_Ring'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'copper_bar',
@@ -1791,8 +1791,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Warrior_Ring'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -1819,8 +1819,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Ring_of_Yoba'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -1847,8 +1847,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Thorns_Ring'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'bone_fragment',
@@ -1875,8 +1875,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Glowstone_Ring'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'solar_essence',
@@ -1899,8 +1899,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iridium_Band'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'iridium_bar',
@@ -1927,8 +1927,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wedding_Ring'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Rings', icon: 'diamond' }],
+    categories: ['crafting'],
+    tags: ['rings'],
     ingredients: [
       {
         id: 'iridium_bar',
@@ -1951,8 +1951,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Field_Snack'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Edible_Items', icon: 'nutrition' }],
+    categories: ['crafting'],
+    tags: ['edible_items'],
     ingredients: [
       {
         id: 'acorn',
@@ -1979,8 +1979,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bug_Steak'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Edible_Items', icon: 'nutrition' }],
+    categories: ['crafting'],
+    tags: ['edible_items'],
     ingredients: [
       {
         id: 'bug_meat',
@@ -1999,8 +1999,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Life_Elixir'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Edible_Items', icon: 'nutrition' }],
+    categories: ['crafting'],
+    tags: ['edible_items'],
     ingredients: [
       {
         id: 'red_mushroom',
@@ -2031,8 +2031,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Oil_of_Garlic'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Edible_Items', icon: 'nutrition' }],
+    categories: ['crafting'],
+    tags: ['edible_items'],
     ingredients: [
       {
         id: 'garlic',
@@ -2055,8 +2055,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Monster_Musk'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'slime',
@@ -2079,8 +2079,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fairy_Dust'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'diamond',
@@ -2103,8 +2103,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Warp_Totem:_Beach'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2131,8 +2131,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Warp_Totem:_Mountains'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2159,8 +2159,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Warp_Totem:_Farm'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2187,8 +2187,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Warp_Totem:_Desert'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2215,8 +2215,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Warp_Totem:_Island'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2243,8 +2243,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Rain_Totem'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2271,8 +2271,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Treasure_Totem'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Consumables', icon: 'auto_awesome' }],
+    categories: ['crafting'],
+    tags: ['consumables'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2299,8 +2299,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Torch'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'wood',
@@ -2323,8 +2323,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Campfire'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'stone',
@@ -2351,8 +2351,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wooden_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'wood',
@@ -2379,8 +2379,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'stone',
@@ -2407,8 +2407,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Gold_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'gold_bar',
@@ -2435,8 +2435,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Carved_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2459,8 +2459,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Carved_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2483,8 +2483,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Barrel_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'wood',
@@ -2511,8 +2511,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Skull_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'bone_fragment',
@@ -2531,8 +2531,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Marble_Brazier'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'marble',
@@ -2559,8 +2559,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wood_Lamp-post'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'wood',
@@ -2583,8 +2583,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iron_Lamp-post'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -2607,8 +2607,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Jack-O-Lantern'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Lighting', icon: 'lightbulb' }],
+    categories: ['crafting'],
+    tags: ['lighting'],
     ingredients: [
       {
         id: 'pumpkin',
@@ -2631,8 +2631,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Charcoal_Kiln'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -2655,8 +2655,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Crystalarium'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'stone',
@@ -2687,8 +2687,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Furnace'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'stone',
@@ -2711,8 +2711,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Heavy_Furnace'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'furnace',
@@ -2739,8 +2739,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Lightning_Rod'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -2767,8 +2767,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Solar_Panel'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'refined_quartz',
@@ -2795,8 +2795,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Recycling_Machine'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -2823,8 +2823,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Seed_Maker'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -2851,8 +2851,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Slime_Incubator'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'iridium_bar',
@@ -2875,8 +2875,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Ostrich_Incubator'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'bone_fragment',
@@ -2903,8 +2903,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Slime_Egg-Press'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'coal',
@@ -2931,8 +2931,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Tapper'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -2956,8 +2956,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Heavy_Tapper'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'hardwood',
@@ -2980,8 +2980,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Worm_Bin'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'hardwood',
@@ -3012,8 +3012,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Deluxe_Worm_Bin'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'worm_bin',
@@ -3036,8 +3036,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bone_Mill'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'bone_fragment',
@@ -3064,8 +3064,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Geode_Crusher'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'gold_bar',
@@ -3092,8 +3092,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mushroom_Log'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'hardwood',
@@ -3116,8 +3116,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bait_Maker'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Refining_Equipment', icon: 'factory' }],
+    categories: ['crafting'],
+    tags: ['refining_equipment'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -3144,8 +3144,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Tub_o%27_Flowers'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Furniture', icon: 'chair' }],
+    categories: ['crafting'],
+    tags: ['furniture'],
     ingredients: [
       {
         id: 'wood',
@@ -3180,8 +3180,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wicked_Statue'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Furniture', icon: 'chair' }],
+    categories: ['crafting'],
+    tags: ['furniture'],
     ingredients: [
       {
         id: 'stone',
@@ -3204,8 +3204,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Flute_Block'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Furniture', icon: 'chair' }],
+    categories: ['crafting'],
+    tags: ['furniture'],
     ingredients: [
       {
         id: 'wood',
@@ -3232,8 +3232,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Drum_Block'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Furniture', icon: 'chair' }],
+    categories: ['crafting'],
+    tags: ['furniture'],
     ingredients: [
       {
         id: 'stone',
@@ -3260,8 +3260,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Chest'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Storage_Equipment', icon: 'inventory_2' }],
+    categories: ['crafting'],
+    tags: ['storage_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -3280,8 +3280,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone_Chest'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Storage_Equipment', icon: 'inventory_2' }],
+    categories: ['crafting'],
+    tags: ['storage_equipment'],
     ingredients: [
       {
         id: 'stone',
@@ -3300,8 +3300,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Big_Chest'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Storage_Equipment', icon: 'inventory_2' }],
+    categories: ['crafting'],
+    tags: ['storage_equipment'],
     ingredients: [
       {
         id: 'wood',
@@ -3324,8 +3324,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Big_Stone_Chest'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Storage_Equipment', icon: 'inventory_2' }],
+    categories: ['crafting'],
+    tags: ['storage_equipment'],
     ingredients: [
       {
         id: 'stone',
@@ -3344,8 +3344,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wood_Sign'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Signs', icon: 'signpost' }],
+    categories: ['crafting'],
+    tags: ['signs'],
     ingredients: [
       {
         id: 'wood',
@@ -3364,8 +3364,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone_Sign'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Signs', icon: 'signpost' }],
+    categories: ['crafting'],
+    tags: ['signs'],
     ingredients: [
       {
         id: 'stone',
@@ -3384,8 +3384,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Dark_Sign'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Signs', icon: 'signpost' }],
+    categories: ['crafting'],
+    tags: ['signs'],
     ingredients: [
       {
         id: 'bat_wing',
@@ -3408,8 +3408,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Text_Sign'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Signs', icon: 'signpost' }],
+    categories: ['crafting'],
+    tags: ['signs'],
     ingredients: [
       {
         id: 'wood',
@@ -3428,8 +3428,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Garden_Pot'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'clay',
@@ -3456,8 +3456,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Scarecrow'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'wood',
@@ -3484,8 +3484,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Deluxe_Scarecrow'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'wood',
@@ -3512,8 +3512,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Staircase'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'stone',
@@ -3532,8 +3532,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Explosive_Ammo'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -3556,8 +3556,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mini-Jukebox'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -3580,8 +3580,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mini-Obelisk'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'hardwood',
@@ -3608,8 +3608,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Farm_Computer'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'dwarf_gadget',
@@ -3636,8 +3636,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Hopper'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'hardwood',
@@ -3664,8 +3664,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cookout_Kit'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'wood',
@@ -3692,8 +3692,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Tent_Kit'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'hardwood',
@@ -3720,8 +3720,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Statue_Of_The_Dwarf_King'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'iridium_bar',
@@ -3740,8 +3740,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Statue_Of_Blessings'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'sap',
@@ -3772,8 +3772,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Anvil'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'iron_bar',
@@ -3792,8 +3792,8 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mini-Forge'
       }
     ],
-    categories: [{ name: 'Crafting', icon: 'handyman' }],
-    tags: [{ name: 'Misc', icon: 'more_horiz' }],
+    categories: ['crafting'],
+    tags: ['misc'],
     ingredients: [
       {
         id: 'dragon_tooth',
@@ -3824,7 +3824,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Coal'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -3839,7 +3839,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wood'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -3854,7 +3854,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Stone'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -3869,7 +3869,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iron_Bar'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -3893,7 +3893,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Hardwood'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -3908,7 +3908,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Copper_Bar'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -3932,7 +3932,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Gold_Bar'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -3956,7 +3956,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iridium_Bar'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -3980,7 +3980,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Battery_Pack'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -3995,7 +3995,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Earth_Crystal'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4010,7 +4010,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Maple_Syrup'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4025,7 +4025,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fiber'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4040,7 +4040,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Pine_Tar'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4055,7 +4055,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Oak_Resin'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4070,7 +4070,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Slime'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4085,7 +4085,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sea_Jelly'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4100,7 +4100,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/River_Jelly'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4115,7 +4115,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cave_Jelly'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4130,7 +4130,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fire_Quartz'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4145,7 +4145,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sap'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4160,7 +4160,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Clay'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4175,7 +4175,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bone_Fragment'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4190,7 +4190,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Radioactive_Ore'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4205,7 +4205,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wild_Horseradish'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4220,7 +4220,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Daffodil'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4235,7 +4235,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Leek'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4250,7 +4250,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Dandelion'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4265,7 +4265,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Spice_Berry'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4280,7 +4280,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Grape'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4295,7 +4295,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sweet_Pea'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4310,7 +4310,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Common_Mushroom'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4325,7 +4325,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wild_Plum'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4340,7 +4340,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Hazelnut'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4355,7 +4355,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Blackberry'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4370,7 +4370,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Winter_Root'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4385,7 +4385,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Refined_Quartz'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -4417,7 +4417,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Moss'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4432,7 +4432,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Crystal_Fruit'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4447,7 +4447,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Snow_Yam'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4462,7 +4462,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Crocus'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4477,7 +4477,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Ancient_Seed'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4492,7 +4492,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mystic_Syrup'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4507,7 +4507,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Acorn'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4522,7 +4522,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Maple_Seed'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4537,7 +4537,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Pine_Cone'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4552,7 +4552,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mahogany_Seed'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4567,7 +4567,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bug_Meat'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4582,7 +4582,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Prismatic_Shard'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4597,7 +4597,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Frozen_Tear'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4612,7 +4612,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Diamond'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4627,7 +4627,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Morel'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4642,7 +4642,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Chanterelle'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4657,7 +4657,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Garlic'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4672,7 +4672,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Oil'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -4700,7 +4700,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Bat_Wing'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4715,7 +4715,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Coral'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4730,7 +4730,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Honey'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4745,7 +4745,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Iridium_Ore'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4760,7 +4760,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Truffle_Oil'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -4780,7 +4780,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Marble'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4795,7 +4795,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Aquamarine'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4811,7 +4811,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Pumpkin'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4826,7 +4826,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Mixed_Seeds'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4841,7 +4841,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cloth'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -4861,7 +4861,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Red_Mushroom'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4876,7 +4876,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Purple_Mushroom'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4891,7 +4891,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Fairy_Rose'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4906,7 +4906,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Coconut'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4921,7 +4921,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Dragon_Tooth'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4936,7 +4936,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Ginger'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4951,7 +4951,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Cinder_Shard'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -4966,7 +4966,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Radioactive_Bar'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: [
       {
@@ -4990,7 +4990,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sea_Urchin'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5005,7 +5005,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Tulip_Bulb'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5020,7 +5020,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Jazz_Seeds'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5035,7 +5035,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Poppy_Seeds'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5050,7 +5050,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Spangle_Seeds'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5066,7 +5066,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Dwarf_Gadget'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5081,7 +5081,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Quartz'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5096,7 +5096,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Corn'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5111,7 +5111,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sunflower'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5126,7 +5126,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Sunflower_Seeds'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5141,7 +5141,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Truffle'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   },
@@ -5156,7 +5156,7 @@ export const items = [
         url: 'https://stardewvalleywiki.com/Wool'
       }
     ],
-    categories: [{ name: 'Raw_Materials', icon: 'forest' }],
+    categories: ['raw_materials'],
     tags: [],
     ingredients: []
   }

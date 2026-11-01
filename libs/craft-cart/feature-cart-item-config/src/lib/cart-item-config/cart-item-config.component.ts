@@ -136,7 +136,7 @@ export const config: ScraperConfig =
   }
 
   removeKeyword(keyword: ItemLabel, items: WritableSignal<ItemLabel[]>, controlName: 'categories' | 'tags') {
-    items.update((keywords) => keywords.filter((k) => k.name !== keyword.name));
+    items.update((keywords) => keywords.filter((k) => k.id !== keyword.id));
     this.itemsForm.get(controlName)?.setValue(items());
   }
   addKeyword(
@@ -146,9 +146,10 @@ export const config: ScraperConfig =
     icon: string
   ): void {
     const name = (event.value || '').trim();
+    const id = name.toLowerCase().replace(/\W+/g, '_');
 
-    if (name && !items().some((k) => k.name === name)) {
-      items.update((keywords) => [...keywords, { name, icon }]);
+    if (id && !items().some((k) => k.id === id)) {
+      items.update((keywords) => [...keywords, { id, name, icon }]);
       this.itemsForm.get(controlName)?.setValue(items());
     }
     event.chipInput!.clear();
