@@ -4,6 +4,7 @@ import { shellProviders, shellRoutes, ScraperConfigToken } from '@crafting-cart/
 import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 import { config } from './catalog/config';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { provideMaterialSymbols } from './material-symbols';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { subscriptSizing: 'dynamic' }
     },
+    provideMaterialSymbols(),
     ...shellProviders
   ]
 };

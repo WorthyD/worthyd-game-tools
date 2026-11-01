@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ScraperConfigToken } from '@crafting-cart/shell';
-import { ScraperConfig, ItemConfig } from '@crafting-cart/shared/models';
+import { ScraperConfig, ItemConfig, ItemLabel } from '@crafting-cart/shared/models';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
@@ -46,8 +46,12 @@ export class CartItemConfigComponent implements OnInit {
   dataSource!: MatTableDataSource<FormGroup>;
   dialog = inject(MatDialog);
 
-  categories: WritableSignal<string[]> = signal([]);
-  tags: WritableSignal<string[]> = signal([]);
+  categories: WritableSignal<ItemLabel[]> = signal([]);
+  tags: WritableSignal<ItemLabel[]> = signal([]);
+
+  // Material Symbols (fonts.google.com/icons) used for categories and tags added in the editor.
+  readonly defaultCategoryIcon = 'category';
+  readonly defaultTagIcon = 'label';
 
   constructor(
     @Inject(ScraperConfigToken) private readonly config: any,
@@ -131,22 +135,21 @@ export const config: ScraperConfig =
       ${JSON.stringify(this.itemsForm.value, null, 2)}`);
   }
 
-  removeKeyword(keyword: string, items: WritableSignal<string[]>) {
-    items.update((keywords) => {
-      const index = keywords.indexOf(keyword);
-      if (index < 0) {
-        return keywords;
-      }
-
-      keywords.splice(index, 1);
-      return [...keywords];
-    });
+  removeKeyword(keyword: ItemLabel, items: WritableSignal<ItemLabel[]>, controlName: 'categories' | 'tags') {
+    items.update((keywords) => keywords.filter((k) => k.name !== keyword.name));
+    this.itemsForm.get(controlName)?.setValue(items());
   }
-  addKeyword(event: MatChipInputEvent, items: WritableSignal<string[]>): void {
-    const value = (event.value || '').trim();
+  addKeyword(
+    event: MatChipInputEvent,
+    items: WritableSignal<ItemLabel[]>,
+    controlName: 'categories' | 'tags',
+    icon: string
+  ): void {
+    const name = (event.value || '').trim();
 
-    if (value) {
-      items.update((keywords) => [...keywords, value]);
+    if (name && !items().some((k) => k.name === name)) {
+      items.update((keywords) => [...keywords, { name, icon }]);
+      this.itemsForm.get(controlName)?.setValue(items());
     }
     event.chipInput!.clear();
   }

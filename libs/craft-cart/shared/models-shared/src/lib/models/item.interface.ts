@@ -1,3 +1,5 @@
+import { ItemCategory, ItemTag } from './item-label.interface';
+
 export interface Item {
   id: string;
   name: string;
@@ -5,6 +7,6 @@ export interface Item {
   imageUrl: string;
   links: { text: string; url: string }[];
   ingredients: { id: string; quantity: number }[];
-  categories: string[];
-  tags: string[];
+  categories: ItemCategory[];
+  tags: ItemTag[];
 }

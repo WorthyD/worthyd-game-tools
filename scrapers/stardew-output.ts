@@ -11,10 +11,16 @@ export const items = [
       }
     ],
     "categories": [
-      "Crafting"
+      {
+        "name": "Crafting",
+        "icon": "handyman"
+      }
     ],
     "tags": [
-      "Fertilizer"
+      {
+        "name": "Fertilizer",
+        "icon": "compost"
+      }
     ],
     "ingredients": [
       {

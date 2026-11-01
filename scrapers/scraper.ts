@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
 
-import { ItemConfig, ItemOutput, ScraperConfig } from './configs/config.model';
+import { ItemConfig, ItemLabel, ItemOutput, ScraperConfig } from './configs/config.model';
 
 export const downloadImage = async (url, filepath) => {
   try {
@@ -34,6 +34,15 @@ export const scrapeItems = async (configs: ScraperConfig, saveImages = true): Pr
 
   return items;
 };
+
+export const resolveLabels = (names: string[], labels: ItemLabel[], itemId: string): ItemLabel[] =>
+  names.map((name) => {
+    const label = labels.find((l) => l.name === name);
+    if (!label) {
+      throw new Error(`Item ${itemId} uses "${name}", which is not defined in the config`);
+    }
+    return label;
+  });
 
 export const scrapeItem = async (
   config: ItemConfig,
@@ -85,8 +94,8 @@ export const scrapeItem = async (
       description: itemDescription,
       imageUrl: `${baseConfig.assetPath}${config.itemId}.png`,
       links: [...(config.extraLinks || []), { text: 'Wiki Link', url: `${baseConfig.baseUrl}${config.itemUrl}` }],
-      categories: config.categories,
-      tags: config.tags,
+      categories: resolveLabels(config.categories, baseConfig.categories, config.itemId),
+      tags: resolveLabels(config.tags, baseConfig.tags, config.itemId),
       ingredients: ingredients
     };
   } catch (error) {
