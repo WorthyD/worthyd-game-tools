@@ -3,9 +3,9 @@ import { ItemCategory, ItemTag } from './item-label.interface';
 export interface ItemConfig {
   itemUrl: string;
   itemId: string;
-  /** Names of entries in `ScraperConfig.categories`. */
+  /** Ids of entries in `ScraperConfig.categories`. */
   categories: string[];
-  /** Names of entries in `ScraperConfig.tags`. */
+  /** Ids of entries in `ScraperConfig.tags`. */
   tags: string[];
   extraLinks?: { text: string; url: string }[];
 }

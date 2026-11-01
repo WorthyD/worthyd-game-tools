@@ -20,4 +20,24 @@ describe('CatalogStore', () => {
     expect(store.entityMap()['PRODUCT-ZZZ']?.name).toBe('name-PRODUCT-ZZZ');
     expect(store.loaded()).toBe(true);
   });
+
+  it('init() should index the config-level categories and tags by id', () => {
+    const store = TestBed.inject(CatalogStore);
+    store.init([{ ...createItem('bomb'), categories: ['crafting'], tags: ['bombs'] }], {
+      categories: [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }],
+      tags: [{ id: 'bombs', name: 'Bombs', icon: 'bomb' }]
+    });
+
+    const item = store.entityMap()['bomb'];
+    expect(item?.categories.map((id) => store.categoryMap()[id]?.icon)).toEqual(['handyman']);
+    expect(item?.tags.map((id) => store.tagMap()[id]?.name)).toEqual(['Bombs']);
+  });
+
+  it('init() without labels should leave the lookups empty', () => {
+    const store = TestBed.inject(CatalogStore);
+    store.init([createItem('bomb')]);
+
+    expect(store.categoryMap()).toEqual({});
+    expect(store.tagMap()).toEqual({});
+  });
 });
