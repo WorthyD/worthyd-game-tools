@@ -74,7 +74,10 @@ describe('CartStore', () => {
   it('should load a saved cart from local storage', () => {
     localStorage.setItem(
       `${PREFIX}cart`,
-      JSON.stringify({ ids: ['A', 'B'], entities: { A: { itemId: 'A', quantity: 2 }, B: { itemId: 'B', quantity: 4 } } })
+      JSON.stringify({
+        ids: ['A', 'B'],
+        entities: { A: { itemId: 'A', quantity: 2 }, B: { itemId: 'B', quantity: 4 } }
+      })
     );
 
     const store = createStore();

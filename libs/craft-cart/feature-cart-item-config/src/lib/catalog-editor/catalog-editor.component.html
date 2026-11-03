@@ -1,0 +1,584 @@
+@let maps = labelMaps();
+
+<ng-template #labelTrigger let-ids>
+  @for (id of ids; track id; let last = $last) {
+    {{ maps.categories[id]?.name ?? maps.tags[id]?.name ?? id }}{{ last ? '' : ', ' }}
+  }
+</ng-template>
+
+<div class="flex h-full flex-col overflow-hidden">
+  @if (missingDataset() !== null) {
+    <p class="p-6">There is no catalog dataset called "{{ missingDataset() }}".</p>
+  } @else if (config(); as cfg) {
+    <header class="flex flex-wrap items-center gap-3 editor-divider px-4 py-3">
+      <h1 class="m-0 text-xl font-medium">Catalog editor</h1>
+      @if (datasets.length > 1) {
+        <mat-form-field subscriptSizing="dynamic" class="w-56">
+          <mat-label>Dataset</mat-label>
+          <mat-select [value]="store.datasetId()" (selectionChange)="switchDataset($event.value)">
+            @for (dataset of datasets; track dataset.id) {
+              <mat-option [value]="dataset.id">{{ dataset.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      } @else {
+        <span class="editor-muted">{{ store.datasetName() }}</span>
+      }
+      <span class="flex-auto"></span>
+      <span class="text-sm editor-muted" data-test="draft-status">
+        @if (store.dirty()) {
+          Draft autosaved {{ store.savedAt() | date: 'medium' }}
+        } @else {
+          No changes from the source files
+        }
+      </span>
+      <button mat-stroked-button type="button" [disabled]="!store.dirty()" (click)="discardDraft()">
+        <mat-icon>restore</mat-icon>
+        Discard draft
+      </button>
+    </header>
+
+    @if (store.restored()) {
+      <div class="editor-notice px-4 py-2 text-sm" data-test="restored-banner">
+        Restored your unsaved draft from {{ store.savedAt() | date: 'medium' }}.
+        @if (store.sourceChanged()) {
+          <strong>The source files changed after this draft was started</strong>, so exporting it will overwrite those
+          changes. Discard the draft to start from the current files.
+        }
+      </div>
+    }
+    @if (message()) {
+      <div class="flex items-center gap-2 editor-warning px-4 py-1 text-sm" role="status">
+        {{ message() }}
+        <button mat-icon-button type="button" aria-label="Dismiss message" (click)="message.set('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    }
+
+    <mat-tab-group class="min-h-0 flex-1" mat-stretch-tabs="false" animationDuration="0ms">
+      <!-- Settings and labels -->
+      <mat-tab label="Settings & labels">
+        <ng-template matTabContent>
+          <div class="flex flex-col gap-6 p-4">
+            <section class="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
+              @for (field of settingFields; track field.key) {
+                <mat-form-field subscriptSizing="dynamic">
+                  <mat-label>{{ field.label }}</mat-label>
+                  <input matInput [value]="cfg[field.key]" (input)="setSetting(field.key, $any($event.target).value)" />
+                </mat-form-field>
+              }
+            </section>
+
+            <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+              @for (group of labelKinds; track group.kind) {
+                <section>
+                  <h2 class="mb-2 text-lg font-medium">{{ group.title }} ({{ labels()[group.kind].length }})</h2>
+                  <table class="editor-table">
+                    <thead>
+                      <tr class="text-left">
+                        <th class="w-10"></th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Icon</th>
+                        <th class="text-right">Used by</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (label of labels()[group.kind]; track label.id; let first = $first, last = $last) {
+                        <tr>
+                          <td>
+                            <mat-icon>{{ label.icon }}</mat-icon>
+                          </td>
+                          <td>
+                            <input
+                              #idInput
+                              class="editor-input"
+                              [attr.aria-label]="'Id of ' + label.name"
+                              [value]="label.id"
+                              (change)="renameLabel(group.kind, label, idInput)"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              class="editor-input"
+                              [attr.aria-label]="'Name of ' + label.id"
+                              [value]="label.name"
+                              (input)="store.updateLabel(group.kind, label.id, { name: $any($event.target).value })"
+                            />
+                          </td>
+                          <td>
+                            <input
+                              class="editor-input"
+                              [attr.aria-label]="'Icon of ' + label.id"
+                              [value]="label.icon"
+                              (input)="store.updateLabel(group.kind, label.id, { icon: $any($event.target).value })"
+                            />
+                          </td>
+                          <td class="text-right">{{ store.labelUsage()[group.kind][label.id] ?? 0 }}</td>
+                          <td class="whitespace-nowrap text-right">
+                            <button
+                              mat-icon-button
+                              type="button"
+                              aria-label="Move up"
+                              [disabled]="first"
+                              (click)="store.moveLabel(group.kind, label.id, -1)"
+                            >
+                              <mat-icon>arrow_upward</mat-icon>
+                            </button>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              aria-label="Move down"
+                              [disabled]="last"
+                              (click)="store.moveLabel(group.kind, label.id, 1)"
+                            >
+                              <mat-icon>arrow_downward</mat-icon>
+                            </button>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              [attr.aria-label]="'Delete ' + label.name"
+                              (click)="removeLabel(group.kind, label)"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <div class="mt-2 flex items-center gap-2">
+                    <input
+                      #newLabel
+                      class="editor-input max-w-64"
+                      [placeholder]="'New ' + (group.kind === 'tags' ? 'tag' : 'category') + ' name'"
+                      [attr.aria-label]="'New ' + group.title + ' name'"
+                      (keydown.enter)="addLabel(group.kind, newLabel)"
+                    />
+                    <button mat-stroked-button type="button" (click)="addLabel(group.kind, newLabel)">Add</button>
+                  </div>
+                </section>
+              }
+            </div>
+            <p class="text-sm editor-muted">
+              Icons are Material Symbols names from
+              <a href="https://fonts.google.com/icons" target="_blank" rel="noopener">fonts.google.com/icons</a>.
+              Changing an id updates every item that uses it; deleting a label removes it from every item.
+            </p>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <!-- Item configs (what the scraper fetches) -->
+      <mat-tab [label]="'Item configs (' + cfg.items.length + ')'">
+        <ng-template matTabContent>
+          <div class="flex flex-col gap-3 p-4">
+            <div class="flex flex-wrap items-end gap-3">
+              <mat-form-field subscriptSizing="dynamic" class="w-72">
+                <mat-label>Filter</mat-label>
+                <input
+                  matInput
+                  [value]="itemConfigs.filter()"
+                  (input)="itemConfigs.setFilter($any($event.target).value)"
+                />
+              </mat-form-field>
+              <button mat-stroked-button type="button" (click)="addRow('itemConfigs')">
+                <mat-icon>add</mat-icon>
+                Add row
+              </button>
+              <mat-form-field subscriptSizing="dynamic" class="min-w-96 flex-auto">
+                <mat-label>Paste wiki urls, one per line</mat-label>
+                <textarea #urls matInput rows="1"></textarea>
+              </mat-form-field>
+              <button mat-stroked-button type="button" (click)="addItemConfigUrls(urls)">Add urls</button>
+            </div>
+
+            <ng-container
+              [ngTemplateOutlet]="bulkBar"
+              [ngTemplateOutletContext]="{
+                rows: 'itemConfigs',
+                count: itemConfigs.selected().size,
+                filtered: itemConfigs.filtered().length,
+                hasLabel: !!bulkLabel().itemConfigs
+              }"
+            />
+
+            <table class="editor-table">
+              <thead>
+                <tr>
+                  <th class="w-10">
+                    <mat-checkbox
+                      aria-label="Select page"
+                      [checked]="itemConfigs.allPageSelected()"
+                      [indeterminate]="itemConfigs.somePageSelected()"
+                      (change)="itemConfigs.togglePage()"
+                    />
+                  </th>
+                  <th>Item id</th>
+                  <th>Item url</th>
+                  <th>Categories</th>
+                  <th>Tags</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (entry of itemConfigs.page(); track entry.index) {
+                  <tr>
+                    <td>
+                      <mat-checkbox
+                        [attr.aria-label]="'Select ' + entry.row.itemId"
+                        [checked]="itemConfigs.selected().has(entry.index)"
+                        (change)="itemConfigs.toggle(entry.index)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        class="editor-input"
+                        aria-label="Item id"
+                        [value]="entry.row.itemId"
+                        (input)="store.updateItemConfig(entry.index, { itemId: $any($event.target).value })"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        class="editor-input"
+                        aria-label="Item url"
+                        [value]="entry.row.itemUrl"
+                        (change)="store.setItemConfigUrl(entry.index, $any($event.target).value)"
+                      />
+                    </td>
+                    <td>
+                      <mat-select
+                        multiple
+                        aria-label="Categories"
+                        class="editor-select"
+                        [value]="entry.row.categories"
+                        (selectionChange)="store.updateItemConfig(entry.index, { categories: $event.value })"
+                      >
+                        <mat-select-trigger>
+                          <ng-container
+                            [ngTemplateOutlet]="labelTrigger"
+                            [ngTemplateOutletContext]="{ $implicit: entry.row.categories }"
+                          />
+                        </mat-select-trigger>
+                        @for (label of labels().categories; track label.id) {
+                          <mat-option [value]="label.id"
+                            ><mat-icon>{{ label.icon }}</mat-icon
+                            >{{ label.name }}</mat-option
+                          >
+                        }
+                      </mat-select>
+                    </td>
+                    <td>
+                      <mat-select
+                        multiple
+                        aria-label="Tags"
+                        class="editor-select"
+                        [value]="entry.row.tags"
+                        (selectionChange)="store.updateItemConfig(entry.index, { tags: $event.value })"
+                      >
+                        <mat-select-trigger>
+                          <ng-container
+                            [ngTemplateOutlet]="labelTrigger"
+                            [ngTemplateOutletContext]="{ $implicit: entry.row.tags }"
+                          />
+                        </mat-select-trigger>
+                        @for (label of labels().tags; track label.id) {
+                          <mat-option [value]="label.id"
+                            ><mat-icon>{{ label.icon }}</mat-icon
+                            >{{ label.name }}</mat-option
+                          >
+                        }
+                      </mat-select>
+                    </td>
+                    <td>
+                      <button
+                        mat-icon-button
+                        type="button"
+                        [attr.aria-label]="'Delete ' + entry.row.itemId"
+                        (click)="removeRow('itemConfigs', entry.index)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="6" class="p-4 text-center editor-muted">No item configs match.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            <mat-paginator
+              [length]="itemConfigs.filtered().length"
+              [pageIndex]="itemConfigs.pageIndex()"
+              [pageSize]="itemConfigs.pageSize()"
+              [pageSizeOptions]="[25, 50, 100, 250]"
+              (page)="itemConfigs.changePage($event)"
+            />
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <!-- Catalog items (what the app shows) -->
+      <mat-tab [label]="'Catalog items (' + (store.draft()?.items?.length ?? 0) + ')'">
+        <ng-template matTabContent>
+          <div class="flex flex-col gap-3 p-4">
+            <div class="flex flex-wrap items-end gap-3">
+              <mat-form-field subscriptSizing="dynamic" class="w-72">
+                <mat-label>Filter</mat-label>
+                <input matInput [value]="items.filter()" (input)="items.setFilter($any($event.target).value)" />
+              </mat-form-field>
+              <button mat-stroked-button type="button" (click)="addRow('items')">
+                <mat-icon>add</mat-icon>
+                Add item
+              </button>
+            </div>
+
+            <ng-container
+              [ngTemplateOutlet]="bulkBar"
+              [ngTemplateOutletContext]="{
+                rows: 'items',
+                count: items.selected().size,
+                filtered: items.filtered().length,
+                hasLabel: !!bulkLabel().items
+              }"
+            />
+
+            <table class="editor-table">
+              <thead>
+                <tr>
+                  <th class="w-10">
+                    <mat-checkbox
+                      aria-label="Select page"
+                      [checked]="items.allPageSelected()"
+                      [indeterminate]="items.somePageSelected()"
+                      (change)="items.togglePage()"
+                    />
+                  </th>
+                  <th>Id / name</th>
+                  <th>Description / image</th>
+                  <th>Categories / tags</th>
+                  <th matTooltip="id:quantity, comma separated">Ingredients</th>
+                  <th matTooltip="One 'text | url' per line">Links</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (entry of itemPage(); track entry.index) {
+                  <tr>
+                    <td>
+                      <mat-checkbox
+                        [attr.aria-label]="'Select ' + entry.row.id"
+                        [checked]="items.selected().has(entry.index)"
+                        (change)="items.toggle(entry.index)"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        class="editor-input"
+                        aria-label="Id"
+                        [value]="entry.row.id"
+                        (input)="store.updateItem(entry.index, { id: $any($event.target).value })"
+                      />
+                      <input
+                        class="editor-input mt-1"
+                        aria-label="Name"
+                        [value]="entry.row.name"
+                        (input)="store.updateItem(entry.index, { name: $any($event.target).value })"
+                      />
+                    </td>
+                    <td>
+                      <textarea
+                        class="editor-input"
+                        rows="2"
+                        aria-label="Description"
+                        [value]="entry.row.description"
+                        (input)="store.updateItem(entry.index, { description: $any($event.target).value })"
+                      ></textarea>
+                      <input
+                        class="editor-input mt-1"
+                        aria-label="Image url"
+                        [value]="entry.row.imageUrl"
+                        (input)="store.updateItem(entry.index, { imageUrl: $any($event.target).value })"
+                      />
+                    </td>
+                    <td>
+                      <mat-select
+                        multiple
+                        aria-label="Categories"
+                        class="editor-select"
+                        placeholder="Categories"
+                        [value]="entry.row.categories"
+                        (selectionChange)="store.updateItem(entry.index, { categories: $event.value })"
+                      >
+                        <mat-select-trigger>
+                          <ng-container
+                            [ngTemplateOutlet]="labelTrigger"
+                            [ngTemplateOutletContext]="{ $implicit: entry.row.categories }"
+                          />
+                        </mat-select-trigger>
+                        @for (label of labels().categories; track label.id) {
+                          <mat-option [value]="label.id"
+                            ><mat-icon>{{ label.icon }}</mat-icon
+                            >{{ label.name }}</mat-option
+                          >
+                        }
+                      </mat-select>
+                      <mat-select
+                        multiple
+                        aria-label="Tags"
+                        class="editor-select mt-1"
+                        placeholder="Tags"
+                        [value]="entry.row.tags"
+                        (selectionChange)="store.updateItem(entry.index, { tags: $event.value })"
+                      >
+                        <mat-select-trigger>
+                          <ng-container
+                            [ngTemplateOutlet]="labelTrigger"
+                            [ngTemplateOutletContext]="{ $implicit: entry.row.tags }"
+                          />
+                        </mat-select-trigger>
+                        @for (label of labels().tags; track label.id) {
+                          <mat-option [value]="label.id"
+                            ><mat-icon>{{ label.icon }}</mat-icon
+                            >{{ label.name }}</mat-option
+                          >
+                        }
+                      </mat-select>
+                    </td>
+                    <td>
+                      <textarea
+                        class="editor-input"
+                        rows="2"
+                        aria-label="Ingredients"
+                        [value]="entry.ingredients"
+                        (change)="setIngredients(entry.index, $any($event.target).value)"
+                      ></textarea>
+                    </td>
+                    <td>
+                      <textarea
+                        class="editor-input"
+                        rows="2"
+                        aria-label="Links"
+                        [value]="entry.links"
+                        (change)="setLinks(entry.index, $any($event.target).value)"
+                      ></textarea>
+                    </td>
+                    <td>
+                      <button
+                        mat-icon-button
+                        type="button"
+                        [attr.aria-label]="'Delete ' + entry.row.id"
+                        (click)="removeRow('items', entry.index)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="7" class="p-4 text-center editor-muted">No items match.</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            <mat-paginator
+              [length]="items.filtered().length"
+              [pageIndex]="items.pageIndex()"
+              [pageSize]="items.pageSize()"
+              [pageSizeOptions]="[25, 50, 100, 250]"
+              (page)="items.changePage($event)"
+            />
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <!-- Export -->
+      <mat-tab [label]="'Export' + (store.issues().length ? ' (' + store.issues().length + ' issues)' : '')">
+        <ng-template matTabContent>
+          <div class="flex flex-col gap-4 p-4">
+            <p class="m-0 text-sm">
+              Saving is a manual replace: copy or download each file and paste it over the one in the repo. Your draft
+              stays in this browser until you discard it.
+            </p>
+            @if (store.issues().length) {
+              <section class="rounded editor-warning p-3 text-sm" data-test="issues">
+                <h2 class="m-0 mb-1 text-base font-medium">Check these before you replace the files</h2>
+                <ul class="m-0 list-disc pl-5">
+                  @for (issue of store.issues(); track issue) {
+                    <li>{{ issue }}</li>
+                  }
+                </ul>
+              </section>
+            }
+            @for (file of exportFiles(); track file.path) {
+              <section class="flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <h2 class="m-0 font-mono text-base">{{ file.path }}</h2>
+                  <span class="flex-auto"></span>
+                  <button mat-flat-button type="button" (click)="copyFile(file)">
+                    <mat-icon>content_copy</mat-icon>
+                    Copy
+                  </button>
+                  <button mat-stroked-button type="button" (click)="downloadFile(file)">
+                    <mat-icon>download</mat-icon>
+                    Download
+                  </button>
+                </div>
+                <textarea
+                  class="editor-input h-64 font-mono text-xs"
+                  readonly
+                  [attr.aria-label]="file.path"
+                  [value]="file.text"
+                ></textarea>
+              </section>
+            }
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  }
+</div>
+
+<ng-template #bulkBar let-rows="rows" let-count="count" let-filtered="filtered" let-hasLabel="hasLabel">
+  <div class="flex flex-wrap items-center gap-2 rounded editor-notice px-3 py-2 text-sm">
+    <span>{{ count }} selected</span>
+    <button mat-button type="button" (click)="tableFor(rows).selectFiltered()">Select all {{ filtered }} shown</button>
+    <button mat-button type="button" [disabled]="!count" (click)="tableFor(rows).clearSelection()">Clear</button>
+    <span class="flex-auto"></span>
+    <mat-form-field subscriptSizing="dynamic" class="w-64">
+      <mat-label>Label</mat-label>
+      <mat-select (selectionChange)="setBulkLabel(rows, $event.value)">
+        <mat-optgroup label="Categories">
+          @for (label of labels().categories; track label.id) {
+            <mat-option [value]="'categories:' + label.id"
+              ><mat-icon>{{ label.icon }}</mat-icon
+              >{{ label.name }}</mat-option
+            >
+          }
+        </mat-optgroup>
+        <mat-optgroup label="Tags">
+          @for (label of labels().tags; track label.id) {
+            <mat-option [value]="'tags:' + label.id"
+              ><mat-icon>{{ label.icon }}</mat-icon
+              >{{ label.name }}</mat-option
+            >
+          }
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button type="button" [disabled]="!count || !hasLabel" (click)="applyBulkLabel(rows, 'add')">
+      Add to selected
+    </button>
+    <button mat-stroked-button type="button" [disabled]="!count || !hasLabel" (click)="applyBulkLabel(rows, 'remove')">
+      Remove from selected
+    </button>
+    <button mat-stroked-button type="button" [disabled]="!count" (click)="removeSelected(rows)">
+      <mat-icon>delete</mat-icon>
+      Delete selected
+    </button>
+  </div>
+</ng-template>

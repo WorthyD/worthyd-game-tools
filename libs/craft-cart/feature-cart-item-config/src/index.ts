@@ -1,1 +1,1 @@
-export * from './lib/cart-item-config/cart-item-config.component';
+export * from './lib/catalog-editor/catalog-editor.component';
