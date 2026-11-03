@@ -18,7 +18,12 @@ export const shellRoutes: Routes = [
       {
         path: 'config',
         loadComponent: () =>
-          import('@crafting-cart/cart-item-config').then((component) => component.CartItemConfigComponent)
+          import('@crafting-cart/cart-item-config').then((component) => component.CatalogEditorComponent)
+      },
+      {
+        path: 'config/:datasetId',
+        loadComponent: () =>
+          import('@crafting-cart/cart-item-config').then((component) => component.CatalogEditorComponent)
       }
     ]
   }
