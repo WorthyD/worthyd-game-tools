@@ -9,7 +9,9 @@ import {
   TemplateRef,
   ViewChild,
   WritableSignal,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  effect,
+  untracked
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ColumnConfig } from './data-viewer.config';
@@ -41,28 +43,31 @@ import { MatIconModule } from '@angular/material/icon';
   // This is important - it tells Angular to preserve the projected content
   preserveWhitespaces: true,
   template: `
-    <div>
-      <mat-button-toggle-group [formControl]="currentView" aria-label="Font Style">
-        <mat-button-toggle value="card"><mat-icon>apps</mat-icon></mat-button-toggle>
-        <mat-button-toggle value="table"><mat-icon>view_list</mat-icon></mat-button-toggle>
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 py-3">
+      <mat-button-toggle-group [formControl]="currentView" aria-label="Layout" hideSingleSelectionIndicator>
+        <mat-button-toggle value="card" aria-label="Card view"><mat-icon>grid_view</mat-icon></mat-button-toggle>
+        <mat-button-toggle value="table" aria-label="Table view"><mat-icon>table_rows</mat-icon></mat-button-toggle>
       </mat-button-toggle-group>
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+      <mat-form-field class="w-64">
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" />
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="w-48">
         <mat-label>Sort</mat-label>
         <mat-select [formControl]="sortDirectionInput" (selectionChange)="onSortChange($event)">
+          <mat-option value="">None</mat-option>
           @for (column of filterColumns(); track column) {
-            <mat-option value="{{ column }}-ASC">{{ column }} - ASC</mat-option>
-            <mat-option value="{{ column }}-DESC">{{ column }} - DESC </mat-option>
+            <mat-option value="{{ column }}-ASC">{{ column | titlecase }} (A–Z)</mat-option>
+            <mat-option value="{{ column }}-DESC">{{ column | titlecase }} (Z–A)</mat-option>
           }
         </mat-select>
       </mat-form-field>
+      <ng-content select="[dataViewerFilters]" />
     </div>
     @if (currentView.value === 'card') {
       <div class="card-scroll">
-        <div class="flex flex-wrap justify-around gap-4">
+        <div class="grid auto-rows-fr grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-4">
           @for (item of pagedData(); track trackByItem($index, item)) {
             <ng-container *ngTemplateOutlet="projectedTemplate; context: { data: item }"></ng-container>
           }
@@ -176,7 +181,13 @@ export class DataViewerComponent<T extends { id?: unknown }> {
     return data?.slice(page.index * page.size, page.index * page.size + page.size);
   });
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    // Go back to the first page whenever the consumer swaps the data (e.g. an external filter changed).
+    effect(() => {
+      this.dataSource();
+      untracked(() => this.paginator?.firstPage());
+    });
+  }
 
   currentView = new FormControl<string>('table');
   sortDirectionInput = new FormControl<string>('');
