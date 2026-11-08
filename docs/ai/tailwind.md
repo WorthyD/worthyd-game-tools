@@ -12,7 +12,7 @@ Installed: **tailwindcss 4.2** with `@tailwindcss/postcss`.
 | App | Setup |
 |---|---|
 | `craft-cart` | **v4, CSS-first.** `apps/craft-cart/.postcssrc.json` loads `@tailwindcss/postcss`; `src/styles.scss` has `@import 'tailwindcss';`. Lib sources are added by the `@juristr/nx-tailwind-sync:source-directives` sync generator on build/serve. |
-| `stardew-craft-cart` | Still has a **v3-style** `tailwind.config.js` and `@tailwind base/components/utilities` in `styles.scss`, which v4 doesn't process. Treat as legacy; if asked to fix, migrate it to the `craft-cart` setup. |
+| `stardew-craft-cart` | **v4, CSS-first**, same as `craft-cart`: `apps/stardew-craft-cart/.postcssrc.json` loads `@tailwindcss/postcss`; `src/styles.scss` has `@import 'tailwindcss';`. No `tailwind.config.js`. It has no lib dependencies yet, so it doesn't use the sync generator. |
 | DCD apps | **No Tailwind.** Use the SCSS theme and utilities in `apps/destiny-clan-dashboard/src/theme/`. Don't add Tailwind classes to `libs/dcd/**`. |
 
 Libraries under `libs/craft-cart/**` and `libs/shared/**` used by Craft Cart can use Tailwind
