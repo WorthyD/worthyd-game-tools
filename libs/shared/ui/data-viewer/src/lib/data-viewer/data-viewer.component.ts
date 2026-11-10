@@ -90,7 +90,7 @@ import { MatIconModule } from '@angular/material/icon';
             </ng-container>
           }
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns(); sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns()"></tr>
         </table>
       </div>
@@ -119,6 +119,8 @@ import { MatIconModule } from '@angular/material/icon';
       }
       mat-paginator {
         display: block;
+        flex-shrink: 0;
+        border-top: 1px solid var(--mat-sys-outline-variant);
       }
     `
   ],

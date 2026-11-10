@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
@@ -23,7 +23,7 @@
             "input": "apps/stardew-craft-cart/public"
           }
         ],
-        "styles": ["apps/stardew-craft-cart/src/styles.scss"],
+        "styles": ["apps/stardew-craft-cart/src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -51,7 +51,7 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
       "readyWhen": {
         "signal": true
@@ -66,7 +66,7 @@
       }
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "@angular/build:extract-i18n",
       "options": {
         "buildTarget": "stardew-craft-cart:build"
       }

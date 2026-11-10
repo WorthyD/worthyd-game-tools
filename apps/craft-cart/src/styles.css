@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+/* nx-tailwind-sources:start */
+@source "../../../libs/craft-cart/feature-cart-item-config";
+@source "../../../libs/craft-cart/feature-catalog";
+@source "../../../libs/craft-cart/feature-shopping-list";
+@source "../../../libs/craft-cart/shared/data-access-state";
+@source "../../../libs/craft-cart/shared/feature-cart-widget";
+@source "../../../libs/craft-cart/shared/feature-shell";
+@source "../../../libs/craft-cart/shared/models-shared";
+@source "../../../libs/craft-cart/shared/ui/ui-cart-item-card";
+@source "../../../libs/craft-cart/shared/ui/ui-cart-quantity";
+@source "../../../libs/craft-cart/shared/ui/ui-item-card";
+@source "../../../libs/shared/ui/data-viewer";
+@source "../../../libs/shared/utils/generic";
+@source "../../../libs/shared/utils/local-storage";
+/* nx-tailwind-sources:end */
+
+/* You can add global styles to this file, and also import other style files */
+
+.catalog-item-image {
+  width: 50px;
+  margin: 0 auto;
+}

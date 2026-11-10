@@ -21,4 +21,12 @@ describe('ShellComponentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('renders the header, content area and footer as one viewport-height frame', () => {
+    const frame: HTMLElement = fixture.nativeElement.firstElementChild;
+    const parts = Array.from(frame.children).map((child) => child.tagName.toLowerCase());
+
+    expect(frame.classList).toContain('h-dvh');
+    expect(parts).toEqual(['mat-toolbar', 'mat-drawer-container', 'footer']);
+  });
 });
