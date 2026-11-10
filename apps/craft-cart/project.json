@@ -7,7 +7,7 @@
   "tags": ["type:app"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular/build:application",
       "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -35,7 +35,7 @@
         "styles": [
           "apps/craft-cart/src/styles/tailwind.scss",
           "apps/craft-cart/src/styles/material.scss",
-          "apps/craft-cart/src/styles.scss"
+          "apps/craft-cart/src/styles.css"
         ],
         "scripts": []
       },
@@ -63,7 +63,7 @@
       }
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular/build:dev-server",
       "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "defaultConfiguration": "development",
       "continuous": true,
@@ -81,7 +81,7 @@
       }
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "@angular/build:extract-i18n",
       "options": {
         "buildTarget": "craft-cart:build"
       }
