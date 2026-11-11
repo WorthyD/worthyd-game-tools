@@ -1,0 +1,10 @@
+{
+  "name": "stardew-cozy-almanacs-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/stardew-cozy-almanacs-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["stardew-cozy-almanacs"],
+  "// targets": "to see all targets run: nx show project stardew-cozy-almanacs-e2e --web",
+  "targets": {}
+}

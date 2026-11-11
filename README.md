@@ -5,7 +5,7 @@ A collection of video game tools I've been building, kept together in one [Nx](h
 | Product | Apps | Status |
 |---|---|---|
 | [Destiny Clan Dashboard](#destiny-clan-dashboard) | `destiny-clan-dashboard`, `destiny-clan-dashboard-demo` | Live at [destinyclan.report](https://destinyclan.report/) |
-| [Craft Cart](#craft-cart) | `craft-cart`, `stardew-craft-cart` | In development |
+| [Cozy Almanacs](#cozy-almanacs) | `cozy-almanacs`, `stardew-cozy-almanacs` | In development |
 
 ## The projects
 
@@ -17,14 +17,14 @@ I've been working on this since 2019. It helps Destiny clan members see member a
 - `apps/destiny-clan-dashboard-demo`: a static snapshot of the dashboard for demos, so there's still something to show if Bungie ever shuts down their API.
 - `libs/dcd/**` (`@dcd/...`): the dashboard's feature, UI, data-access and model libs. This is the older part of the codebase, so many libs are still NgModule-based.
 
-### Craft Cart
+### Cozy Almanacs
 
-A planner for crafting and farming sims that helps you plan resources. Want to make every recipe in a game? Add all the food to your cart and see which resources you need, and how many. How much wood do you need for 10 sheds? Add 10 sheds and look at the totals. It's a simple idea that I'm using to brush up on newer Angular patterns and learn Tailwind.
+A collection of almanacs for cozy crafting and farming sims, served at [cozyalmanacs.com](https://cozyalmanacs.com) (and [stardew.cozyalmanacs.com](https://stardew.cozyalmanacs.com) for the Stardew-themed app). The first almanac is the Crafting Cart (`/crafting-cart`), a planner that helps you plan resources. Want to make every recipe in a game? Add all the food to your cart and see which resources you need, and how many. How much wood do you need for 10 sheds? Add 10 sheds and look at the totals. It's a simple idea that I'm using to brush up on newer Angular patterns and learn Tailwind.
 
-- `apps/craft-cart`: the base app for trying out layouts and features. Defaults to Stardew Valley's item lists.
-- `apps/stardew-craft-cart`: a version themed for Stardew Valley.
-- `libs/craft-cart/**` (`@crafting-cart/...`): standalone components, NgRx state and UI libs.
-- `scrapers/` and `reference-json/`: the scripts and source data that produce the item catalogs (see [Craft Cart data](#craft-cart-data)).
+- `apps/cozy-almanacs` (cozyalmanacs.com): the base app for trying out layouts and features. Defaults to Stardew Valley's item lists.
+- `apps/stardew-cozy-almanacs` (stardew.cozyalmanacs.com): a version themed for Stardew Valley.
+- `libs/cozy-almanacs/**` (`@cozy-almanacs/...`): standalone components, NgRx state and UI libs. `shared/` holds the app frame, state, models and the item card; `crafting-cart/` holds the Crafting Cart features (`@cozy-almanacs/crafting-cart/...`).
+- `scrapers/` and `reference-json/`: the scripts and source data that produce the item catalogs (see [Cozy Almanacs data](#cozy-almanacs-data)).
 
 Code shared by both products lives in `libs/shared/**` (`@worthyd/shared/...`).
 
@@ -49,15 +49,15 @@ The Destiny Clan Dashboard needs a [Bungie API key](https://www.bungie.net/en/Ap
 API_KEY=<your-bungie-api-key> npm run config
 ```
 
-This writes `apps/destiny-clan-dashboard/src/environments/secrets.ts`, which is gitignored. Don't commit it. Craft Cart doesn't need a key.
+This writes `apps/destiny-clan-dashboard/src/environments/secrets.ts`, which is gitignored. Don't commit it. Cozy Almanacs doesn't need a key.
 
 ### Run an app
 
 ```bash
 npm start                              # Destiny Clan Dashboard on http://localhost:4321
 npx nx serve destiny-clan-dashboard-demo
-npx nx serve craft-cart                # http://localhost:4322
-npx nx serve stardew-craft-cart
+npx nx serve cozy-almanacs             # http://localhost:4322
+npx nx serve stardew-cozy-almanacs
 ```
 
 ## Everyday commands
@@ -88,17 +88,17 @@ Use generators so tags, Jest and lint are wired up correctly, and always `--dry-
 # New DCD lib (local plugin in libs/dcd-plugin)
 npx nx g dcd-plugin:dcd-lib-generator activities/new-thing --libType=type:ui --dry-run
 
-# New Craft Cart or shared lib
-npx nx g @nx/angular:library libs/craft-cart/shared/ui/thing \
-  --importPath=@crafting-cart/shared/ui/thing --tags=type:ui --changeDetection=OnPush --dry-run
+# New Cozy Almanacs or shared lib
+npx nx g @nx/angular:library libs/cozy-almanacs/crafting-cart/ui-thing \
+  --importPath=@cozy-almanacs/crafting-cart/ui/thing --tags=type:ui --changeDetection=OnPush --dry-run
 ```
 
-### Craft Cart data
+### Cozy Almanacs data
 
 ```bash
 npm run stardew            # scrape Stardew Valley items into the catalog
 npm run stardew-validate   # check the scraped Stardew data
-npm run craft-cart         # build the Craft Cart catalog data
+npm run cozy-almanacs      # build the Cozy Almanacs catalog data
 ```
 
 ## Repo layout
@@ -106,10 +106,10 @@ npm run craft-cart         # build the Craft Cart catalog data
 ```
 apps/                    apps and their <app>-e2e Cypress projects
 libs/dcd/                Destiny Clan Dashboard libs        (@dcd/...)
-libs/craft-cart/         Craft Cart libs                     (@crafting-cart/...)
+libs/cozy-almanacs/      Cozy Almanacs libs                  (@cozy-almanacs/...)
 libs/shared/             libs shared across products         (@worthyd/shared/...)
 libs/dcd-plugin/         local Nx plugin with the dcd-lib-generator
-scrapers/                tsx scripts that build Craft Cart catalog data
+scrapers/                tsx scripts that build Cozy Almanacs catalog data
 reference-json/          source data for the scrapers
 docs/decisions/          architecture decision records (ADRs)
 docs/ai/                 coding guides for AI agents (and humans)

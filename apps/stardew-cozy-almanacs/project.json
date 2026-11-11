@@ -1,0 +1,89 @@
+{
+  "name": "stardew-cozy-almanacs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/stardew-cozy-almanacs/src",
+  "tags": ["type:app"],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/stardew-cozy-almanacs",
+        "index": "apps/stardew-cozy-almanacs/src/index.html",
+        "browser": "apps/stardew-cozy-almanacs/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/stardew-cozy-almanacs/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/stardew-cozy-almanacs/public"
+          }
+        ],
+        "styles": ["apps/stardew-cozy-almanacs/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "readyWhen": {
+        "signal": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "stardew-cozy-almanacs:build:production"
+        },
+        "development": {
+          "buildTarget": "stardew-cozy-almanacs:build:development"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "stardew-cozy-almanacs:build"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "stardew-cozy-almanacs:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/stardew-cozy-almanacs/browser",
+        "spa": true
+      },
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

@@ -12,7 +12,7 @@ Installed: **Angular 22.1**, with **zone.js** in every app.
 
 ## Two eras in one repo
 
-| | Craft Cart + shared (newer) | DCD (older) |
+| | Cozy Almanacs + shared (newer) | DCD (older) |
 |---|---|---|
 | Components | standalone | many declared in NgModules (`*.module.ts`) |
 | Routing | `Routes` arrays (`shellRoutes`) | lazy `loadChildren` of `*RoutingModule` / `*ShellModule` |
@@ -61,7 +61,7 @@ export class ItemCardComponent {
 - **ui** libs are presentational: inputs in, outputs out, no store/facade/HTTP injection.
 - `protected` for template-only members; `readonly` where possible.
 - Component styles budget in apps is 4 kB warn / 8 kB error — keep component SCSS small and use
-  Tailwind (Craft Cart) or shared theme utilities (DCD).
+  Tailwind (Cozy Almanacs) or shared theme utilities (DCD).
 
 ## Templates
 

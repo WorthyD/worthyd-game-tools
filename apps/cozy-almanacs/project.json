@@ -1,0 +1,103 @@
+{
+  "name": "cozy-almanacs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/cozy-almanacs/src",
+  "tags": ["type:app"],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/cozy-almanacs",
+        "index": "apps/cozy-almanacs/src/index.html",
+        "browser": "apps/cozy-almanacs/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/cozy-almanacs/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/cozy-almanacs/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/cozy-almanacs/src/assets"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/cozy-almanacs/src/_redirects"
+          }
+        ],
+        "styles": [
+          "apps/cozy-almanacs/src/styles/tailwind.scss",
+          "apps/cozy-almanacs/src/styles/material.scss",
+          "apps/cozy-almanacs/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@angular/build:dev-server",
+      "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
+      "defaultConfiguration": "development",
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "cozy-almanacs:build:production"
+        },
+        "development": {
+          "buildTarget": "cozy-almanacs:build:development",
+          "port": 4322
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "cozy-almanacs:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "cozy-almanacs:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/cozy-almanacs/browser",
+        "spa": true
+      },
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

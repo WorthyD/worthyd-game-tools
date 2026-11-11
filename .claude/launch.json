@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "craft-cart",
+      "name": "cozy-almanacs",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "craft-cart"],
+      "runtimeArgs": ["nx", "serve", "cozy-almanacs"],
       "port": 4322
     }
   ]

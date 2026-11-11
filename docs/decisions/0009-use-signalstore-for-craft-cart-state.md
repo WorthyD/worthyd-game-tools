@@ -2,8 +2,8 @@
 status: proposed
 date: 2026-11-01
 decision-makers: Daniel
-summary: Craft Cart state lives in NgRx SignalStores (CartStore, CatalogStore) in @crafting-cart/state; don't add classic Store, effects or facades to Craft Cart.
-globs: ["apps/craft-cart/**", "apps/stardew-craft-cart/**", "libs/craft-cart/**"]
+summary: Craft Cart state lives in NgRx SignalStores (CartStore, CatalogStore) in @cozy-almanacs/state; don't add classic Store, effects or facades to Craft Cart.
+globs: ["apps/cozy-almanacs/**", "apps/stardew-cozy-almanacs/**", "libs/cozy-almanacs/**"]
 enforced-by: review
 superseded-by:
 ---
@@ -12,7 +12,7 @@ superseded-by:
 
 ## Context and Problem Statement
 
-Craft Cart's state (`@crafting-cart/state`) was a classic NgRx Store: actions, entity-adapter
+Craft Cart's state (`@cozy-almanacs/state`) was a classic NgRx Store: actions, entity-adapter
 reducers, selectors, a persistence effect, a local-storage meta-reducer and facades over it, for two
 small, app-wide collections (cart and catalog). Components converted facade observables back to
 signals. The ceremony outweighed the state, and several generated specs had rotted.
@@ -28,7 +28,7 @@ signals. The ceremony outweighed the state, and several generated specs had rott
 Chosen option: "SignalStore", because it fits the size of the state, gives signals directly to
 standalone components, and is already used in the repo (`PlayerSidebarStore`).
 
-- Craft Cart state is `CartStore` and `CatalogStore` in `libs/craft-cart/shared/data-access-state`,
+- Craft Cart state is `CartStore` and `CatalogStore` in `libs/cozy-almanacs/shared/data-access-state`,
   built with `signalStore` + `withEntities` and `providedIn: 'root'`.
 - Components inject the stores directly and read signals (`entities()`, `entityMap()`,
   `cartCount()`); derive view models with `computed()`. There are no facades.

@@ -1,6 +1,6 @@
 ---
 description: "ADR 0004 (binding): Craft Cart and libs/shared are standalone-only; don't add NgModules there."
-applyTo: "apps/craft-cart/**,apps/stardew-craft-cart/**,libs/craft-cart/**,libs/shared/**"
+applyTo: "apps/cozy-almanacs/**,apps/stardew-cozy-almanacs/**,libs/cozy-almanacs/**,libs/shared/**"
 ---
 <!-- GENERATED from docs/decisions/0004-craft-cart-and-shared-are-standalone-only.md by tools/ai/sync-ai-rules.mjs — edit the source, then run `npm run ai:sync`. -->
 
@@ -13,7 +13,7 @@ If your task conflicts with this decision, stop and say so instead of working ar
 Chosen option: "Standalone-only", because these projects have no NgModules in their source today and
 keeping it that way keeps one pattern per product.
 
-- No `@NgModule` in `apps/craft-cart`, `apps/stardew-craft-cart`, `libs/craft-cart/**` or `libs/shared/**`
+- No `@NgModule` in `apps/cozy-almanacs`, `apps/stardew-cozy-almanacs`, `libs/cozy-almanacs/**` or `libs/shared/**`
   source. Test-only modules in `*.spec.ts` are fine.
 - Routing uses `Routes` arrays; providers go in `app.config.ts` or route `providers`.
 - Use `inject()` rather than constructor injection.

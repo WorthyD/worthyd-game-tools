@@ -19,10 +19,10 @@ apps/<app>-e2e/
 ```
 
 ```bash
-npx nx e2e craft-cart-e2e                     # starts `craft-cart:serve`, runs headless
-npx nx e2e craft-cart-e2e --spec=src/e2e/cart.cy.ts
-npx nx open-cypress craft-cart-e2e            # interactive
-npx nx e2e-ci craft-cart-e2e                  # against serve-static, split per spec
+npx nx e2e cozy-almanacs-e2e                     # starts `cozy-almanacs:serve`, runs headless
+npx nx e2e cozy-almanacs-e2e --spec=src/e2e/cart.cy.ts
+npx nx open-cypress cozy-almanacs-e2e            # interactive
+npx nx e2e-ci cozy-almanacs-e2e                  # against serve-static, split per spec
 ```
 
 - The web server comes from `webServerCommands`; use relative URLs (`cy.visit('/catalog')`).
@@ -79,7 +79,7 @@ Use component tests for interaction/visual behavior; keep logic tests in Jest.
 ## Test design
 
 - Each test is independent; no reliance on order.
-- Craft Cart persists the cart in local storage — clear or seed it in `beforeEach`
+- Cozy Almanacs persists the cart in local storage — clear or seed it in `beforeEach`
   (`cy.clearLocalStorage()` / `win.localStorage.setItem(...)` in `onBeforeLoad`).
 - No conditional testing; make state deterministic.
 - One journey per `it`, descriptive names.

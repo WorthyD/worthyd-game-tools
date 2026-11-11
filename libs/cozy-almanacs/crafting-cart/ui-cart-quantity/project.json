@@ -1,0 +1,15 @@
+{
+  "name": "ui-cart-quantity",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/cozy-almanacs/crafting-cart/ui-cart-quantity/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["type:ui"],
+  "targets": {
+    "component-test": {
+      "options": {
+        "config-file": "./cypress.config.ts"
+      }
+    }
+  }
+}

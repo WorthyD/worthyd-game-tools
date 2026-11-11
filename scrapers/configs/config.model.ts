@@ -1,4 +1,4 @@
-// Ensure this matches ItemLabel in libs/craft-cart/shared/models-shared/src/lib/models/item-label.interface.ts
+// Ensure this matches ItemLabel in libs/cozy-almanacs/shared/models-shared/src/lib/models/item-label.interface.ts
 export interface ItemLabel {
   id: string;
   name: string;
@@ -24,7 +24,7 @@ export interface ScraperConfig {
   items: ItemConfig[];
 }
 
-// Ensure this matches the Item interface in libs/craft-cart/shared/models-shared/src/lib/models/item.interface.ts
+// Ensure this matches the Item interface in libs/cozy-almanacs/shared/models-shared/src/lib/models/item.interface.ts
 export interface ItemOutput {
   id: string;
   name: string;

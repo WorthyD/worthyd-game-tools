@@ -3,7 +3,7 @@ status: accepted
 date: 2026-11-01
 decision-makers: Daniel
 summary: Craft Cart and libs/shared are standalone-only; don't add NgModules there.
-globs: ["apps/craft-cart/**", "apps/stardew-craft-cart/**", "libs/craft-cart/**", "libs/shared/**"]
+globs: ["apps/cozy-almanacs/**", "apps/stardew-cozy-almanacs/**", "libs/cozy-almanacs/**", "libs/shared/**"]
 enforced-by: review
 superseded-by:
 ---
@@ -25,7 +25,7 @@ start. Copying patterns from DCD (or from older examples) would bring NgModules 
 Chosen option: "Standalone-only", because these projects have no NgModules in their source today and
 keeping it that way keeps one pattern per product.
 
-- No `@NgModule` in `apps/craft-cart`, `apps/stardew-craft-cart`, `libs/craft-cart/**` or `libs/shared/**`
+- No `@NgModule` in `apps/cozy-almanacs`, `apps/stardew-cozy-almanacs`, `libs/cozy-almanacs/**` or `libs/shared/**`
   source. Test-only modules in `*.spec.ts` are fine.
 - Routing uses `Routes` arrays; providers go in `app.config.ts` or route `providers`.
 - Use `inject()` rather than constructor injection.
