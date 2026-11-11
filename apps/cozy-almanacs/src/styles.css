@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+/* nx-tailwind-sources:start */
+@source "../../../libs/cozy-almanacs/crafting-cart/feature-cart-item-config";
+@source "../../../libs/cozy-almanacs/crafting-cart/feature-cart-widget";
+@source "../../../libs/cozy-almanacs/crafting-cart/feature-catalog";
+@source "../../../libs/cozy-almanacs/crafting-cart/feature-shopping-list";
+@source "../../../libs/cozy-almanacs/crafting-cart/ui-cart-quantity";
+@source "../../../libs/cozy-almanacs/shared/data-access-state";
+@source "../../../libs/cozy-almanacs/shared/feature-shell";
+@source "../../../libs/cozy-almanacs/shared/models-shared";
+@source "../../../libs/cozy-almanacs/shared/ui-item-card";
+@source "../../../libs/shared/ui/data-viewer";
+@source "../../../libs/shared/utils/generic";
+@source "../../../libs/shared/utils/local-storage";
+/* nx-tailwind-sources:end */
+
+/* You can add global styles to this file, and also import other style files */
+
+.catalog-item-image {
+  width: 50px;
+  margin: 0 auto;
+}

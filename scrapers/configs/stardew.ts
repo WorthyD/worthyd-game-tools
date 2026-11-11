@@ -1,4 +1,4 @@
-import { ScraperConfig } from '@crafting-cart/shared/models';
+import { ScraperConfig } from '@cozy-almanacs/models';
 export const config: ScraperConfig = {
   baseUrl: 'https://stardewvalleywiki.com/',
   assetPath: './images/',

@@ -50,7 +50,7 @@ conflicts with one, and that a new architectural choice needs a proposed ADR.
    | `date` | When the status last changed (`YYYY-MM-DD`). |
    | `decision-makers` | Who decided. |
    | `summary` | One sentence agents can follow without reading the rest. Required when accepted. |
-   | `globs` | JSON array of paths the decision applies to, e.g. `["libs/craft-cart/**"]`. `[]` means everywhere (index line only). |
+   | `globs` | JSON array of paths the decision applies to, e.g. `["libs/cozy-almanacs/**"]`. `[]` means everywhere (index line only). |
    | `enforced-by` | The lint rule or test that checks it, or `review`. |
    | `superseded-by` | The replacing ADR's number (`0012`). Required when superseded. |
 

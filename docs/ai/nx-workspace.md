@@ -26,8 +26,9 @@ apps/<app>/                      # bootstrapping, app config, top-level routes
 apps/<app>-e2e/                  # Cypress E2E for <app> (cypressDir: src)
 libs/dcd/<domain>/<lib>          # e.g. dcd/activities/{shell,dashboard,data-access,models,ui,table}
 libs/dcd/shared/...              # DCD-wide data-access, models, ui, utils
-libs/craft-cart/<lib>            # e.g. feature-catalog, feature-shopping-list, feature-cart-item-config
-libs/craft-cart/shared/...       # data-access-state, models-shared, feature-shell, ui/ui-*
+libs/cozy-almanacs/shared/<lib>  # feature-shell, data-access-state, models-shared, ui-item-card
+libs/cozy-almanacs/crafting-cart/<lib>  # feature-catalog, feature-shopping-list, feature-cart-item-config,
+                                 # feature-cart-widget, ui-cart-item-card, ui-cart-quantity
 libs/shared/{ui,utils}/...       # cross-product (@worthyd/shared/...)
 libs/dcd-plugin                  # local Nx plugin (generators)
 ```
@@ -51,13 +52,13 @@ Keep app projects thin; put features in libs.
   (not `type:utils`) and **`type:model`** for interface/type-only libs.
 - `enforceBuildableLibDependency` is on.
 - Don't loosen the rule to make an import pass — move the code to the right lib type instead.
-- Cross-product imports (DCD ↔ Craft Cart) aren't enforced by tags but should not happen; share
+- Cross-product imports (DCD ↔ Cozy Almanacs) aren't enforced by tags but should not happen; share
   through `libs/shared` (`@worthyd/shared/...`).
 
 ## Imports
 
 - Only through aliases in `tsconfig.base.json` (`@dcd/activities/models`,
-  `@crafting-cart/state`, `@worthyd/shared/utils/local-storage`).
+  `@cozy-almanacs/state`, `@worthyd/shared/utils/local-storage`).
 - Never relative-import across libs (`../../../libs/...`) or deep-import into `src/lib/...`.
   Export what consumers need from the lib's `src/index.ts`.
 
@@ -70,15 +71,15 @@ Always `--dry-run` first.
 npx nx g dcd-plugin:dcd-lib-generator activities/new-thing --libType=type:ui --dry-run
 
 # Other libs: give path, import alias, tag explicitly
-npx nx g @nx/angular:library libs/craft-cart/shared/ui/ui-thing \
-  --importPath=@crafting-cart/shared/ui/thing --tags=type:ui --changeDetection=OnPush --dry-run
+npx nx g @nx/angular:library libs/cozy-almanacs/crafting-cart/ui-thing \
+  --importPath=@cozy-almanacs/crafting-cart/ui/thing --tags=type:ui --changeDetection=OnPush --dry-run
 npx nx g @nx/angular:library libs/shared/utils/thing \
   --importPath=@worthyd/shared/utils/thing --tags=type:util --dry-run
 
 # Components, Storybook, Cypress component tests
 npx nx g @nx/angular:component libs/<path>/src/lib/foo/foo --changeDetection=OnPush --dry-run
 npx nx g @nx/angular:stories <project>
-npx nx g @nx/angular:cypress-component-configuration --project=<project> --build-target=craft-cart:build
+npx nx g @nx/angular:cypress-component-configuration --project=<project> --build-target=cozy-almanacs:build
 ```
 
 `nx.json` already defaults generators to SCSS, Jest, Cypress and ESLint, and to the `.component.ts`
@@ -97,7 +98,7 @@ npx nx reset                                # stale cache/daemon
 
 ## Tooling notes
 
-- Craft Cart's `build`/`serve` run the `@juristr/nx-tailwind-sync:source-directives` **sync
+- Cozy Almanacs' `build`/`serve` run the `@juristr/nx-tailwind-sync:source-directives` **sync
   generator**, which maintains Tailwind `@source` directives for lib dependencies. Run `npx nx sync`
   if Nx reports the workspace is out of sync; don't hand-edit what it manages.
 - Nx Console writes `.github/instructions/nx.instructions.md` (gitignored). It's separate from

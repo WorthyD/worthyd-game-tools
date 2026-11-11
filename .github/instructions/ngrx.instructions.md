@@ -1,5 +1,5 @@
 ---
-description: "NgRx 22 here — classic Store + entity adapters (DCD), SignalStore (Craft Cart, player-sidebar), effects, testing"
+description: "NgRx 22 here — classic Store + entity adapters (DCD), SignalStore (Cozy Almanacs, player-sidebar), effects, testing"
 applyTo: "**/*.actions.ts,**/*.reducer.ts,**/*.effects.ts,**/*.selectors.ts,**/*.facade.ts,**/*.state.ts,**/*.feature.ts,**/*store.ts,**/*.store.ts,**/data-access/**,**/data-access-*/**,**/state/**,**/meta-reducers/**"
 ---
 <!-- GENERATED from docs/ai/ngrx.md by tools/ai/sync-ai-rules.mjs — edit the source, then run `npm run ai:sync`. -->
@@ -13,7 +13,7 @@ Installed: **NgRx 22** — `@ngrx/store`, `effects`, `entity`, `router-store`, `
 
 | Where | Pattern |
 |---|---|
-| `libs/craft-cart/shared/data-access-state` (`@crafting-cart/state`) | `@ngrx/signals` **SignalStore**: `CartStore` (`cart.store.ts`, entities keyed by `itemId`, persisted to local storage in `withHooks`) and `CatalogStore` (`catalog.store.ts`) — ADR 0009 (proposed) |
+| `libs/cozy-almanacs/shared/data-access-state` (`@cozy-almanacs/state`) | `@ngrx/signals` **SignalStore**: `CartStore` (`cart.store.ts`, entities keyed by `itemId`, persisted to local storage in `withHooks`) and `CatalogStore` (`catalog.store.ts`) — ADR 0009 (proposed) |
 | `@dcd/shared/data-access/store` and DCD `data-access` libs | Classic Store (e.g. manifest loading dispatched from the app root) |
 | `libs/dcd/player-sidebar/data-access` | `@ngrx/signals` **SignalStore** (`PlayerSidebarStore`) |
 
@@ -21,9 +21,9 @@ Installed: **NgRx 22** — `@ngrx/store`, `effects`, `entity`, `router-store`, `
 
 1. Extend a feature in the pattern it already uses. Don't mix Store and SignalStore within one
    feature, and don't migrate between them unless asked.
-2. **Craft Cart components inject `CartStore` / `CatalogStore` directly** and read their signals;
+2. **Cozy Almanacs components inject `CartStore` / `CatalogStore` directly** and read their signals;
    there are no facades. Add methods/computeds to the store rather than logic to components. Don't
-   add classic Store, effects or facades to Craft Cart.
+   add classic Store, effects or facades to Cozy Almanacs.
 3. New, self-contained feature state → **SignalStore**. Cross-feature, event-driven state in an
    area that already uses Store → classic Store.
 4. Plain `signal()` in a component is fine for trivial UI state.
@@ -145,6 +145,6 @@ SignalStore.
   `@nx/angular/testing`.
 - **Components using a classic store:** provide a mock facade or `provideMockStore({ initialState })`
   + `overrideSelector`.
-- **Craft Cart components:** use the real root stores; provide `getLocalStorageToken('TEST-')` (and
+- **Cozy Almanacs components:** use the real root stores; provide `getLocalStorageToken('TEST-')` (and
   `provideRouter([])` if the template uses router links), or `{ provide: CartStore, useValue: … }`.
 - **SignalStore:** provide the store and mocked deps in `TestBed`, call methods, assert signals.

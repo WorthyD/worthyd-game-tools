@@ -22,7 +22,7 @@
  *   date: 2026-11-01
  *   decision-makers: Daniel
  *   summary: One-line statement of the rule agents must follow.
- *   globs: ["libs/craft-cart/**"]    # [] = everywhere (index only, no path-scoped rule)
+ *   globs: ["libs/cozy-almanacs/**"]    # [] = everywhere (index only, no path-scoped rule)
  *   enforced-by: review              # or a lint rule / test
  *   superseded-by:                   # required when status is superseded, e.g. 0012
  *   ---
