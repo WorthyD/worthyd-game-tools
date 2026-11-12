@@ -1,1 +1,1 @@
-export * from './lib/shopping-list/shopping-list.component';
+export { ShoppingListComponent } from './lib/shopping-list/shopping-list.component';

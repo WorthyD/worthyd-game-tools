@@ -1,11 +1,58 @@
-<div class="flex flex-wrap justify-around gap-4">
-  @for (catalogItem of shoppingListItems(); track catalogItem.item.id) {
+<section class="mx-auto flex w-full max-w-2xl flex-col gap-4 p-4">
+  <header class="flex flex-wrap items-end justify-between gap-3">
     <div>
-      <lib-item-card [catalogItem]="catalogItem.item">
-        <ng-container ngProjectAs="lib-item-card-footer">
-          <div class="font-bold">{{ catalogItem.quantity }}</div>
-        </ng-container>
-      </lib-item-card>
+      <h1 class="list-title m-0">Shopping list</h1>
+      <p class="list-muted m-0 text-sm" data-testid="list-summary">{{ summary() }}</p>
+    </div>
+    <mat-button-toggle-group
+      hideSingleSelectionIndicator
+      aria-label="Shopping list view"
+      [value]="view()"
+      (change)="onViewChange($event)"
+    >
+      <mat-button-toggle value="cart" data-testid="view-cart">Cart items</mat-button-toggle>
+      <mat-button-toggle value="raw" data-testid="view-raw">Raw resources</mat-button-toggle>
+    </mat-button-toggle-group>
+  </header>
+
+  @let items = rows();
+  @if (items.length) {
+    <ul class="list-surface m-0 list-none overflow-hidden p-0">
+      @for (row of items; track row.item.id) {
+        @let checkboxId = 'shopping-list-' + view() + '-' + row.item.id;
+        <li class="list-row flex items-center" [class.is-checked]="row.checked" data-testid="list-row">
+          <mat-checkbox
+            [id]="checkboxId"
+            [checked]="row.checked"
+            (change)="toggleChecked(row.item.id, $event.checked)"
+          />
+          <!-- Labels the checkbox's input, so a tap anywhere on the row checks the item off. -->
+          <label
+            [for]="checkboxId + '-input'"
+            class="flex min-w-0 flex-1 cursor-pointer items-center gap-3 self-stretch pr-4"
+          >
+            <img [src]="row.item.imageUrl" alt="" class="pixelated size-8 shrink-0 object-contain" />
+            <span class="list-name min-w-0 flex-1 truncate" data-testid="row-name">{{ row.item.name }}</span>
+            <span class="list-qty shrink-0 tabular-nums" data-testid="row-qty">×{{ row.quantity }}</span>
+          </label>
+        </li>
+      }
+    </ul>
+
+    @if (checkedCount()) {
+      <div class="flex justify-end">
+        <button mat-button type="button" (click)="clearChecked()">
+          <mat-icon aria-hidden="true">restart_alt</mat-icon>
+          Uncheck all
+        </button>
+      </div>
+    }
+  } @else {
+    <div class="list-muted flex flex-col items-center gap-2 p-8 text-center">
+      <mat-icon class="list-empty-icon" aria-hidden="true">checklist</mat-icon>
+      <p class="m-0 font-medium">Nothing to gather yet</p>
+      <p class="m-0 text-sm">Add items to your cart and they'll show up here.</p>
+      <a mat-flat-button routerLink="/crafting-cart">Browse the catalog</a>
     </div>
   }
-</div>
+</section>
