@@ -1,0 +1,54 @@
+@if (rows().length) {
+  <ul class="m-0 mb-1 list-none p-0">
+    @for (row of rows(); track row.id) {
+      <li class="flex items-center gap-1">
+        <span
+          class="flex min-w-0 flex-1 items-center gap-0.5"
+          [class.ingredient-missing]="!row.name"
+          [matTooltip]="row.name ? row.id : 'Not a catalog item. Remove it or add the item.'"
+        >
+          @if (!row.name) {
+            <mat-icon class="ingredient-warning-icon">warning</mat-icon>
+          }
+          <span class="truncate">{{ row.name ?? row.id }}</span>
+        </span>
+        <input
+          type="number"
+          min="1"
+          step="1"
+          inputmode="numeric"
+          class="ingredient-input ingredient-quantity"
+          [attr.aria-label]="'Quantity of ' + (row.name ?? row.id)"
+          [value]="row.quantity"
+          (change)="setQuantity(row.id, $any($event.target))"
+        />
+        <button
+          mat-icon-button
+          type="button"
+          class="ingredient-remove flex-none"
+          [attr.aria-label]="'Remove ' + (row.name ?? row.id)"
+          (click)="remove(row.id)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </li>
+    }
+  </ul>
+}
+<input
+  #search
+  class="ingredient-input"
+  placeholder="Add ingredient…"
+  aria-label="Add ingredient"
+  [matAutocomplete]="picker"
+  (input)="query.set(search.value)"
+/>
+<mat-autocomplete #picker="matAutocomplete" autoActiveFirstOption (optionSelected)="add($event.option.value, search)">
+  @for (option of matches(); track option.id) {
+    <mat-option [value]="option.id">
+      {{ option.name }} <small class="ingredient-muted">{{ option.id }}</small>
+    </mat-option>
+  } @empty {
+    <mat-option disabled>No matching catalog items</mat-option>
+  }
+</mat-autocomplete>

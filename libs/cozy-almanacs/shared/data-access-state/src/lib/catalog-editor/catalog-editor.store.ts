@@ -1,33 +1,16 @@
 import { computed, inject } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import {
-  CatalogDataset,
-  CatalogDatasetFiles,
-  Item,
-  ItemConfig,
-  ItemLabel,
-  ScraperConfig
-} from '@cozy-almanacs/models';
+import { CatalogConfig, CatalogDataset, CatalogDatasetFiles, Item, ItemLabel } from '@cozy-almanacs/models';
 import { LocalStorageService } from '@worthyd/shared/utils/local-storage';
 import { createConfigFile, createItemsFile } from './catalog-files';
-import {
-  createEmptyItem,
-  createEmptyItemConfig,
-  hashString,
-  itemIdFromUrl,
-  toCatalogId,
-  toItemUrl
-} from './catalog-editor.utils';
+import { createEmptyItem, hashString, toCatalogId } from './catalog-editor.utils';
 
 export const CATALOG_EDITOR_STORAGE_KEY = 'catalog-editor';
 
 export type LabelKind = 'categories' | 'tags';
-/** The two editable lists: the scraper's item configs (`config.items`) and the scraped catalog items. */
-export type EditorRows = 'itemConfigs' | 'items';
-export type ConfigSettings = Pick<ScraperConfig, 'baseUrl' | 'assetPath' | 'imagePath' | 'configOutputPath'>;
 
 export interface CatalogDraft {
-  config: ScraperConfig;
+  config: CatalogConfig;
   items: Item[];
 }
 
@@ -65,6 +48,12 @@ const initialCatalogEditorState: CatalogEditorState = {
 };
 
 const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value));
+
+/**
+ * Keeps only the label lists, in a fixed key order. Drafts saved before the editor dropped the scraper
+ * settings and item configs still carry those fields, so they are stripped when a draft is restored.
+ */
+const toCatalogConfig = ({ tags, categories }: CatalogConfig): CatalogConfig => ({ tags, categories });
 
 export const catalogEditorStorageKey = (datasetId: string): string => `${CATALOG_EDITOR_STORAGE_KEY}.${datasetId}`;
 
@@ -106,12 +95,12 @@ export const CatalogEditorStore = signalStore(
         const current = draft();
         return current ? createItemsFile(current.items) : '';
       }),
-      /** How many item configs and items use each label, by kind and id. */
+      /** How many items use each label, by kind and id. */
       labelUsage: computed(() => {
-        const rows = [...(draft()?.config.items ?? []), ...(draft()?.items ?? [])];
+        const rows = draft()?.items ?? [];
         return { categories: countUsage(rows, 'categories'), tags: countUsage(rows, 'tags') };
       }),
-      /** Problems that would break the catalog or the scraper once the files are replaced. */
+      /** Problems that would break the catalog once the files are replaced. */
       issues: computed(() => {
         const current = draft();
         if (!current) {
@@ -128,13 +117,6 @@ export const CatalogEditorStore = signalStore(
             }
           });
 
-        const configIds = current.config.items.map(({ itemId }) => itemId);
-        if (configIds.some((id) => !id)) {
-          issues.push('Some item configs have no item id.');
-        }
-        if (duplicates(configIds).length) {
-          issues.push(`Duplicate item config ids: ${duplicates(configIds).join(', ')}`);
-        }
         if (current.items.some(({ id }) => !id)) {
           issues.push('Some catalog items have no id.');
         }
@@ -142,7 +124,6 @@ export const CatalogEditorStore = signalStore(
         if (duplicateItems.length) {
           issues.push(`Duplicate catalog item ids: ${duplicateItems.join(', ')}`);
         }
-        unknownLabels(current.config.items, 'Item configs');
         unknownLabels(current.items, 'Catalog items');
         const missingIngredients = [
           ...new Set(current.items.flatMap(({ ingredients }) => ingredients.map(({ id }) => id)))
@@ -176,33 +157,27 @@ export const CatalogEditorStore = signalStore(
       patchState(store, { draft: next, savedAt });
     };
 
-    const updateConfig = (change: (config: ScraperConfig) => ScraperConfig): void =>
+    const updateConfig = (change: (config: CatalogConfig) => CatalogConfig): void =>
       updateDraft((draft) => ({ ...draft, config: change(draft.config) }));
 
-    const updateRows = <T extends ItemConfig | Item>(rows: EditorRows, change: (list: T[]) => T[]): void =>
-      updateDraft((draft) =>
-        rows === 'items'
-          ? { ...draft, items: change(draft.items as T[]) as Item[] }
-          : { ...draft, config: { ...draft.config, items: change(draft.config.items as T[]) as ItemConfig[] } }
-      );
+    const updateItems = (change: (list: Item[]) => Item[]): void =>
+      updateDraft((draft) => ({ ...draft, items: change(draft.items) }));
 
     /** Renames (`to` is an id) or drops (`to` is null) a label everywhere it is used. */
     const rewriteLabelReferences = (kind: LabelKind, from: string, to: string | null) =>
       updateDraft((draft) => ({
-        config: {
-          ...draft.config,
-          items: draft.config.items.map((row) => ({ ...row, [kind]: replaceLabelId(row[kind], from, to) }))
-        },
+        ...draft,
         items: draft.items.map((row) => ({ ...row, [kind]: replaceLabelId(row[kind], from, to) }))
       }));
 
     return {
       /** Loads a dataset, restoring its autosaved draft when there is one. */
       open(dataset: CatalogDataset): void {
-        const source: CatalogDraft = clone({ config: dataset.config, items: dataset.items });
+        const source: CatalogDraft = clone({ config: toCatalogConfig(dataset.config), items: dataset.items });
         const sourceHash = hashString(JSON.stringify(source));
         const saved = localStorage.getItem<PersistedCatalogDraft>(catalogEditorStorageKey(dataset.id));
-        const restored = !!saved?.config && Array.isArray(saved.items);
+        const restored =
+          Array.isArray(saved?.config?.tags) && Array.isArray(saved?.config?.categories) && Array.isArray(saved?.items);
 
         patchState(store, {
           datasetId: dataset.id,
@@ -210,7 +185,7 @@ export const CatalogEditorStore = signalStore(
           files: dataset.files ?? null,
           source,
           sourceHash,
-          draft: restored ? { config: saved.config, items: saved.items } : clone(source),
+          draft: restored ? { config: toCatalogConfig(saved.config), items: saved.items } : clone(source),
           savedAt: restored ? saved.savedAt : null,
           restored,
           sourceChanged: restored && saved.sourceHash !== sourceHash
@@ -229,10 +204,6 @@ export const CatalogEditorStore = signalStore(
           restored: false,
           sourceChanged: false
         });
-      },
-
-      updateSettings(changes: Partial<ConfigSettings>): void {
-        updateConfig((config) => ({ ...config, ...changes }));
       },
 
       /** Adds a label named `name` with an id made from it. Returns the new id, or null if it is empty or taken. */
@@ -269,7 +240,7 @@ export const CatalogEditorStore = signalStore(
         return next;
       },
 
-      /** Deletes a label and removes it from every item config and item. */
+      /** Deletes a label and removes it from every item. */
       removeLabel(kind: LabelKind, id: string): void {
         updateConfig((config) => ({ ...config, [kind]: config[kind].filter((label) => label.id !== id) }));
         rewriteLabelReferences(kind, id, null);
@@ -288,56 +259,25 @@ export const CatalogEditorStore = signalStore(
         });
       },
 
-      /** Appends an empty row (with the given labels) and returns its index. */
-      addRow(rows: EditorRows, labels: Partial<Record<LabelKind, string[]>> = {}): number {
-        const row = rows === 'items' ? createEmptyItem() : createEmptyItemConfig();
-        updateRows(rows, (list) => [...list, { ...row, ...labels }]);
-        const length = rows === 'items' ? store.draft()?.items.length : store.draft()?.config.items.length;
-        return (length ?? 0) - 1;
-      },
-
-      /** Adds an item config for each pasted wiki url, skipping blank lines and ids that already exist. Returns how many were added. */
-      addItemConfigsFromUrls(urls: string[]): number {
-        const baseUrl = store.draft()?.config.baseUrl ?? '';
-        const existing = new Set(store.draft()?.config.items.map(({ itemId }) => itemId));
-        const added = urls
-          .map((url) => toItemUrl(url, baseUrl))
-          .filter((itemUrl) => itemUrl)
-          .map((itemUrl) => ({ ...createEmptyItemConfig(), itemUrl, itemId: itemIdFromUrl(itemUrl) }))
-          .filter(({ itemId }) => !existing.has(itemId) && existing.add(itemId));
-        if (added.length) {
-          updateRows<ItemConfig>('itemConfigs', (list) => [...list, ...added]);
-        }
-        return added.length;
-      },
-
-      updateItemConfig(index: number, changes: Partial<ItemConfig>): void {
-        updateRows<ItemConfig>('itemConfigs', (list) =>
-          list.map((row, i) => (i === index ? { ...row, ...changes } : row))
-        );
-      },
-
-      /** Sets an item config's url from a pasted wiki url, and fills in its id when it has none. */
-      setItemConfigUrl(index: number, url: string): void {
-        const itemUrl = toItemUrl(url, store.draft()?.config.baseUrl ?? '');
-        updateRows<ItemConfig>('itemConfigs', (list) =>
-          list.map((row, i) => (i === index ? { ...row, itemUrl, itemId: row.itemId || itemIdFromUrl(itemUrl) } : row))
-        );
+      /** Appends an empty item (with the given labels) and returns its index. */
+      addItem(labels: Partial<Record<LabelKind, string[]>> = {}): number {
+        updateItems((list) => [...list, { ...createEmptyItem(), ...labels }]);
+        return (store.draft()?.items.length ?? 0) - 1;
       },
 
       updateItem(index: number, changes: Partial<Item>): void {
-        updateRows<Item>('items', (list) => list.map((row, i) => (i === index ? { ...row, ...changes } : row)));
+        updateItems((list) => list.map((row, i) => (i === index ? { ...row, ...changes } : row)));
       },
 
-      removeRows(rows: EditorRows, indexes: number[]): void {
+      removeItems(indexes: number[]): void {
         const remove = new Set(indexes);
-        updateRows(rows, (list) => list.filter((_, i) => !remove.has(i)));
+        updateItems((list) => list.filter((_, i) => !remove.has(i)));
       },
 
-      /** Adds or removes one label on many rows at once. */
-      applyLabel(rows: EditorRows, indexes: number[], kind: LabelKind, labelId: string, mode: 'add' | 'remove'): void {
+      /** Adds or removes one label on many items at once. */
+      applyLabel(indexes: number[], kind: LabelKind, labelId: string, mode: 'add' | 'remove'): void {
         const selected = new Set(indexes);
-        updateRows(rows, (list) =>
+        updateItems((list) =>
           list.map((row, i) => {
             if (!selected.has(i) || (mode === 'add' && row[kind].includes(labelId))) {
               return row;

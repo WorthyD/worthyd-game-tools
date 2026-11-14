@@ -1,4 +1,4 @@
-import { ScraperConfig } from '@cozy-almanacs/models';
+import { ScraperConfig } from './config.model';
 export const config: ScraperConfig = {
   baseUrl: 'https://stardewvalleywiki.com/',
   assetPath: './images/',

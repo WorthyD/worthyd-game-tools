@@ -17,13 +17,8 @@ describe('CatalogEditorComponent', () => {
     id: 'stardew',
     name: 'Stardew Valley',
     config: {
-      baseUrl: 'https://stardewvalleywiki.com/',
-      assetPath: './images/',
-      imagePath: './scrapers/images/',
-      configOutputPath: './scrapers/stardew-output.ts',
-      categories: [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }],
       tags: [{ id: 'bombs', name: 'Bombs', icon: 'bomb' }],
-      items: [{ itemUrl: 'Bomb', itemId: 'bomb', categories: ['crafting'], tags: ['bombs'] }]
+      categories: [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }]
     },
     items: [
       {
@@ -37,7 +32,10 @@ describe('CatalogEditorComponent', () => {
         tags: ['bombs']
       }
     ],
-    files: { config: 'apps/cozy-almanacs/src/app/catalog/config.ts', items: 'apps/cozy-almanacs/src/app/catalog/items.ts' }
+    files: {
+      config: 'apps/cozy-almanacs/src/app/catalog/config.ts',
+      items: 'apps/cozy-almanacs/src/app/catalog/items.ts'
+    }
   };
 
   const text = () => (fixture.nativeElement as HTMLElement).textContent ?? '';
@@ -69,8 +67,16 @@ describe('CatalogEditorComponent', () => {
 
     expect(text()).toContain('Stardew Valley');
     expect(text()).toContain('No changes from the source files');
-    expect(text()).toContain('Item configs (1)');
     expect(text()).toContain('Catalog items (1)');
+  });
+
+  it('has no scraper settings or item configs', () => {
+    create();
+
+    expect(text()).toContain('Labels');
+    expect(text()).not.toContain('Item configs');
+    expect(text()).not.toContain('Base URL');
+    expect(text()).not.toContain('Scraper');
   });
 
   it('says so when the dataset id is unknown', () => {
@@ -100,6 +106,18 @@ describe('CatalogEditorComponent', () => {
     nameInput.dispatchEvent(new Event('input'));
 
     expect(store().draft()?.config.tags[0].name).toBe('Explosives');
+  });
+
+  it('edits an item ingredient quantity from the catalog items tab', async () => {
+    create();
+    store().updateItem(0, { ingredients: [{ id: 'bomb', quantity: 2 }] });
+    const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
+    await tabs.selectTab({ label: /Catalog items/ });
+    const quantity: HTMLInputElement = fixture.nativeElement.querySelector('input[aria-label="Quantity of Bomb"]');
+    quantity.value = '5';
+    quantity.dispatchEvent(new Event('change'));
+
+    expect(store().draft()?.items[0].ingredients).toEqual([{ id: 'bomb', quantity: 5 }]);
   });
 
   it('shows the generated files and their issues on the export tab', async () => {

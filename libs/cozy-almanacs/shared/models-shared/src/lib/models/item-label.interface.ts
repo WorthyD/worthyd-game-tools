@@ -1,5 +1,5 @@
 /**
- * A category or tag, defined once in the catalog config (`ScraperConfig.categories` / `ScraperConfig.tags`).
+ * A category or tag, defined once in the catalog config (`CatalogConfig.categories` / `CatalogConfig.tags`).
  * Items and item configs refer to it by `id`, so changing `name` or `icon` here updates it everywhere.
  * `icon` is a Material Symbols name from https://fonts.google.com/icons (rendered with `<mat-icon>`).
  */

@@ -1,4 +1,1 @@
-import { InjectionToken } from '@angular/core';
-import { ScraperConfig } from '@cozy-almanacs/models';
-
-export const ScraperConfigToken = new InjectionToken<ScraperConfig>('ScraperConfig');
+// No longer used by the catalog editor. Delete this file.

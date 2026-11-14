@@ -1,4 +1,4 @@
-import { Item, ScraperConfig } from '@cozy-almanacs/models';
+import { CatalogConfig, Item } from '@cozy-almanacs/models';
 
 const PRINT_WIDTH = 120;
 const IDENTIFIER = /^[A-Za-z_$][\w$]*$/;
@@ -99,9 +99,9 @@ const formatLiteral = (
 const toLiteral = (value: unknown): Literal => value as Literal;
 
 /** The full contents of `config.ts` for a dataset. */
-export const createConfigFile = (config: ScraperConfig): string =>
-  `import { ScraperConfig } from '@cozy-almanacs/models';\n` +
-  `export const config: ScraperConfig = ${formatLiteral(toLiteral(config), '', 'export const config: ScraperConfig = ', ';', { inlineFlatObjects: true })};\n`;
+export const createConfigFile = (config: CatalogConfig): string =>
+  `import { CatalogConfig } from '@cozy-almanacs/models';\n` +
+  `export const config: CatalogConfig = ${formatLiteral(toLiteral(config), '', 'export const config: CatalogConfig = ', ';', { inlineFlatObjects: true })};\n`;
 
 /** The full contents of `items.ts` for a dataset. */
 export const createItemsFile = (items: Item[]): string =>

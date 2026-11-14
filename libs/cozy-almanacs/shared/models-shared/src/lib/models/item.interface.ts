@@ -5,8 +5,8 @@ export interface Item {
   imageUrl: string;
   links: { text: string; url: string }[];
   ingredients: { id: string; quantity: number }[];
-  /** Ids of entries in `ScraperConfig.categories`. */
+  /** Ids of entries in `CatalogConfig.categories`. */
   categories: string[];
-  /** Ids of entries in `ScraperConfig.tags`. */
+  /** Ids of entries in `CatalogConfig.tags`. */
   tags: string[];
 }

@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  min-width: 14rem;
+}
+
+.ingredient-missing {
+  color: var(--mat-sys-error);
+}
+
+.ingredient-warning-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.ingredient-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 4px;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: inherit;
+
+  &:focus {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: -1px;
+  }
+}
+
+/* Component styles outrank utilities, so the quantity width lives here rather than in a w-* class. */
+.ingredient-quantity {
+  flex: none;
+  width: 4.5rem;
+}
+
+.ingredient-remove {
+  --mat-icon-button-state-layer-size: 28px;
+  padding: 2px;
+}
+
+.ingredient-muted {
+  color: var(--mat-sys-on-surface-variant);
+}

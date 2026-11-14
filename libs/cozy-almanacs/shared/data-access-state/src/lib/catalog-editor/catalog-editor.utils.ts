@@ -1,4 +1,4 @@
-import { Item, ItemConfig } from '@cozy-almanacs/models';
+import { Item } from '@cozy-almanacs/models';
 
 /** Turns a label or item name into the lowercase snake case ids the catalog uses ("Storage Chests" → "storage_chests"). */
 export const toCatalogId = (name: string): string =>
@@ -7,21 +7,6 @@ export const toCatalogId = (name: string): string =>
     .toLowerCase()
     .replace(/\W+/g, '_')
     .replace(/^_+|_+$/g, '');
-
-/** Strips the config's base url from a pasted wiki url ("https://stardewvalleywiki.com/Cherry_Bomb" → "Cherry_Bomb"). */
-export const toItemUrl = (url: string, baseUrl: string): string => {
-  const trimmed = url.trim();
-  return baseUrl && trimmed.startsWith(baseUrl) ? trimmed.slice(baseUrl.length) : trimmed;
-};
-
-/** The item id implied by an item url: its last path segment as a catalog id. */
-export const itemIdFromUrl = (itemUrl: string): string =>
-  toCatalogId(
-    itemUrl
-      .split('/')
-      .filter((part) => part)
-      .pop() ?? ''
-  );
 
 /** Ingredients as editable text: `copper_ore:4, coal:1`. */
 export const formatIngredients = (ingredients: Item['ingredients']): string =>
@@ -65,13 +50,6 @@ export const createEmptyItem = (): Item => ({
   categories: [],
   tags: [],
   ingredients: []
-});
-
-export const createEmptyItemConfig = (): ItemConfig => ({
-  itemUrl: '',
-  itemId: '',
-  categories: [],
-  tags: []
 });
 
 /** A short, stable fingerprint of a JSON string (djb2), used to notice that the source files changed under a draft. */

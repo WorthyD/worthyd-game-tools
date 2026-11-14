@@ -1,4 +1,4 @@
-import { Item, ScraperConfig } from '@cozy-almanacs/models';
+import { CatalogConfig, Item } from '@cozy-almanacs/models';
 import { createConfigFile, createItemsFile, quoteString } from './catalog-files';
 
 describe('catalog files', () => {
@@ -9,39 +9,22 @@ describe('catalog files', () => {
     expect(quoteString(`It's a "fish"`)).toBe("'It\\'s a \"fish\"'");
   });
 
-  it('prints config.ts with inline labels and expanded item configs', () => {
-    const config: ScraperConfig = {
-      baseUrl: 'https://stardewvalleywiki.com/',
-      assetPath: './images/',
-      imagePath: './scrapers/images/',
-      configOutputPath: './scrapers/stardew-output.ts',
+  it('prints config.ts with inline labels', () => {
+    const config: CatalogConfig = {
       tags: [
         { id: 'bombs', name: 'Bombs', icon: 'bomb' },
         { id: 'fences', name: 'Fences', icon: 'fence' }
       ],
-      categories: [],
-      items: [{ itemUrl: 'Bomb', itemId: 'bomb', categories: ['crafting'], tags: ['bombs'] }]
+      categories: []
     };
 
-    expect(createConfigFile(config)).toBe(`import { ScraperConfig } from '@cozy-almanacs/models';
-export const config: ScraperConfig = {
-  baseUrl: 'https://stardewvalleywiki.com/',
-  assetPath: './images/',
-  imagePath: './scrapers/images/',
-  configOutputPath: './scrapers/stardew-output.ts',
+    expect(createConfigFile(config)).toBe(`import { CatalogConfig } from '@cozy-almanacs/models';
+export const config: CatalogConfig = {
   tags: [
     { id: 'bombs', name: 'Bombs', icon: 'bomb' },
     { id: 'fences', name: 'Fences', icon: 'fence' }
   ],
-  categories: [],
-  items: [
-    {
-      itemUrl: 'Bomb',
-      itemId: 'bomb',
-      categories: ['crafting'],
-      tags: ['bombs']
-    }
-  ]
+  categories: []
 };
 `);
   });

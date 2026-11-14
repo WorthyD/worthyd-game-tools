@@ -11,19 +11,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Item, ItemConfig, ItemLabel } from '@cozy-almanacs/models';
-import {
-  CATALOG_DATASETS,
-  CatalogEditorStore,
-  ConfigSettings,
-  EditorRows,
-  LabelKind,
-  formatIngredients,
-  formatLinks,
-  parseIngredients,
-  parseLinks
-} from '@cozy-almanacs/state';
+import { Item, ItemLabel } from '@cozy-almanacs/models';
+import { CATALOG_DATASETS, CatalogEditorStore, LabelKind, formatLinks, parseLinks } from '@cozy-almanacs/state';
 import { EditorTable } from './editor-table';
+import { IngredientEditorComponent, IngredientOption } from './ingredient-editor.component';
 
 interface ExportFile {
   path: string;
@@ -34,14 +25,14 @@ interface ExportFile {
 const exportFile = (path: string, text: string): ExportFile => ({ path, name: path.split('/').pop() ?? path, text });
 
 /**
- * Bulk editor for a catalog dataset: settings, category and tag labels, the scraper's item configs and
- * the catalog items. Every change is autosaved to local storage; saving is manual (copy or download the
+ * Bulk editor for a catalog dataset: its category and tag labels and its items. Every change is autosaved to local storage; saving is manual (copy or download the
  * generated config.ts / items.ts and replace the files in the repo).
  */
 @Component({
   selector: 'lib-catalog-editor',
   imports: [
     DatePipe,
+    IngredientEditorComponent,
     NgTemplateOutlet,
     MatButtonModule,
     MatCheckboxModule,
@@ -69,12 +60,6 @@ export class CatalogEditorComponent {
     { kind: 'categories', title: 'Categories' },
     { kind: 'tags', title: 'Tags' }
   ];
-  protected readonly settingFields: { key: keyof ConfigSettings; label: string }[] = [
-    { key: 'baseUrl', label: 'Base URL' },
-    { key: 'assetPath', label: 'Asset path' },
-    { key: 'imagePath', label: 'Image path' },
-    { key: 'configOutputPath', label: 'Scraper output path' }
-  ];
 
   protected readonly missingDataset = signal<string | null>(null);
   protected readonly message = signal('');
@@ -89,10 +74,6 @@ export class CatalogEditorComponent {
     tags: Object.fromEntries(this.labels().tags.map((label) => [label.id, label]))
   }));
 
-  protected readonly itemConfigs = new EditorTable<ItemConfig>(
-    computed(() => this.config()?.items ?? []),
-    (row) => [row.itemId, row.itemUrl, ...row.categories, ...row.tags].join(' ')
-  );
   protected readonly items = new EditorTable<Item>(
     computed(() => this.store.draft()?.items ?? []),
     (row) => [row.id, row.name, row.description, ...row.categories, ...row.tags].join(' ')
@@ -100,9 +81,16 @@ export class CatalogEditorComponent {
   protected readonly itemPage = computed(() =>
     this.items.page().map((entry) => ({
       ...entry,
-      ingredients: formatIngredients(entry.row.ingredients),
       links: formatLinks(entry.row.links)
     }))
+  );
+
+  /** Catalog items that can be picked as ingredients, sorted by name. */
+  protected readonly ingredientOptions = computed<IngredientOption[]>(() =>
+    (this.store.draft()?.items ?? [])
+      .filter(({ id }) => id.trim())
+      .map(({ id, name }) => ({ id, name: name || id }))
+      .sort((a, b) => a.name.localeCompare(b.name))
   );
 
   /** The generated files; only computed once the Export tab renders them. */
@@ -111,11 +99,8 @@ export class CatalogEditorComponent {
     exportFile(this.store.files()?.items ?? 'items.ts', this.store.itemsFile())
   ]);
 
-  /** The label picked in each table's bulk bar. */
-  protected readonly bulkLabel = signal<Record<EditorRows, { kind: LabelKind; id: string } | null>>({
-    itemConfigs: null,
-    items: null
-  });
+  /** The label picked in the items table's bulk bar. */
+  protected readonly bulkLabel = signal<{ kind: LabelKind; id: string } | null>(null);
 
   constructor() {
     inject(ActivatedRoute)
@@ -126,7 +111,6 @@ export class CatalogEditorComponent {
         this.missingDataset.set(dataset ? null : (id ?? ''));
         if (dataset) {
           this.store.open(dataset);
-          this.itemConfigs.clearSelection();
           this.items.clearSelection();
         }
       });
@@ -139,13 +123,8 @@ export class CatalogEditorComponent {
   protected discardDraft(): void {
     if (confirm('Discard all changes in this draft and start again from the source files?')) {
       this.store.discardDraft();
-      this.itemConfigs.clearSelection();
       this.items.clearSelection();
     }
-  }
-
-  protected setSetting(key: keyof ConfigSettings, value: string): void {
-    this.store.updateSettings({ [key]: value });
   }
 
   // Labels
@@ -168,64 +147,44 @@ export class CatalogEditorComponent {
 
   protected removeLabel(kind: LabelKind, label: ItemLabel): void {
     const uses = this.store.labelUsage()[kind][label.id] ?? 0;
-    if (!uses || confirm(`"${label.name}" is used by ${uses} rows. Remove it from all of them?`)) {
+    if (!uses || confirm(`"${label.name}" is used by ${uses} items. Remove it from all of them?`)) {
       this.store.removeLabel(kind, label.id);
     }
   }
 
-  // Rows
+  // Items
 
-  protected tableFor(rows: EditorRows): EditorTable<ItemConfig> | EditorTable<Item> {
-    return rows === 'items' ? this.items : this.itemConfigs;
-  }
-
-  protected addRow(rows: EditorRows): void {
-    this.tableFor(rows).reveal(this.store.addRow(rows));
-  }
-
-  protected addItemConfigUrls(textarea: HTMLTextAreaElement): void {
-    const added = this.store.addItemConfigsFromUrls(textarea.value.split('\n'));
-    this.message.set(
-      added ? `Added ${added} item configs.` : 'No new item configs: the urls are empty or already added.'
-    );
-    if (added) {
-      textarea.value = '';
-      this.itemConfigs.reveal((this.config()?.items.length ?? 1) - 1);
-    }
-  }
-
-  protected setIngredients(index: number, text: string): void {
-    this.store.updateItem(index, { ingredients: parseIngredients(text) });
+  protected addItem(): void {
+    this.items.reveal(this.store.addItem());
   }
 
   protected setLinks(index: number, text: string): void {
     this.store.updateItem(index, { links: parseLinks(text) });
   }
 
-  protected setBulkLabel(rows: EditorRows, value: string): void {
+  protected setBulkLabel(value: string): void {
     const [kind, id] = value.split(':') as [LabelKind, string];
-    this.bulkLabel.update((current) => ({ ...current, [rows]: id ? { kind, id } : null }));
+    this.bulkLabel.set(id ? { kind, id } : null);
   }
 
-  protected applyBulkLabel(rows: EditorRows, mode: 'add' | 'remove'): void {
-    const label = this.bulkLabel()[rows];
+  protected applyBulkLabel(mode: 'add' | 'remove'): void {
+    const label = this.bulkLabel();
     if (label) {
-      this.store.applyLabel(rows, [...this.tableFor(rows).selected()], label.kind, label.id, mode);
+      this.store.applyLabel([...this.items.selected()], label.kind, label.id, mode);
     }
   }
 
-  protected removeSelected(rows: EditorRows): void {
-    const table = this.tableFor(rows);
-    const count = table.selected().size;
-    if (count && confirm(`Delete ${count} selected rows?`)) {
-      this.store.removeRows(rows, [...table.selected()]);
-      table.clearSelection();
+  protected removeSelected(): void {
+    const count = this.items.selected().size;
+    if (count && confirm(`Delete ${count} selected items?`)) {
+      this.store.removeItems([...this.items.selected()]);
+      this.items.clearSelection();
     }
   }
 
-  protected removeRow(rows: EditorRows, index: number): void {
-    this.store.removeRows(rows, [index]);
-    this.tableFor(rows).clearSelection();
+  protected removeItem(index: number): void {
+    this.store.removeItems([index]);
+    this.items.clearSelection();
   }
 
   // Export

@@ -10,8 +10,6 @@ export {
 export type {
   CatalogDraft,
   CatalogEditorState,
-  ConfigSettings,
-  EditorRows,
   LabelKind,
   PersistedCatalogDraft
 } from './lib/catalog-editor/catalog-editor.store';

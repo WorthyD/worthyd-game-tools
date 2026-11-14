@@ -22,21 +22,17 @@ describe('CatalogEditorStore', () => {
     id: 'stardew',
     name: 'Stardew Valley',
     config: {
-      baseUrl: 'https://stardewvalleywiki.com/',
-      assetPath: './images/',
-      imagePath: './scrapers/images/',
-      configOutputPath: './scrapers/stardew-output.ts',
-      categories: [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }],
       tags: [
         { id: 'bombs', name: 'Bombs', icon: 'bomb' },
         { id: 'fences', name: 'Fences', icon: 'fence' }
       ],
-      items: [
-        { itemUrl: 'Bomb', itemId: 'bomb', categories: ['crafting'], tags: ['bombs'] },
-        { itemUrl: 'Gate', itemId: 'gate', categories: ['crafting'], tags: ['fences'] }
-      ]
+      categories: [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }]
     },
-    items: [item('bomb', { ingredients: [{ id: 'coal', quantity: 1 }] }), item('coal', { tags: [] })]
+    items: [
+      item('bomb', { ingredients: [{ id: 'coal', quantity: 1 }] }),
+      item('coal', { tags: [] }),
+      item('gate', { tags: ['fences'] })
+    ]
   });
 
   const setup = () => {
@@ -54,7 +50,7 @@ describe('CatalogEditorStore', () => {
     const store = setup();
 
     expect(store.datasetName()).toBe('Stardew Valley');
-    expect(store.draft()?.items.length).toBe(2);
+    expect(store.draft()?.items.length).toBe(3);
     expect(store.dirty()).toBe(false);
     expect(store.restored()).toBe(false);
     expect(saved()).toBeNull();
@@ -79,13 +75,13 @@ describe('CatalogEditorStore', () => {
   });
 
   it('restores a saved draft on open and notices when the source changed since', () => {
-    setup().updateSettings({ baseUrl: 'https://example.com/' });
+    setup().updateLabel('tags', 'bombs', { name: 'Explosives' });
     TestBed.resetTestingModule();
 
     const store = setup();
     expect(store.restored()).toBe(true);
     expect(store.sourceChanged()).toBe(false);
-    expect(store.draft()?.config.baseUrl).toBe('https://example.com/');
+    expect(store.draft()?.config.tags[0].name).toBe('Explosives');
 
     const changed = createDataset();
     changed.items.push(item('wood'));
@@ -93,12 +89,34 @@ describe('CatalogEditorStore', () => {
     expect(store.sourceChanged()).toBe(true);
   });
 
+  it('drops scraper settings and item configs from a draft saved by an older editor', () => {
+    const dataset = createDataset();
+    const old = {
+      config: {
+        baseUrl: 'https://stardewvalleywiki.com/',
+        configOutputPath: './scrapers/stardew-output.ts',
+        ...dataset.config,
+        items: [{ itemUrl: 'Bomb', itemId: 'bomb', categories: [], tags: [] }]
+      },
+      items: dataset.items,
+      sourceHash: 'old',
+      savedAt: '2026-11-01T00:00:00.000Z'
+    };
+    localStorage.setItem(storageKey, JSON.stringify(old));
+
+    const store = setup();
+    expect(store.restored()).toBe(true);
+    expect(store.draft()?.config).toEqual(dataset.config);
+    expect(store.dirty()).toBe(false);
+    expect(store.configFile()).not.toContain('baseUrl');
+  });
+
   it('discards the draft back to the source', () => {
     const store = setup();
-    store.removeRows('items', [0]);
+    store.removeItems([0]);
     store.discardDraft();
 
-    expect(store.draft()?.items.length).toBe(2);
+    expect(store.draft()?.items.length).toBe(3);
     expect(store.dirty()).toBe(false);
     expect(saved()).toBeNull();
   });
@@ -108,7 +126,6 @@ describe('CatalogEditorStore', () => {
 
     expect(store.renameLabel('tags', 'bombs', 'Explosives')).toBe('explosives');
     expect(store.draft()?.config.tags[0]).toEqual({ id: 'explosives', name: 'Bombs', icon: 'bomb' });
-    expect(store.draft()?.config.items[0].tags).toEqual(['explosives']);
     expect(store.draft()?.items[0].tags).toEqual(['explosives']);
 
     expect(store.renameLabel('tags', 'explosives', 'fences')).toBe('explosives');
@@ -119,7 +136,6 @@ describe('CatalogEditorStore', () => {
     store.removeLabel('tags', 'bombs');
 
     expect(store.draft()?.config.tags.map(({ id }) => id)).toEqual(['fences']);
-    expect(store.draft()?.config.items[0].tags).toEqual([]);
     expect(store.draft()?.items[0].tags).toEqual([]);
   });
 
@@ -131,47 +147,30 @@ describe('CatalogEditorStore', () => {
     expect(store.draft()?.config.categories[1]).toEqual({ id: 'raw_materials', name: 'Raw Materials', icon: 'forest' });
   });
 
-  it('adds and removes a label on many rows at once', () => {
+  it('adds and removes a label on many items at once', () => {
     const store = setup();
-    store.applyLabel('itemConfigs', [0, 1], 'tags', 'fences', 'add');
+    store.applyLabel([0, 1], 'tags', 'fences', 'add');
 
-    expect(store.draft()?.config.items.map(({ tags }) => tags)).toEqual([['bombs', 'fences'], ['fences']]);
+    expect(store.draft()?.items.map(({ tags }) => tags)).toEqual([['bombs', 'fences'], ['fences'], ['fences']]);
 
-    store.applyLabel('itemConfigs', [1], 'tags', 'fences', 'remove');
-    expect(store.draft()?.config.items[1].tags).toEqual([]);
+    store.applyLabel([1], 'tags', 'fences', 'remove');
+    expect(store.draft()?.items[1].tags).toEqual([]);
   });
 
-  it('adds item configs from pasted urls, skipping blanks and existing ids', () => {
+  it('adds an empty item with the given labels and returns its index', () => {
     const store = setup();
-    const added = store.addItemConfigsFromUrls([
-      'https://stardewvalleywiki.com/Cherry_Bomb',
-      '',
-      'Bomb',
-      'Wood_Fence',
-      'Wood_Fence'
-    ]);
+    const index = store.addItem({ tags: ['bombs'] });
 
-    expect(added).toBe(2);
-    expect(store.draft()?.config.items.slice(2)).toEqual([
-      { itemUrl: 'Cherry_Bomb', itemId: 'cherry_bomb', categories: [], tags: [] },
-      { itemUrl: 'Wood_Fence', itemId: 'wood_fence', categories: [], tags: [] }
-    ]);
-  });
-
-  it('sets an item config url from a wiki url and fills in a missing id', () => {
-    const store = setup();
-    const index = store.addRow('itemConfigs');
-    store.setItemConfigUrl(index, 'https://stardewvalleywiki.com/Mega_Bomb');
-
-    expect(store.draft()?.config.items[index]).toMatchObject({ itemUrl: 'Mega_Bomb', itemId: 'mega_bomb' });
+    expect(index).toBe(3);
+    expect(store.draft()?.items[index]).toMatchObject({ id: '', categories: [], tags: ['bombs'] });
   });
 
   it('counts label usage and reports problems', () => {
     const store = setup();
-    expect(store.labelUsage().tags).toEqual({ bombs: 2, fences: 1 });
+    expect(store.labelUsage().tags).toEqual({ bombs: 1, fences: 1 });
     expect(store.issues()).toEqual([]);
 
-    store.addRow('items');
+    store.addItem();
     store.updateItem(0, { tags: ['unknown'], ingredients: [{ id: 'iron', quantity: 2 }] });
     expect(store.issues()).toEqual([
       'Some catalog items have no id.',

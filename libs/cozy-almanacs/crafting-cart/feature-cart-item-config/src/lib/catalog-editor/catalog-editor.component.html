@@ -9,7 +9,7 @@
 <div class="flex h-full flex-col overflow-hidden">
   @if (missingDataset() !== null) {
     <p class="p-6">There is no catalog dataset called "{{ missingDataset() }}".</p>
-  } @else if (config(); as cfg) {
+  } @else if (config()) {
     <header class="flex flex-wrap items-center gap-3 editor-divider px-4 py-3">
       <h1 class="m-0 text-xl font-medium">Catalog editor</h1>
       @if (datasets.length > 1) {
@@ -57,19 +57,10 @@
     }
 
     <mat-tab-group class="min-h-0 flex-1" mat-stretch-tabs="false" animationDuration="0ms">
-      <!-- Settings and labels -->
-      <mat-tab label="Settings & labels">
+      <!-- Labels -->
+      <mat-tab label="Labels">
         <ng-template matTabContent>
           <div class="flex flex-col gap-6 p-4">
-            <section class="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
-              @for (field of settingFields; track field.key) {
-                <mat-form-field subscriptSizing="dynamic">
-                  <mat-label>{{ field.label }}</mat-label>
-                  <input matInput [value]="cfg[field.key]" (input)="setSetting(field.key, $any($event.target).value)" />
-                </mat-form-field>
-              }
-            </section>
-
             <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
               @for (group of labelKinds; track group.kind) {
                 <section>
@@ -171,157 +162,6 @@
         </ng-template>
       </mat-tab>
 
-      <!-- Item configs (what the scraper fetches) -->
-      <mat-tab [label]="'Item configs (' + cfg.items.length + ')'">
-        <ng-template matTabContent>
-          <div class="flex flex-col gap-3 p-4">
-            <div class="flex flex-wrap items-end gap-3">
-              <mat-form-field subscriptSizing="dynamic" class="w-72">
-                <mat-label>Filter</mat-label>
-                <input
-                  matInput
-                  [value]="itemConfigs.filter()"
-                  (input)="itemConfigs.setFilter($any($event.target).value)"
-                />
-              </mat-form-field>
-              <button mat-stroked-button type="button" (click)="addRow('itemConfigs')">
-                <mat-icon>add</mat-icon>
-                Add row
-              </button>
-              <mat-form-field subscriptSizing="dynamic" class="min-w-96 flex-auto">
-                <mat-label>Paste wiki urls, one per line</mat-label>
-                <textarea #urls matInput rows="1"></textarea>
-              </mat-form-field>
-              <button mat-stroked-button type="button" (click)="addItemConfigUrls(urls)">Add urls</button>
-            </div>
-
-            <ng-container
-              [ngTemplateOutlet]="bulkBar"
-              [ngTemplateOutletContext]="{
-                rows: 'itemConfigs',
-                count: itemConfigs.selected().size,
-                filtered: itemConfigs.filtered().length,
-                hasLabel: !!bulkLabel().itemConfigs
-              }"
-            />
-
-            <table class="editor-table">
-              <thead>
-                <tr>
-                  <th class="w-10">
-                    <mat-checkbox
-                      aria-label="Select page"
-                      [checked]="itemConfigs.allPageSelected()"
-                      [indeterminate]="itemConfigs.somePageSelected()"
-                      (change)="itemConfigs.togglePage()"
-                    />
-                  </th>
-                  <th>Item id</th>
-                  <th>Item url</th>
-                  <th>Categories</th>
-                  <th>Tags</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (entry of itemConfigs.page(); track entry.index) {
-                  <tr>
-                    <td>
-                      <mat-checkbox
-                        [attr.aria-label]="'Select ' + entry.row.itemId"
-                        [checked]="itemConfigs.selected().has(entry.index)"
-                        (change)="itemConfigs.toggle(entry.index)"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        class="editor-input"
-                        aria-label="Item id"
-                        [value]="entry.row.itemId"
-                        (input)="store.updateItemConfig(entry.index, { itemId: $any($event.target).value })"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        class="editor-input"
-                        aria-label="Item url"
-                        [value]="entry.row.itemUrl"
-                        (change)="store.setItemConfigUrl(entry.index, $any($event.target).value)"
-                      />
-                    </td>
-                    <td>
-                      <mat-select
-                        multiple
-                        aria-label="Categories"
-                        class="editor-select"
-                        [value]="entry.row.categories"
-                        (selectionChange)="store.updateItemConfig(entry.index, { categories: $event.value })"
-                      >
-                        <mat-select-trigger>
-                          <ng-container
-                            [ngTemplateOutlet]="labelTrigger"
-                            [ngTemplateOutletContext]="{ $implicit: entry.row.categories }"
-                          />
-                        </mat-select-trigger>
-                        @for (label of labels().categories; track label.id) {
-                          <mat-option [value]="label.id"
-                            ><mat-icon>{{ label.icon }}</mat-icon
-                            >{{ label.name }}</mat-option
-                          >
-                        }
-                      </mat-select>
-                    </td>
-                    <td>
-                      <mat-select
-                        multiple
-                        aria-label="Tags"
-                        class="editor-select"
-                        [value]="entry.row.tags"
-                        (selectionChange)="store.updateItemConfig(entry.index, { tags: $event.value })"
-                      >
-                        <mat-select-trigger>
-                          <ng-container
-                            [ngTemplateOutlet]="labelTrigger"
-                            [ngTemplateOutletContext]="{ $implicit: entry.row.tags }"
-                          />
-                        </mat-select-trigger>
-                        @for (label of labels().tags; track label.id) {
-                          <mat-option [value]="label.id"
-                            ><mat-icon>{{ label.icon }}</mat-icon
-                            >{{ label.name }}</mat-option
-                          >
-                        }
-                      </mat-select>
-                    </td>
-                    <td>
-                      <button
-                        mat-icon-button
-                        type="button"
-                        [attr.aria-label]="'Delete ' + entry.row.itemId"
-                        (click)="removeRow('itemConfigs', entry.index)"
-                      >
-                        <mat-icon>delete</mat-icon>
-                      </button>
-                    </td>
-                  </tr>
-                } @empty {
-                  <tr>
-                    <td colspan="6" class="p-4 text-center editor-muted">No item configs match.</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-            <mat-paginator
-              [length]="itemConfigs.filtered().length"
-              [pageIndex]="itemConfigs.pageIndex()"
-              [pageSize]="itemConfigs.pageSize()"
-              [pageSizeOptions]="[25, 50, 100, 250]"
-              (page)="itemConfigs.changePage($event)"
-            />
-          </div>
-        </ng-template>
-      </mat-tab>
-
       <!-- Catalog items (what the app shows) -->
       <mat-tab [label]="'Catalog items (' + (store.draft()?.items?.length ?? 0) + ')'">
         <ng-template matTabContent>
@@ -331,21 +171,64 @@
                 <mat-label>Filter</mat-label>
                 <input matInput [value]="items.filter()" (input)="items.setFilter($any($event.target).value)" />
               </mat-form-field>
-              <button mat-stroked-button type="button" (click)="addRow('items')">
+              <button mat-stroked-button type="button" (click)="addItem()">
                 <mat-icon>add</mat-icon>
                 Add item
               </button>
             </div>
 
-            <ng-container
-              [ngTemplateOutlet]="bulkBar"
-              [ngTemplateOutletContext]="{
-                rows: 'items',
-                count: items.selected().size,
-                filtered: items.filtered().length,
-                hasLabel: !!bulkLabel().items
-              }"
-            />
+            @let selectedCount = items.selected().size;
+            <div class="flex flex-wrap items-center gap-2 rounded editor-notice px-3 py-2 text-sm">
+              <span>{{ selectedCount }} selected</span>
+              <button mat-button type="button" (click)="items.selectFiltered()">
+                Select all {{ items.filtered().length }} shown
+              </button>
+              <button mat-button type="button" [disabled]="!selectedCount" (click)="items.clearSelection()">
+                Clear
+              </button>
+              <span class="flex-auto"></span>
+              <mat-form-field subscriptSizing="dynamic" class="w-64">
+                <mat-label>Label</mat-label>
+                <mat-select (selectionChange)="setBulkLabel($event.value)">
+                  <mat-optgroup label="Categories">
+                    @for (label of labels().categories; track label.id) {
+                      <mat-option [value]="'categories:' + label.id"
+                        ><mat-icon>{{ label.icon }}</mat-icon
+                        >{{ label.name }}</mat-option
+                      >
+                    }
+                  </mat-optgroup>
+                  <mat-optgroup label="Tags">
+                    @for (label of labels().tags; track label.id) {
+                      <mat-option [value]="'tags:' + label.id"
+                        ><mat-icon>{{ label.icon }}</mat-icon
+                        >{{ label.name }}</mat-option
+                      >
+                    }
+                  </mat-optgroup>
+                </mat-select>
+              </mat-form-field>
+              <button
+                mat-stroked-button
+                type="button"
+                [disabled]="!selectedCount || !bulkLabel()"
+                (click)="applyBulkLabel('add')"
+              >
+                Add to selected
+              </button>
+              <button
+                mat-stroked-button
+                type="button"
+                [disabled]="!selectedCount || !bulkLabel()"
+                (click)="applyBulkLabel('remove')"
+              >
+                Remove from selected
+              </button>
+              <button mat-stroked-button type="button" [disabled]="!selectedCount" (click)="removeSelected()">
+                <mat-icon>delete</mat-icon>
+                Delete selected
+              </button>
+            </div>
 
             <table class="editor-table">
               <thead>
@@ -361,7 +244,7 @@
                   <th>Id / name</th>
                   <th>Description / image</th>
                   <th>Categories / tags</th>
-                  <th matTooltip="id:quantity, comma separated">Ingredients</th>
+                  <th matTooltip="Pick catalog items and set how many of each are needed">Ingredients</th>
                   <th matTooltip="One 'text | url' per line">Links</th>
                   <th></th>
                 </tr>
@@ -450,13 +333,12 @@
                       </mat-select>
                     </td>
                     <td>
-                      <textarea
-                        class="editor-input"
-                        rows="2"
-                        aria-label="Ingredients"
-                        [value]="entry.ingredients"
-                        (change)="setIngredients(entry.index, $any($event.target).value)"
-                      ></textarea>
+                      <lib-ingredient-editor
+                        [ingredients]="entry.row.ingredients"
+                        [options]="ingredientOptions()"
+                        [itemId]="entry.row.id"
+                        (ingredientsChange)="store.updateItem(entry.index, { ingredients: $event })"
+                      />
                     </td>
                     <td>
                       <textarea
@@ -472,7 +354,7 @@
                         mat-icon-button
                         type="button"
                         [attr.aria-label]="'Delete ' + entry.row.id"
-                        (click)="removeRow('items', entry.index)"
+                        (click)="removeItem(entry.index)"
                       >
                         <mat-icon>delete</mat-icon>
                       </button>
@@ -542,43 +424,3 @@
     </mat-tab-group>
   }
 </div>
-
-<ng-template #bulkBar let-rows="rows" let-count="count" let-filtered="filtered" let-hasLabel="hasLabel">
-  <div class="flex flex-wrap items-center gap-2 rounded editor-notice px-3 py-2 text-sm">
-    <span>{{ count }} selected</span>
-    <button mat-button type="button" (click)="tableFor(rows).selectFiltered()">Select all {{ filtered }} shown</button>
-    <button mat-button type="button" [disabled]="!count" (click)="tableFor(rows).clearSelection()">Clear</button>
-    <span class="flex-auto"></span>
-    <mat-form-field subscriptSizing="dynamic" class="w-64">
-      <mat-label>Label</mat-label>
-      <mat-select (selectionChange)="setBulkLabel(rows, $event.value)">
-        <mat-optgroup label="Categories">
-          @for (label of labels().categories; track label.id) {
-            <mat-option [value]="'categories:' + label.id"
-              ><mat-icon>{{ label.icon }}</mat-icon
-              >{{ label.name }}</mat-option
-            >
-          }
-        </mat-optgroup>
-        <mat-optgroup label="Tags">
-          @for (label of labels().tags; track label.id) {
-            <mat-option [value]="'tags:' + label.id"
-              ><mat-icon>{{ label.icon }}</mat-icon
-              >{{ label.name }}</mat-option
-            >
-          }
-        </mat-optgroup>
-      </mat-select>
-    </mat-form-field>
-    <button mat-stroked-button type="button" [disabled]="!count || !hasLabel" (click)="applyBulkLabel(rows, 'add')">
-      Add to selected
-    </button>
-    <button mat-stroked-button type="button" [disabled]="!count || !hasLabel" (click)="applyBulkLabel(rows, 'remove')">
-      Remove from selected
-    </button>
-    <button mat-stroked-button type="button" [disabled]="!count" (click)="removeSelected(rows)">
-      <mat-icon>delete</mat-icon>
-      Delete selected
-    </button>
-  </div>
-</ng-template>

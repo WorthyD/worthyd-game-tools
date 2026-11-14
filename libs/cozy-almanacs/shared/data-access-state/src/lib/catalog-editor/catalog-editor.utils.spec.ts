@@ -1,24 +1,9 @@
-import {
-  formatIngredients,
-  formatLinks,
-  itemIdFromUrl,
-  parseIngredients,
-  parseLinks,
-  toCatalogId,
-  toItemUrl
-} from './catalog-editor.utils';
+import { formatIngredients, formatLinks, parseIngredients, parseLinks, toCatalogId } from './catalog-editor.utils';
 
 describe('catalog editor utils', () => {
   it('makes snake case ids from names', () => {
     expect(toCatalogId(' Storage Chests ')).toBe('storage_chests');
-    expect(toCatalogId('Mr. Qi\'s Plane')).toBe('mr_qi_s_plane');
-  });
-
-  it('strips the base url and derives an item id', () => {
-    expect(toItemUrl(' https://stardewvalleywiki.com/Cherry_Bomb ', 'https://stardewvalleywiki.com/')).toBe(
-      'Cherry_Bomb'
-    );
-    expect(itemIdFromUrl('Tools/Copper_Pan')).toBe('copper_pan');
+    expect(toCatalogId("Mr. Qi's Plane")).toBe('mr_qi_s_plane');
   });
 
   it('round-trips ingredients, defaulting a missing quantity to 1', () => {
