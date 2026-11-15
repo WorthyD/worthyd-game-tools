@@ -120,6 +120,27 @@ describe('CatalogEditorComponent', () => {
     expect(store().draft()?.items[0].ingredients).toEqual([{ id: 'bomb', quantity: 5 }]);
   });
 
+  it('adds items from pasted wiki urls on the catalog items tab', async () => {
+    create();
+    const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
+    await tabs.selectTab({ label: /Catalog items/ });
+    const urls: HTMLTextAreaElement = fixture.nativeElement.querySelector('textarea[aria-label="Wiki urls"]');
+    urls.value = 'https://stardewvalleywiki.com/Cherry_Bomb\nhttps://stardewvalleywiki.com/Bomb';
+    const button = [...fixture.nativeElement.querySelectorAll('button')].find((b: HTMLButtonElement) =>
+      b.textContent?.includes('Add from urls')
+    ) as HTMLButtonElement;
+    button.click();
+    fixture.detectChanges();
+
+    expect(
+      store()
+        .draft()
+        ?.items.map(({ id }) => id)
+    ).toEqual(['bomb', 'cherry_bomb']);
+    expect(urls.value).toBe('');
+    expect(text()).toContain('Added 1 item.');
+  });
+
   it('shows the generated files and their issues on the export tab', async () => {
     create();
     store().updateItem(0, { tags: ['missing'] });

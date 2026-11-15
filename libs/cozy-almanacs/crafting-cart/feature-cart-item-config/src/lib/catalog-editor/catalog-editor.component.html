@@ -175,6 +175,14 @@
                 <mat-icon>add</mat-icon>
                 Add item
               </button>
+              <mat-form-field subscriptSizing="dynamic" class="min-w-96 flex-auto">
+                <mat-label>Paste wiki urls, one per line</mat-label>
+                <textarea #urls matInput rows="1" aria-label="Wiki urls"></textarea>
+              </mat-form-field>
+              <button mat-stroked-button type="button" (click)="addItemsFromUrls(urls)">
+                <mat-icon>link</mat-icon>
+                Add from urls
+              </button>
             </div>
 
             @let selectedCount = items.selected().size;

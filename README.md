@@ -24,7 +24,7 @@ A collection of almanacs for cozy crafting and farming sims, served at [cozyalma
 - `apps/cozy-almanacs` (cozyalmanacs.com): the base app for trying out layouts and features. Defaults to Stardew Valley's item lists.
 - `apps/stardew-cozy-almanacs` (stardew.cozyalmanacs.com): a version themed for Stardew Valley.
 - `libs/cozy-almanacs/**` (`@cozy-almanacs/...`): standalone components, NgRx state and UI libs. `shared/` holds the app frame, state, models and the item card; `crafting-cart/` holds the Crafting Cart features (`@cozy-almanacs/crafting-cart/...`).
-- `scrapers/` and `reference-json/`: the scripts and source data that produce the item catalogs (see [Cozy Almanacs data](#cozy-almanacs-data)).
+- `apps/cozy-almanacs/src/app/catalog/`: the item catalog (`config.ts` for categories and tags, `items.ts` for items), edited with the catalog editor (see [Cozy Almanacs data](#cozy-almanacs-data)).
 
 Code shared by both products lives in `libs/shared/**` (`@worthyd/shared/...`).
 
@@ -95,11 +95,11 @@ npx nx g @nx/angular:library libs/cozy-almanacs/crafting-cart/ui-thing \
 
 ### Cozy Almanacs data
 
-```bash
-npm run stardew            # scrape Stardew Valley items into the catalog
-npm run stardew-validate   # check the scraped Stardew data
-npm run cozy-almanacs      # build the Cozy Almanacs catalog data
-```
+Run `npx nx serve cozy-almanacs` and open `/crafting-cart/config` to edit categories, tags and items.
+Paste wiki urls to add draft items, then fill in descriptions, ingredients and labels. Changes autosave
+in your browser; to save them, copy or download `config.ts` and `items.ts` from the Export tab over the
+files in `apps/cozy-almanacs/src/app/catalog/`. Item images go in `apps/cozy-almanacs/src/assets/images/`
+as `<id>.png`.
 
 ## Repo layout
 
@@ -109,8 +109,7 @@ libs/dcd/                Destiny Clan Dashboard libs        (@dcd/...)
 libs/cozy-almanacs/      Cozy Almanacs libs                  (@cozy-almanacs/...)
 libs/shared/             libs shared across products         (@worthyd/shared/...)
 libs/dcd-plugin/         local Nx plugin with the dcd-lib-generator
-scrapers/                tsx scripts that build Cozy Almanacs catalog data
-reference-json/          source data for the scrapers
+reference-json/          sample Destiny API responses
 docs/decisions/          architecture decision records (ADRs)
 docs/ai/                 coding guides for AI agents (and humans)
 tools/ai/                scripts behind npm run ai:sync and npm run adr:new

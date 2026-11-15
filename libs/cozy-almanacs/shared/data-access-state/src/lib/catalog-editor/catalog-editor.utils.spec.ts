@@ -1,9 +1,32 @@
-import { formatIngredients, formatLinks, parseIngredients, parseLinks, toCatalogId } from './catalog-editor.utils';
+import {
+  formatIngredients,
+  formatLinks,
+  itemFromUrl,
+  parseIngredients,
+  parseLinks,
+  toCatalogId
+} from './catalog-editor.utils';
 
 describe('catalog editor utils', () => {
   it('makes snake case ids from names', () => {
     expect(toCatalogId(' Storage Chests ')).toBe('storage_chests');
     expect(toCatalogId("Mr. Qi's Plane")).toBe('mr_qi_s_plane');
+  });
+
+  it('makes a draft item from a wiki url', () => {
+    expect(itemFromUrl(' https://stardewvalleywiki.com/Mr._Qi%27s_Plane ')).toEqual({
+      id: 'mr_qi_s_plane',
+      name: "Mr. Qi's Plane",
+      description: '',
+      imageUrl: './images/mr_qi_s_plane.png',
+      links: [{ text: 'Wiki Link', url: 'https://stardewvalleywiki.com/Mr._Qi%27s_Plane' }],
+      categories: [],
+      tags: [],
+      ingredients: []
+    });
+    expect(itemFromUrl('Cherry_Bomb')).toBeNull();
+    expect(itemFromUrl('')).toBeNull();
+    expect(itemFromUrl('https://stardewvalleywiki.com/')).toBeNull();
   });
 
   it('round-trips ingredients, defaulting a missing quantity to 1', () => {

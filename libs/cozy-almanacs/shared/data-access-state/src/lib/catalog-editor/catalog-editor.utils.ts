@@ -41,6 +41,46 @@ export const parseLinks = (text: string): Item['links'] =>
         : { text: line.slice(0, separator).trim(), url: line.slice(separator + 1).trim() };
     });
 
+/** Where new items expect their image, next to the existing `./images/<id>.png` files. */
+export const ITEM_IMAGE_PATH = './images/';
+
+/**
+ * A draft item for a wiki page url ("https://stardewvalleywiki.com/Cherry_Bomb" → id `cherry_bomb`,
+ * name "Cherry Bomb", a "Wiki Link" to the page and `./images/cherry_bomb.png`). Returns null when the
+ * text isn't an http(s) url with a page name.
+ */
+export const itemFromUrl = (text: string): Item | null => {
+  let url: URL;
+  try {
+    url = new URL(text.trim());
+  } catch {
+    return null;
+  }
+  const page =
+    url.pathname
+      .split('/')
+      .filter((part) => part)
+      .pop() ?? '';
+  let title = page;
+  try {
+    title = decodeURIComponent(page);
+  } catch {
+    // Keep the raw segment when it isn't valid percent-encoding.
+  }
+  const name = title.replace(/_/g, ' ').trim();
+  const id = toCatalogId(name);
+  if (!/^https?:$/.test(url.protocol) || !id) {
+    return null;
+  }
+  return {
+    ...createEmptyItem(),
+    id,
+    name,
+    imageUrl: `${ITEM_IMAGE_PATH}${id}.png`,
+    links: [{ text: 'Wiki Link', url: url.href }]
+  };
+};
+
 export const createEmptyItem = (): Item => ({
   id: '',
   name: '',

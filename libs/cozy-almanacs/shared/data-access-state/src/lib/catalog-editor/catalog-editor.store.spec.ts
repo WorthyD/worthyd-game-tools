@@ -165,6 +165,30 @@ describe('CatalogEditorStore', () => {
     expect(store.draft()?.items[index]).toMatchObject({ id: '', categories: [], tags: ['bombs'] });
   });
 
+  it('adds items from pasted wiki urls, skipping non-urls and ids that already exist', () => {
+    const store = setup();
+    const added = store.addItemsFromUrls(
+      [
+        'https://stardewvalleywiki.com/Cherry_Bomb',
+        '',
+        'Wood_Fence',
+        'https://stardewvalleywiki.com/Bomb',
+        'https://stardewvalleywiki.com/Cherry_Bomb'
+      ],
+      { categories: ['crafting'] }
+    );
+
+    expect(added).toEqual([3]);
+    expect(store.draft()?.items[3]).toMatchObject({
+      id: 'cherry_bomb',
+      name: 'Cherry Bomb',
+      imageUrl: './images/cherry_bomb.png',
+      categories: ['crafting'],
+      tags: []
+    });
+    expect(store.addItemsFromUrls(['not a url'])).toEqual([]);
+  });
+
   it('counts label usage and reports problems', () => {
     const store = setup();
     expect(store.labelUsage().tags).toEqual({ bombs: 1, fences: 1 });

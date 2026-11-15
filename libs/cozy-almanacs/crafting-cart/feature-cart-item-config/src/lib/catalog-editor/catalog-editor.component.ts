@@ -158,6 +158,19 @@ export class CatalogEditorComponent {
     this.items.reveal(this.store.addItem());
   }
 
+  protected addItemsFromUrls(textarea: HTMLTextAreaElement): void {
+    const added = this.store.addItemsFromUrls(textarea.value.split('\n'));
+    this.message.set(
+      added.length
+        ? `Added ${added.length} ${added.length === 1 ? 'item' : 'items'}. Fill in their descriptions, ingredients and labels.`
+        : 'No new items: paste full wiki urls, one per line, for items that are not in the catalog yet.'
+    );
+    if (added.length) {
+      textarea.value = '';
+      this.items.reveal(added[0]);
+    }
+  }
+
   protected setLinks(index: number, text: string): void {
     this.store.updateItem(index, { links: parseLinks(text) });
   }

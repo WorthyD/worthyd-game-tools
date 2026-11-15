@@ -22,10 +22,7 @@
     "ai:check": "node tools/ai/sync-ai-rules.mjs --check",
     "adr:new": "node tools/ai/new-adr.mjs",
     "____lint": "ng lint",
-    "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js",
-    "stardew": "tsx scrapers/stardew.ts",
-    "stardew-validate": "tsx scrapers/stardew-validate.ts",
-    "cozy-almanacs": "tsx scrapers/cozy-almanacs.ts"
+    "_____test:ui": "jest --config ./projects/clan-dashboard/jest.config.js"
   },
   "private": true,
   "dependencies": {
@@ -95,8 +92,6 @@
     "@typescript-eslint/utils": "8.72.0",
     "angular-eslint": "22.6.0",
     "autoprefixer": "^10.4.0",
-    "axios": "^1.10.0",
-    "cheerio": "^1.1.0",
     "cypress": "^16.0.0",
     "eslint": "^9.28.0",
     "eslint-plugin-cypress": "^3.5.0",

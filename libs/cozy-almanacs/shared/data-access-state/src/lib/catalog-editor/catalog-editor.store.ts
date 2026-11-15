@@ -3,7 +3,7 @@ import { patchState, signalStore, withComputed, withMethods, withState } from '@
 import { CatalogConfig, CatalogDataset, CatalogDatasetFiles, Item, ItemLabel } from '@cozy-almanacs/models';
 import { LocalStorageService } from '@worthyd/shared/utils/local-storage';
 import { createConfigFile, createItemsFile } from './catalog-files';
-import { createEmptyItem, hashString, toCatalogId } from './catalog-editor.utils';
+import { createEmptyItem, hashString, itemFromUrl, toCatalogId } from './catalog-editor.utils';
 
 export const CATALOG_EDITOR_STORAGE_KEY = 'catalog-editor';
 
@@ -263,6 +263,26 @@ export const CatalogEditorStore = signalStore(
       addItem(labels: Partial<Record<LabelKind, string[]>> = {}): number {
         updateItems((list) => [...list, { ...createEmptyItem(), ...labels }]);
         return (store.draft()?.items.length ?? 0) - 1;
+      },
+
+      /**
+       * Adds a draft item for each pasted wiki url, with the given labels. Skips lines that aren't urls and
+       * ids that already exist. Returns the indexes of the added items.
+       */
+      addItemsFromUrls(urls: string[], labels: Partial<Record<LabelKind, string[]>> = {}): number[] {
+        const draft = store.draft();
+        if (!draft) {
+          return [];
+        }
+        const existing = new Set(draft.items.map(({ id }) => id));
+        const added = urls
+          .map(itemFromUrl)
+          .filter((item): item is Item => !!item && !existing.has(item.id) && !!existing.add(item.id))
+          .map((item) => ({ ...item, ...labels }));
+        if (added.length) {
+          updateItems((list) => [...list, ...added]);
+        }
+        return added.map((_, i) => draft.items.length + i);
       },
 
       updateItem(index: number, changes: Partial<Item>): void {
