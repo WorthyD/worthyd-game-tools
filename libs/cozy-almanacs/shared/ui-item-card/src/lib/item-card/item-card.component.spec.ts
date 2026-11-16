@@ -60,4 +60,16 @@ describe('ItemCardComponent', () => {
   it('projects the footer content', () => {
     expect(element.querySelector('button')?.textContent).toBe('Add');
   });
+
+  it('hides the links menu when the item has no links', () => {
+    expect(element.querySelector('[data-testid="item-links-trigger"]')).toBeNull();
+  });
+
+  it('shows the links menu when the item has links', () => {
+    fixture.componentInstance.item.set({ ...item, links: [{ text: 'Wiki', url: 'https://example.com/wiki' }] });
+    fixture.detectChanges();
+    expect(element.querySelector('[data-testid="item-links-trigger"]')?.getAttribute('aria-label')).toBe(
+      'Links for Ancient Fruit'
+    );
+  });
 });

@@ -6,6 +6,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { CartStore, CartEntity, CatalogStore } from '@cozy-almanacs/state';
 import { Item } from '@cozy-almanacs/models';
+import { ItemLinksMenuComponent } from '@cozy-almanacs/ui/item-card';
 import { LocalStorageService } from '@worthyd/shared/utils/local-storage';
 
 export interface ShoppingListItem {
@@ -28,7 +29,14 @@ const isView = (value: unknown): value is ShoppingListView => value === 'cart' |
 
 @Component({
   selector: 'lib-shopping-list',
-  imports: [RouterLink, MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatIconModule],
+  imports: [
+    RouterLink,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatIconModule,
+    ItemLinksMenuComponent
+  ],
   templateUrl: './shopping-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './shopping-list.component.scss'

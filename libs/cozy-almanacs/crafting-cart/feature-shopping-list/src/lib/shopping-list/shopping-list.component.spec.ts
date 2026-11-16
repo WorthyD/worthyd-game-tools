@@ -79,6 +79,20 @@ describe('ShoppingListComponent', () => {
       expect(rowNames()).toEqual(['Wood ×100', 'Copper Bar ×3', 'Iron Bar ×3']);
     });
 
+    it('shows a links menu only on rows whose item has links', () => {
+      const catalog = TestBed.inject(CatalogStore);
+      catalog.init([
+        { ...makeItem('chest', 'Chest'), links: [{ text: 'Wiki', url: 'https://example.com/wiki/Chest' }] },
+        makeItem('sprinkler', 'Sprinkler')
+      ]);
+      fixture.detectChanges();
+
+      const rows = Array.from(
+        fixture.nativeElement.querySelectorAll('[data-testid="list-row"]') as NodeListOf<HTMLElement>
+      );
+      expect(rows.map((row) => !!row.querySelector('[data-testid="item-links-trigger"]'))).toEqual([true, false]);
+    });
+
     it('checks off rows and reports progress', async () => {
       const loader = TestbedHarnessEnvironment.loader(fixture);
       const [chest] = await loader.getAllHarnesses(MatCheckboxHarness);

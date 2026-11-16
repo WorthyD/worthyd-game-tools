@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { CartQuantityComponent } from '@cozy-almanacs/crafting-cart/ui/cart-quantity';
-import { ItemCardComponent } from '@cozy-almanacs/ui/item-card';
+import { ItemCardComponent, ItemLinksMenuComponent } from '@cozy-almanacs/ui/item-card';
 import { ColumnConfig, DataViewerComponent, DataViewerConfig } from '@worthyd/shared/ui/data-viewer';
 import { Item } from '@cozy-almanacs/models';
 import { filterByLabels, labelOptions } from './catalog-filters';
@@ -28,6 +28,7 @@ import { LabelFilterComponent } from './label-filter.component';
     MatTableModule,
     CartQuantityComponent,
     ItemCardComponent,
+    ItemLinksMenuComponent,
     DataViewerComponent,
     LabelFilterComponent
   ],
@@ -66,6 +67,12 @@ import { LabelFilterComponent } from './label-filter.component';
     <ng-template #symbolTemplate let-element>
       <lib-cart-quantity (add)="addToCart(element.id, $event)"></lib-cart-quantity>
     </ng-template>
+    <ng-template #nameTemplate let-element>
+      <span class="inline-flex items-center gap-1">
+        {{ element.name }}
+        <lib-item-links-menu [item]="element" />
+      </span>
+    </ng-template>
     <ng-template #imageTemplate let-element>
       <img [src]="element.imageUrl" alt="" class="catalog-item-image" />
     </ng-template>
@@ -98,6 +105,7 @@ export class CatalogComponent implements OnInit {
   readonly hasActiveFilters = computed(() => this.selectedCategories().length > 0 || this.selectedTags().length > 0);
 
   @ViewChild('symbolTemplate', { static: true }) symbolTemplate!: TemplateRef<{ $implicit: unknown }>;
+  @ViewChild('nameTemplate', { static: true }) nameTemplate!: TemplateRef<{ $implicit: unknown }>;
   @ViewChild('imageTemplate', { static: true }) imageTemplate!: TemplateRef<{ $implicit: unknown }>;
 
   // TODO: Move away from function
@@ -109,7 +117,7 @@ export class CatalogComponent implements OnInit {
       {
         key: 'name',
         header: 'Name',
-        cell: (element: Item) => element.name
+        cellTemplate: this.nameTemplate
       },
       {
         key: 'description',

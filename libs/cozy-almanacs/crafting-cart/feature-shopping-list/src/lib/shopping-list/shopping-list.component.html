@@ -29,12 +29,16 @@
           <!-- Labels the checkbox's input, so a tap anywhere on the row checks the item off. -->
           <label
             [for]="checkboxId + '-input'"
-            class="flex min-w-0 flex-1 cursor-pointer items-center gap-3 self-stretch pr-4"
+            class="flex min-w-0 flex-1 cursor-pointer items-center gap-3 self-stretch pr-2"
           >
             <img [src]="row.item.imageUrl" alt="" class="pixelated size-8 shrink-0 object-contain" />
             <span class="list-name min-w-0 flex-1 truncate" data-testid="row-name">{{ row.item.name }}</span>
             <span class="list-qty shrink-0 tabular-nums" data-testid="row-qty">×{{ row.quantity }}</span>
           </label>
+          <!-- Fixed-width slot keeps quantities aligned whether or not a row has links. -->
+          <div class="mr-1 flex w-10 shrink-0 justify-center">
+            <lib-item-links-menu [item]="row.item" />
+          </div>
         </li>
       }
     </ul>

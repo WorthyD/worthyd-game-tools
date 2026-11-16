@@ -11,7 +11,7 @@ const meta: Meta<ItemCardComponent> = {
       name: 'Ancient Fruit',
       description: 'It was dormant for eons. Grows from Ancient Seeds and keeps producing fruit every week.',
       imageUrl: 'https://stardewvalleywiki.com/mediawiki/images/6/66/Ancient_Fruit.png',
-      links: [],
+      links: [{ text: 'Stardew Valley Wiki', url: 'https://stardewvalleywiki.com/Ancient_Fruit' }],
       ingredients: [],
       categories: [],
       tags: []

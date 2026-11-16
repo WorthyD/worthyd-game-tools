@@ -1,16 +1,20 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Item } from '@cozy-almanacs/models';
+import { ItemLinksMenuComponent } from '../item-links-menu/item-links-menu.component';
 
 @Component({
   selector: 'lib-item-card',
-  imports: [MatCardModule],
+  imports: [MatCardModule, ItemLinksMenuComponent],
   template: `
     <mat-card appearance="outlined" class="h-full">
       <div class="flex flex-1 gap-4 p-3">
         <img [src]="catalogItem().imageUrl" [alt]="catalogItem().name" class="item-sprite size-12 shrink-0" />
         <div class="flex min-w-0 flex-1 flex-col">
-          <h3 class="mat-title-medium m-0 truncate">{{ catalogItem().name }}</h3>
+          <div class="flex items-start gap-1">
+            <h3 class="mat-title-medium m-0 min-w-0 flex-1 truncate">{{ catalogItem().name }}</h3>
+            <lib-item-links-menu class="-mt-2 -mr-2 shrink-0" [item]="catalogItem()" />
+          </div>
           @if (catalogItem().description) {
             <p class="mat-body-small m-0 line-clamp-2 text-(--mat-sys-on-surface-variant)">
               {{ catalogItem().description }}
