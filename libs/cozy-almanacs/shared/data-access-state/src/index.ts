@@ -14,7 +14,7 @@ export type {
   PersistedCatalogDraft
 } from './lib/catalog-editor/catalog-editor.store';
 export { CATALOG_DATASETS, provideCatalogDatasets } from './lib/catalog-editor/catalog-datasets.token';
-export { createConfigFile, createItemsFile } from './lib/catalog-editor/catalog-files';
+export { createBundlesFile, createConfigFile, createItemsFile } from './lib/catalog-editor/catalog-files';
 export {
   ITEM_IMAGE_PATH,
   formatIngredients,
@@ -24,3 +24,22 @@ export {
   parseLinks,
   toCatalogId
 } from './lib/catalog-editor/catalog-editor.utils';
+export { BundleStore, BUNDLE_PROGRESS_STORAGE_KEY, bundleProgressStorageKey } from './lib/bundles/bundle.store';
+export type { BundleState } from './lib/bundles/bundle.store';
+export {
+  BundleEditorStore,
+  BUNDLE_EDITOR_STORAGE_KEY,
+  bundleEditorStorageKey
+} from './lib/bundles/bundle-editor.store';
+export type { BundleEditorState, PersistedBundleDraft } from './lib/bundles/bundle-editor.store';
+export { bundleTemplate } from './lib/bundles/bundle-template';
+export {
+  bundleItemKey,
+  bundleProgressKey,
+  bundleAt,
+  bundleItems,
+  filterCatalogItems,
+  flattenBundles,
+  resolveBundles
+} from './lib/bundles/bundle.utils';
+export type { BundlePath, ResolvedBundle, ResolvedBundleItem } from './lib/bundles/bundle.utils';

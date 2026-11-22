@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 /* nx-tailwind-sources:start */
+@source "../../../libs/cozy-almanacs/bundles/feature-bundle-config";
+@source "../../../libs/cozy-almanacs/bundles/feature-bundle-tracker";
 @source "../../../libs/cozy-almanacs/crafting-cart/feature-cart-item-config";
 @source "../../../libs/cozy-almanacs/crafting-cart/feature-cart-widget";
 @source "../../../libs/cozy-almanacs/crafting-cart/feature-catalog";

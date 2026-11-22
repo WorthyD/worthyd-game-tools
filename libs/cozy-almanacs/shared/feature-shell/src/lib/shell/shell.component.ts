@@ -31,6 +31,7 @@ import { CartStore } from '@cozy-almanacs/state';
         Cozy Almanacs
         <a mat-button routerLink="/crafting-cart">Crafting Cart</a>
         <a mat-button routerLink="/crafting-cart/list">Shopping List</a>
+        <a mat-button routerLink="/bundles">Bundles</a>
         <span class="flex-auto"> </span>
         <button mat-icon-button (click)="cartDrawer.toggle()" [matBadge]="cartCount()" aria-label="Toggle cart">
           <mat-icon> shopping_cart </mat-icon>

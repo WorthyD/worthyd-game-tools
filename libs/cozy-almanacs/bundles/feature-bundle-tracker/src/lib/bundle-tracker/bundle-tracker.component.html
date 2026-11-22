@@ -1,0 +1,123 @@
+<ng-template #itemList let-bundle>
+  @for (item of bundle.visibleItems; track item.key) {
+    <lib-bundle-item-row
+      [item]="item"
+      (collectedChange)="setCollected(item, $event)"
+      (turnedInChange)="setTurnedIn(item, $event)"
+      (addToCart)="addToCart(item)"
+    />
+  }
+  @if (bundle.items.length && !bundle.visibleItems.length) {
+    <p class="tracker-muted m-0 py-2 text-sm">Everything here is collected.</p>
+  }
+</ng-template>
+
+<ng-template #bundleSection let-bundle let-depth="depth">
+  <section class="bundle-section" [class.nested]="depth > 0" [attr.data-testid]="'bundle-' + bundle.id">
+    <header class="flex items-center gap-2">
+      @if (bundle.imageUrl) {
+        <img [src]="bundle.imageUrl" alt="" class="item-sprite size-8 shrink-0" />
+      }
+      <h3 class="m-0 min-w-0 flex-1 truncate text-base font-medium">{{ bundle.name }}</h3>
+      @if (bundle.complete) {
+        <mat-icon class="complete-icon" aria-label="Complete">check_circle</mat-icon>
+      }
+      <span class="tracker-muted text-sm" data-testid="bundle-count">
+        {{ bundle.totalCollected }} / {{ bundle.totalRequired }}
+      </span>
+      <lib-item-links-menu [item]="bundle" />
+    </header>
+    @if (bundle.description) {
+      <p class="tracker-muted mt-1 mb-0 text-sm whitespace-pre-line">{{ bundle.description }}</p>
+    }
+    @if (bundle.required < bundle.items.length) {
+      <p class="tracker-muted mt-1 mb-0 text-xs">Any {{ bundle.required }} of these {{ bundle.items.length }}.</p>
+    }
+    <ng-container *ngTemplateOutlet="itemList; context: { $implicit: bundle }" />
+    @for (child of bundle.bundles; track child.id) {
+      <ng-container *ngTemplateOutlet="bundleSection; context: { $implicit: child, depth: depth + 1 }" />
+    }
+  </section>
+</ng-template>
+
+<div class="flex min-h-0 flex-1 flex-col gap-4 py-4 md:flex-row">
+  @if (!bundles().length) {
+    <div class="p-6" data-testid="empty">
+      <h1 class="mt-0 text-xl font-medium">Bundles</h1>
+      <p>There are no bundles to track yet.</p>
+      <a mat-stroked-button routerLink="/bundles/config">
+        <mat-icon>edit</mat-icon>
+        Open the bundle editor
+      </a>
+    </div>
+  } @else {
+    <nav class="bundle-nav shrink-0 overflow-auto md:w-64" aria-label="Bundles">
+      <mat-nav-list>
+        @for (bundle of bundles(); track bundle.id) {
+          <a
+            mat-list-item
+            [routerLink]="['/bundles', bundle.id]"
+            [activated]="bundle.id === selected()?.id"
+            [attr.aria-current]="bundle.id === selected()?.id ? 'page' : null"
+          >
+            <span matListItemTitle>{{ bundle.name }}</span>
+            <span matListItemLine>{{ bundle.totalCollected }} / {{ bundle.totalRequired }}</span>
+            @if (bundle.complete) {
+              <mat-icon matListItemMeta class="complete-icon">check_circle</mat-icon>
+            }
+          </a>
+        }
+      </mat-nav-list>
+      <a mat-button routerLink="/bundles/config" class="m-2">
+        <mat-icon>edit</mat-icon>
+        Edit bundles
+      </a>
+    </nav>
+
+    @if (selected(); as bundle) {
+      <main class="min-h-0 flex-1 overflow-auto" data-testid="selected-bundle">
+        @if (notFound()) {
+          <p class="tracker-muted m-0 mb-2 text-sm">There is no bundle called "{{ bundleId() }}".</p>
+        }
+        <header class="flex flex-wrap items-center gap-3">
+          @if (bundle.imageUrl) {
+            <img [src]="bundle.imageUrl" alt="" class="item-sprite size-12 shrink-0" />
+          }
+          <div class="min-w-0 flex-1">
+            <h1 class="m-0 flex items-center gap-1 text-xl font-medium">
+              {{ bundle.name }}
+              <lib-item-links-menu [item]="bundle" />
+            </h1>
+            <span class="tracker-muted text-sm">
+              {{ bundle.totalCollected }} of {{ bundle.totalRequired }} collected ({{ bundle.percent }}%)
+            </span>
+          </div>
+          <mat-slide-toggle [checked]="hideCollected()" (change)="hideCollected.set($event.checked)">
+            Hide collected
+          </mat-slide-toggle>
+          <button mat-button type="button" (click)="reset(bundle)">
+            <mat-icon>restart_alt</mat-icon>
+            Reset
+          </button>
+        </header>
+        <mat-progress-bar class="my-3" mode="determinate" [value]="bundle.percent" />
+        @if (bundle.description) {
+          <p class="mt-0 whitespace-pre-line">{{ bundle.description }}</p>
+        }
+        @if (bundle.items.length) {
+          <div class="bundle-section">
+            @if (bundle.required < bundle.items.length) {
+              <p class="tracker-muted m-0 text-xs">Any {{ bundle.required }} of these {{ bundle.items.length }}.</p>
+            }
+            <ng-container *ngTemplateOutlet="itemList; context: { $implicit: bundle }" />
+          </div>
+        }
+        <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+          @for (child of bundle.bundles; track child.id) {
+            <ng-container *ngTemplateOutlet="bundleSection; context: { $implicit: child, depth: 0 }" />
+          }
+        </div>
+      </main>
+    }
+  }
+</div>

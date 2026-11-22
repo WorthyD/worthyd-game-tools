@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CatalogStore } from '@cozy-almanacs/state';
+import { BundleStore, CatalogStore } from '@cozy-almanacs/state';
 import { catalogDatasets } from './catalog/datasets';
 
 @Component({
@@ -14,9 +14,11 @@ export class AppComponent {
   title = 'cozy-almanacs';
 
   private readonly catalog = inject(CatalogStore);
+  private readonly bundles = inject(BundleStore);
 
   constructor() {
     const [dataset] = catalogDatasets;
     this.catalog.init(dataset?.items ?? [], dataset?.config ?? { categories: [], tags: [] });
+    this.bundles.init(dataset?.id ?? '', dataset?.bundles ?? []);
   }
 }

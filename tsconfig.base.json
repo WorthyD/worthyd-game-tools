@@ -16,6 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@cozy-almanacs/bundles/config": ["libs/cozy-almanacs/bundles/feature-bundle-config/src/index.ts"],
+      "@cozy-almanacs/bundles/tracker": ["libs/cozy-almanacs/bundles/feature-bundle-tracker/src/index.ts"],
       "@cozy-almanacs/crafting-cart/cart-item-config": ["libs/cozy-almanacs/crafting-cart/feature-cart-item-config/src/index.ts"],
       "@cozy-almanacs/crafting-cart/cart-widget": ["libs/cozy-almanacs/crafting-cart/feature-cart-widget/src/index.ts"],
       "@cozy-almanacs/crafting-cart/catalog": ["libs/cozy-almanacs/crafting-cart/feature-catalog/src/index.ts"],

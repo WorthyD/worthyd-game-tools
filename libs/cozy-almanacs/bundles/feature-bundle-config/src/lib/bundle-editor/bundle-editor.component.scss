@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.editor-divider {
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.editor-muted {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.editor-notice {
+  background: var(--mat-sys-surface-container);
+}
+
+.editor-warning {
+  background: var(--mat-sys-tertiary-container);
+  color: var(--mat-sys-on-tertiary-container);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.75rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.editor-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 4px;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: inherit;
+  font-size: 0.875rem;
+  resize: vertical;
+
+  &:focus {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: -1px;
+  }
+
+  &.unknown {
+    border-color: var(--mat-sys-error);
+  }
+}
+
+.editor-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  th {
+    text-align: left;
+    font-weight: 500;
+  }
+
+  td,
+  th {
+    padding: 4px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+}
+
+.item-sprite {
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+
+.tree-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .tree-list {
+    padding-left: 16px;
+  }
+}
+
+.tree-node {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--mat-sys-surface-container);
+  }
+
+  &.selected {
+    background: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+  }
+}
+
+.export-preview {
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  max-height: 60vh;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 8px;
+  background: var(--mat-sys-surface-container-low);
+  font-size: 0.8125rem;
+}

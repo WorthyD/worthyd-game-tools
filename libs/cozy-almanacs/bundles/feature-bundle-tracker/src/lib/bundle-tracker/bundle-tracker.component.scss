@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.tracker-muted {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.item-sprite {
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+
+.bundle-nav {
+  border-right: 1px solid var(--mat-sys-outline-variant);
+}
+
+.bundle-section {
+  padding: 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 12px;
+  margin-bottom: 16px;
+
+  &.nested {
+    margin: 12px 0 0;
+    border-radius: 8px;
+  }
+}
+
+.complete-icon {
+  color: var(--mat-sys-primary);
+}

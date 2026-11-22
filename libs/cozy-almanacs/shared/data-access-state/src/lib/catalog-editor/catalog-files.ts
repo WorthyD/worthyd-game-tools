@@ -1,4 +1,4 @@
-import { CatalogConfig, Item } from '@cozy-almanacs/models';
+import { Bundle, CatalogConfig, Item } from '@cozy-almanacs/models';
 
 const PRINT_WIDTH = 120;
 const IDENTIFIER = /^[A-Za-z_$][\w$]*$/;
@@ -49,7 +49,10 @@ const canInline = (value: Literal, options: LiteralOptions): boolean => {
     return true;
   }
   if (Array.isArray(value)) {
-    return value.every(isPrimitive);
+    // Prettier breaks arrays of two or more objects, but keeps a single flat object inline when it fits.
+    return (
+      value.every(isPrimitive) || (value.length === 1 && options.inlineFlatObjects && canInline(value[0], options))
+    );
   }
   const entries = entriesOf(value as { [key: string]: Literal });
   return entries.length === 0 || (options.inlineFlatObjects && entries.every(([, entry]) => isPrimitive(entry)));
@@ -106,3 +109,8 @@ export const createConfigFile = (config: CatalogConfig): string =>
 /** The full contents of `items.ts` for a dataset. */
 export const createItemsFile = (items: Item[]): string =>
   `export const items = ${formatLiteral(toLiteral(items), '', 'export const items = ', ';', { inlineFlatObjects: false })};\n`;
+
+/** The full contents of `bundles.ts` for a dataset. */
+export const createBundlesFile = (bundles: Bundle[]): string =>
+  `import { Bundle } from '@cozy-almanacs/models';\n\n` +
+  `export const bundles: Bundle[] = ${formatLiteral(toLiteral(bundles), '', 'export const bundles: Bundle[] = ', ';', { inlineFlatObjects: true })};\n`;

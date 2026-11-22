@@ -40,6 +40,27 @@ export const shellRoutes: Routes = [
               )
           }
         ]
+      },
+      {
+        path: 'bundles',
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('@cozy-almanacs/bundles/tracker').then((m) => m.BundleTrackerComponent)
+          },
+          {
+            path: 'config',
+            loadComponent: () => import('@cozy-almanacs/bundles/config').then((m) => m.BundleEditorComponent)
+          },
+          {
+            path: 'config/:datasetId',
+            loadComponent: () => import('@cozy-almanacs/bundles/config').then((m) => m.BundleEditorComponent)
+          },
+          {
+            path: ':bundleId',
+            loadComponent: () => import('@cozy-almanacs/bundles/tracker').then((m) => m.BundleTrackerComponent)
+          }
+        ]
       }
     ]
   }

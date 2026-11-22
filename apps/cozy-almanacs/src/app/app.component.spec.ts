@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { CatalogStore } from '@cozy-almanacs/state';
+import { BundleStore, CatalogStore } from '@cozy-almanacs/state';
+import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 import { AppComponent } from './app.component';
 import { catalogDatasets } from './catalog/datasets';
 
@@ -8,7 +9,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideRouter([])]
+      providers: [provideRouter([]), getLocalStorageToken('APP-TEST-')]
     }).compileComponents();
   });
 
@@ -28,7 +29,7 @@ describe('AppComponent', () => {
     expect(catalog.ids()).toEqual([]);
   });
 
-  it('should load the first dataset into the CatalogStore', () => {
+  it('should load the first dataset into the CatalogStore and BundleStore', () => {
     const categories = [{ id: 'crafting', name: 'Crafting', icon: 'handyman' }];
     const tags = [{ id: 'bombs', name: 'Bombs', icon: 'bomb' }];
     const item = {
@@ -41,12 +42,14 @@ describe('AppComponent', () => {
       tags: ['bombs'],
       ingredients: []
     };
-    catalogDatasets.push({ id: 'test', name: 'Test', config: { categories, tags }, items: [item] });
+    const bundles = [{ id: 'notes', name: 'Notes', items: [{ itemId: 'bomb' }] }];
+    catalogDatasets.push({ id: 'test', name: 'Test', config: { categories, tags }, items: [item], bundles });
 
     TestBed.createComponent(AppComponent);
     const catalog = TestBed.inject(CatalogStore);
     expect(catalog.ids()).toEqual(['bomb']);
     expect(catalog.categories()).toEqual(categories);
     expect(catalog.tags()).toEqual(tags);
+    expect(TestBed.inject(BundleStore).bundles()).toEqual(bundles);
   });
 });

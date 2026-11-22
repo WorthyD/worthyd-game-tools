@@ -31,7 +31,7 @@ describe('ShellComponentComponent', () => {
     expect(parts).toEqual(['mat-toolbar', 'mat-drawer-container', 'footer']);
   });
 
-  it('brands the frame as Cozy Almanacs and links to the Crafting Cart pages', () => {
+  it('brands the frame as Cozy Almanacs and links to the Crafting Cart and Bundles pages', () => {
     const element: HTMLElement = fixture.nativeElement;
     const links = Array.from(element.querySelectorAll('mat-toolbar a')).map((link) => [
       link.textContent?.trim(),
@@ -42,7 +42,8 @@ describe('ShellComponentComponent', () => {
     expect(element.querySelector('footer')?.textContent).toContain('Cozy Almanacs');
     expect(links).toEqual([
       ['Crafting Cart', '/crafting-cart'],
-      ['Shopping List', '/crafting-cart/list']
+      ['Shopping List', '/crafting-cart/list'],
+      ['Bundles', '/bundles']
     ]);
   });
 });
@@ -58,5 +59,11 @@ describe('shellRoutes', () => {
     const craftingCart = children.find((route) => route.path === 'crafting-cart');
 
     expect(craftingCart?.children?.map((route) => route.path)).toEqual(['', 'list', 'config', 'config/:datasetId']);
+  });
+
+  it('nests the bundle tracker and bundle editor under bundles, with the editor before :bundleId', () => {
+    const bundles = children.find((route) => route.path === 'bundles');
+
+    expect(bundles?.children?.map((route) => route.path)).toEqual(['', 'config', 'config/:datasetId', ':bundleId']);
   });
 });
