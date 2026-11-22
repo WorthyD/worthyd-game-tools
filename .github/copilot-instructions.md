@@ -18,8 +18,12 @@ generated from them — edit the sources, then run `npm run ai:sync`.
 | Shared | — | `libs/shared/**` | `@worthyd/shared/...` | `lib-` |
 
 Each app has a matching `<app>-e2e` Cypress project. `libs/dcd-plugin` is a local Nx plugin with
-the `dcd-lib-generator` generator. `scrapers/` holds `tsx` scripts that produce the Cozy Almanacs
-catalog data (`npm run stardew`, `npm run cozy-almanacs`); `reference-json/` is their source data.
+the `dcd-lib-generator` generator. Game data lives in its game app: the Stardew catalog
+(`apps/stardew-cozy-almanacs/src/app/catalog/` `config.ts` for labels, `items.ts` for items) and images
+(`apps/stardew-cozy-almanacs/src/assets/`) are edited with the catalog editor at `/crafting-cart/config`,
+which exports both files; there is no scraper. `cozy-almanacs` is the hub and ships no game data: only its
+development build swaps in the Stardew `datasets.ts` and images (`fileReplacements` and `assets` in its
+`project.json`, ADR 0010). `reference-json/` holds sample Destiny API responses.
 Cozy Almanacs libs are split into `libs/cozy-almanacs/shared/*` (shell, state, models, item card:
 `@cozy-almanacs/{shell,state,models,ui/item-card}`) and `libs/cozy-almanacs/crafting-cart/*` (the
 Crafting Cart almanac at `/crafting-cart`: `@cozy-almanacs/crafting-cart/...`).

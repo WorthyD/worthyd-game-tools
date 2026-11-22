@@ -1,9 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { CatalogStore } from '@cozy-almanacs/state';
+import { catalogDatasets } from './catalog/datasets';
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -11,4 +12,11 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 })
 export class AppComponent {
   title = 'stardew-cozy-almanacs';
+
+  private readonly catalog = inject(CatalogStore);
+
+  constructor() {
+    const [dataset] = catalogDatasets;
+    this.catalog.init(dataset?.items ?? [], dataset?.config ?? { categories: [], tags: [] });
+  }
 }

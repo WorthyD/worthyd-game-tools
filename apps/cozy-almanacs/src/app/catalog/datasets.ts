@@ -1,17 +1,9 @@
 import { CatalogDataset } from '@cozy-almanacs/models';
-import { config } from './config';
-import { items } from './items';
 
-/** The catalogs the editor at /crafting-cart/config can open. Add another dataset here to edit it at /crafting-cart/config/<id>. */
-export const catalogDatasets: CatalogDataset[] = [
-  {
-    id: 'stardew',
-    name: 'Stardew Valley',
-    config,
-    items,
-    files: {
-      config: 'apps/cozy-almanacs/src/app/catalog/config.ts',
-      items: 'apps/cozy-almanacs/src/app/catalog/items.ts'
-    }
-  }
-];
+/**
+ * Cozy Almanacs is the hub for the game apps and ships no game data of its own. Each game app owns its
+ * catalog and images (e.g. apps/stardew-cozy-almanacs/src/app/catalog/). The development build replaces
+ * this file with the Stardew app's datasets.ts and serves its images (see `fileReplacements` and
+ * `assets` in project.json), so `nx serve cozy-almanacs` can debug against real data.
+ */
+export const catalogDatasets: CatalogDataset[] = [];

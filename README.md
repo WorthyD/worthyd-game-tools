@@ -21,10 +21,10 @@ I've been working on this since 2019. It helps Destiny clan members see member a
 
 A collection of almanacs for cozy crafting and farming sims, served at [cozyalmanacs.com](https://cozyalmanacs.com) (and [stardew.cozyalmanacs.com](https://stardew.cozyalmanacs.com) for the Stardew-themed app). The first almanac is the Crafting Cart (`/crafting-cart`), a planner that helps you plan resources. Want to make every recipe in a game? Add all the food to your cart and see which resources you need, and how many. How much wood do you need for 10 sheds? Add 10 sheds and look at the totals. It's a simple idea that I'm using to brush up on newer Angular patterns and learn Tailwind.
 
-- `apps/cozy-almanacs` (cozyalmanacs.com): the base app for trying out layouts and features. Defaults to Stardew Valley's item lists.
-- `apps/stardew-cozy-almanacs` (stardew.cozyalmanacs.com): a version themed for Stardew Valley.
+- `apps/cozy-almanacs` (cozyalmanacs.com): the hub app for trying out layouts and features. It ships no game data; its development build borrows the Stardew Valley catalog and images for debugging.
+- `apps/stardew-cozy-almanacs` (stardew.cozyalmanacs.com): the Stardew Valley app. It owns the Stardew catalog and item images.
 - `libs/cozy-almanacs/**` (`@cozy-almanacs/...`): standalone components, NgRx state and UI libs. `shared/` holds the app frame, state, models and the item card; `crafting-cart/` holds the Crafting Cart features (`@cozy-almanacs/crafting-cart/...`).
-- `apps/cozy-almanacs/src/app/catalog/`: the item catalog (`config.ts` for categories and tags, `items.ts` for items), edited with the catalog editor (see [Cozy Almanacs data](#cozy-almanacs-data)).
+- `apps/stardew-cozy-almanacs/src/app/catalog/`: the Stardew item catalog (`config.ts` for categories and tags, `items.ts` for items), edited with the catalog editor (see [Cozy Almanacs data](#cozy-almanacs-data)).
 
 Code shared by both products lives in `libs/shared/**` (`@worthyd/shared/...`).
 
@@ -95,10 +95,11 @@ npx nx g @nx/angular:library libs/cozy-almanacs/crafting-cart/ui-thing \
 
 ### Cozy Almanacs data
 
-Run `npx nx serve cozy-almanacs` and open `/crafting-cart/config` to edit categories, tags and items.
+Run `npx nx serve stardew-cozy-almanacs` (or `npx nx serve cozy-almanacs`, whose development build
+uses the Stardew data) and open `/crafting-cart/config` to edit categories, tags and items.
 Paste wiki urls to add draft items, then fill in descriptions, ingredients and labels. Changes autosave
 in your browser; to save them, copy or download `config.ts` and `items.ts` from the Export tab over the
-files in `apps/cozy-almanacs/src/app/catalog/`. Item images go in `apps/cozy-almanacs/src/assets/images/`
+files in `apps/stardew-cozy-almanacs/src/app/catalog/`. Item images go in `apps/stardew-cozy-almanacs/src/assets/images/`
 as `<id>.png`.
 
 ## Repo layout

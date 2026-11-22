@@ -13,6 +13,7 @@
 @source "../../../libs/shared/ui/data-viewer";
 @source "../../../libs/shared/utils/generic";
 @source "../../../libs/shared/utils/local-storage";
+@source "../../stardew-cozy-almanacs";
 /* nx-tailwind-sources:end */
 
 /* You can add global styles to this file, and also import other style files */

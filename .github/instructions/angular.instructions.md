@@ -89,7 +89,7 @@ export class ItemCardComponent {
 - `inject()` in new code (components, services, guards, interceptors, factories).
 - `@Injectable({ providedIn: 'root' })` for app-wide services. Libs that need app-specific setup
   expose `provideXxx()` / `xxxProviders` functions (e.g. `providePlayerSidebar()`,
-  `shellProviders`) and `InjectionToken`s (e.g. `ScraperConfigToken`, `getLocalStorageToken()`).
+  `shellProviders`) and `InjectionToken`s (e.g. `CATALOG_DATASETS`, `getLocalStorageToken()`).
   Follow that pattern rather than adding `forRoot()` modules.
 
 ## Routing

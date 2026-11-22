@@ -21,6 +21,7 @@ fields that feed the AI agent instructions.
 | 0007 | [Enforce module boundaries with type tags and import aliases](0007-enforce-module-boundaries-with-type-tags.md) | accepted | 2026-11-01 |
 | 0008 | [Prefix library names with their library type](0008-prefix-library-names-with-their-library-type.md) | accepted | 2026-11-01 |
 | 0009 | [Use SignalStore for Craft Cart state](0009-use-signalstore-for-craft-cart-state.md) | proposed | 2026-11-01 |
+| 0010 | [Game data lives in its game app; the hub borrows it only in dev builds](0010-game-data-lives-in-its-game-app.md) | proposed | 2026-11-22 |
 <!-- adr-index:end -->
 
 ## How agents use these

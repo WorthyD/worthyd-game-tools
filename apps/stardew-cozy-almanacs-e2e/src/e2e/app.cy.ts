@@ -1,13 +1,15 @@
-import { getGreeting } from '../support/app.po';
+import { getToolbar } from '../support/app.po';
 
 describe('stardew-cozy-almanacs-e2e', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('redirects the root to the Crafting Cart', () => {
+    cy.location('pathname').should('eq', '/crafting-cart');
+    getToolbar().contains('Cozy Almanacs');
+  });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains(/Welcome/);
+  it('navigates to the shopping list', () => {
+    getToolbar().contains('a', 'Shopping List').click();
+    cy.location('pathname').should('eq', '/crafting-cart/list');
   });
 });

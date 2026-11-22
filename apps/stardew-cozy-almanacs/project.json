@@ -8,6 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
+      "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
@@ -21,9 +22,17 @@
           {
             "glob": "**/*",
             "input": "apps/stardew-cozy-almanacs/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/stardew-cozy-almanacs/src/assets"
           }
         ],
-        "styles": ["apps/stardew-cozy-almanacs/src/styles.css"],
+        "styles": [
+          "apps/stardew-cozy-almanacs/src/styles/tailwind.scss",
+          "apps/stardew-cozy-almanacs/src/styles/material.scss",
+          "apps/stardew-cozy-almanacs/src/styles.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -52,6 +61,7 @@
     "serve": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
+      "syncGenerators": ["@juristr/nx-tailwind-sync:source-directives"],
       "defaultConfiguration": "development",
       "readyWhen": {
         "signal": true
@@ -61,7 +71,8 @@
           "buildTarget": "stardew-cozy-almanacs:build:production"
         },
         "development": {
-          "buildTarget": "stardew-cozy-almanacs:build:development"
+          "buildTarget": "stardew-cozy-almanacs:build:development",
+          "port": 4323
         }
       }
     },

@@ -5,6 +5,7 @@
   "prefix": "app",
   "sourceRoot": "apps/cozy-almanacs/src",
   "tags": ["type:app"],
+  "implicitDependencies": ["stardew-cozy-almanacs"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
@@ -22,10 +23,6 @@
           {
             "glob": "**/*",
             "input": "apps/cozy-almanacs/public"
-          },
-          {
-            "glob": "**/*",
-            "input": "apps/cozy-almanacs/src/assets"
           },
           {
             "glob": "**/*",
@@ -58,7 +55,27 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/cozy-almanacs/src/app/catalog/datasets.ts",
+              "with": "apps/stardew-cozy-almanacs/src/app/catalog/datasets.ts"
+            }
+          ],
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "apps/cozy-almanacs/public"
+            },
+            {
+              "glob": "**/*",
+              "input": "apps/cozy-almanacs/src/_redirects"
+            },
+            {
+              "glob": "**/*",
+              "input": "apps/stardew-cozy-almanacs/src/assets"
+            }
+          ]
         }
       }
     },
