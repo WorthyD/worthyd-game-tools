@@ -141,6 +141,40 @@ describe('CatalogEditorComponent', () => {
     expect(text()).toContain('Added 1 item.');
   });
 
+  it('adds several items from the add items dialog', async () => {
+    create();
+    const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
+    await tabs.selectTab({ label: /Catalog items/ });
+    const open = [...fixture.nativeElement.querySelectorAll('button')].find((b: HTMLButtonElement) =>
+      b.textContent?.includes('Add up to 5 items')
+    ) as HTMLButtonElement;
+    open.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const dialog = document.querySelector('lib-add-items-dialog') as HTMLElement;
+    expect(dialog).toBeTruthy();
+    ['Cherry Bomb', 'Mega Bomb'].forEach((name, i) => {
+      const input = dialog.querySelector(`[aria-label="Name of new item ${i + 1}"]`) as HTMLInputElement;
+      input.value = name;
+      input.dispatchEvent(new Event('input'));
+    });
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const add = [...dialog.querySelectorAll('button')].find((b) => b.textContent?.includes('Add 2 items'));
+    add?.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(
+      store()
+        .draft()
+        ?.items.map(({ id }) => id)
+    ).toEqual(['bomb', 'cherry_bomb', 'mega_bomb']);
+    expect(text()).toContain('Added 2 items.');
+  });
+
   it('shows the generated files and their issues on the export tab', async () => {
     create();
     store().updateItem(0, { tags: ['missing'] });

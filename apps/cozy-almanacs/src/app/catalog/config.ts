@@ -24,6 +24,7 @@ export const config: CatalogConfig = {
   categories: [
     { id: 'crafting', name: 'Crafting', icon: 'handyman' },
     { id: 'raw_materials', name: 'Raw Materials', icon: 'forest' },
-    { id: 'cooking', name: 'Cooking', icon: 'skillet' }
+    { id: 'cooking', name: 'Cooking', icon: 'skillet' },
+    { id: 'buildings', name: 'Buildings', icon: 'home' }
   ]
 };

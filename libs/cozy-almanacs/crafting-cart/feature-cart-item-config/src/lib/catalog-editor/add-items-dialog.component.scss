@@ -1,0 +1,15 @@
+.add-items-row {
+  border: 1px solid var(--mat-sys-outline-variant);
+}
+
+.add-items-row-invalid {
+  border-color: var(--mat-sys-error);
+}
+
+.add-items-muted {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.add-items-error {
+  color: var(--mat-sys-error);
+}

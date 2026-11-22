@@ -2449,30 +2449,6 @@ export const items = [
     ]
   },
   {
-    id: 'carved_brazier',
-    name: 'Carved Brazier',
-    description: 'Provides a moderate amount of light.',
-    imageUrl: './images/carved_brazier.png',
-    links: [
-      {
-        text: 'Wiki Link',
-        url: 'https://stardewvalleywiki.com/Carved_Brazier'
-      }
-    ],
-    categories: ['crafting'],
-    tags: ['lighting'],
-    ingredients: [
-      {
-        id: 'hardwood',
-        quantity: 10
-      },
-      {
-        id: 'coal',
-        quantity: 1
-      }
-    ]
-  },
-  {
     id: 'barrel_brazier',
     name: 'Barrel Brazier',
     description: 'Provides a moderate amount of light.',
@@ -5159,5 +5135,579 @@ export const items = [
     categories: ['raw_materials'],
     tags: [],
     ingredients: []
+  },
+  {
+    id: 'house_tier_2',
+    name: 'Home Tier 2',
+    description:
+      "Adds a kitchen, with a kitchen counter that allows cooking, and a fridge that functions as a chest. Items in the fridge can be used when cooking even though they are not in the player's inventory. Adds a bedroom. Upgrades bed from single to double. Allows marriage.",
+    imageUrl: './images/house_(tier2).png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Farmhouse'
+      }
+    ],
+    categories: ['buildings'],
+    tags: [],
+    ingredients: [
+      {
+        id: 'wood',
+        quantity: 450
+      },
+      {
+        id: 'gold',
+        quantity: 1000
+      }
+    ]
+  },
+  {
+    id: 'house_tier_3',
+    name: 'Home Tier 3',
+    description:
+      'Adds two new rooms, one empty, and one with a crib and two child beds, thus allowing the player to have children. Kitchen and bedroom are larger. Unlocks renovations and the ability to paint the house.',
+    imageUrl: './images/house_(tier2).png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Farmhouse'
+      }
+    ],
+    categories: ['buildings'],
+    tags: [],
+    ingredients: [
+      {
+        id: 'hardwood',
+        quantity: 100
+      },
+      {
+        id: 'gold',
+        quantity: 65000
+      }
+    ]
+  },
+  {
+    id: 'gold',
+    name: 'Gold',
+    description: '',
+    imageUrl: './images/gold.png',
+    links: [],
+    categories: [],
+    tags: [],
+    ingredients: []
+  },
+  {
+    id: 'home_tier_4',
+    name: 'Home Tier 4',
+    description:
+      'Adds a cellar under the house, allowing access via the kitchen. The cellar houses casks which can age products such as cheese and wine to increase quality and value. The cellar comes with 33 casks, though it may house as many as 189 casks.',
+    imageUrl: './images/home_tier_4.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Farmhouse'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 100000
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'barn',
+    name: 'Barn',
+    description: 'Houses 4 barn-dwelling animals.',
+    imageUrl: './images/barn.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Barn'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 6000
+      },
+      {
+        id: 'wood',
+        quantity: 350
+      },
+      {
+        id: 'stone',
+        quantity: 150
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'big_barn',
+    name: 'Big Barn',
+    description: 'Houses 8 barn-dwelling animals. Allows animals to give birth. Unlocks goats.',
+    imageUrl: './images/big_barn.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Barn'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 12000
+      },
+      {
+        id: 'wood',
+        quantity: 450
+      },
+      {
+        id: 'stone',
+        quantity: 200
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'deluxe_barn',
+    name: 'Deluxe Barn',
+    description: 'Houses 12 barn-dwelling animals. Comes with an auto-feed system. Unlocks sheep and pigs.',
+    imageUrl: './images/deluxe_barn.png',
+    links: [],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 25000
+      },
+      {
+        id: 'hardwood',
+        quantity: 550
+      },
+      {
+        id: 'stone',
+        quantity: 300
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'coop',
+    name: 'Coop',
+    description: 'Houses 4 coop-dwelling animals.',
+    imageUrl: './images/coop.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Coop'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 4000
+      },
+      {
+        id: 'wood',
+        quantity: 300
+      },
+      {
+        id: 'stone',
+        quantity: 100
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'big_coop',
+    name: 'Big Coop',
+    description: 'Houses 8 coop-dwelling animals. Comes with an incubator. Unlocks ducks.',
+    imageUrl: './images/big_coop.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Coop'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 10000
+      },
+      {
+        id: 'stone',
+        quantity: 150
+      },
+      {
+        id: 'wood',
+        quantity: 400
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'deluxe_coop',
+    name: 'Deluxe Coop',
+    description: 'Houses 12 coop-dwelling animals. Comes with an auto-feed system. Unlocks rabbits.',
+    imageUrl: './images/deluxe_coop.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Coop'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 20000
+      },
+      {
+        id: 'wood',
+        quantity: 500
+      },
+      {
+        id: 'stone',
+        quantity: 200
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'green_algae',
+    name: 'Green Algae',
+    description: "It's really slimy.",
+    imageUrl: './images/green_algae.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Green_Algae'
+      }
+    ],
+    ingredients: [],
+    categories: ['raw_materials'],
+    tags: []
+  },
+  {
+    id: 'seaweed',
+    name: 'Seaweed',
+    description: 'It can be used in cooking.',
+    imageUrl: './images/seaweed.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Seaweed'
+      }
+    ],
+    ingredients: [],
+    categories: ['raw_materials'],
+    tags: []
+  },
+  {
+    id: 'fish_pond',
+    name: 'Fish Pond',
+    description: 'Raise fish and harvest their produce. Fish multiply over time.',
+    imageUrl: './images/fish_pond.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Fish_Pond'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 5000
+      },
+      {
+        id: 'stone',
+        quantity: 200
+      },
+      {
+        id: 'seaweed',
+        quantity: 5
+      },
+      {
+        id: 'green_algae',
+        quantity: 5
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'mill',
+    name: 'Mill',
+    description: 'Allows you to mill wheat, beets and rice.',
+    imageUrl: './images/mill.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Mill'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 2500
+      },
+      {
+        id: 'stone',
+        quantity: 50
+      },
+      {
+        id: 'wood',
+        quantity: 150
+      },
+      {
+        id: 'cloth',
+        quantity: 4
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'shed',
+    name: 'Shed',
+    description: 'An empty building. Fill it with whatever you like! The interior can be decorated.',
+    imageUrl: './images/shed.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Shed'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 15000
+      },
+      {
+        id: 'wood',
+        quantity: 300
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'big_shed',
+    name: 'Big Shed',
+    description: 'Doubles the size of the shed. The interior can be decorated.',
+    imageUrl: './images/big_shed.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Shed'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 2000
+      },
+      {
+        id: 'wood',
+        quantity: 550
+      },
+      {
+        id: 'stone',
+        quantity: 300
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'silo',
+    name: 'Silo',
+    description: 'Allows you to cut and store grass for feed.',
+    imageUrl: './images/silo.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Silo'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 100
+      },
+      {
+        id: 'stone',
+        quantity: 100
+      },
+      {
+        id: 'clay',
+        quantity: 10
+      },
+      {
+        id: 'copper_bar',
+        quantity: 5
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'slime_hutch',
+    name: 'Slime Hutch',
+    description: 'Raise up to 20 slimes. Fill water troughs and slimes will create slime balls.',
+    imageUrl: './images/slime_hutch.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Slime_Hutch'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 10000
+      },
+      {
+        id: 'stone',
+        quantity: 500
+      },
+      {
+        id: 'refined_quartz',
+        quantity: 10
+      },
+      {
+        id: 'iridium_bar',
+        quantity: 1
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'stable',
+    name: 'Stable',
+    description: 'Allows you to keep and ride a horse. Horse included.',
+    imageUrl: './images/stable.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Stable'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 10000
+      },
+      {
+        id: 'hardwood',
+        quantity: 100
+      },
+      {
+        id: 'iron_bar',
+        quantity: 5
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'well',
+    name: 'Well',
+    description: 'Provides a place for you to refill your watering can.',
+    imageUrl: './images/well.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Well'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 1000
+      },
+      {
+        id: 'stone',
+        quantity: 75
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'cabin',
+    name: 'Cabin',
+    description: 'A home for a friend! Subsidized by the town agricultural fund.',
+    imageUrl: './images/cabin.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Cabin'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 100
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'shipping',
+    name: 'Shipping',
+    description: 'Items placed in it will be included in the nightly shipment.',
+    imageUrl: './images/shipping.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Shipping'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 250
+      },
+      {
+        id: 'wood',
+        quantity: 150
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
+  },
+  {
+    id: 'pet_bowl',
+    name: 'Pet Bowl',
+    description: 'Provides a dedicated home for one pet.',
+    imageUrl: './images/pet_bowl.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Pet_Bowl'
+      }
+    ],
+    ingredients: [
+      {
+        id: 'gold',
+        quantity: 5000
+      },
+      {
+        id: 'hardwood',
+        quantity: 25
+      }
+    ],
+    categories: ['buildings'],
+    tags: []
   }
 ];

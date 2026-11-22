@@ -189,6 +189,29 @@ describe('CatalogEditorStore', () => {
     expect(store.addItemsFromUrls(['not a url'])).toEqual([]);
   });
 
+  it('adds finished items, skipping ones without an id and ids that already exist', () => {
+    const store = setup();
+    const added = store.addItems([
+      item('torch'),
+      item(''),
+      item('bomb'),
+      item('torch', { name: 'Again' }),
+      item('chest')
+    ]);
+
+    expect(added).toEqual([3, 4]);
+    expect(store.draft()?.items.map(({ id }) => id)).toEqual(['bomb', 'coal', 'gate', 'torch', 'chest']);
+    expect(store.draft()?.items[3].name).toBe('torch');
+    expect(saved()?.items.length).toBe(5);
+  });
+
+  it('adds nothing when every item is skipped', () => {
+    const store = setup();
+
+    expect(store.addItems([item('bomb')])).toEqual([]);
+    expect(store.dirty()).toBe(false);
+  });
+
   it('counts label usage and reports problems', () => {
     const store = setup();
     expect(store.labelUsage().tags).toEqual({ bombs: 1, fences: 1 });

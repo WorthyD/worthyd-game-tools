@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Item, ItemLabel } from '@cozy-almanacs/models';
 import { CATALOG_DATASETS, CatalogEditorStore, LabelKind, formatLinks, parseLinks } from '@cozy-almanacs/state';
+import { AddItemsDialogComponent, AddItemsDialogData, MAX_NEW_ITEMS } from './add-items-dialog.component';
 import { EditorTable } from './editor-table';
 import { IngredientEditorComponent, IngredientOption } from './ingredient-editor.component';
 
@@ -52,6 +54,7 @@ const exportFile = (path: string, text: string): ExportFile => ({ path, name: pa
 export class CatalogEditorComponent {
   protected readonly store = inject(CatalogEditorStore);
   private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
   protected readonly datasets = inject(CATALOG_DATASETS);
 
   /** Material Symbols (fonts.google.com/icons) given to labels added here; change them in the Labels tab. */
@@ -63,6 +66,7 @@ export class CatalogEditorComponent {
 
   protected readonly missingDataset = signal<string | null>(null);
   protected readonly message = signal('');
+  protected readonly maxNewItems = MAX_NEW_ITEMS;
 
   protected readonly config = computed(() => this.store.draft()?.config ?? null);
   protected readonly labels = computed(() => ({
@@ -156,6 +160,30 @@ export class CatalogEditorComponent {
 
   protected addItem(): void {
     this.items.reveal(this.store.addItem());
+  }
+
+  /** Opens the dialog for filling in several new items at once, then adds them to the draft. */
+  protected openAddItems(): void {
+    const data: AddItemsDialogData = {
+      labels: this.labels(),
+      ingredientOptions: this.ingredientOptions(),
+      existingIds: (this.store.draft()?.items ?? []).map(({ id }) => id)
+    };
+    this.dialog
+      .open<AddItemsDialogComponent, AddItemsDialogData, Item[]>(AddItemsDialogComponent, {
+        data,
+        width: '1200px',
+        maxWidth: '95vw',
+        autoFocus: 'first-tabbable'
+      })
+      .afterClosed()
+      .subscribe((items) => {
+        const added = items?.length ? this.store.addItems(items) : [];
+        if (added.length) {
+          this.message.set(`Added ${added.length} ${added.length === 1 ? 'item' : 'items'}.`);
+          this.items.reveal(added[0]);
+        }
+      });
   }
 
   protected addItemsFromUrls(textarea: HTMLTextAreaElement): void {

@@ -1,0 +1,142 @@
+<h2 mat-dialog-title>Add items</h2>
+
+<mat-dialog-content>
+  <p class="add-items-muted mt-0 text-sm">
+    Fill in up to {{ max }} items; blank rows are skipped. The id comes from the name (or the wiki url's page) unless
+    you type one, and the image defaults to <code>./images/&lt;id&gt;.png</code>.
+  </p>
+
+  <!-- The rows are fixed slots that never move, so tracking by index is stable. -->
+  @for (entry of entries(); track $index; let i = $index) {
+    <section
+      class="add-items-row mb-3 rounded p-3"
+      [class.add-items-row-invalid]="!!entry.problem"
+      [attr.aria-label]="'New item ' + (i + 1)"
+    >
+      <div class="mb-2 flex items-center gap-2">
+        <h3 class="m-0 flex-auto text-sm font-medium">
+          {{ i + 1 }}. {{ entry.name || 'New item' }}
+          @if (entry.id) {
+            <small class="add-items-muted font-normal">{{ entry.id }}</small>
+          }
+        </h3>
+        @if (!entry.blank) {
+          <button mat-icon-button type="button" [attr.aria-label]="'Clear new item ' + (i + 1)" (click)="clear(i)">
+            <mat-icon>backspace</mat-icon>
+          </button>
+        }
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-3 md:grid-cols-4">
+        <mat-form-field floatLabel="always">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            [attr.aria-label]="'Name of new item ' + (i + 1)"
+            [placeholder]="entry.autoName"
+            [value]="entry.row.name"
+            (input)="update(i, { name: $any($event.target).value })"
+          />
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <mat-label>Id</mat-label>
+          <input
+            matInput
+            [attr.aria-label]="'Id of new item ' + (i + 1)"
+            [placeholder]="entry.autoId"
+            [value]="entry.row.id"
+            (input)="update(i, { id: $any($event.target).value })"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Wiki url</mat-label>
+          <input
+            matInput
+            type="url"
+            [attr.aria-label]="'Wiki url of new item ' + (i + 1)"
+            [value]="entry.row.url"
+            (input)="update(i, { url: $any($event.target).value })"
+          />
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <mat-label>Image url</mat-label>
+          <input
+            matInput
+            [attr.aria-label]="'Image url of new item ' + (i + 1)"
+            [placeholder]="entry.autoImageUrl"
+            [value]="entry.row.imageUrl"
+            (input)="update(i, { imageUrl: $any($event.target).value })"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="md:col-span-2">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            rows="2"
+            [attr.aria-label]="'Description of new item ' + (i + 1)"
+            [value]="entry.row.description"
+            (input)="update(i, { description: $any($event.target).value })"
+          ></textarea>
+        </mat-form-field>
+        <div class="flex flex-col">
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select
+              multiple
+              [attr.aria-label]="'Categories of new item ' + (i + 1)"
+              [value]="entry.row.categories"
+              (selectionChange)="update(i, { categories: $event.value })"
+            >
+              @for (label of data.labels.categories; track label.id) {
+                <mat-option [value]="label.id"
+                  ><mat-icon>{{ label.icon }}</mat-icon
+                  >{{ label.name }}</mat-option
+                >
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Tags</mat-label>
+            <mat-select
+              multiple
+              [attr.aria-label]="'Tags of new item ' + (i + 1)"
+              [value]="entry.row.tags"
+              (selectionChange)="update(i, { tags: $event.value })"
+            >
+              @for (label of data.labels.tags; track label.id) {
+                <mat-option [value]="label.id"
+                  ><mat-icon>{{ label.icon }}</mat-icon
+                  >{{ label.name }}</mat-option
+                >
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <div class="add-items-muted mb-1 text-xs">Ingredients</div>
+          <lib-ingredient-editor
+            [ingredients]="entry.row.ingredients"
+            [options]="data.ingredientOptions"
+            [itemId]="entry.id"
+            (ingredientsChange)="update(i, { ingredients: $event })"
+          />
+        </div>
+      </div>
+
+      @if (entry.problem) {
+        <p class="add-items-error m-0 flex items-center gap-1 text-sm" role="alert">
+          <mat-icon aria-hidden="true">error</mat-icon>
+          {{ entry.problem }}
+        </p>
+      }
+    </section>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" mat-dialog-close>Cancel</button>
+  <button mat-flat-button type="button" [disabled]="!canAdd()" (click)="add()">
+    Add {{ filled().length || '' }} {{ filled().length === 1 ? 'item' : 'items' }}
+  </button>
+</mat-dialog-actions>

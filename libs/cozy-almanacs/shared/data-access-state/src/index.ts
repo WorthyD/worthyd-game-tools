@@ -16,7 +16,9 @@ export type {
 export { CATALOG_DATASETS, provideCatalogDatasets } from './lib/catalog-editor/catalog-datasets.token';
 export { createConfigFile, createItemsFile } from './lib/catalog-editor/catalog-files';
 export {
+  ITEM_IMAGE_PATH,
   formatIngredients,
+  itemFromUrl,
   formatLinks,
   parseIngredients,
   parseLinks,

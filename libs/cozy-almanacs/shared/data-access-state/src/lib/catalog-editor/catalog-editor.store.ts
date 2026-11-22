@@ -285,6 +285,23 @@ export const CatalogEditorStore = signalStore(
         return added.map((_, i) => draft.items.length + i);
       },
 
+      /**
+       * Appends finished items (e.g. from the "Add items" dialog). Skips items without an id and ids that
+       * already exist. Returns the indexes of the added items.
+       */
+      addItems(items: Item[]): number[] {
+        const draft = store.draft();
+        if (!draft) {
+          return [];
+        }
+        const existing = new Set(draft.items.map(({ id }) => id));
+        const added = items.filter(({ id }) => !!id && !existing.has(id) && !!existing.add(id));
+        if (added.length) {
+          updateItems((list) => [...list, ...clone(added)]);
+        }
+        return added.map((_, i) => draft.items.length + i);
+      },
+
       updateItem(index: number, changes: Partial<Item>): void {
         updateItems((list) => list.map((row, i) => (i === index ? { ...row, ...changes } : row)));
       },
