@@ -24,7 +24,7 @@ A collection of almanacs for cozy crafting and farming sims, served at [cozyalma
 - `apps/cozy-almanacs` (cozyalmanacs.com): the hub app for trying out layouts and features. It ships no game data; its development build borrows the Stardew Valley catalog and images for debugging.
 - `apps/stardew-cozy-almanacs` (stardew.cozyalmanacs.com): the Stardew Valley app. It owns the Stardew catalog and item images.
 - `libs/cozy-almanacs/**` (`@cozy-almanacs/...`): standalone components, NgRx state and UI libs. `shared/` holds the app frame, state, models and the item card; `crafting-cart/` holds the Crafting Cart features (`@cozy-almanacs/crafting-cart/...`).
-- `apps/stardew-cozy-almanacs/src/app/catalog/`: the Stardew item catalog (`config.ts` for categories and tags, `items.ts` for items), edited with the catalog editor (see [Cozy Almanacs data](#cozy-almanacs-data)).
+- `apps/stardew-cozy-almanacs/src/assets/catalog/stardew/`: the Stardew data as JSON (`config.json` for categories and tags, `items.json` for items, `bundles.json` for bundles), fetched by the app at runtime and edited with the catalog and bundle editors (see [Cozy Almanacs data](#cozy-almanacs-data)). `src/app/catalog/datasets.ts` registers it.
 
 Code shared by both products lives in `libs/shared/**` (`@worthyd/shared/...`).
 
@@ -98,9 +98,14 @@ npx nx g @nx/angular:library libs/cozy-almanacs/crafting-cart/ui-thing \
 Run `npx nx serve stardew-cozy-almanacs` (or `npx nx serve cozy-almanacs`, whose development build
 uses the Stardew data) and open `/crafting-cart/config` to edit categories, tags and items.
 Paste wiki urls to add draft items, then fill in descriptions, ingredients and labels. Changes autosave
-in your browser; to save them, copy or download `config.ts` and `items.ts` from the Export tab over the
-files in `apps/stardew-cozy-almanacs/src/app/catalog/`. Item images go in `apps/stardew-cozy-almanacs/src/assets/images/`
+in your browser; to save them, copy or download `config.json` and `items.json` from the Export tab over the
+files in `apps/stardew-cozy-almanacs/src/assets/catalog/stardew/`. Bundles work the same way at
+`/bundles/config` with `bundles.json`. Item images go in `apps/stardew-cozy-almanacs/src/assets/images/`
 as `<id>.png`.
+
+The app fetches the JSON files the first time a page needs them, and checks them against the catalog
+schema; a file with the wrong shape fails to load with a list of what's wrong. `npx nx test stardew-cozy-almanacs`
+also checks the shipped files for broken references (undefined labels, ingredients that aren't items).
 
 ## Repo layout
 

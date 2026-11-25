@@ -1,50 +1,33 @@
 import { Bundle, CatalogConfig, Item } from '@cozy-almanacs/models';
 
 const PRINT_WIDTH = 120;
-const IDENTIFIER = /^[A-Za-z_$][\w$]*$/;
 
-type Literal = string | number | boolean | null | undefined | Literal[] | { [key: string]: Literal };
+type Json = string | number | boolean | null | undefined | Json[] | { [key: string]: Json };
 
-interface LiteralOptions {
-  /** Keep objects whose values are all primitives on one line when they fit (e.g. `{ id, name, icon }` labels). */
+interface JsonOptions {
+  /** Keep objects whose values are all primitives on one line when they fit (e.g. `{ "id", "name", "icon" }` labels). */
   inlineFlatObjects: boolean;
 }
 
-const isPrimitive = (value: Literal): boolean => value === null || typeof value !== 'object';
+const isPrimitive = (value: Json): boolean => value === null || typeof value !== 'object';
 
-/** Quotes a string the way Prettier does with `singleQuote`: single quotes unless that needs more escapes. */
-export const quoteString = (value: string): string => {
-  const singles = (value.match(/'/g) ?? []).length;
-  const doubles = (value.match(/"/g) ?? []).length;
-  const quote = singles > doubles ? '"' : "'";
-  const escaped = value
-    .replace(/\\/g, '\\\\')
-    .replace(/\n/g, '\\n')
-    .replace(/\r/g, '\\r')
-    .replace(new RegExp(quote, 'g'), `\\${quote}`);
-  return `${quote}${escaped}${quote}`;
-};
-
-const formatKey = (key: string): string => (IDENTIFIER.test(key) ? key : quoteString(key));
-
-const entriesOf = (value: { [key: string]: Literal }): [string, Literal][] =>
+const entriesOf = (value: { [key: string]: Json }): [string, Json][] =>
   Object.entries(value).filter(([, entry]) => entry !== undefined);
 
-const formatInline = (value: Literal): string => {
-  if (typeof value === 'string') {
-    return quoteString(value);
-  }
+const formatInline = (value: Json): string => {
   if (Array.isArray(value)) {
     return `[${value.map(formatInline).join(', ')}]`;
   }
   if (value !== null && typeof value === 'object') {
     const entries = entriesOf(value);
-    return entries.length ? `{ ${entries.map(([k, v]) => `${formatKey(k)}: ${formatInline(v)}`).join(', ')} }` : '{}';
+    return entries.length
+      ? `{ ${entries.map(([k, v]) => `${JSON.stringify(k)}: ${formatInline(v)}`).join(', ')} }`
+      : '{}';
   }
-  return String(value);
+  return JSON.stringify(value) ?? 'null';
 };
 
-const canInline = (value: Literal, options: LiteralOptions): boolean => {
+const canInline = (value: Json, options: JsonOptions): boolean => {
   if (isPrimitive(value)) {
     return true;
   }
@@ -54,63 +37,48 @@ const canInline = (value: Literal, options: LiteralOptions): boolean => {
       value.every(isPrimitive) || (value.length === 1 && options.inlineFlatObjects && canInline(value[0], options))
     );
   }
-  const entries = entriesOf(value as { [key: string]: Literal });
+  const entries = entriesOf(value as { [key: string]: Json });
   return entries.length === 0 || (options.inlineFlatObjects && entries.every(([, entry]) => isPrimitive(entry)));
 };
 
 /**
- * Prints a value as a TypeScript literal laid out like Prettier would print it with this repo's `.prettierrc`,
+ * Prints a value as JSON laid out like Prettier prints a `.json` file with this repo's `.prettierrc`,
  * so a generated file can replace the checked-in one without a noisy diff.
- * `prefix` is the text already on the line before the value (indent plus `key: `).
+ * `prefix` is the text already on the line before the value (indent plus `"key": `).
  */
-const formatLiteral = (
-  value: Literal,
-  indent: string,
-  prefix: string,
-  suffix: string,
-  options: LiteralOptions
-): string => {
+const formatJson = (value: Json, indent: string, prefix: string, suffix: string, options: JsonOptions): string => {
   const inline = formatInline(value);
-  if (canInline(value, options) && prefix.length + inline.length + suffix.length <= PRINT_WIDTH) {
-    return inline;
-  }
-  if (typeof value === 'string' && prefix.trim().endsWith(':')) {
-    // Prettier moves a string that doesn't fit after its key onto the next line.
-    return `\n${indent}  ${inline}`;
-  }
-  if (isPrimitive(value)) {
+  if (
+    isPrimitive(value) ||
+    (canInline(value, options) && prefix.length + inline.length + suffix.length <= PRINT_WIDTH)
+  ) {
     return inline;
   }
 
   const inner = `${indent}  `;
   if (Array.isArray(value)) {
     const lines = value.map(
-      (entry, i) => `${inner}${formatLiteral(entry, inner, inner, i < value.length - 1 ? ',' : '', options)}`
+      (entry, i) => `${inner}${formatJson(entry, inner, inner, i < value.length - 1 ? ',' : '', options)}`
     );
     return `[\n${lines.join(',\n')}\n${indent}]`;
   }
 
-  const entries = entriesOf(value as { [key: string]: Literal });
+  const entries = entriesOf(value as { [key: string]: Json });
   const lines = entries.map(([key, entry], i) => {
-    const keyText = `${inner}${formatKey(key)}: `;
-    const printed = formatLiteral(entry, inner, keyText, i < entries.length - 1 ? ',' : '', options);
-    return printed.startsWith('\n') ? `${keyText.trimEnd()}${printed}` : `${keyText}${printed}`;
+    const keyText = `${inner}${JSON.stringify(key)}: `;
+    return `${keyText}${formatJson(entry, inner, keyText, i < entries.length - 1 ? ',' : '', options)}`;
   });
   return `{\n${lines.join(',\n')}\n${indent}}`;
 };
 
-const toLiteral = (value: unknown): Literal => value as Literal;
+const toJsonFile = (value: unknown, options: JsonOptions): string =>
+  `${formatJson(value as Json, '', '', '', options)}\n`;
 
-/** The full contents of `config.ts` for a dataset. */
-export const createConfigFile = (config: CatalogConfig): string =>
-  `import { CatalogConfig } from '@cozy-almanacs/models';\n` +
-  `export const config: CatalogConfig = ${formatLiteral(toLiteral(config), '', 'export const config: CatalogConfig = ', ';', { inlineFlatObjects: true })};\n`;
+/** The full contents of a dataset's `config.json`. */
+export const createConfigFile = (config: CatalogConfig): string => toJsonFile(config, { inlineFlatObjects: true });
 
-/** The full contents of `items.ts` for a dataset. */
-export const createItemsFile = (items: Item[]): string =>
-  `export const items = ${formatLiteral(toLiteral(items), '', 'export const items = ', ';', { inlineFlatObjects: false })};\n`;
+/** The full contents of a dataset's `items.json`. */
+export const createItemsFile = (items: Item[]): string => toJsonFile(items, { inlineFlatObjects: false });
 
-/** The full contents of `bundles.ts` for a dataset. */
-export const createBundlesFile = (bundles: Bundle[]): string =>
-  `import { Bundle } from '@cozy-almanacs/models';\n\n` +
-  `export const bundles: Bundle[] = ${formatLiteral(toLiteral(bundles), '', 'export const bundles: Bundle[] = ', ';', { inlineFlatObjects: true })};\n`;
+/** The full contents of a dataset's `bundles.json`. */
+export const createBundlesFile = (bundles: Bundle[]): string => toJsonFile(bundles, { inlineFlatObjects: true });

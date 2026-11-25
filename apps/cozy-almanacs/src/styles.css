@@ -8,6 +8,7 @@
 @source "../../../libs/cozy-almanacs/crafting-cart/feature-catalog";
 @source "../../../libs/cozy-almanacs/crafting-cart/feature-shopping-list";
 @source "../../../libs/cozy-almanacs/crafting-cart/ui-cart-quantity";
+@source "../../../libs/cozy-almanacs/landing/feature-landing";
 @source "../../../libs/cozy-almanacs/shared/data-access-state";
 @source "../../../libs/cozy-almanacs/shared/feature-shell";
 @source "../../../libs/cozy-almanacs/shared/models-shared";

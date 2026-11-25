@@ -1,7 +1,5 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BundleStore, CatalogStore } from '@cozy-almanacs/state';
-import { catalogDatasets } from './catalog/datasets';
 
 @Component({
   imports: [RouterModule],
@@ -12,13 +10,4 @@ import { catalogDatasets } from './catalog/datasets';
 })
 export class AppComponent {
   title = 'stardew-cozy-almanacs';
-
-  private readonly catalog = inject(CatalogStore);
-  private readonly bundles = inject(BundleStore);
-
-  constructor() {
-    const [dataset] = catalogDatasets;
-    this.catalog.init(dataset?.items ?? [], dataset?.config ?? { categories: [], tags: [] });
-    this.bundles.init(dataset?.id ?? '', dataset?.bundles ?? []);
-  }
 }

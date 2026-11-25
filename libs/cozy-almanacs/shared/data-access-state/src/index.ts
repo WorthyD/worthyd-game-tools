@@ -14,6 +14,13 @@ export type {
   PersistedCatalogDraft
 } from './lib/catalog-editor/catalog-editor.store';
 export { CATALOG_DATASETS, provideCatalogDatasets } from './lib/catalog-editor/catalog-datasets.token';
+export { CatalogDatasetLoader } from './lib/catalog-data/catalog-dataset.loader';
+export {
+  catalogBundlesIssues,
+  catalogConfigIssues,
+  catalogItemsIssues,
+  catalogReferenceIssues
+} from './lib/catalog-data/catalog-schema';
 export { createBundlesFile, createConfigFile, createItemsFile } from './lib/catalog-editor/catalog-files';
 export {
   ITEM_IMAGE_PATH,

@@ -1,12 +1,15 @@
 import { InjectionToken, ValueProvider } from '@angular/core';
-import { CatalogDataset } from '@cozy-almanacs/models';
+import { CatalogDatasetSource } from '@cozy-almanacs/models';
 
-/** The catalogs the editor can open. Each app provides its own with `provideCatalogDatasets()`. */
-export const CATALOG_DATASETS = new InjectionToken<CatalogDataset[]>('CATALOG_DATASETS', {
+/**
+ * The datasets an app can load, first one active. Each app provides its own with `provideCatalogDatasets()`;
+ * `CatalogDatasetLoader` fetches a dataset's JSON files the first time it's needed.
+ */
+export const CATALOG_DATASETS = new InjectionToken<CatalogDatasetSource[]>('CATALOG_DATASETS', {
   factory: () => []
 });
 
-export const provideCatalogDatasets = (datasets: CatalogDataset[]): ValueProvider => ({
+export const provideCatalogDatasets = (datasets: CatalogDatasetSource[]): ValueProvider => ({
   provide: CATALOG_DATASETS,
   useValue: datasets
 });

@@ -434,5 +434,9 @@
         </ng-template>
       </mat-tab>
     </mat-tab-group>
+  } @else if (loadError()) {
+    <p class="p-6" role="alert">{{ loadError() }}</p>
+  } @else {
+    <p class="editor-muted p-6">Loading…</p>
   }
 </div>

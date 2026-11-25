@@ -71,7 +71,7 @@ const uniqueId = (base: string, taken: Set<string>): string => {
 
 /**
  * Draft state for the bundle editor, autosaved to local storage per dataset like the catalog editor.
- * "Saving" is manual: copy `bundlesFile()` over the dataset's bundles.ts.
+ * "Saving" is manual: copy `bundlesFile()` over the dataset's bundles.json.
  * Bundles are addressed by their `BundlePath` in the nested list.
  *
  * Provide it on the editor component, not in root, so each visit starts from `open()`.

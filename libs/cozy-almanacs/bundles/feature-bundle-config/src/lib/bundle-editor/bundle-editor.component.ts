@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EMPTY, catchError, from, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +13,7 @@ import { Bundle, BundleItem } from '@cozy-almanacs/models';
 import {
   BundleEditorStore,
   BundlePath,
-  CATALOG_DATASETS,
+  CatalogDatasetLoader,
   CatalogStore,
   bundleAt,
   bundleTemplate,
@@ -34,7 +35,7 @@ const samePath = (a: BundlePath, b: BundlePath): boolean => a.length === b.lengt
 
 /**
  * Editor for a dataset's bundles: add, nest, reorder and fill bundles with catalog items or one-offs.
- * Every change is autosaved to local storage; saving is manual (copy or download the generated bundles.ts
+ * Every change is autosaved to local storage; saving is manual (copy or download the generated bundles.json
  * and replace the file in the repo), the same as the catalog editor.
  */
 @Component({
@@ -58,9 +59,11 @@ export class BundleEditorComponent {
   protected readonly store = inject(BundleEditorStore);
   protected readonly catalog = inject(CatalogStore);
   private readonly router = inject(Router);
-  protected readonly datasets = inject(CATALOG_DATASETS);
+  private readonly loader = inject(CatalogDatasetLoader);
+  protected readonly datasets = this.loader.sources;
 
   protected readonly missingDataset = signal<string | null>(null);
+  protected readonly loadError = signal<string | null>(null);
   protected readonly message = signal('');
   protected readonly selectedPath = signal<BundlePath>([0]);
 
@@ -76,24 +79,35 @@ export class BundleEditorComponent {
   );
 
   protected readonly exportFile = computed(() =>
-    exportFile(this.store.filePath() ?? 'bundles.ts', this.store.bundlesFile())
+    exportFile(this.store.filePath() ?? 'bundles.json', this.store.bundlesFile())
   );
-  /** The base bundle as it would appear in bundles.ts, to copy and paste. */
+  /** The base bundle as it would appear in bundles.json, to copy and paste. */
   protected readonly templateFile = computed(() =>
-    exportFile('bundle-template.ts', createBundlesFile([bundleTemplate]))
+    exportFile('bundle-template.json', createBundlesFile([bundleTemplate]))
   );
 
   constructor() {
     inject(ActivatedRoute)
-      .paramMap.pipe(takeUntilDestroyed())
-      .subscribe((params) => {
-        const id = params.get('datasetId');
-        const dataset = id ? this.datasets.find((d) => d.id === id) : this.datasets[0];
-        this.missingDataset.set(dataset ? null : (id ?? ''));
-        if (dataset) {
-          this.store.open(dataset);
-          this.selectedPath.set([0]);
-        }
+      .paramMap.pipe(
+        switchMap((params) => {
+          const id = params.get('datasetId');
+          const source = this.loader.source(id);
+          this.missingDataset.set(source ? null : (id ?? ''));
+          this.loadError.set(null);
+          return source
+            ? from(this.loader.load(source)).pipe(
+                catchError((error: unknown) => {
+                  this.loadError.set(`Couldn't load ${source.name}: ${error instanceof Error ? error.message : error}`);
+                  return EMPTY;
+                })
+              )
+            : EMPTY;
+        }),
+        takeUntilDestroyed()
+      )
+      .subscribe((dataset) => {
+        this.store.open(dataset);
+        this.selectedPath.set([0]);
       });
   }
 
@@ -224,7 +238,7 @@ export class BundleEditorComponent {
   }
 
   protected downloadFile(file: ExportFile): void {
-    const url = URL.createObjectURL(new Blob([file.text], { type: 'text/typescript' }));
+    const url = URL.createObjectURL(new Blob([file.text], { type: 'application/json' }));
     const link = document.createElement('a');
     link.href = url;
     link.download = file.name;

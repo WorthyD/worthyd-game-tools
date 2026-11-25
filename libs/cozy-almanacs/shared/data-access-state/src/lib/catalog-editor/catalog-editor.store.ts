@@ -72,7 +72,7 @@ const duplicates = (ids: string[]): string[] =>
 /**
  * Draft state for the catalog editor. Every change is written to local storage under the dataset's id,
  * so leaving the page loses nothing; the draft is only cleared by discarding it or by editing it back
- * to match the source files. "Saving" is manual: copy `configFile()` / `itemsFile()` over the files.
+ * to match the source files. "Saving" is manual: copy `configFile()` / `itemsFile()` over the JSON files.
  *
  * Provide it on the editor component, not in root, so each visit starts from `open()`.
  */

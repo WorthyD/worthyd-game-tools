@@ -4,8 +4,8 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatTabGroupHarness } from '@angular/material/tabs/testing';
 import { BehaviorSubject } from 'rxjs';
-import { CatalogDataset } from '@cozy-almanacs/models';
-import { CatalogEditorStore, catalogEditorStorageKey, provideCatalogDatasets } from '@cozy-almanacs/state';
+import { CatalogDataset, CatalogDatasetSource } from '@cozy-almanacs/models';
+import { CatalogDatasetLoader, CatalogEditorStore, catalogEditorStorageKey } from '@cozy-almanacs/state';
 import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 import { CatalogEditorComponent } from './catalog-editor.component';
 
@@ -33,16 +33,31 @@ describe('CatalogEditorComponent', () => {
       }
     ],
     files: {
-      config: 'apps/cozy-almanacs/src/app/catalog/config.ts',
-      items: 'apps/cozy-almanacs/src/app/catalog/items.ts'
+      config: 'apps/game/src/assets/catalog/stardew/config.json',
+      items: 'apps/game/src/assets/catalog/stardew/items.json'
     }
+  };
+  const source: CatalogDatasetSource = {
+    id: dataset.id,
+    name: dataset.name,
+    urls: { config: 'config.json', items: 'items.json' },
+    files: dataset.files
+  };
+  /** Stands in for the HTTP fetch; the loader itself is covered by its own spec. */
+  const loader: Pick<CatalogDatasetLoader, 'sources' | 'source' | 'load'> = {
+    sources: [source],
+    source: (id) => (!id || id === source.id ? source : undefined),
+    load: () => Promise.resolve(dataset)
   };
 
   const text = () => (fixture.nativeElement as HTMLElement).textContent ?? '';
   const store = () => fixture.debugElement.injector.get(CatalogEditorStore);
 
-  const create = () => {
+  /** Creates the editor and waits for the dataset to load. */
+  const create = async () => {
     fixture = TestBed.createComponent(CatalogEditorComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
   };
 
@@ -54,7 +69,7 @@ describe('CatalogEditorComponent', () => {
         provideRouter([]),
         provideNoopAnimations(),
         getLocalStorageToken('TEST-'),
-        provideCatalogDatasets([dataset]),
+        { provide: CatalogDatasetLoader, useValue: loader },
         { provide: ActivatedRoute, useValue: { paramMap: params } }
       ]
     });
@@ -62,16 +77,16 @@ describe('CatalogEditorComponent', () => {
 
   afterEach(() => localStorage.clear());
 
-  it('opens the first dataset when no dataset id is in the url', () => {
-    create();
+  it('opens the first dataset when no dataset id is in the url', async () => {
+    await create();
 
     expect(text()).toContain('Stardew Valley');
     expect(text()).toContain('No changes from the source files');
     expect(text()).toContain('Catalog items (1)');
   });
 
-  it('has no scraper settings or item configs', () => {
-    create();
+  it('has no scraper settings or item configs', async () => {
+    await create();
 
     expect(text()).toContain('Labels');
     expect(text()).not.toContain('Item configs');
@@ -79,28 +94,36 @@ describe('CatalogEditorComponent', () => {
     expect(text()).not.toContain('Scraper');
   });
 
-  it('says so when the dataset id is unknown', () => {
+  it('shows an error when the dataset files fail to load', async () => {
+    loader.load = () => Promise.reject(new Error('items.json returned 404'));
+    await create();
+    loader.load = () => Promise.resolve(dataset);
+
+    expect(text()).toContain("Couldn't load Stardew Valley: items.json returned 404");
+  });
+
+  it('says so when the dataset id is unknown', async () => {
     params.next(convertToParamMap({ datasetId: 'terraria' }));
-    create();
+    await create();
 
     expect(text()).toContain('There is no catalog dataset called "terraria"');
   });
 
-  it('shows autosave status and restores the draft on the next visit', () => {
-    create();
+  it('shows autosave status and restores the draft on the next visit', async () => {
+    await create();
     store().updateItem(0, { name: 'Big Bomb' });
     fixture.detectChanges();
     expect(text()).toContain('Draft autosaved');
     expect(localStorage.getItem(`TEST-${catalogEditorStorageKey('stardew')}`)).toContain('Big Bomb');
 
     fixture.destroy();
-    create();
+    await create();
     expect(fixture.nativeElement.querySelector('[data-test="restored-banner"]')).toBeTruthy();
     expect(store().draft()?.items[0].name).toBe('Big Bomb');
   });
 
-  it('renames a label from the labels tab', () => {
-    create();
+  it('renames a label from the labels tab', async () => {
+    await create();
     const nameInput: HTMLInputElement = fixture.nativeElement.querySelector('input[aria-label="Name of bombs"]');
     nameInput.value = 'Explosives';
     nameInput.dispatchEvent(new Event('input'));
@@ -109,7 +132,7 @@ describe('CatalogEditorComponent', () => {
   });
 
   it('edits an item ingredient quantity from the catalog items tab', async () => {
-    create();
+    await create();
     store().updateItem(0, { ingredients: [{ id: 'bomb', quantity: 2 }] });
     const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
     await tabs.selectTab({ label: /Catalog items/ });
@@ -121,7 +144,7 @@ describe('CatalogEditorComponent', () => {
   });
 
   it('adds items from pasted wiki urls on the catalog items tab', async () => {
-    create();
+    await create();
     const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
     await tabs.selectTab({ label: /Catalog items/ });
     const urls: HTMLTextAreaElement = fixture.nativeElement.querySelector('textarea[aria-label="Wiki urls"]');
@@ -142,7 +165,7 @@ describe('CatalogEditorComponent', () => {
   });
 
   it('adds several items from the add items dialog', async () => {
-    create();
+    await create();
     const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
     await tabs.selectTab({ label: /Catalog items/ });
     const open = [...fixture.nativeElement.querySelectorAll('button')].find((b: HTMLButtonElement) =>
@@ -176,14 +199,14 @@ describe('CatalogEditorComponent', () => {
   });
 
   it('shows the generated files and their issues on the export tab', async () => {
-    create();
+    await create();
     store().updateItem(0, { tags: ['missing'] });
     const tabs = await TestbedHarnessEnvironment.loader(fixture).getHarness(MatTabGroupHarness);
     await tabs.selectTab({ label: /Export/ });
 
-    expect(text()).toContain('apps/cozy-almanacs/src/app/catalog/config.ts');
+    expect(text()).toContain('apps/game/src/assets/catalog/stardew/config.json');
     expect(text()).toContain("Catalog items use tags that aren't defined: missing");
     const files = [...fixture.nativeElement.querySelectorAll('textarea[readonly]')] as HTMLTextAreaElement[];
-    expect(files[1].value).toContain("tags: ['missing']");
+    expect(files[1].value).toContain('"tags": ["missing"]');
   });
 });

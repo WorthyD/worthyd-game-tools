@@ -230,7 +230,7 @@ describe('CatalogEditorStore', () => {
     const store = setup();
     store.updateLabel('categories', 'crafting', { name: 'Craftables' });
 
-    expect(store.configFile()).toContain("{ id: 'crafting', name: 'Craftables', icon: 'handyman' }");
-    expect(store.itemsFile().startsWith('export const items = [\n')).toBe(true);
+    expect(store.configFile()).toContain('{ "id": "crafting", "name": "Craftables", "icon": "handyman" }');
+    expect(JSON.parse(store.itemsFile())).toEqual(store.draft()?.items);
   });
 });

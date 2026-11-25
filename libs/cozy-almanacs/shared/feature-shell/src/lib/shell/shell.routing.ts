@@ -1,10 +1,19 @@
+import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
+import { CatalogDatasetLoader } from '@cozy-almanacs/state';
 import { ShellComponentComponent } from './shell.component';
 
 export const shellRoutes: Routes = [
   {
     path: '',
     providers: [],
+    // Fetch the active dataset's JSON before the first page renders. If it fails the pages still open, empty.
+    canActivate: [
+      () =>
+        inject(CatalogDatasetLoader)
+          .loadActive()
+          .then(() => true)
+    ],
     component: ShellComponentComponent,
     children: [
       {

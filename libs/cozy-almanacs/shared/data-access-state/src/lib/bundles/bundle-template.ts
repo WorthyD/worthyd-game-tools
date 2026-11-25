@@ -1,7 +1,7 @@
 import { Bundle } from '@cozy-almanacs/models';
 
 /**
- * The starting point for a new bundle. Copy it into a game's `bundles.ts` (or press "New bundle" in the
+ * The starting point for a new bundle. Copy it into a game's `bundles.json` (or press "New bundle" in the
  * bundle editor at /bundles/config) and delete the fields you don't need. Every field but `id` and `name`
  * is optional.
  */

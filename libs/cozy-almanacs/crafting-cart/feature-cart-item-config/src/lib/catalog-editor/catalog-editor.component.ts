@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EMPTY, catchError, from, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Item, ItemLabel } from '@cozy-almanacs/models';
-import { CATALOG_DATASETS, CatalogEditorStore, LabelKind, formatLinks, parseLinks } from '@cozy-almanacs/state';
+import { CatalogDatasetLoader, CatalogEditorStore, LabelKind, formatLinks, parseLinks } from '@cozy-almanacs/state';
 import { AddItemsDialogComponent, AddItemsDialogData, MAX_NEW_ITEMS } from './add-items-dialog.component';
 import { EditorTable } from './editor-table';
 import { IngredientEditorComponent, IngredientOption } from './ingredient-editor.component';
@@ -28,7 +29,7 @@ const exportFile = (path: string, text: string): ExportFile => ({ path, name: pa
 
 /**
  * Bulk editor for a catalog dataset: its category and tag labels and its items. Every change is autosaved to local storage; saving is manual (copy or download the
- * generated config.ts / items.ts and replace the files in the repo).
+ * generated config.json / items.json and replace the files in the repo).
  */
 @Component({
   selector: 'lib-catalog-editor',
@@ -55,7 +56,8 @@ export class CatalogEditorComponent {
   protected readonly store = inject(CatalogEditorStore);
   private readonly router = inject(Router);
   private readonly dialog = inject(MatDialog);
-  protected readonly datasets = inject(CATALOG_DATASETS);
+  private readonly loader = inject(CatalogDatasetLoader);
+  protected readonly datasets = this.loader.sources;
 
   /** Material Symbols (fonts.google.com/icons) given to labels added here; change them in the Labels tab. */
   protected readonly defaultIcons: Record<LabelKind, string> = { categories: 'category', tags: 'label' };
@@ -65,6 +67,7 @@ export class CatalogEditorComponent {
   ];
 
   protected readonly missingDataset = signal<string | null>(null);
+  protected readonly loadError = signal<string | null>(null);
   protected readonly message = signal('');
   protected readonly maxNewItems = MAX_NEW_ITEMS;
 
@@ -99,8 +102,8 @@ export class CatalogEditorComponent {
 
   /** The generated files; only computed once the Export tab renders them. */
   protected readonly exportFiles = computed(() => [
-    exportFile(this.store.files()?.config ?? 'config.ts', this.store.configFile()),
-    exportFile(this.store.files()?.items ?? 'items.ts', this.store.itemsFile())
+    exportFile(this.store.files()?.config ?? 'config.json', this.store.configFile()),
+    exportFile(this.store.files()?.items ?? 'items.json', this.store.itemsFile())
   ]);
 
   /** The label picked in the items table's bulk bar. */
@@ -108,15 +111,26 @@ export class CatalogEditorComponent {
 
   constructor() {
     inject(ActivatedRoute)
-      .paramMap.pipe(takeUntilDestroyed())
-      .subscribe((params) => {
-        const id = params.get('datasetId');
-        const dataset = id ? this.datasets.find((d) => d.id === id) : this.datasets[0];
-        this.missingDataset.set(dataset ? null : (id ?? ''));
-        if (dataset) {
-          this.store.open(dataset);
-          this.items.clearSelection();
-        }
+      .paramMap.pipe(
+        switchMap((params) => {
+          const id = params.get('datasetId');
+          const source = this.loader.source(id);
+          this.missingDataset.set(source ? null : (id ?? ''));
+          this.loadError.set(null);
+          return source
+            ? from(this.loader.load(source)).pipe(
+                catchError((error: unknown) => {
+                  this.loadError.set(`Couldn't load ${source.name}: ${error instanceof Error ? error.message : error}`);
+                  return EMPTY;
+                })
+              )
+            : EMPTY;
+        }),
+        takeUntilDestroyed()
+      )
+      .subscribe((dataset) => {
+        this.store.open(dataset);
+        this.items.clearSelection();
       });
   }
 
@@ -240,7 +254,7 @@ export class CatalogEditorComponent {
   }
 
   protected downloadFile(file: ExportFile): void {
-    const url = URL.createObjectURL(new Blob([file.text], { type: 'text/typescript' }));
+    const url = URL.createObjectURL(new Blob([file.text], { type: 'application/json' }));
     const link = document.createElement('a');
     link.href = url;
     link.download = file.name;

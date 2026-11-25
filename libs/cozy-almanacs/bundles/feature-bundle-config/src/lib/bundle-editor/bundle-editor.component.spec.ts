@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
-import { CatalogDataset } from '@cozy-almanacs/models';
-import { CatalogStore, provideCatalogDatasets } from '@cozy-almanacs/state';
+import { CatalogDataset, CatalogDatasetSource } from '@cozy-almanacs/models';
+import { CatalogDatasetLoader, CatalogStore } from '@cozy-almanacs/state';
 import { getLocalStorageToken } from '@worthyd/shared/utils/local-storage';
 import { BundleEditorComponent } from './bundle-editor.component';
 
@@ -33,7 +33,14 @@ const dataset: CatalogDataset = {
     }
   ],
   bundles: [{ id: 'room', name: 'Room', bundles: [{ id: 'construction', name: 'Construction' }] }],
-  files: { config: 'config.ts', items: 'items.ts', bundles: 'apps/game/bundles.ts' }
+  files: { config: 'config.json', items: 'items.json', bundles: 'apps/game/bundles.json' }
+};
+const source: CatalogDatasetSource = { id: dataset.id, name: dataset.name, urls: { config: '', items: '' } };
+/** Stands in for the HTTP fetch; the loader itself is covered by its own spec. */
+const loader: Pick<CatalogDatasetLoader, 'sources' | 'source' | 'load'> = {
+  sources: [source],
+  source: (id) => (!id || id === source.id ? source : undefined),
+  load: () => Promise.resolve(dataset)
 };
 
 describe('BundleEditorComponent', () => {
@@ -41,13 +48,15 @@ describe('BundleEditorComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         getLocalStorageToken('BUNDLE-EDITOR-UI-'),
-        provideCatalogDatasets([dataset]),
+        { provide: CatalogDatasetLoader, useValue: loader },
         provideRouter([{ path: 'bundles/config', component: BundleEditorComponent }])
       ]
     });
     TestBed.inject(CatalogStore).init(dataset.items, dataset.config);
     const harness = await RouterTestingHarness.create();
     const component = await harness.navigateByUrl('/bundles/config', BundleEditorComponent);
+    await harness.fixture.whenStable();
+    harness.detectChanges();
     const root = harness.routeNativeElement as HTMLElement;
     const click = (selector: string, index = 0) => {
       (root.querySelectorAll(selector)[index] as HTMLElement).click();

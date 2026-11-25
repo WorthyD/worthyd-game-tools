@@ -24,7 +24,7 @@ const dataset = (bundles: Bundle[]): CatalogDataset => ({
   config: { categories: [{ id: 'raw', name: 'Raw', icon: 'forest' }], tags: [] },
   items: [wood],
   bundles,
-  files: { config: 'config.ts', items: 'items.ts', bundles: 'apps/game/bundles.ts' }
+  files: { config: 'config.json', items: 'items.json', bundles: 'apps/game/bundles.json' }
 });
 
 describe('BundleEditorStore', () => {
@@ -42,7 +42,7 @@ describe('BundleEditorStore', () => {
   it('opens a dataset with no changes', () => {
     const store = createStore();
     expect(store.draft()).toEqual([{ id: 'room', name: 'Room' }]);
-    expect(store.filePath()).toBe('apps/game/bundles.ts');
+    expect(store.filePath()).toBe('apps/game/bundles.json');
     expect(store.dirty()).toBe(false);
   });
 
@@ -124,18 +124,17 @@ describe('BundleEditorStore', () => {
     ]);
   });
 
-  it('exports the draft as a bundles.ts file', () => {
+  it('exports the draft as a bundles.json file', () => {
     const store = createStore();
     store.addItems([0], [{ itemId: 'wood', quantity: 99 }]);
     expect(store.bundlesFile()).toBe(
-      "import { Bundle } from '@cozy-almanacs/models';\n\n" +
-        'export const bundles: Bundle[] = [\n' +
+      '[\n' +
         '  {\n' +
-        "    id: 'room',\n" +
-        "    name: 'Room',\n" +
-        "    items: [{ itemId: 'wood', quantity: 99 }]\n" +
+        '    "id": "room",\n' +
+        '    "name": "Room",\n' +
+        '    "items": [{ "itemId": "wood", "quantity": 99 }]\n' +
         '  }\n' +
-        '];\n'
+        ']\n'
     );
   });
 });

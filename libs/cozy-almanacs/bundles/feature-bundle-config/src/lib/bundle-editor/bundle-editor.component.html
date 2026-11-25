@@ -414,13 +414,18 @@
         <ng-template matTabContent>
           <div class="flex flex-col gap-2 p-4">
             <p class="editor-muted m-0 text-sm">
-              The base bundle, with every field filled in. Copy it into a game's bundles.ts and delete what you don't
-              need, or use "From template" on the Bundles tab. Only <code>id</code> and <code>name</code> are required.
+              The base bundle, with every field filled in. Copy the object inside the brackets into a game's
+              bundles.json and delete what you don't need, or use "From template" on the Bundles tab. Only
+              <code>id</code> and <code>name</code> are required.
             </p>
             <ng-container *ngTemplateOutlet="exportPanel; context: { $implicit: templateFile() }" />
           </div>
         </ng-template>
       </mat-tab>
     </mat-tab-group>
+  } @else if (loadError()) {
+    <p class="p-6" role="alert">{{ loadError() }}</p>
+  } @else {
+    <p class="editor-muted p-6">Loading…</p>
   }
 </div>

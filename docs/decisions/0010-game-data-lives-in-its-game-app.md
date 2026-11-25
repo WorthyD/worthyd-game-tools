@@ -31,8 +31,8 @@ Chosen option: "keep the data in the game app and swap it into the hub's develop
 it keeps each game's data with the site that ships it and keeps game data out of the hub's production
 bundle, without a new lib type for static data.
 
-- A game's catalog lives in `apps/<game>-cozy-almanacs/src/app/catalog/` (`config.ts`, `items.ts`,
-  `datasets.ts`) and its images in `apps/<game>-cozy-almanacs/src/assets/`.
+- A game's catalog data and images live in `apps/<game>-cozy-almanacs/src/assets/` (the data as JSON, see
+  ADR 0011), registered in `apps/<game>-cozy-almanacs/src/app/catalog/datasets.ts`.
 - `apps/cozy-almanacs/src/app/catalog/datasets.ts` exports an empty `catalogDatasets`. Only the
   `development` build configuration replaces it (`fileReplacements`) with a game app's `datasets.ts`
   and adds that app's `src/assets` to `assets`. The production build never includes game data.
@@ -51,7 +51,7 @@ bundle, without a new lib type for static data.
 ### Confirmation
 
 Code review. `apps/cozy-almanacs/src/app/app.component.spec.ts` checks the hub ships no datasets,
-and `apps/stardew-cozy-almanacs/src/app/app.component.spec.ts` checks the Stardew catalog resolves.
+and `apps/stardew-cozy-almanacs/src/app/catalog/datasets.spec.ts` checks the Stardew catalog files.
 
 ## More Information
 

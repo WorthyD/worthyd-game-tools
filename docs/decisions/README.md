@@ -22,6 +22,7 @@ fields that feed the AI agent instructions.
 | 0008 | [Prefix library names with their library type](0008-prefix-library-names-with-their-library-type.md) | accepted | 2026-11-01 |
 | 0009 | [Use SignalStore for Craft Cart state](0009-use-signalstore-for-craft-cart-state.md) | proposed | 2026-11-01 |
 | 0010 | [Game data lives in its game app; the hub borrows it only in dev builds](0010-game-data-lives-in-its-game-app.md) | proposed | 2026-11-22 |
+| 0011 | [Ship game catalog data as JSON assets loaded at runtime](0011-ship-game-data-as-json-assets.md) | proposed | 2026-11-25 |
 <!-- adr-index:end -->
 
 ## How agents use these
