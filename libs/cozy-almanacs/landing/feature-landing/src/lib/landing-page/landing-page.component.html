@@ -1,0 +1,192 @@
+<div class="landing min-h-dvh overflow-x-clip bg-parchment text-ink">
+  <header class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5 sm:px-6">
+    <a href="#top" class="flex items-center gap-2 font-display text-xl font-semibold text-ink no-underline">
+      <mat-icon aria-hidden="true" class="text-moss-deep">menu_book</mat-icon>
+      Cozy Almanacs
+    </a>
+    <nav aria-label="Page sections" class="flex gap-4 text-sm font-medium sm:gap-6">
+      <a href="#features" class="text-ink-soft no-underline hover:text-ink hover:underline">What's inside</a>
+      <a href="#games" class="text-ink-soft no-underline hover:text-ink hover:underline">Games</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-8 pb-20 sm:px-6 md:grid-cols-2 md:pt-16">
+      <div>
+        <p class="mb-3 text-sm font-semibold tracking-widest text-clay uppercase">A field guide for cozy games</p>
+        <h1 class="font-display text-4xl leading-tight font-semibold sm:text-5xl">
+          Every recipe, ingredient and bundle, tucked into one cozy almanac.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+          Cozy Almanacs are free, fan-made companions for farming and life-sim games. Look up what an item needs, plan a
+          whole season of crafting, and tick off bundles as you go, all on a page that remembers your progress.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#games"
+            class="inline-flex items-center gap-2 rounded-full bg-moss-deep px-6 py-3 font-semibold text-paper no-underline shadow-sm hover:bg-moss focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss-deep"
+          >
+            Choose your game
+            <mat-icon aria-hidden="true">arrow_downward</mat-icon>
+          </a>
+          <a
+            href="#features"
+            class="inline-flex items-center gap-2 rounded-full border-2 border-ink-faint px-6 py-3 font-semibold text-ink no-underline hover:border-ink hover:bg-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          >
+            See what's inside
+          </a>
+        </div>
+      </div>
+
+      <!-- A sample almanac page; decorative, so screen readers skip it. -->
+      <div aria-hidden="true" class="relative mx-auto w-full max-w-md">
+        <div class="absolute inset-0 translate-x-3 translate-y-3 rotate-2 rounded-2xl bg-parchment-deep"></div>
+        <div class="relative -rotate-1 rounded-2xl border border-parchment-deep bg-paper p-6 shadow-lg">
+          <div class="flex items-center justify-between">
+            <p class="font-display text-2xl font-semibold">Today's plans</p>
+            <mat-icon class="text-honey">wb_sunny</mat-icon>
+          </div>
+          <p class="text-sm text-ink-soft">Spring, day 12</p>
+          <div class="dotted-rule my-4 h-1"></div>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3">
+              <mat-icon class="text-moss-deep">check_circle</mat-icon>
+              <span class="flex-1 text-ink-soft line-through">Sprinkler</span>
+              <span class="text-sm text-ink-soft">× 4</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <mat-icon class="text-ink-faint">radio_button_unchecked</mat-icon>
+              <span class="flex-1">Quality fertilizer</span>
+              <span class="text-sm text-ink-soft">× 10</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <mat-icon class="text-ink-faint">radio_button_unchecked</mat-icon>
+              <span class="flex-1">Bee house</span>
+              <span class="text-sm text-ink-soft">× 2</span>
+            </li>
+          </ul>
+          <div class="dotted-rule my-4 h-1"></div>
+          <p class="flex items-center justify-between text-sm font-semibold">
+            <span>Spring foraging bundle</span>
+            <span class="text-moss-deep">3 of 4</span>
+          </p>
+          <div class="mt-2 h-2 overflow-hidden rounded-full bg-parchment-deep">
+            <div class="h-full w-3/4 rounded-full bg-moss"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" aria-labelledby="features-heading" class="border-y border-parchment-deep bg-paper py-20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 id="features-heading" class="text-center font-display text-3xl font-semibold sm:text-4xl">
+          What's inside each almanac
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink-soft">
+          The same well-thumbed tools in every game, filled with that game's own items and bundles.
+        </p>
+        <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          @for (feature of features; track feature.id) {
+            <li class="rounded-2xl border border-parchment-deep bg-parchment p-6" data-testid="feature">
+              <span class="mb-4 grid size-12 place-items-center rounded-full bg-honey-light text-clay">
+                <mat-icon aria-hidden="true">{{ feature.icon }}</mat-icon>
+              </span>
+              <h3 class="font-display text-xl font-semibold">{{ feature.name }}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-soft">{{ feature.description }}</p>
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section aria-labelledby="steps-heading" class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <h2 id="steps-heading" class="text-center font-display text-3xl font-semibold sm:text-4xl">How it works</h2>
+      <ol class="mt-12 grid gap-10 md:grid-cols-3">
+        @for (step of steps; track step.id; let n = $index) {
+          <li class="text-center">
+            <span
+              class="mx-auto mb-4 grid size-14 place-items-center rounded-full border-2 border-clay font-display text-2xl font-semibold text-clay"
+              aria-hidden="true"
+              >{{ n + 1 }}</span
+            >
+            <h3 class="font-display text-xl font-semibold">{{ step.title }}</h3>
+            <p class="mx-auto mt-2 max-w-xs text-ink-soft">{{ step.description }}</p>
+          </li>
+        }
+      </ol>
+    </section>
+
+    <!-- Games -->
+    <section id="games" aria-labelledby="games-heading" class="bg-moss-light py-20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 id="games-heading" class="text-center font-display text-3xl font-semibold sm:text-4xl">
+          Choose your almanac
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink-soft">
+          Each game's almanac lives in its own little corner of the web.
+        </p>
+        <ul class="mt-12 flex flex-wrap justify-center gap-6">
+          @for (game of games; track game.id) {
+            <li
+              class="flex w-full flex-col rounded-2xl border border-parchment-deep bg-paper p-6 shadow-sm sm:w-80"
+              data-testid="game-card"
+            >
+              <div class="flex items-center gap-4">
+                <span class="grid size-14 shrink-0 place-items-center rounded-full bg-moss-light text-moss-deep">
+                  <mat-icon aria-hidden="true">{{ game.icon }}</mat-icon>
+                </span>
+                <div>
+                  <h3 class="font-display text-2xl font-semibold">{{ game.name }}</h3>
+                  <p class="text-sm text-ink-soft">{{ game.tagline }}</p>
+                </div>
+              </div>
+              <p class="mt-4 flex-1 leading-relaxed text-ink-soft">{{ game.description }}</p>
+              <ul class="mt-4 flex flex-wrap gap-2" [attr.aria-label]="game.name + ' features'">
+                @for (feature of game.features; track feature) {
+                  <li class="rounded-full bg-parchment px-3 py-1 text-xs font-semibold text-ink-soft">{{ feature }}</li>
+                }
+              </ul>
+              @if (game.href; as href) {
+                <a
+                  [href]="href"
+                  class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-moss-deep px-5 py-3 font-semibold text-paper no-underline hover:bg-moss focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss-deep"
+                  data-testid="game-link"
+                >
+                  Open the almanac
+                  <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+                </a>
+              } @else {
+                <p
+                  class="mt-6 rounded-full border-2 border-dashed border-ink-faint px-5 py-3 text-center font-semibold text-ink-soft"
+                >
+                  Coming soon
+                </p>
+              }
+            </li>
+          }
+          <li
+            class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-ink-faint p-6 text-center sm:w-80"
+          >
+            <mat-icon aria-hidden="true" class="text-clay">edit_note</mat-icon>
+            <h3 class="mt-2 font-display text-xl font-semibold">More almanacs on the way</h3>
+            <p class="mt-2 text-sm text-ink-soft">New games are added as their pages get written.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mx-auto max-w-6xl px-4 py-10 text-sm text-ink-soft sm:px-6">
+    <div class="dotted-rule mb-6 h-1"></div>
+    <div class="flex flex-col justify-between gap-4 sm:flex-row">
+      <p class="max-w-2xl">
+        Cozy Almanacs is a fan-made project and isn't affiliated with the developers or publishers of the games it
+        covers. Game names and assets belong to their owners.
+      </p>
+      <p class="shrink-0">© {{ year }} Cozy Almanacs</p>
+    </div>
+  </footer>
+</div>

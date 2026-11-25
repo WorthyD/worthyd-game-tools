@@ -1,0 +1,13 @@
+// Soft, sun-faded paper: two warm glows over the parchment background.
+.landing {
+  background-image: radial-gradient(circle at 15% 0%, var(--color-honey-light) 0, transparent 40%),
+    radial-gradient(circle at 100% 30%, var(--color-moss-light) 0, transparent 35%);
+}
+
+// A dotted rule like the ones between almanac entries.
+.dotted-rule {
+  background-image: radial-gradient(circle, var(--color-ink-faint) 1px, transparent 1.5px);
+  background-size: 12px 4px;
+  background-repeat: repeat-x;
+  background-position: center;
+}

@@ -24,6 +24,7 @@
       "@cozy-almanacs/crafting-cart/shopping-list": ["libs/cozy-almanacs/crafting-cart/feature-shopping-list/src/index.ts"],
       "@cozy-almanacs/crafting-cart/ui/cart-item-card": ["libs/cozy-almanacs/crafting-cart/ui-cart-item-card/src/index.ts"],
       "@cozy-almanacs/crafting-cart/ui/cart-quantity": ["libs/cozy-almanacs/crafting-cart/ui-cart-quantity/src/index.ts"],
+      "@cozy-almanacs/landing": ["libs/cozy-almanacs/landing/feature-landing/src/index.ts"],
       "@cozy-almanacs/models": ["libs/cozy-almanacs/shared/models-shared/src/index.ts"],
       "@cozy-almanacs/shell": ["libs/cozy-almanacs/shared/feature-shell/src/index.ts"],
       "@cozy-almanacs/state": ["libs/cozy-almanacs/shared/data-access-state/src/index.ts"],

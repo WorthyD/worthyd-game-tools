@@ -113,6 +113,7 @@
         "libs/cozy-almanacs/crafting-cart/ui-cart-quantity/**/*",
         "libs/cozy-almanacs/bundles/feature-bundle-config/**/*",
         "libs/cozy-almanacs/bundles/feature-bundle-tracker/**/*",
+        "libs/cozy-almanacs/landing/feature-landing/**/*",
         "libs/cozy-almanacs/shared/data-access-state/**/*",
         "libs/cozy-almanacs/shared/feature-shell/**/*",
         "libs/cozy-almanacs/shared/models-shared/**/*",

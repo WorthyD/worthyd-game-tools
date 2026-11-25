@@ -18,6 +18,23 @@
 @source "../../stardew-cozy-almanacs";
 /* nx-tailwind-sources:end */
 
+/* Cozy almanac palette and display font, used by the landing page (@cozy-almanacs/landing). */
+@theme {
+  --color-parchment: #f7eedd;
+  --color-parchment-deep: #ead9b8;
+  --color-paper: #fffaf0;
+  --color-ink: #3b2a1e;
+  --color-ink-soft: #6a5241;
+  --color-ink-faint: #b49a7c;
+  --color-moss: #5f7f4b;
+  --color-moss-deep: #46633a;
+  --color-moss-light: #e3ebd5;
+  --color-clay: #a9542d;
+  --color-honey: #d9982f;
+  --color-honey-light: #f6e2b5;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+}
+
 /* You can add global styles to this file, and also import other style files */
 
 .catalog-item-image {
