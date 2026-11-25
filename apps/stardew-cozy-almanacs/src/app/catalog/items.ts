@@ -5709,5 +5709,921 @@ export const items = [
     ],
     categories: ['buildings'],
     tags: []
+  },
+  {
+    id: 'pufferfish',
+    name: 'Pufferfish',
+    description: 'Inflates when threatened.',
+    imageUrl: './images/pufferfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Pufferfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'anchovy',
+    name: 'Anchovy',
+    description: 'A small silver fish found in the ocean.',
+    imageUrl: './images/anchovy.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Anchovy'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'tuna',
+    name: 'Tuna',
+    description: 'A large fish that lives in the ocean.',
+    imageUrl: './images/tuna.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Tuna'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'sardine',
+    name: 'Sardine',
+    description: 'A common ocean fish.',
+    imageUrl: './images/sardine.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Sardine'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'bream',
+    name: 'Bream',
+    description: 'A fairly common river fish that becomes active at night.',
+    imageUrl: './images/bream.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Bream'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'largemouth_bass',
+    name: 'Largemouth Bass',
+    description: 'A popular fish that lives in lakes.',
+    imageUrl: './images/largemouth_bass.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Largemouth_Bass'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'smallmouth_bass',
+    name: 'Smallmouth Bass',
+    description: 'A freshwater fish that is very sensitive to pollution.',
+    imageUrl: './images/smallmouth_bass.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Smallmouth_Bass'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'rainbow_trout',
+    name: 'Rainbow Trout',
+    description: 'A freshwater trout with colorful markings.',
+    imageUrl: './images/rainbow_trout.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Rainbow_Trout'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'salmon',
+    name: 'Salmon',
+    description: 'Swims upstream to lay its eggs.',
+    imageUrl: './images/salmon.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Salmon'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'walleye',
+    name: 'Walleye',
+    description: 'A freshwater fish caught at night.',
+    imageUrl: './images/walleye.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Walleye'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'perch',
+    name: 'Perch',
+    description: 'Perch	A freshwater fish of the winter.',
+    imageUrl: './images/perch.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Perch'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'carp',
+    name: 'Carp',
+    description: 'A common pond fish.',
+    imageUrl: './images/carp.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Carp'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'catfish',
+    name: 'Catfish',
+    description: 'An uncommon fish found in streams.',
+    imageUrl: './images/catfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Catfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'pike',
+    name: 'Pike',
+    description: "A freshwater fish that's difficult to catch.",
+    imageUrl: './images/pike.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Pike'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'sunfish',
+    name: 'Sunfish',
+    description: 'A common river fish.',
+    imageUrl: './images/sunfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Sunfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'red_mullet',
+    name: 'Red Mullet',
+    description: 'Long ago these were kept as pets.',
+    imageUrl: './images/red_mullet.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Red_Mullet'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'herring',
+    name: 'Herring',
+    description: 'A common ocean fish.',
+    imageUrl: './images/herring.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Herring'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'eel',
+    name: 'Eel',
+    description: 'A long, slippery little fish.',
+    imageUrl: './images/eel.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Eel'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'octopus',
+    name: 'Octopus',
+    description: 'A mysterious and intelligent creature.',
+    imageUrl: './images/octopus.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Octopus'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'red_snapper',
+    name: 'Red Snapper',
+    description: 'A popular fish with a nice red color.',
+    imageUrl: './images/red_snapper.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Red_Snapper'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'squid',
+    name: 'Squid',
+    description: 'A deep sea creature that can grow to enormous size.',
+    imageUrl: './images/squid.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Squid'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'sea_cucumber',
+    name: 'Sea Cucumber',
+    description: 'A slippery, slimy creature found on the ocean floor.',
+    imageUrl: './images/sea_cucumber.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Sea_Cucumber'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'super_cucumber',
+    name: 'Super Cucumber',
+    description: 'A rare, purple variety of sea cucumber.',
+    imageUrl: './images/super_cucumber.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Super_Cucumber'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'ghostfish',
+    name: 'Ghostfish',
+    description: 'A pale, blind fish found in underground lakes.',
+    imageUrl: './images/ghostfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Ghostfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'stonefish',
+    name: 'Stonefish',
+    description: "A bizarre fish that's shaped like a brick.",
+    imageUrl: './images/stonefish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Stonefish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'ice_pip',
+    name: 'Ice Pip',
+    description: 'A rare fish that thrives in extremely cold conditions.',
+    imageUrl: './images/ice_pip.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Ice_Pip'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'lava_eel',
+    name: 'Lava Eel',
+    description: 'It can somehow survive in pools of red-hot lava.',
+    imageUrl: './images/lava_eel.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Lava_Eel'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'sandfish',
+    name: 'Sandfish',
+    description: 'It tries to hide using camouflage.',
+    imageUrl: './images/sandfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Sandfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'scorpion_carp',
+    name: 'Scorpion Carp',
+    description: "It's like a regular carp but with a sharp stinger.",
+    imageUrl: './images/scorpion_carp.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Scorpion_Carp'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'flounder',
+    name: 'Flounder',
+    description: 'It lives on the bottom, so both eyes are on top of its head.',
+    imageUrl: './images/flounder.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Flounder'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'midnight_carp',
+    name: 'Midnight Carp',
+    description: 'This shy fish only feels comfortable at night.',
+    imageUrl: './images/midnight_carp.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Midnight_Carp'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'sturgeon',
+    name: 'Sturgeon',
+    description: 'An ancient bottom-feeder with a dwindling population. Females can live up to 150 years.',
+    imageUrl: './images/sturgeon.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Sturgeon'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'tiger_trout',
+    name: 'Tiger Trout',
+    description: 'A rare hybrid trout that cannot bear offspring of its own.',
+    imageUrl: './images/tiger_trout.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Tiger_Trout'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'bullhead',
+    name: 'Bullhead',
+    description: 'A relative of the catfish that eats a variety of foods off the lake bottom.',
+    imageUrl: './images/bullhead.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Bullhead'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'tilapia',
+    name: 'Tilapia',
+    description: 'A primarily vegetarian fish that prefers warm water.',
+    imageUrl: './images/tilapia.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Tilapia'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'chub',
+    name: 'Chub',
+    description: 'A common freshwater fish known for its voracious appetite.',
+    imageUrl: './images/chub.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Chub'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'dorado',
+    name: 'Dorado',
+    description: 'A fierce carnivore with brilliant orange scales.',
+    imageUrl: './images/dorado.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Dorado'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'albacore',
+    name: 'Albacore',
+    description: 'Prefers temperature "edges" where cool and warm water meet.',
+    imageUrl: './images/albacore.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Albacore'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'shad',
+    name: 'Shad',
+    description: 'Lives in a school at sea, but returns to the rivers to spawn.',
+    imageUrl: './images/shad.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Shad'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'lingcod',
+    name: 'Lingcod',
+    description: 'A fearsome predator that will eat almost anything it can cram into its mouth.',
+    imageUrl: './images/lingcod.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Lingcod'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'halibut',
+    name: 'Halibut',
+    description: 'A flat fish that lives on the ocean floor.',
+    imageUrl: './images/halibut.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Halibut'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'woodskip',
+    name: 'Woodskip',
+    description: 'A very sensitive fish that can only live in pools deep in the forest.',
+    imageUrl: './images/woodskip.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Woodskip'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'void_salmon',
+    name: 'Void Salmon',
+    description:
+      'A salmon, twisted by void energy. The fresh meat is jet black, but rapidly turns pink when exposed to air.',
+    imageUrl: './images/void_salmon.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Void_Salmon'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'slimejack',
+    name: 'Slimejack',
+    description: "He's coated in a very thick layer of slime. He keeps slipping out of your hands!",
+    imageUrl: './images/slimejack.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Slimejack'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'stingray',
+    name: 'Stingray',
+    description: 'Despite having a toxic stinger, these fish are shy and prefer to avoid humans.',
+    imageUrl: './images/stingray.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Stingray'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'lionfish',
+    name: 'Lionfish',
+    description: 'An aggressive, predatory fish with venomous spines.',
+    imageUrl: './images/lionfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Lionfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'blue_discus',
+    name: 'Blue Discus',
+    description: 'A brightly colored tropical fish that is popular in aquariums.',
+    imageUrl: './images/blue_discus.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Blue_Discus'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'goby',
+    name: 'Goby',
+    description: 'Some types of Gobies can climb up waterfalls.',
+    imageUrl: './images/goby.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Goby'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'midnight_squid',
+    name: 'Midnight Squid',
+    description: "A strange and mysterious denizen of the ocean's twilight depths.",
+    imageUrl: './images/midnight_squid.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Midnight_Squid'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'spook_fish',
+    name: 'Spook Fish',
+    description: 'The huge eyes can detect the faint silhouettes of prey.',
+    imageUrl: './images/spook_fish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Spook_Fish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'blobfish',
+    name: 'Blobfish',
+    description: 'This odd creature floats above the ocean floor, consuming any edible material in its path.',
+    imageUrl: './images/blobfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Blobfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'crimsonfish',
+    name: 'Crimsonfish',
+    description: 'Lives deep in the ocean but likes to lay its eggs in the warm summer water.',
+    imageUrl: './images/crimsonfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Crimsonfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'angler',
+    name: 'Angler',
+    description: 'Uses a bio luminescent dangler to attract prey.',
+    imageUrl: './images/angler.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Angler'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'legend',
+    name: 'Legend',
+    description: "The king of all fish! They said he'd never be caught.",
+    imageUrl: './images/legend.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Legend'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'glacierfish',
+    name: 'Glacierfish',
+    description: 'Builds a nest on the underside of glaciers.',
+    imageUrl: './images/glacierfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Glacierfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'mutant_carp',
+    name: 'Mutant Carp',
+    description: 'The strange waters of the sewer turned this carp into a monstrosity.',
+    imageUrl: './images/mutant_carp.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Mutant_Carp'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'son_of_crimsonfish',
+    name: 'Son of Crimsonfish',
+    description: 'He hatched in the warm summer water, and followed in the footsteps of his father.',
+    imageUrl: './images/son_of_crimsonfish.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Son_of_Crimsonfish'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'ms_angler',
+    name: 'Ms. Angler',
+    description: 'Uses a bioluminescent dangler to attract prey.',
+    imageUrl: './images/ms_angler.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Ms._Angler'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'legend_ii',
+    name: 'Legend II',
+    description: 'The successor to the original Legend.',
+    imageUrl: './images/legend_ii.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Legend_II'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'glacierfish_jr',
+    name: 'Glacierfish Jr.',
+    description: 'Glacierfish Jr.	The original Glacierfish had a son...',
+    imageUrl: './images/glacierfish_jr.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Glacierfish_Jr.'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
+  },
+  {
+    id: 'radioactive_carp',
+    name: 'Radioactive Carp',
+    description: 'A carp that spent one too many years in toxic sludge.',
+    imageUrl: './images/radioactive_carp.png',
+    links: [
+      {
+        text: 'Wiki Link',
+        url: 'https://stardewvalleywiki.com/Radioactive_Carp'
+      }
+    ],
+    ingredients: [],
+    categories: ['fish'],
+    tags: []
   }
 ];
